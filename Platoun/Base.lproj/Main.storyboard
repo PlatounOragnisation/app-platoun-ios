@@ -259,9 +259,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FwI-bP-M4q">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Modification du mot de passe" id="bui-GL-dux"/>
+                                </items>
+                            </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wtc-pa-kMe">
                                 <rect key="frame" x="183.5" y="772" width="47" height="30"/>
                                 <state key="normal" title="Valider"/>
+                                <connections>
+                                    <action selector="saveNewPasswordAction:" destination="6HZ-xw-kRY" eventType="touchUpInside" id="iTl-H5-918"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmer le mot de passe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5bp-nb-9RL">
                                 <rect key="frame" x="16" y="688" width="382" height="34"/>
@@ -287,7 +296,9 @@
                         <constraints>
                             <constraint firstItem="Otp-aH-CDV" firstAttribute="trailing" secondItem="I9q-RS-nAn" secondAttribute="trailing" constant="-16" id="55S-c4-KK8"/>
                             <constraint firstItem="Wtc-pa-kMe" firstAttribute="centerX" secondItem="nYN-VM-DTT" secondAttribute="centerX" id="Aav-6V-dxW"/>
+                            <constraint firstItem="FwI-bP-M4q" firstAttribute="trailing" secondItem="I9q-RS-nAn" secondAttribute="trailing" id="D3B-Ge-uZq"/>
                             <constraint firstItem="hXY-vG-cf1" firstAttribute="leading" secondItem="I9q-RS-nAn" secondAttribute="leading" constant="16" id="FjG-LK-aqN"/>
+                            <constraint firstItem="FwI-bP-M4q" firstAttribute="top" secondItem="I9q-RS-nAn" secondAttribute="top" id="NCM-Kn-yoR"/>
                             <constraint firstItem="5bp-nb-9RL" firstAttribute="leading" secondItem="I9q-RS-nAn" secondAttribute="leading" constant="16" id="UEs-3C-K3B"/>
                             <constraint firstItem="Wtc-pa-kMe" firstAttribute="top" secondItem="5bp-nb-9RL" secondAttribute="bottom" constant="50" id="Xdc-ce-wpa"/>
                             <constraint firstItem="5bp-nb-9RL" firstAttribute="top" secondItem="hXY-vG-cf1" secondAttribute="bottom" constant="40" id="atI-o0-ZV5"/>
@@ -297,6 +308,7 @@
                             <constraint firstItem="5bp-nb-9RL" firstAttribute="trailing" secondItem="I9q-RS-nAn" secondAttribute="trailing" constant="-16" id="hxV-gI-w0y"/>
                             <constraint firstItem="I9q-RS-nAn" firstAttribute="bottom" secondItem="Wtc-pa-kMe" secondAttribute="bottom" constant="60" id="jU1-Zu-VVc"/>
                             <constraint firstItem="4bP-r8-oO3" firstAttribute="top" secondItem="Otp-aH-CDV" secondAttribute="bottom" constant="10" id="oKh-xx-mEr"/>
+                            <constraint firstItem="FwI-bP-M4q" firstAttribute="leading" secondItem="I9q-RS-nAn" secondAttribute="leading" id="v8w-p7-crz"/>
                             <constraint firstItem="hXY-vG-cf1" firstAttribute="top" secondItem="4bP-r8-oO3" secondAttribute="bottom" constant="60" id="wzO-Zm-c1Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I9q-RS-nAn"/>

@@ -30,7 +30,7 @@ class ParametersViewController: UIViewController {
         let vc = ChangePasswordViewController.getInstance()
         
         let presentationController = CustomPresentationController(presentedViewController: vc, presenting: self)
-        
+
         vc.transitioningDelegate = presentationController
         self.present(vc, animated: true, completion: nil)
     }

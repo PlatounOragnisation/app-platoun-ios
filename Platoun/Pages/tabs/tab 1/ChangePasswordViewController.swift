@@ -31,4 +31,7 @@ class ChangePasswordViewController: UIViewController {
             width: self.view.bounds.size.width,
             height: traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact ? 334 : 520)
     }
+    @IBAction func saveNewPasswordAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
