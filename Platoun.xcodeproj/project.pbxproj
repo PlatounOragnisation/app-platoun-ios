@@ -3,18 +3,35 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C493FFB35131E61992BA394 /* Pods_Platoun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800E9816F838EEAEB4640F58 /* Pods_Platoun.framework */; };
+		43978D92FC270A19E7D9BBE5 /* Pods_PlatounTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D3E7F3C28B9AE1B6E4CD15 /* Pods_PlatounTests.framework */; };
+		9A3BEAFCAA4F91297A2FABB9 /* Pods_Platoun_PlatounUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125708D26EA307293C3F011A /* Pods_Platoun_PlatounUITests.framework */; };
+		F018D6C024F977BE00DD0D45 /* Tab1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6BF24F977BE00DD0D45 /* Tab1ViewController.swift */; };
+		F018D6C924F9781C00DD0D45 /* Tab4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C224F9781C00DD0D45 /* Tab4ViewController.swift */; };
+		F018D6CA24F9781C00DD0D45 /* Tab3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C424F9781C00DD0D45 /* Tab3ViewController.swift */; };
+		F018D6CB24F9781C00DD0D45 /* Tab2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C624F9781C00DD0D45 /* Tab2ViewController.swift */; };
+		F018D6CC24F9781C00DD0D45 /* Tab5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C824F9781C00DD0D45 /* Tab5ViewController.swift */; };
+		F018D6CE24F97C4300DD0D45 /* ParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6CD24F97C4300DD0D45 /* ParametersViewController.swift */; };
+		F018D6D024F98C9C00DD0D45 /* UserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6CF24F98C9C00DD0D45 /* UserDefaultsUtils.swift */; };
+		F018D6D224FC6A4A00DD0D45 /* UIKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6D124FC6A4A00DD0D45 /* UIKitUtils.swift */; };
+		F018D6D424FD9BE500DD0D45 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6D324FD9BE500DD0D45 /* ChangePasswordViewController.swift */; };
+		F018D6D624FDA3B700DD0D45 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6D524FDA3B700DD0D45 /* CustomPresentationController.swift */; };
 		F01C6CA824F31B140016ADE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CA724F31B140016ADE2 /* AppDelegate.swift */; };
-		F01C6CAA24F31B140016ADE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CA924F31B140016ADE2 /* SceneDelegate.swift */; };
-		F01C6CAC24F31B140016ADE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CAB24F31B140016ADE2 /* ViewController.swift */; };
+		F01C6CAC24F31B140016ADE2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CAB24F31B140016ADE2 /* LoginViewController.swift */; };
 		F01C6CAF24F31B140016ADE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CAD24F31B140016ADE2 /* Main.storyboard */; };
 		F01C6CB124F31B160016ADE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB024F31B160016ADE2 /* Assets.xcassets */; };
 		F01C6CB424F31B160016ADE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB224F31B160016ADE2 /* LaunchScreen.storyboard */; };
 		F01C6CBF24F31B160016ADE2 /* PlatounTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CBE24F31B160016ADE2 /* PlatounTests.swift */; };
 		F01C6CCA24F31B160016ADE2 /* PlatounUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CC924F31B160016ADE2 /* PlatounUITests.swift */; };
+		F01C6CD824F31E670016ADE2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CD724F31E670016ADE2 /* GoogleService-Info.plist */; };
+		F01C6CFE24F32CE80016ADE2 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CFD24F32CE80016ADE2 /* TabViewController.swift */; };
+		F02802ED24F3349F00775C9E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = F02802EC24F3349F00775C9E /* FacebookCore */; };
+		F02802EF24F3349F00775C9E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = F02802EE24F3349F00775C9E /* FacebookLogin */; };
+		F02802F124F336D800775C9E /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02802F024F336D800775C9E /* FirebaseUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +52,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04790D75F02F66999F2515AE /* Pods-Platoun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun.release.xcconfig"; path = "Target Support Files/Pods-Platoun/Pods-Platoun.release.xcconfig"; sourceTree = "<group>"; };
+		125708D26EA307293C3F011A /* Pods_Platoun_PlatounUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Platoun_PlatounUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DDC87C3ACE923BFEF07336F /* Pods-Platoun-PlatounUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun-PlatounUITests.debug.xcconfig"; path = "Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		78738F41EED7966EA2CA3723 /* Pods-PlatounTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.debug.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.debug.xcconfig"; sourceTree = "<group>"; };
+		800E9816F838EEAEB4640F58 /* Pods_Platoun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Platoun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C6D3D26DF816B3B983A8F6F /* Pods-Platoun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun.debug.xcconfig"; path = "Target Support Files/Pods-Platoun/Pods-Platoun.debug.xcconfig"; sourceTree = "<group>"; };
+		93D3E7F3C28B9AE1B6E4CD15 /* Pods_PlatounTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlatounTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC7F13EF679DB5D0C2DCC63E /* Pods-Platoun-PlatounUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun-PlatounUITests.release.xcconfig"; path = "Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F018D6BF24F977BE00DD0D45 /* Tab1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab1ViewController.swift; sourceTree = "<group>"; };
+		F018D6C224F9781C00DD0D45 /* Tab4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab4ViewController.swift; sourceTree = "<group>"; };
+		F018D6C424F9781C00DD0D45 /* Tab3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab3ViewController.swift; sourceTree = "<group>"; };
+		F018D6C624F9781C00DD0D45 /* Tab2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab2ViewController.swift; sourceTree = "<group>"; };
+		F018D6C824F9781C00DD0D45 /* Tab5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab5ViewController.swift; sourceTree = "<group>"; };
+		F018D6CD24F97C4300DD0D45 /* ParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersViewController.swift; sourceTree = "<group>"; };
+		F018D6CF24F98C9C00DD0D45 /* UserDefaultsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtils.swift; sourceTree = "<group>"; };
+		F018D6D124FC6A4A00DD0D45 /* UIKitUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitUtils.swift; sourceTree = "<group>"; };
+		F018D6D324FD9BE500DD0D45 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		F018D6D524FDA3B700DD0D45 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
 		F01C6CA424F31B140016ADE2 /* Platoun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platoun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01C6CA724F31B140016ADE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F01C6CA924F31B140016ADE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F01C6CAB24F31B140016ADE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F01C6CAB24F31B140016ADE2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F01C6CAE24F31B140016ADE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F01C6CB024F31B160016ADE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F01C6CB324F31B160016ADE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +83,11 @@
 		F01C6CC524F31B160016ADE2 /* PlatounUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlatounUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01C6CC924F31B160016ADE2 /* PlatounUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatounUITests.swift; sourceTree = "<group>"; };
 		F01C6CCB24F31B160016ADE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F01C6CD724F31E670016ADE2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F01C6CFD24F32CE80016ADE2 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		F02802F024F336D800775C9E /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
+		F02802F224F347C000775C9E /* Platoun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Platoun.entitlements; sourceTree = "<group>"; };
+		F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.release.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +95,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C493FFB35131E61992BA394 /* Pods_Platoun.framework in Frameworks */,
+				F02802ED24F3349F00775C9E /* FacebookCore in Frameworks */,
+				F02802EF24F3349F00775C9E /* FacebookLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43978D92FC270A19E7D9BBE5 /* Pods_PlatounTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +113,101 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3BEAFCAA4F91297A2FABB9 /* Pods_Platoun_PlatounUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC7179604620913BE25CB3C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C6D3D26DF816B3B983A8F6F /* Pods-Platoun.debug.xcconfig */,
+				04790D75F02F66999F2515AE /* Pods-Platoun.release.xcconfig */,
+				6DDC87C3ACE923BFEF07336F /* Pods-Platoun-PlatounUITests.debug.xcconfig */,
+				CC7F13EF679DB5D0C2DCC63E /* Pods-Platoun-PlatounUITests.release.xcconfig */,
+				78738F41EED7966EA2CA3723 /* Pods-PlatounTests.debug.xcconfig */,
+				F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F018D6B624F976F300DD0D45 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				F018D6B724F976FD00DD0D45 /* tabs */,
+				F01C6CAB24F31B140016ADE2 /* LoginViewController.swift */,
+				F01C6CFD24F32CE80016ADE2 /* TabViewController.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		F018D6B724F976FD00DD0D45 /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				F018D6BA24F9775C00DD0D45 /* tab 1 */,
+				F018D6C524F9781C00DD0D45 /* tab 2 */,
+				F018D6C324F9781C00DD0D45 /* tab 3 */,
+				F018D6C124F9781C00DD0D45 /* tab 4 */,
+				F018D6C724F9781C00DD0D45 /* tab 5 */,
+			);
+			path = tabs;
+			sourceTree = "<group>";
+		};
+		F018D6B824F9770C00DD0D45 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F02802F024F336D800775C9E /* FirebaseUtils.swift */,
+				F018D6CF24F98C9C00DD0D45 /* UserDefaultsUtils.swift */,
+				F018D6D124FC6A4A00DD0D45 /* UIKitUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F018D6BA24F9775C00DD0D45 /* tab 1 */ = {
+			isa = PBXGroup;
+			children = (
+				F018D6BF24F977BE00DD0D45 /* Tab1ViewController.swift */,
+				F018D6CD24F97C4300DD0D45 /* ParametersViewController.swift */,
+				F018D6D324FD9BE500DD0D45 /* ChangePasswordViewController.swift */,
+				F018D6D524FDA3B700DD0D45 /* CustomPresentationController.swift */,
+			);
+			path = "tab 1";
+			sourceTree = "<group>";
+		};
+		F018D6C124F9781C00DD0D45 /* tab 4 */ = {
+			isa = PBXGroup;
+			children = (
+				F018D6C224F9781C00DD0D45 /* Tab4ViewController.swift */,
+			);
+			path = "tab 4";
+			sourceTree = "<group>";
+		};
+		F018D6C324F9781C00DD0D45 /* tab 3 */ = {
+			isa = PBXGroup;
+			children = (
+				F018D6C424F9781C00DD0D45 /* Tab3ViewController.swift */,
+			);
+			path = "tab 3";
+			sourceTree = "<group>";
+		};
+		F018D6C524F9781C00DD0D45 /* tab 2 */ = {
+			isa = PBXGroup;
+			children = (
+				F018D6C624F9781C00DD0D45 /* Tab2ViewController.swift */,
+			);
+			path = "tab 2";
+			sourceTree = "<group>";
+		};
+		F018D6C724F9781C00DD0D45 /* tab 5 */ = {
+			isa = PBXGroup;
+			children = (
+				F018D6C824F9781C00DD0D45 /* Tab5ViewController.swift */,
+			);
+			path = "tab 5";
+			sourceTree = "<group>";
+		};
 		F01C6C9B24F31B140016ADE2 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +215,8 @@
 				F01C6CBD24F31B160016ADE2 /* PlatounTests */,
 				F01C6CC824F31B160016ADE2 /* PlatounUITests */,
 				F01C6CA524F31B140016ADE2 /* Products */,
+				BC7179604620913BE25CB3C4 /* Pods */,
+				F3158A175E9598B279AE5C6A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +233,15 @@
 		F01C6CA624F31B140016ADE2 /* Platoun */ = {
 			isa = PBXGroup;
 			children = (
+				F02802F224F347C000775C9E /* Platoun.entitlements */,
 				F01C6CA724F31B140016ADE2 /* AppDelegate.swift */,
-				F01C6CA924F31B140016ADE2 /* SceneDelegate.swift */,
-				F01C6CAB24F31B140016ADE2 /* ViewController.swift */,
-				F01C6CAD24F31B140016ADE2 /* Main.storyboard */,
-				F01C6CB024F31B160016ADE2 /* Assets.xcassets */,
-				F01C6CB224F31B160016ADE2 /* LaunchScreen.storyboard */,
 				F01C6CB524F31B160016ADE2 /* Info.plist */,
+				F01C6CAD24F31B140016ADE2 /* Main.storyboard */,
+				F01C6CB224F31B160016ADE2 /* LaunchScreen.storyboard */,
+				F01C6CB024F31B160016ADE2 /* Assets.xcassets */,
+				F018D6B824F9770C00DD0D45 /* Utils */,
+				F018D6B624F976F300DD0D45 /* Pages */,
+				F01C6CD724F31E670016ADE2 /* GoogleService-Info.plist */,
 			);
 			path = Platoun;
 			sourceTree = "<group>";
@@ -128,6 +264,16 @@
 			path = PlatounUITests;
 			sourceTree = "<group>";
 		};
+		F3158A175E9598B279AE5C6A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				800E9816F838EEAEB4640F58 /* Pods_Platoun.framework */,
+				125708D26EA307293C3F011A /* Pods_Platoun_PlatounUITests.framework */,
+				93D3E7F3C28B9AE1B6E4CD15 /* Pods_PlatounTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,15 +281,23 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F01C6CCE24F31B160016ADE2 /* Build configuration list for PBXNativeTarget "Platoun" */;
 			buildPhases = (
+				491E13F138CD50EC0221AF25 /* [CP] Check Pods Manifest.lock */,
 				F01C6CA024F31B140016ADE2 /* Sources */,
 				F01C6CA124F31B140016ADE2 /* Frameworks */,
 				F01C6CA224F31B140016ADE2 /* Resources */,
+				1EAD772F399BA2C66B6839DD /* [CP] Embed Pods Frameworks */,
+				F01C6CFC24F3230F0016ADE2 /* Crashlytics */,
+				B4DA769BE8A2169F1430513A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Platoun;
+			packageProductDependencies = (
+				F02802EC24F3349F00775C9E /* FacebookCore */,
+				F02802EE24F3349F00775C9E /* FacebookLogin */,
+			);
 			productName = Platoun;
 			productReference = F01C6CA424F31B140016ADE2 /* Platoun.app */;
 			productType = "com.apple.product-type.application";
@@ -152,6 +306,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F01C6CD124F31B160016ADE2 /* Build configuration list for PBXNativeTarget "PlatounTests" */;
 			buildPhases = (
+				8F0C1153CCA563E9FD2461F8 /* [CP] Check Pods Manifest.lock */,
 				F01C6CB624F31B160016ADE2 /* Sources */,
 				F01C6CB724F31B160016ADE2 /* Frameworks */,
 				F01C6CB824F31B160016ADE2 /* Resources */,
@@ -170,9 +325,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F01C6CD424F31B160016ADE2 /* Build configuration list for PBXNativeTarget "PlatounUITests" */;
 			buildPhases = (
+				CBAA8F8DE155FC13EDBE770B /* [CP] Check Pods Manifest.lock */,
 				F01C6CC124F31B160016ADE2 /* Sources */,
 				F01C6CC224F31B160016ADE2 /* Frameworks */,
 				F01C6CC324F31B160016ADE2 /* Resources */,
+				F8C3A30A89F6AE83629CA0F6 /* [CP] Embed Pods Frameworks */,
+				A66CDEF866B269DF2FB71D67 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -216,6 +374,9 @@
 				Base,
 			);
 			mainGroup = F01C6C9B24F31B140016ADE2;
+			packageReferences = (
+				F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = F01C6CA524F31B140016ADE2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F01C6CB424F31B160016ADE2 /* LaunchScreen.storyboard in Resources */,
+				F01C6CD824F31E670016ADE2 /* GoogleService-Info.plist in Resources */,
 				F01C6CB124F31B160016ADE2 /* Assets.xcassets in Resources */,
 				F01C6CAF24F31B140016ADE2 /* Main.storyboard in Resources */,
 			);
@@ -254,14 +416,182 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1EAD772F399BA2C66B6839DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		491E13F138CD50EC0221AF25 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Platoun-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F0C1153CCA563E9FD2461F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlatounTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A66CDEF866B269DF2FB71D67 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4DA769BE8A2169F1430513A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBAA8F8DE155FC13EDBE770B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Platoun-PlatounUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F01C6CFC24F3230F0016ADE2 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		F8C3A30A89F6AE83629CA0F6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F01C6CA024F31B140016ADE2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F01C6CAC24F31B140016ADE2 /* ViewController.swift in Sources */,
+				F018D6D624FDA3B700DD0D45 /* CustomPresentationController.swift in Sources */,
+				F018D6CE24F97C4300DD0D45 /* ParametersViewController.swift in Sources */,
+				F01C6CFE24F32CE80016ADE2 /* TabViewController.swift in Sources */,
+				F02802F124F336D800775C9E /* FirebaseUtils.swift in Sources */,
+				F01C6CAC24F31B140016ADE2 /* LoginViewController.swift in Sources */,
+				F018D6CC24F9781C00DD0D45 /* Tab5ViewController.swift in Sources */,
+				F018D6CB24F9781C00DD0D45 /* Tab2ViewController.swift in Sources */,
+				F018D6D424FD9BE500DD0D45 /* ChangePasswordViewController.swift in Sources */,
+				F018D6D224FC6A4A00DD0D45 /* UIKitUtils.swift in Sources */,
+				F018D6C024F977BE00DD0D45 /* Tab1ViewController.swift in Sources */,
+				F018D6CA24F9781C00DD0D45 /* Tab3ViewController.swift in Sources */,
 				F01C6CA824F31B140016ADE2 /* AppDelegate.swift in Sources */,
-				F01C6CAA24F31B140016ADE2 /* SceneDelegate.swift in Sources */,
+				F018D6D024F98C9C00DD0D45 /* UserDefaultsUtils.swift in Sources */,
+				F018D6C924F9781C00DD0D45 /* Tab4ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,10 +696,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -420,9 +754,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -432,16 +770,24 @@
 		};
 		F01C6CCF24F31B160016ADE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C6D3D26DF816B3B983A8F6F /* Pods-Platoun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Platoun/Framework/Firebase/FirebaseAnalytics",
+				);
 				INFOPLIST_FILE = Platoun/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.Platoun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -450,16 +796,23 @@
 		};
 		F01C6CD024F31B160016ADE2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04790D75F02F66999F2515AE /* Pods-Platoun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Platoun/Framework/Firebase/FirebaseAnalytics",
+				);
 				INFOPLIST_FILE = Platoun/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.Platoun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -468,6 +821,7 @@
 		};
 		F01C6CD224F31B160016ADE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78738F41EED7966EA2CA3723 /* Pods-PlatounTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +844,7 @@
 		};
 		F01C6CD324F31B160016ADE2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +867,7 @@
 		};
 		F01C6CD524F31B160016ADE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DDC87C3ACE923BFEF07336F /* Pods-Platoun-PlatounUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +888,7 @@
 		};
 		F01C6CD624F31B160016ADE2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC7F13EF679DB5D0C2DCC63E /* Pods-Platoun-PlatounUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -590,6 +947,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F02802EC24F3349F00775C9E /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		F02802EE24F3349F00775C9E /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F01C6C9C24F31B140016ADE2 /* Project object */;
 }
