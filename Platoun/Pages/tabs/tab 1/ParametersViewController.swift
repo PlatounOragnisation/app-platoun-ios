@@ -10,27 +10,30 @@ import UIKit
 import FirebaseAuth
 
 class ParametersViewController: UIViewController {
-
+    
     @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var changeValuesButton: UIButton!
     @IBOutlet weak var changePasswordButton: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let user = Auth.auth().currentUser
+        
+        changePasswordButton.isHidden = !(user?.isPassword ?? false)
         
         
         nickNameTextField.text = user?.displayName ?? ""
         emailTextField.text = user?.email ?? ""
         
     }
+    
     @IBAction func changePasswordAction(_ sender: Any) {
         let vc = ChangePasswordViewController.getInstance()
         
         let presentationController = CustomPresentationController(presentedViewController: vc, presenting: self)
-
+        
         vc.transitioningDelegate = presentationController
         self.present(vc, animated: true, completion: nil)
     }
@@ -42,9 +45,9 @@ class ParametersViewController: UIViewController {
                 if nameChanged == true && emailChanged == true {
                     message = "Votre nom et votre email ont bien été changé."
                 } else if nameChanged == true {
-                    message = "Votre nom à bien été changé."
+                    message = "Votre nom a bien été changé."
                 } else if emailChanged == true {
-                    message = "Votre email à bien été changé.\n"
+                    message = "Votre email a bien été changé.\n"
                 } else if nameChanged == false && emailChanged == false {
                     message = "Votre email et votre nom sont inchangé."
                 }
@@ -63,7 +66,7 @@ class ParametersViewController: UIViewController {
             let user = Auth.auth().currentUser,
             let displayName = nickNameTextField.text,
             user.displayName != displayName else { completion(false); return }
-
+        
         let request = user.createProfileChangeRequest()
         request.displayName = displayName
         request.commitChanges {
@@ -80,40 +83,30 @@ class ParametersViewController: UIViewController {
             let email = emailTextField.text,
             user.email != email else { completion(false); return }
         
-        UIKitUtils.showAlert(in: self, message: "Pour modifier votre email vous devez vous réauthentifier") {
-            LoginViewController.show(in: self, isForCredential: true, completionAuth: { isConnected in
-                if isConnected {
-                    user.updateEmail(to: email) {
-                        if let error = $0 {
-                            UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre email : \(error.localizedDescription)") { completion(nil) }
+        guard let authentication: Authentication = user.authentication else {
+            return
+        }
+        
+        authentication.reAuth(from: self) { authResult in
+            switch authResult {
+            case .success:
+                user.updateEmail(to: email) {
+                    if let error = $0 {
+                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre email : \(error.localizedDescription)") { completion(nil) }
+                    }
+                    user.reload { e in
+                        if let error = e {
+                            UIKitUtils.showAlert(in: self, message: "Votre email a été changer mais une erreur est survenue après : \(error.localizedDescription)") { completion(nil) }
                         }
-                        user.reload { e in
-                            if let error = e {
-                                UIKitUtils.showAlert(in: self, message: "Votre email à été changer mais une erreur est survenue après : \(error.localizedDescription)") { completion(nil) }
-                            }
-                            completion(true)
-                        }
+                        completion(true)
                     }
                 }
-            })
-        }
-    }
-    
-}
-
-extension ParametersViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return HalfSizePresentationController(presentedViewController: presented, presenting: presenting)
-    }
-}
-
-
-
-class HalfSizePresentationController : UIPresentationController {
-    override var frameOfPresentedViewInContainerView: CGRect {
-        get {
-            guard let containerView = self.containerView else { return CGRect.zero }
-            return CGRect(x: 0, y: containerView.bounds.height/2, width: containerView.bounds.width, height: containerView.bounds.height/2)
+            case .failure(let error):
+                UIKitUtils.showAlert(in: self, message: "Un problème est survenue merci de vous reconnecter:\n\(error)") {
+                    AuthenticationLogout()
+                    (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+                }
+            }
         }
     }
 }

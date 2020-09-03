@@ -9,16 +9,17 @@
 import UIKit
 
 class Tab1ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
     @IBAction func logOutAction(_ sender: Any) {
-        FirebaseUtils.logout()
-        exit(0)
+        AuthenticationLogout()
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+        
     }
-
+    
 }

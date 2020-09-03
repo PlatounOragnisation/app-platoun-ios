@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ChangePasswordViewController: UIViewController {
     
@@ -18,6 +19,11 @@ class ChangePasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.updatePreferredContentSize(with: self.traitCollection)
+        
+        let userType = Auth.auth().currentUser?.authentication
+        
+        print(userType)
+        
         // Do any additional setup after loading the view.
     }
     

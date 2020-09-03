@@ -60,7 +60,7 @@
                                                     <constraint firstAttribute="height" constant="34" id="Xbh-FS-AQv"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -82,8 +82,7 @@
                                         <rect key="frame" x="0.0" y="278" width="414" height="30"/>
                                         <state key="normal" title="Sign up"/>
                                         <connections>
-                                            <action selector="SignUpActionWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VaK-zK-GCB"/>
-                                            <action selector="signUpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="efy-1N-DPh"/>
+                                            <action selector="SignUpActionWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sc0-s3-ttN"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kW3-gh-PO6">
@@ -207,7 +206,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bYB-y6-u2u">
                                 <rect key="frame" x="16" y="262" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5E-T0-zlm">
                                 <rect key="frame" x="140.5" y="304" width="133" height="30"/>
@@ -231,7 +230,7 @@
                             <constraint firstItem="duh-Pd-GlS" firstAttribute="leading" secondItem="gKW-xY-Mvt" secondAttribute="leading" constant="16" id="6jh-SY-0lW"/>
                             <constraint firstItem="sRI-u2-Gab" firstAttribute="centerX" secondItem="vtR-ML-ewq" secondAttribute="centerX" id="V1Z-2X-xHD"/>
                             <constraint firstItem="G5E-T0-zlm" firstAttribute="top" secondItem="bYB-y6-u2u" secondAttribute="bottom" constant="8" id="aGI-vK-eWK"/>
-                            <constraint firstItem="G5E-T0-zlm" firstAttribute="centerX" secondItem="bYB-y6-u2u" secondAttribute="centerX" id="b1C-yQ-8mZ"/>
+                            <constraint firstItem="G5E-T0-zlm" firstAttribute="centerX" secondItem="vtR-ML-ewq" secondAttribute="centerX" id="eVM-rN-efm"/>
                             <constraint firstItem="sRI-u2-Gab" firstAttribute="top" secondItem="G5E-T0-zlm" secondAttribute="bottom" constant="60" id="fci-Sm-YC4"/>
                             <constraint firstItem="bYB-y6-u2u" firstAttribute="top" secondItem="duh-Pd-GlS" secondAttribute="bottom" constant="50" id="ldD-BS-ysF"/>
                             <constraint firstItem="bYB-y6-u2u" firstAttribute="trailing" secondItem="gKW-xY-Mvt" secondAttribute="trailing" constant="-16" id="o0F-rP-EvL"/>
