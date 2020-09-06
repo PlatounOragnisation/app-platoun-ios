@@ -74,6 +74,7 @@ class ParametersViewController: UIViewController {
             if let error = $0 {
                 UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre nom : \(error.localizedDescription)") { completion(nil) }
             }
+            FirestoreUtils.saveUser(uid: user.uid, name: displayName)
             completion(true)
         }
     }

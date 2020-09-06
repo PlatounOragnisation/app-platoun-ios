@@ -21,7 +21,14 @@ class Tab4ViewController: UIViewController {
                 let post = try? doc.data(as: Post.self) else {
                 return UITableViewCell()
             }
-            cell.setup(post: post)
+            FirestoreUtils.getUserInfo(uid: post.createBy) { result in
+                switch result {
+                case .success((let name, let photo)):
+                    cell.setup(post: post, userName: name, userPhoto: photo)
+                case .failure(let error):
+                    cell.setup(post: post, userName: "", userPhoto: nil)
+                }
+            }
             return cell
         }
     }()

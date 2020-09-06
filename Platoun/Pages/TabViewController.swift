@@ -26,9 +26,7 @@ class TabViewController: UITabBarController {
     func connexion() {
         if Auth.auth().currentUser == nil {
             LoginViewController.show(in: self) { isConnected in
-                if isConnected {
-                    
-                } else {
+                if !isConnected {
                     UIKitUtils.showAlert(in: self, message: "Vous devez être connecter pour continuer") {
                         self.connexion()
                     }

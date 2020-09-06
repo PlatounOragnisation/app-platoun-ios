@@ -40,6 +40,7 @@
 		F07A1F932504179D002AAEDD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F922504179D002AAEDD /* Post.swift */; };
 		F0A11F162505336F007C29F3 /* FirestoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F152505336F007C29F3 /* FirestoreUtils.swift */; };
 		F0A11F1A25054383007C29F3 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */; };
+		F0A11F1C25058228007C29F3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F1B25058228007C29F3 /* UIImageView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		F07A1F922504179D002AAEDD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F0A11F152505336F007C29F3 /* FirestoreUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUtils.swift; sourceTree = "<group>"; };
 		F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		F0A11F1B25058228007C29F3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.release.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,6 +186,7 @@
 				F07A1F8D25040402002AAEDD /* ImagePickerManager.swift */,
 				F07A1F8F25041270002AAEDD /* StorageUtils.swift */,
 				F0A11F152505336F007C29F3 /* FirestoreUtils.swift */,
+				F0A11F1B25058228007C29F3 /* UIImageView+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				F018D6CE24F97C4300DD0D45 /* ParametersViewController.swift in Sources */,
 				F01C6CFE24F32CE80016ADE2 /* TabViewController.swift in Sources */,
 				F01C6CAC24F31B140016ADE2 /* LoginViewController.swift in Sources */,
+				F0A11F1C25058228007C29F3 /* UIImageView+Extension.swift in Sources */,
 				F018D6CC24F9781C00DD0D45 /* Tab5ViewController.swift in Sources */,
 				F07A1F8E25040402002AAEDD /* ImagePickerManager.swift in Sources */,
 				F018D6DA2500640500DD0D45 /* AppleSignIn.swift in Sources */,

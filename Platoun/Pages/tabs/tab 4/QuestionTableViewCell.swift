@@ -29,23 +29,26 @@ class QuestionTableViewCell: UITableViewCell {
     @IBOutlet weak var currentUserImageView: UIImageView!
     @IBOutlet weak var writeCommentButton: UIButton!
     
-    func setup(post: Post) {
+    func setup(post: Post, userName: String, userPhoto: URL?) {
         guard let user = Auth.auth().currentUser else { return }
+        
+        FirestoreUtils.getUserInfo(uid: post.createBy) { result in
+            guard case let .success((name,photo)) = result else { return }
+            self.creatorImageView.setImage(with: photo, placeholder: nil, options: .progressiveLoad)
+            self.creatorNameLabel.text = name
+        }
+        
         self.imagesContainerStackView.isHidden = post.images.count == 0
         self.firstImageView.isHidden = post.images.count < 1
         self.secondImageView.isHidden = post.images.count < 2
         
         if post.images.count > 0 {
             let ref: StorageReference = Storage.storage().reference(forURL: post.images[0])
-            self.firstImageView.sd_setImage(with: ref, maxImageSize: UInt64.max, placeholderImage: nil, options: .progressiveLoad) { _, error, _, _ in
-                if let error = error { Crashlytics.crashlytics().record(error: error) }
-            }
+            self.firstImageView.setImage(with: ref, placeholder: nil, options: .progressiveLoad)
         }
         if post.images.count > 1 {
             let ref: StorageReference = Storage.storage().reference(forURL: post.images[1])
-            self.secondImageView.sd_setImage(with: ref, maxImageSize: UInt64.max, placeholderImage: nil, options: .progressiveLoad) { _, error, _, _ in
-                if let error = error { Crashlytics.crashlytics().record(error: error) }
-            }
+            self.secondImageView.setImage(with: ref, placeholder: nil, options: .progressiveLoad)
         }
         
         self.postCategoryLabel.text = post.category.rawValue
@@ -54,10 +57,7 @@ class QuestionTableViewCell: UITableViewCell {
         self.commentsButton.setTitle("\(post.comments.count) Comments", for: .normal)
         self.upVoteButton.setTitle("\(post.votes.count) 🔥", for: .normal)
         
-        self.currentUserImageView.sd_setImage(with: user.photoURL, placeholderImage: nil, options: [.progressiveLoad]) { _, error, _, _ in
-            if let error = error { Crashlytics.crashlytics().record(error: error) }
-        }
-        
+        self.currentUserImageView.setImage(with: user.photoURL, placeholder: nil, options: .progressiveLoad)
     }
     
     override func awakeFromNib() {

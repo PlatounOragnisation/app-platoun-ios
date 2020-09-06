@@ -34,9 +34,9 @@ class LoginViewController: UIViewController {
         
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-//        self.completionAuth?(Auth.auth().currentUser != nil)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.completionAuth?(Auth.auth().currentUser != nil)
     }
     
     @IBAction func cancelAction(_ sender: Any) {
