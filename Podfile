@@ -10,7 +10,10 @@ target 'Platoun' do
   pod 'Firebase/Performance'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage'
   pod 'Firebase/Firestore'
+  pod 'FirebaseUI/Firestore'
   pod 'FirebaseFirestoreSwift'
 
   # Pods for Platoun

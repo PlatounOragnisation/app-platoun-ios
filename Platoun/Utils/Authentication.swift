@@ -66,6 +66,45 @@ enum Authentication {
         }
     }
     
+    func resetPassword(from viewController: UIViewController, callBack: @escaping (Result<Void,Error>)->Void) {
+        switch self {
+        case .email(let email, _):
+            Auth.auth().sendPasswordReset(withEmail: email) { e in
+                if let error = e {
+                    callBack(Result.failure(error))
+                } else {
+                    callBack(Result.success(Void()))
+                }
+            }
+        default: break
+        }
+    }
+    
+    func changePassword(from viewController: UIViewController, olPassword: String, newPassord: String, callBack: @escaping (Result<Void,Error>)->Void) {
+        switch self {
+        case .email(let email, _):
+            let credential = EmailAuthProvider.credential(withEmail: email, password: olPassword)
+            guard let currentUser = Auth.auth().currentUser else {
+                callBack(Result.failure(AuthenticationError.reAuthWithoutCurrentUser)); return
+            }
+            currentUser.reauthenticate(with: credential) { (authDataResult, error) in
+                guard authDataResult != nil else {
+                    callBack(Result.failure(error ?? AuthenticationError.signInNoError)); return
+                }
+                
+                currentUser.updatePassword(to: newPassord) { (error) in
+                    if let e = error {
+                        callBack(Result.failure(e))
+                    } else {
+                        callBack(Result.success(Void()))
+                    }
+                }
+            }
+
+        default: break
+        }
+    }
+    
     func reAuth(from viewController: UIViewController, callBack: @escaping CallBack) {
         self.getCredential(from: viewController) { credentialResult in
             switch credentialResult {

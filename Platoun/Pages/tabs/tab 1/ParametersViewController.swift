@@ -34,7 +34,8 @@ class ParametersViewController: UIViewController {
         
         let presentationController = CustomPresentationController(presentedViewController: vc, presenting: self)
         
-        vc.transitioningDelegate = presentationController
+//        vc.transitioningDelegate = presentationController
+        vc.modalPresentationStyle = .popover
         self.present(vc, animated: true, completion: nil)
     }
     

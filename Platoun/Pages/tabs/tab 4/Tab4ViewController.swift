@@ -7,24 +7,35 @@
 //
 
 import UIKit
+import FirebaseUI
 
 class Tab4ViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    lazy var dataSource: FUIFirestoreTableViewDataSource = {
+        let query = FirestoreUtils.getPostQuery()
+        return self.tableView.bind(toFirestoreQuery: query) { (tableView, indexPath, doc) -> UITableViewCell in
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTableViewCell.identifier, for: indexPath) as? QuestionTableViewCell,
+                let post = try? doc.data(as: Post.self) else {
+                return UITableViewCell()
+            }
+            cell.setup(post: post)
+            return cell
+        }
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.dataSource = self.dataSource
 
         // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

@@ -29,4 +29,15 @@ class UIKitUtils {
         viewControler.present(alert, animated: true, completion: nil)
     }
     
+    static func showAlert(in viewControler: UIViewController, message: String, action1Title: String, completionOK: @escaping ()->Void, action2Title: String, completionCancel: @escaping ()->Void) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: action1Title, style: .default, handler: { _ in
+            completionOK()
+        }))
+        alert.addAction(UIAlertAction(title: action2Title, style: .cancel, handler: { _ in
+            completionCancel()
+        }))
+        viewControler.present(alert, animated: true, completion: nil)
+    }
+    
 }

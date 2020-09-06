@@ -35,6 +35,11 @@
 		F02802EF24F3349F00775C9E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = F02802EE24F3349F00775C9E /* FacebookLogin */; };
 		F07A1F8A2500811B002AAEDD /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02802F024F336D800775C9E /* Authentication.swift */; };
 		F07A1F8C25008684002AAEDD /* GoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F8B25008684002AAEDD /* GoogleSignIn.swift */; };
+		F07A1F8E25040402002AAEDD /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F8D25040402002AAEDD /* ImagePickerManager.swift */; };
+		F07A1F9025041270002AAEDD /* StorageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F8F25041270002AAEDD /* StorageUtils.swift */; };
+		F07A1F932504179D002AAEDD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F922504179D002AAEDD /* Post.swift */; };
+		F0A11F162505336F007C29F3 /* FirestoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F152505336F007C29F3 /* FirestoreUtils.swift */; };
+		F0A11F1A25054383007C29F3 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +98,11 @@
 		F02802F024F336D800775C9E /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		F02802F224F347C000775C9E /* Platoun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Platoun.entitlements; sourceTree = "<group>"; };
 		F07A1F8B25008684002AAEDD /* GoogleSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignIn.swift; sourceTree = "<group>"; };
+		F07A1F8D25040402002AAEDD /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
+		F07A1F8F25041270002AAEDD /* StorageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUtils.swift; sourceTree = "<group>"; };
+		F07A1F922504179D002AAEDD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F0A11F152505336F007C29F3 /* FirestoreUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUtils.swift; sourceTree = "<group>"; };
+		F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.release.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +181,9 @@
 				F018D6D7250040E700DD0D45 /* FIRUser+Extension.swift */,
 				F018D6D92500640500DD0D45 /* AppleSignIn.swift */,
 				F07A1F8B25008684002AAEDD /* GoogleSignIn.swift */,
+				F07A1F8D25040402002AAEDD /* ImagePickerManager.swift */,
+				F07A1F8F25041270002AAEDD /* StorageUtils.swift */,
+				F0A11F152505336F007C29F3 /* FirestoreUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -189,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				F018D6C224F9781C00DD0D45 /* Tab4ViewController.swift */,
+				F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */,
 			);
 			path = "tab 4";
 			sourceTree = "<group>";
@@ -249,6 +263,7 @@
 				F01C6CB224F31B160016ADE2 /* LaunchScreen.storyboard */,
 				F01C6CB024F31B160016ADE2 /* Assets.xcassets */,
 				F018D6B824F9770C00DD0D45 /* Utils */,
+				F07A1F912504178F002AAEDD /* Model */,
 				F018D6B624F976F300DD0D45 /* Pages */,
 				F01C6CD724F31E670016ADE2 /* GoogleService-Info.plist */,
 			);
@@ -273,6 +288,14 @@
 			path = PlatounUITests;
 			sourceTree = "<group>";
 		};
+		F07A1F912504178F002AAEDD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F07A1F922504179D002AAEDD /* Post.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F3158A175E9598B279AE5C6A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,9 +317,9 @@
 				F01C6CA024F31B140016ADE2 /* Sources */,
 				F01C6CA124F31B140016ADE2 /* Frameworks */,
 				F01C6CA224F31B140016ADE2 /* Resources */,
-				1EAD772F399BA2C66B6839DD /* [CP] Embed Pods Frameworks */,
 				F01C6CFC24F3230F0016ADE2 /* Crashlytics */,
-				B4DA769BE8A2169F1430513A /* [CP] Copy Pods Resources */,
+				3B9EF9C5CF5C3FBD4A46214B /* [CP] Embed Pods Frameworks */,
+				353CAC402137A7373FAA3349 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -338,8 +361,8 @@
 				F01C6CC124F31B160016ADE2 /* Sources */,
 				F01C6CC224F31B160016ADE2 /* Frameworks */,
 				F01C6CC324F31B160016ADE2 /* Resources */,
-				F8C3A30A89F6AE83629CA0F6 /* [CP] Embed Pods Frameworks */,
-				A66CDEF866B269DF2FB71D67 /* [CP] Copy Pods Resources */,
+				612A63C45A079AF7E1E4B748 /* [CP] Embed Pods Frameworks */,
+				AB713C61CE5806CFED9D1657 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -426,7 +449,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1EAD772F399BA2C66B6839DD /* [CP] Embed Pods Frameworks */ = {
+		353CAC402137A7373FAA3349 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B9EF9C5CF5C3FBD4A46214B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -465,6 +505,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		612A63C45A079AF7E1E4B748 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8F0C1153CCA563E9FD2461F8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,7 +544,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A66CDEF866B269DF2FB71D67 /* [CP] Copy Pods Resources */ = {
+		AB713C61CE5806CFED9D1657 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -502,23 +559,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B4DA769BE8A2169F1430513A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Platoun/Pods-Platoun-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CBAA8F8DE155FC13EDBE770B /* [CP] Check Pods Manifest.lock */ = {
@@ -563,23 +603,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		F8C3A30A89F6AE83629CA0F6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -592,6 +615,7 @@
 				F01C6CFE24F32CE80016ADE2 /* TabViewController.swift in Sources */,
 				F01C6CAC24F31B140016ADE2 /* LoginViewController.swift in Sources */,
 				F018D6CC24F9781C00DD0D45 /* Tab5ViewController.swift in Sources */,
+				F07A1F8E25040402002AAEDD /* ImagePickerManager.swift in Sources */,
 				F018D6DA2500640500DD0D45 /* AppleSignIn.swift in Sources */,
 				F018D6CB24F9781C00DD0D45 /* Tab2ViewController.swift in Sources */,
 				F018D6D424FD9BE500DD0D45 /* ChangePasswordViewController.swift in Sources */,
@@ -602,8 +626,12 @@
 				F07A1F8C25008684002AAEDD /* GoogleSignIn.swift in Sources */,
 				F018D6D024F98C9C00DD0D45 /* UserDefaultsUtils.swift in Sources */,
 				F018D6D8250040E700DD0D45 /* FIRUser+Extension.swift in Sources */,
+				F0A11F162505336F007C29F3 /* FirestoreUtils.swift in Sources */,
+				F07A1F9025041270002AAEDD /* StorageUtils.swift in Sources */,
 				F018D6C924F9781C00DD0D45 /* Tab4ViewController.swift in Sources */,
 				F07A1F8A2500811B002AAEDD /* Authentication.swift in Sources */,
+				F0A11F1A25054383007C29F3 /* QuestionTableViewCell.swift in Sources */,
+				F07A1F932504179D002AAEDD /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
