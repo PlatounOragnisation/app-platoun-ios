@@ -1,0 +1,140 @@
+/* 
+  Localization.strings
+  Platoun
+
+  Created by Flavian Mary on 12/04/2020.
+  Copyright © 2020 Flavian Mary. All rights reserved.
+*/
+"lgPrefix" = "DE";
+
+
+/* Content */
+"See all" = "Alle";
+"No results..n..found" = "Keine Ergebnisse
+gefunden";
+"Modify your filters" = "Meinen Filter ändern";
+"Marketplace" = "Concept Store";
+"All categories" = "Alle Kategorien";
+"Type of deals" = "Art des Deals";
+"Categories" = "Kategorien";
+"Apply" = "Anwenden";
+"Group Deals ≥5%" = "Gruppenangebote ≥5%";
+"Group Deals ≥10%" = "Gruppenangebote ≥10%";
+"Group Deals ≥15%" = "Gruppenangebote ≥15%";
+"Price: Lowest to Highest" = "Preis: niedrigste bis höchste";
+"Price: Highest to lowest" = "Preis: höchste bis niedrigste";
+"Filters" = "Filter";
+"Price range" = "Preisspanne";
+"Voucher range" = "Gutscheinhöhe";
+"Age range" = "Altersspanne";
+"Brand" = "Marke";
+"Discard" = "Verwerfen";
+"months" = "Monate";
+"years" = "Jahre";
+"All" = "Alle";
+"Yes" = "Ja";
+"YES" = "JA";
+"No" = "Nein";
+"NO" = "NEIN";
+"Pin" = "Pin";
+"Validate" = "Bestätigen";
+"validate" = "bestätigen";
+"Quit" = "Verlassen";
+"Join" = "Beitreten";
+"join" = "beitreten";
+"Later" = "Später";
+"Deal ends in" = "Deal endet in";
+"Deal ends finish" = "Deal ends finish";
+"Create a new group" = "Gruppe erstellen";
+"Back to shopping" = "Zurück zum Einkaufen";
+"Back to list" = "Zurück zur Liste";
+"Create a new group 😉" = "Neue Gruppe erstellen 😉";
+"More informations (link to website)" = "Mehr Informationen (Link zur Webseite)";
+"Shipping info" = "Versandinformation";
+"You can also like this" = "Das könnte dir auch gefallen";
+"%d item" = "%d Artikel";
+"%d items" = "%d Artikel";
+"Buy it now" = "Jetzt kaufen";
+"Buy in group" = "Gruppenkauf";
+"Colors" = "Farben";
+"Done" = "Erledigt";
+"Create a Private Group" = "Eine private Gruppe erstellen";
+"Back to public group" = "Zurück zu öffentlicher Gruppe";
+"You need to" = "Du musst deine Gruppe noch";
+"your group before inviting some friends 🙂" = ", bevor du Freunde einladen kannst 🙂";
+"You can’t leave your own group" = "Du kannst deine eigene Gruppe nicht verlassen.";
+"Your PIN code is" = "Dein Pin-Code lautet";
+"Reminder :" = "Erinnerung:";
+"Sorry !" = "Sorry !";
+"The deadline to join this group has been exceeded." = "Die Anmeldefrist für diese Gruppe ist bereits abgelaufen";
+"Be careful !" = "Vorsicht!";
+"Oups !" = "Ups !";
+"You can only invite one person at a time" = "Du kannst maximal zwei Personen gleichzeitig einladen";
+"Keep leaving" = "Weiter verlassen.";
+"undo" = "Aufheben";
+"only %d places left" = "nur noch %d Platz frei";
+"only %d place left" = "nur noch %d Platz frei";
+"invite" = "Einladen";
+"You didn't select any friends." = "Du hast noch keine Freunde zum Einladen ausgewählt.";
+"OK" = "OK";
+"You must click on 'Apply' to invite" = "Du musst auf 'Anwenden' klicken, um einen Freund einzuladen";
+"All promocodes have been sold out. Currently, it's not possible to create a group for this product." = "Alle Rabattcodes sind ausverkauft. Derzeit ist es leider nicht möglich, eine Gruppe für dieses Produkt zu erstellen";
+"You can't be part of more than 1 private group per product" = "Du kannst nicht an mehr als einer privaten Gruppe pro Produkt teilnehmen";
+"You can't be part of more than 1 public group per product" = "Du kannst nicht an mehr als einer öffentlichen Gruppe pro Produkt teilnehmen";
+"You can't be part of more than 1 public and 1 private group per product" = "Du kannst nicht an mehr als einer öffentlichen und einer privaten Gruppe pro Produkt teilnehmen";
+"An error has occurred. Please try again later." = "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut";
+"Hey, the Momunity app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!" = "Hey, die Mama-App Momunity hat einen tollen neuen Concept Store. Wenn wir uns zusammentun, bekommen wir Special Deals auf Lieblingsprodukte rund um Mama & Kind. Meld dich hier an und lass uns shoppen!.
+Wäre toll, wenn du auch dabei bist!";
+"Just download the app for free here :" = "Einfach hier App kostenlos downloaden:";
+"App Store" = "App Store";
+"Google Play" = "Google Play";
+"The entered pin is incorrect. Do you want to try again ?" = "Pin-Code ist falsch. Willst du noch einmal versuchen?";
+
+"My account" = "Mein Konto";
+"Promocodes" = "Rabattcodes";
+"My Group status" = "Deine Gruppen";
+"Group Status" = "Group Status";
+"Products liked" = "Lieblingsprodukte";
+"Support" = "Support";
+"The promo code has been copied to your clipboard. You will now be redirected to the merchant site." = "erchant site. Der Rabattcode wurde in deine Zwischenablage kopiert. Du wirst nun zur Händlerseite weitergeleitet.";
+"We do not have any more information for you at this time." = "Derzeit haben wir keine weiteren Informationen";
+"Results: %d item" = "Ergebnisse: %d Artikel";
+"Results: %d items" = "Ergebnisse: %d Artikel";
+"Expire in :" = "Läuft ab in :";
+"Promocode :" = "Rabattcodes :";
+"Value:" = "Wert :";
+"Time left :" = "Restzeit :";
+"Status :" = "Status :";
+"Congratulations!" = "Herzlichen Glückwunsch!";
+"You are part of the group!\nLet's invite a friend to increase the chance of\nsuccess!" = "Du bist jetzt ein Teil dieser Gruppe.\nLade noch eine Mamafreundin ein,\num die Erfolgschancen zu erhöhen!";
+"success" = "Erfolgreich";
+"Create a group" = "Eine Gruppe erstellen";
+"3 members" = "3 Mitglieder";
+"5 members" = "5 Mitglieder";
+"Share your interest for this product :" = "Zeige anderen, dass dir das Produkt gefällt :";
+"You can already invite some friends..." = "Du kannst auch jetzt ein paar Freunde einladen...";
+"Invite friends via" = "Freunde einladen über";
+"Invitation sent" = "Einladung gesendet";
+"You can also..." = "Auch kannst du..";
+"Join a group" = "Gruppe beitreten";
+"No groups..n..found" = "Keine Gruppen\ngefunden";
+"Be the first " = "Sei die erste ";//Attention à l'espace
+" and.." = " und..";//Attention à l'espace
+"Friends List" = "Freundesliste";
+"Select your pin code" = "Wähle deinen Pin-Code";
+"Minimum 4 numbers" = "Mindestens 4 Nummern";
+"Success!" = "Erfolg!";
+"Your group has been validated !..n..Click on the code below :" = "Deine Gruppe wurde erstellt !\nKlicke auf den folgenden Code:";
+"or simply" = "oder einfach";
+"Success" = "Erfolgreich";
+"Pending" = "Ausstehend";
+"Failed" = "Fehlgeschlagen";
+
+"New invitation !" = "Neue Einladung !";
+"offers you to join her group deal." = "bietet dir an, bei ihrem\nGruppen-Deal teilzunehmen.";
+"Do you want to" = "Willst du der Gruppe";
+"the team ?" = " ?";
+"You've been added to this group." = "Du wurdest zu dieser Gruppe hinzugefügt.";
+"Continue shopping" = "Einkauf fortsetzen";
+"Invite friends to your group via :" = "Freunde in die Gruppe\neinladen über :";
+"Invite friends to join Momunity via :" = "Freunde in Momunity\neinladen über :";

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kcz-Mg-iQb">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Marketplace Filter View Controller-->
+        <scene sceneID="kHo-Vl-HzN">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="kcz-Mg-iQb" customClass="MarketplaceFilterViewController" customModule="Platoun" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QfD-Ws-Ked">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5p-tK-VY1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="All categories" id="r39-hY-y0l" customClass="UINavigationItemLocalized" customModule="Platoun" customModuleProvider="target">
+                                        <barButtonItem key="leftBarButtonItem" image="ic-back" id="rvH-yr-mMe">
+                                            <connections>
+                                                <action selector="onBackPressed:" destination="kcz-Mg-iQb" id="uMT-eQ-gEq"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="ic-checkbox-on" id="7Ne-b0-A7T">
+                                            <connections>
+                                                <action selector="toogleFilters:" destination="kcz-Mg-iQb" id="HWg-H5-8Yo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="All categories"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4CR-QF-eW2">
+                                <rect key="frame" x="0.0" y="85" width="414" height="3"/>
+                                <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="hpu-O9-Nwe"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yW7-Hf-102">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8H0-Em-LsK">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="542"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ciy-ye-fuI" userLabel="Title">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of deals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50Z-QH-zfR" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                                        <rect key="frame" x="27" y="12" width="119" height="37"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="37" id="igz-X7-8VO"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
+                                                        <color key="textColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Type of deals"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="50Z-QH-zfR" firstAttribute="top" secondItem="Ciy-ye-fuI" secondAttribute="top" constant="12" id="33p-ss-tpP"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="50Z-QH-zfR" secondAttribute="trailing" constant="27" id="BkG-Hu-k5a"/>
+                                                    <constraint firstItem="50Z-QH-zfR" firstAttribute="leading" secondItem="Ciy-ye-fuI" secondAttribute="leading" constant="27" id="Sov-dc-ydp"/>
+                                                    <constraint firstItem="50Z-QH-zfR" firstAttribute="centerY" secondItem="Ciy-ye-fuI" secondAttribute="centerY" id="ov9-67-tRS"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbg-pv-GtC" userLabel="Group Deals ≤5%" customClass="CheckableItemView" customModule="Platoun" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="61" width="414" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="tZn-Yj-3YZ"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Group Deals ≥5%"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="checked" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54l-vg-sBX" userLabel="Group Deals ≤10%" customClass="CheckableItemView" customModule="Platoun" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="111" width="414" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="vpp-uL-ASn"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Group Deals ≥10%"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="checked" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDp-TU-M5x" userLabel="Group Deals ≤15%" customClass="CheckableItemView" customModule="Platoun" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="161" width="414" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="MaH-H3-ffd"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Group Deals ≥15%"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="checked" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kf4-I3-yc8" userLabel="Separator">
+                                                <rect key="frame" x="0.0" y="211" width="414" height="20"/>
+                                                <subviews>
+                                                    <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tS6-Ac-Glb">
+                                                        <rect key="frame" x="0.0" y="9.5" width="414" height="1"/>
+                                                        <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="WJN-Rc-wf6"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="IDE-2G-9Mq"/>
+                                                    <constraint firstItem="tS6-Ac-Glb" firstAttribute="leading" secondItem="kf4-I3-yc8" secondAttribute="leading" id="aeb-6b-MaP"/>
+                                                    <constraint firstItem="tS6-Ac-Glb" firstAttribute="centerY" secondItem="kf4-I3-yc8" secondAttribute="centerY" id="tHe-KK-bdT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tS6-Ac-Glb" secondAttribute="trailing" id="yPN-NR-9qk"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tY4-Xo-Ru0" userLabel="Title">
+                                                <rect key="frame" x="0.0" y="231" width="414" height="61"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdG-yS-Lk1" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                                        <rect key="frame" x="27" y="12" width="99.5" height="37"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="37" id="qOO-H6-Bkv"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
+                                                        <color key="textColor" red="0.2156862745" green="0.2784313725" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Categories"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="GdG-yS-Lk1" firstAttribute="centerY" secondItem="tY4-Xo-Ru0" secondAttribute="centerY" id="2ZO-68-Oc8"/>
+                                                    <constraint firstItem="GdG-yS-Lk1" firstAttribute="top" secondItem="tY4-Xo-Ru0" secondAttribute="top" constant="12" id="aEO-HL-8vA"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GdG-yS-Lk1" secondAttribute="trailing" constant="27" id="gwb-bc-S2C"/>
+                                                    <constraint firstItem="GdG-yS-Lk1" firstAttribute="leading" secondItem="tY4-Xo-Ru0" secondAttribute="leading" constant="27" id="zKt-8o-Q1o"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="idv-yp-UoX">
+                                                <rect key="frame" x="0.0" y="292" width="414" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" placeholder="YES" id="wpq-wo-QNA"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C67-1Y-dQ8">
+                                                <rect key="frame" x="0.0" y="492" width="414" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6t-hG-NKU" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                        <rect key="frame" x="112" y="7.5" width="190" height="35"/>
+                                                        <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="ptD-tA-IFm"/>
+                                                            <constraint firstAttribute="width" constant="190" id="tTJ-0b-sbL"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                                        <state key="normal" title="Apply">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Apply"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="seeOffersPressed:" destination="kcz-Mg-iQb" eventType="touchUpInside" id="Epg-Hd-pYY"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="G6t-hG-NKU" firstAttribute="centerX" secondItem="C67-1Y-dQ8" secondAttribute="centerX" id="2hD-5s-noL"/>
+                                                    <constraint firstItem="G6t-hG-NKU" firstAttribute="centerY" secondItem="C67-1Y-dQ8" secondAttribute="centerY" id="cFg-wz-tnP"/>
+                                                    <constraint firstAttribute="height" constant="50" id="t85-nO-svL"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="8H0-Em-LsK" firstAttribute="leading" secondItem="yW7-Hf-102" secondAttribute="leading" id="1Ho-fb-ngb"/>
+                                    <constraint firstAttribute="bottom" secondItem="8H0-Em-LsK" secondAttribute="bottom" id="IzJ-tW-ELP"/>
+                                    <constraint firstItem="8H0-Em-LsK" firstAttribute="top" secondItem="yW7-Hf-102" secondAttribute="top" id="ZI0-99-Ube"/>
+                                    <constraint firstAttribute="trailing" secondItem="8H0-Em-LsK" secondAttribute="trailing" id="lif-le-dMP"/>
+                                    <constraint firstItem="8H0-Em-LsK" firstAttribute="width" secondItem="yW7-Hf-102" secondAttribute="width" id="st3-Z3-PoL"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="w5p-tK-VY1" firstAttribute="bottom" secondItem="4CR-QF-eW2" secondAttribute="bottom" id="4Hs-EA-0zl"/>
+                            <constraint firstItem="4CR-QF-eW2" firstAttribute="trailing" secondItem="Xhm-Pi-RiJ" secondAttribute="trailing" id="Cbb-nL-fii"/>
+                            <constraint firstItem="yW7-Hf-102" firstAttribute="bottom" secondItem="QfD-Ws-Ked" secondAttribute="bottom" id="TD5-dG-7hg"/>
+                            <constraint firstItem="yW7-Hf-102" firstAttribute="trailing" secondItem="Xhm-Pi-RiJ" secondAttribute="trailing" id="Tst-y1-Vws"/>
+                            <constraint firstItem="yW7-Hf-102" firstAttribute="top" secondItem="4CR-QF-eW2" secondAttribute="bottom" id="chj-iL-bDp"/>
+                            <constraint firstItem="w5p-tK-VY1" firstAttribute="top" secondItem="Xhm-Pi-RiJ" secondAttribute="top" id="cn2-5F-d4h"/>
+                            <constraint firstItem="w5p-tK-VY1" firstAttribute="leading" secondItem="Xhm-Pi-RiJ" secondAttribute="leading" id="mBb-bb-cIt"/>
+                            <constraint firstItem="4CR-QF-eW2" firstAttribute="leading" secondItem="Xhm-Pi-RiJ" secondAttribute="leading" id="wxo-cq-fLM"/>
+                            <constraint firstItem="yW7-Hf-102" firstAttribute="leading" secondItem="Xhm-Pi-RiJ" secondAttribute="leading" id="x43-37-ae3"/>
+                            <constraint firstItem="w5p-tK-VY1" firstAttribute="trailing" secondItem="Xhm-Pi-RiJ" secondAttribute="trailing" id="yL9-nj-afH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xhm-Pi-RiJ"/>
+                    </view>
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="EDD-SP-7xd"/>
+                    <connections>
+                        <outlet property="categoryStackView" destination="idv-yp-UoX" id="ZOu-LT-7Cg"/>
+                        <outlet property="groupDeals10" destination="54l-vg-sBX" id="iuS-aG-GMT"/>
+                        <outlet property="groupDeals15" destination="pDp-TU-M5x" id="aQ8-A8-Nwy"/>
+                        <outlet property="groupDeals5" destination="Sbg-pv-GtC" id="42i-WW-ckA"/>
+                        <outlet property="itemFilters" destination="7Ne-b0-A7T" id="aJ5-ZX-pEC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bgR-2P-Fvy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1606" y="1194"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic-back" width="29" height="24"/>
+        <image name="ic-checkbox-on" width="24" height="24"/>
+    </resources>
+</document>

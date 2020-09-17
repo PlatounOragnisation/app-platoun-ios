@@ -16,6 +16,12 @@ target 'Platoun' do
   pod 'FirebaseUI/Firestore'
   pod 'FirebaseFirestoreSwift'
 
+
+  #For Marketplace
+  pod 'MultiSlider', '~> 1.10.8'
+  pod 'Alamofire', '~> 5.1'
+  pod 'ImageIOUIKit'
+
   # Pods for Platoun
 
   target 'PlatounTests' do

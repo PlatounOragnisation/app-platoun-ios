@@ -212,11 +212,13 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - Alamofire (5.2.2)
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
+  - AvailableHapticFeedback (1.0.2)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -390,7 +392,13 @@ PODS:
   - GTMSessionFetcher/Core (1.4.0)
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
+  - ImageIOSwift (1.1.1)
+  - ImageIOUIKit (1.1.1):
+    - ImageIOSwift (~> 1.1.0)
   - leveldb-library (1.22)
+  - MultiSlider (1.10.11):
+    - AvailableHapticFeedback
+    - SweeterSwift
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -401,8 +409,10 @@ PODS:
   - SDWebImage (5.9.0):
     - SDWebImage/Core (= 5.9.0)
   - SDWebImage/Core (5.9.0)
+  - SweeterSwift (1.1.3)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.1)
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Crashlytics
@@ -413,11 +423,15 @@ DEPENDENCIES:
   - FirebaseUI/Firestore
   - FirebaseUI/Storage
   - GoogleSignIn
+  - ImageIOUIKit
+  - MultiSlider (~> 1.10.8)
 
 SPEC REPOS:
   trunk:
     - abseil
+    - Alamofire
     - AppAuth
+    - AvailableHapticFeedback
     - BoringSSL-GRPC
     - Firebase
     - FirebaseABTesting
@@ -442,15 +456,21 @@ SPEC REPOS:
     - gRPC-Core
     - GTMAppAuth
     - GTMSessionFetcher
+    - ImageIOSwift
+    - ImageIOUIKit
     - leveldb-library
+    - MultiSlider
     - nanopb
     - PromisesObjC
     - Protobuf
     - SDWebImage
+    - SweeterSwift
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  AvailableHapticFeedback: 9b21b9f6d3e4566015988b5de35b40abefe6c09a
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Firebase: 658370fa0181826a74b7cfca8d68c5856ca749ae
   FirebaseABTesting: 8a9d8df3acc2b43f4a22014ddf9f601bca6af699
@@ -475,12 +495,16 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  ImageIOSwift: 46d78a07963e96840fd18bde0ba75035ecae6e94
+  ImageIOUIKit: 2cad0673a2377e94444d2ea7ef1703f73e3cea4b
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  MultiSlider: 606824c5e1c25091eb64fac673b193276fc46f7a
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
+  SweeterSwift: d909211f6833405628c8c7c6bf9f8f2e8a0e9df9
 
-PODFILE CHECKSUM: d2f748382d435d15e266390c5f2a5e206f089bba
+PODFILE CHECKSUM: f983ba9e1f2d855542083e7f22d94f11a86e4843
 
 COCOAPODS: 1.9.1

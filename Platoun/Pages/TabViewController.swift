@@ -16,6 +16,7 @@ class TabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.selectedIndex = 1
+        Platoun.setEnv(env: .develop)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -24,7 +25,12 @@ class TabViewController: UITabBarController {
     }
     
     func connexion() {
-        if Auth.auth().currentUser == nil {
+        if let user = Auth.auth().currentUser {
+            if let actualVc = self.viewControllers?[1], !(actualVc is DrawerController) {
+                let vc = Platoun.getViewController(userId: user.uid)
+                self.viewControllers?[1] = vc
+            }
+        } else {
             LoginViewController.show(in: self) { isConnected in
                 if !isConnected {
                     UIKitUtils.showAlert(in: self, message: "Vous devez être connecter pour continuer") {

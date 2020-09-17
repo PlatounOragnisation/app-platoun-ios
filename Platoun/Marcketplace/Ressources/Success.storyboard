@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Gd-hU-g1P">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Success View Controller-->
+        <scene sceneID="eos-4l-HQB">
+            <objects>
+                <viewController storyboardIdentifier="SuccessViewController" id="2Gd-hU-g1P" customClass="SuccessViewController" customModule="Platoun" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="obA-Xn-9b6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-success" translatesAutoresizingMaskIntoConstraints="NO" id="MLf-5M-tPy">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoM-Dt-xG1" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                <rect key="frame" x="133.5" y="60" width="147" height="41"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Success!"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hc-t5-2iq" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                <rect key="frame" x="88" y="111" width="238.5" height="38.5"/>
+                                <string key="text">Your group has been validated ! 
+Click on the code below :</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Your group has been validated !..n..Click on the code below :"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCc-mo-8jB" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                <rect key="frame" x="127" y="164.5" width="160" height="36"/>
+                                <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="K2n-go-HhL"/>
+                                    <constraint firstAttribute="height" constant="36" id="xs0-PS-HW8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="YHFGSLNPD18">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="promocodeTap:" destination="2Gd-hU-g1P" eventType="touchUpInside" id="nJh-zB-HUc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or simply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6C-GB-shI" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                <rect key="frame" x="186" y="208.5" width="42" height="12"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="or simply"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHQ-oc-fl0" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                <rect key="frame" x="127" y="228.5" width="160" height="36"/>
+                                <color key="backgroundColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="FPE-x2-Pb7"/>
+                                    <constraint firstAttribute="width" constant="160" id="gR6-4U-k8F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="Continue shopping">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Continue shopping"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backToShoppingTap:" destination="2Gd-hU-g1P" eventType="touchUpInside" id="5ol-IH-FXX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="SoM-Dt-xG1" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="1E6-XG-q3x"/>
+                            <constraint firstAttribute="bottom" secondItem="MLf-5M-tPy" secondAttribute="bottom" id="2mv-qv-Q4q"/>
+                            <constraint firstItem="iHQ-oc-fl0" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="B6z-ob-VNd"/>
+                            <constraint firstItem="iHQ-oc-fl0" firstAttribute="top" secondItem="j6C-GB-shI" secondAttribute="bottom" constant="8" id="DSo-6M-WFa"/>
+                            <constraint firstItem="MLf-5M-tPy" firstAttribute="leading" secondItem="obA-Xn-9b6" secondAttribute="leading" id="Iq3-wO-TTG"/>
+                            <constraint firstItem="MLf-5M-tPy" firstAttribute="top" secondItem="obA-Xn-9b6" secondAttribute="top" id="KnR-pK-Ofj"/>
+                            <constraint firstItem="2hc-t5-2iq" firstAttribute="top" secondItem="SoM-Dt-xG1" secondAttribute="bottom" constant="10" id="NlS-pM-4JL"/>
+                            <constraint firstAttribute="trailing" secondItem="MLf-5M-tPy" secondAttribute="trailing" id="TmC-fC-LqR"/>
+                            <constraint firstItem="j6C-GB-shI" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="UHp-ON-QMq"/>
+                            <constraint firstItem="jCc-mo-8jB" firstAttribute="top" secondItem="2hc-t5-2iq" secondAttribute="bottom" constant="15" id="gbd-IT-Nyv"/>
+                            <constraint firstItem="j6C-GB-shI" firstAttribute="top" secondItem="jCc-mo-8jB" secondAttribute="bottom" constant="8" id="hde-dB-NLb"/>
+                            <constraint firstItem="2hc-t5-2iq" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="nQ4-2k-LRN"/>
+                            <constraint firstItem="SoM-Dt-xG1" firstAttribute="top" secondItem="obA-Xn-9b6" secondAttribute="top" constant="60" id="whb-kz-8vu"/>
+                            <constraint firstItem="jCc-mo-8jB" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="zWR-qe-ZIP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6kX-xW-Biy"/>
+                    </view>
+                    <connections>
+                        <outlet property="promocodeButton" destination="jCc-mo-8jB" id="8Mm-Aw-CyQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wMI-6u-KWc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066" y="1236"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img-success" width="375" height="812"/>
+    </resources>
+</document>

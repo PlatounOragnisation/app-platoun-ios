@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Laz-kL-8ke">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pin Code View Controller-->
+        <scene sceneID="1Cn-TI-lqv">
+            <objects>
+                <viewController storyboardIdentifier="PinCodeViewController" id="Laz-kL-8ke" customClass="PinCodeViewController" customModule="Platoun" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Uuq-35-fKb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ry4-kZ-56g" customClass="RoundedView" customModule="Platoun" customModuleProvider="target">
+                                <rect key="frame" x="177" y="59" width="60" height="6"/>
+                                <color key="backgroundColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="QDl-ck-Miv"/>
+                                    <constraint firstAttribute="height" constant="6" id="zW4-2J-tQu"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-close" translatesAutoresizingMaskIntoConstraints="NO" id="yJH-F3-ctQ">
+                                <rect key="frame" x="374" y="50" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Zrk-OD-Mkc"/>
+                                    <constraint firstAttribute="width" constant="24" id="pf5-ig-kad"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="In1-Ii-U1M">
+                                <rect key="frame" x="358" y="34" width="56" height="56"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="Tas-Zm-AOr"/>
+                                    <constraint firstAttribute="height" constant="56" id="xiv-5I-MfK"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="hqA-Gg-qU1" appends="YES" id="mcw-X1-zhW"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erV-S7-FGe">
+                                <rect key="frame" x="15" y="335.5" width="384" height="125"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your pin code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eER-s6-IqP" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                        <rect key="frame" x="55.5" y="0.0" width="273.5" height="33.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Select your pin code"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum 4 numbers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNa-MW-jJt" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                        <rect key="frame" x="128" y="33.5" width="128.5" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Minimum 4 numbers"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsn-0t-J9Z" customClass="BorderedView" customModule="Platoun" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="77" width="384" height="48"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2345" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dhe-Qk-vmu">
+                                                <rect key="frame" x="0.0" y="0.0" width="384" height="48"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Dhe-Qk-vmu" firstAttribute="top" secondItem="Zsn-0t-J9Z" secondAttribute="top" id="81n-Va-qKf"/>
+                                            <constraint firstAttribute="height" constant="48" id="AR8-d9-oXf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Dhe-Qk-vmu" secondAttribute="trailing" id="DNK-x7-c6p"/>
+                                            <constraint firstAttribute="bottom" secondItem="Dhe-Qk-vmu" secondAttribute="bottom" id="Ehf-9f-byV"/>
+                                            <constraint firstItem="Dhe-Qk-vmu" firstAttribute="leading" secondItem="Zsn-0t-J9Z" secondAttribute="leading" id="joo-y5-e3C"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShadowed" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="13Y-aI-tMX"/>
+                                    <constraint firstItem="eER-s6-IqP" firstAttribute="top" secondItem="erV-S7-FGe" secondAttribute="top" id="GuS-6x-QnH"/>
+                                    <constraint firstItem="RNa-MW-jJt" firstAttribute="centerX" secondItem="erV-S7-FGe" secondAttribute="centerX" id="HJt-HE-jhU"/>
+                                    <constraint firstItem="eER-s6-IqP" firstAttribute="centerX" secondItem="erV-S7-FGe" secondAttribute="centerX" id="LCA-Gk-cWu"/>
+                                    <constraint firstItem="RNa-MW-jJt" firstAttribute="top" secondItem="eER-s6-IqP" secondAttribute="bottom" id="R6T-IY-UnL"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zsn-0t-J9Z" secondAttribute="trailing" id="gGp-Ju-dtE"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zsn-0t-J9Z" secondAttribute="bottom" id="n53-am-Z0b"/>
+                                    <constraint firstItem="Zsn-0t-J9Z" firstAttribute="leading" secondItem="erV-S7-FGe" secondAttribute="leading" id="nhC-wV-eCf"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5Ld-vt-FVP">
+                                <rect key="frame" x="0.0" y="622" width="414" height="180"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24w-mP-5Iv">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dv-dg-WAw">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="60"/>
+                                                <gestureRecognizers/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="1 ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="28" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content=" ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="yEe-q8-5IF" appends="YES" id="aGG-Eg-gLf"/>
+                                                </connections>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paf-eo-Rye">
+                                                <rect key="frame" x="138" y="0.0" width="138" height="60"/>
+                                                <gestureRecognizers/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="2 ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="28" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="ABC">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="F4X-O4-BZf" appends="YES" id="0fE-ee-0ba"/>
+                                                </connections>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zca-Gd-73I">
+                                                <rect key="frame" x="276" y="0.0" width="138" height="60"/>
+                                                <gestureRecognizers/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="3 ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="28" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="DEF">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="KBM-mC-r87" appends="YES" id="gdH-ry-Por"/>
+                                                </connections>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gvh-Zr-zWu">
+                                        <rect key="frame" x="0.0" y="60" width="414" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALe-iU-BwW">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="60"/>
+                                                <gestureRecognizers/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="4 ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="28" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="GHI">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Fxv-1s-JPb" appends="YES" id="igQ-TG-7C3"/>
+                                                </connections>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0p9-yr-Waf">
+                                                <rect key="frame" x="138" y="0.0" width="138" height="60"/>
+                                                <gestureRecognizers/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="5 ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="28" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="JKL">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="uMX-nA-1se" appends="YES" id="d8A-wU-0Qb"/>
+                                                </connections>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHg-tN-DaC">
+                                                <rect key="frame" x="276" y="0.0" width="138" height="60"/>
+                                                <gestureRecognizers/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="6 ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="28" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="MNO">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="qao-ED-v0X" appends="YES" id="fvT-Ok-Cw7"/>
+                                                </connections>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDU-W7-329">
+                                        <rect key="frame" x="0.0" y="120" width="414" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBH-pY-H2m">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="60"/>
+                                                <gestureRecognizers/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="7 ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="28" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="PQRS">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="2Gr-kx-3dQ" appends="YES" id="Upz-hP-T9E"/>
+                                                </connections>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rlg-6Z-HCr">
+                                                <rect key="frame" x="138" y="0.0" width="138" height="60"/>
+                                                <gestureRecognizers/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="8 ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="28" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="TUV">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="VkF-DZ-O9X" appends="YES" id="nF6-Yc-hl5"/>
+                                                </connections>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-iD-zme">
+                                                <rect key="frame" x="276" y="0.0" width="138" height="60"/>
+                                                <gestureRecognizers/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="9 ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="28" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="WXYZ">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="ZrU-ya-yhW" appends="YES" id="tbn-L0-Q0O"/>
+                                                </connections>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="sLS-ae-Wcu"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CuZ-eR-thm">
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pvn-XA-Ygb">
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="60"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-delete" translatesAutoresizingMaskIntoConstraints="NO" id="QLS-eQ-Tdp">
+                                                <rect key="frame" x="55.5" y="20.5" width="27" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="27" id="JXj-Uf-W7E"/>
+                                                    <constraint firstAttribute="height" constant="19" id="QFc-GC-Lbm"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstItem="QLS-eQ-Tdp" firstAttribute="centerX" secondItem="Pvn-XA-Ygb" secondAttribute="centerX" id="99f-5c-jrf"/>
+                                            <constraint firstItem="QLS-eQ-Tdp" firstAttribute="centerY" secondItem="Pvn-XA-Ygb" secondAttribute="centerY" id="gmv-bh-TIk"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="2j9-jT-dVf" appends="YES" id="xHH-w1-c71"/>
+                                        </connections>
+                                    </view>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6W-Mw-Oxv">
+                                        <rect key="frame" x="138" y="0.0" width="138" height="60"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Hzu-Wz-H5l" appends="YES" id="6x8-0e-0Gq"/>
+                                        </connections>
+                                    </label>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OK" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTO-Zv-Xim" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                        <rect key="frame" x="276" y="0.0" width="138" height="60"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="OK"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Adg-Ry-Bsh" appends="YES" id="JQ7-9c-wG2"/>
+                                        </connections>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="h2P-7a-wwM"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ry4-kZ-56g" firstAttribute="top" secondItem="QNS-RV-8PL" secondAttribute="top" constant="15" id="03E-LJ-qJH"/>
+                            <constraint firstItem="yJH-F3-ctQ" firstAttribute="centerY" secondItem="In1-Ii-U1M" secondAttribute="centerY" id="2I2-cE-HOo"/>
+                            <constraint firstItem="5Ld-vt-FVP" firstAttribute="bottom" secondItem="CuZ-eR-thm" secondAttribute="top" id="BuD-2V-mo5"/>
+                            <constraint firstItem="erV-S7-FGe" firstAttribute="centerY" secondItem="Uuq-35-fKb" secondAttribute="centerY" constant="-50" id="DW4-wT-UaO"/>
+                            <constraint firstItem="ry4-kZ-56g" firstAttribute="centerY" secondItem="yJH-F3-ctQ" secondAttribute="centerY" id="GF5-W7-PmZ"/>
+                            <constraint firstItem="CuZ-eR-thm" firstAttribute="bottom" secondItem="QNS-RV-8PL" secondAttribute="bottom" id="LBV-Gh-Y9O"/>
+                            <constraint firstItem="QNS-RV-8PL" firstAttribute="trailing" secondItem="yJH-F3-ctQ" secondAttribute="trailing" constant="16" id="N1K-K0-hES"/>
+                            <constraint firstItem="5Ld-vt-FVP" firstAttribute="trailing" secondItem="QNS-RV-8PL" secondAttribute="trailing" id="QVN-XF-9nf"/>
+                            <constraint firstItem="erV-S7-FGe" firstAttribute="leading" secondItem="QNS-RV-8PL" secondAttribute="leading" constant="15" id="aDU-ju-B54"/>
+                            <constraint firstItem="CuZ-eR-thm" firstAttribute="trailing" secondItem="QNS-RV-8PL" secondAttribute="trailing" id="cdV-L8-h5b"/>
+                            <constraint firstItem="yJH-F3-ctQ" firstAttribute="centerX" secondItem="In1-Ii-U1M" secondAttribute="centerX" id="f1C-aL-YxR"/>
+                            <constraint firstItem="5Ld-vt-FVP" firstAttribute="leading" secondItem="QNS-RV-8PL" secondAttribute="leading" id="hJe-SI-9Je"/>
+                            <constraint firstItem="QNS-RV-8PL" firstAttribute="trailing" secondItem="erV-S7-FGe" secondAttribute="trailing" constant="15" id="hNL-h9-I7A"/>
+                            <constraint firstItem="CuZ-eR-thm" firstAttribute="leading" secondItem="QNS-RV-8PL" secondAttribute="leading" id="ldB-vC-iVg"/>
+                            <constraint firstItem="ry4-kZ-56g" firstAttribute="centerX" secondItem="Uuq-35-fKb" secondAttribute="centerX" id="mvi-Wl-8XS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QNS-RV-8PL"/>
+                    </view>
+                    <connections>
+                        <outlet property="pinCodeLabel" destination="Dhe-Qk-vmu" id="G2t-SO-dQc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y7o-iP-bPM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yEe-q8-5IF" userLabel="1">
+                    <connections>
+                        <action selector="action1:" destination="Laz-kL-8ke" id="bsM-4I-djZ"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="F4X-O4-BZf" userLabel="2">
+                    <connections>
+                        <action selector="action2:" destination="Laz-kL-8ke" id="Dwk-sz-TYU"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="KBM-mC-r87" userLabel="3">
+                    <connections>
+                        <action selector="action3:" destination="Laz-kL-8ke" id="zIK-15-L7J"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Fxv-1s-JPb" userLabel="4">
+                    <connections>
+                        <action selector="action4:" destination="Laz-kL-8ke" id="L8H-gd-Y6R"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="uMX-nA-1se" userLabel="5">
+                    <connections>
+                        <action selector="action5:" destination="Laz-kL-8ke" id="h4g-Xr-sCV"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="qao-ED-v0X" userLabel="6">
+                    <connections>
+                        <action selector="action6:" destination="Laz-kL-8ke" id="RPB-ix-sSJ"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="2Gr-kx-3dQ" userLabel="7">
+                    <connections>
+                        <action selector="action7:" destination="Laz-kL-8ke" id="bV9-dK-rFR"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="VkF-DZ-O9X" userLabel="8">
+                    <connections>
+                        <action selector="action8:" destination="Laz-kL-8ke" id="3yP-KH-a1L"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="ZrU-ya-yhW" userLabel="9">
+                    <connections>
+                        <action selector="action9:" destination="Laz-kL-8ke" id="RSb-ql-yyj"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="2j9-jT-dVf" userLabel="Del">
+                    <connections>
+                        <action selector="actionDelNumber:" destination="Laz-kL-8ke" id="PLz-Cf-JpZ"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Hzu-Wz-H5l" userLabel="0">
+                    <connections>
+                        <action selector="action0:" destination="Laz-kL-8ke" id="IYd-bx-YWV"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Adg-Ry-Bsh" userLabel="OK">
+                    <connections>
+                        <action selector="actionOK:" destination="Laz-kL-8ke" id="G2c-7v-QHe"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="hqA-Gg-qU1" userLabel="Close">
+                    <connections>
+                        <action selector="actionClose:" destination="Laz-kL-8ke" id="Hnz-92-urF"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1809" y="1309"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic-close" width="24" height="24"/>
+        <image name="ic-delete" width="27" height="19"/>
+    </resources>
+</document>

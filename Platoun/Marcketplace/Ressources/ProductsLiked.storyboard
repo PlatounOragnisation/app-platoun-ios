@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ibT-SW-eqm">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Products liked-->
+        <scene sceneID="VY4-tV-v6t">
+            <objects>
+                <viewController id="ibT-SW-eqm" customClass="ProductsLikedViewController" customModule="Platoun" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WQL-yo-OG8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uo5-NU-SW2">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="zrm-qs-DdH">
+                                    <size key="itemSize" width="185" height="260"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="5cj-pW-uLF" customClass="CategoryViewCell" customModule="Platoun" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="260"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OV3-UF-N6u">
+                                            <rect key="frame" x="0.0" y="0.0" width="185" height="260"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiA-38-Ue1" customClass="ItemShop" customModule="Platoun" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="185" height="260"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="BiA-38-Ue1" secondAttribute="bottom" id="Kz0-O2-ozv"/>
+                                                <constraint firstAttribute="trailing" secondItem="BiA-38-Ue1" secondAttribute="trailing" id="VlT-EG-Dwo"/>
+                                                <constraint firstItem="BiA-38-Ue1" firstAttribute="top" secondItem="OV3-UF-N6u" secondAttribute="top" id="fek-jJ-ngQ"/>
+                                                <constraint firstItem="BiA-38-Ue1" firstAttribute="leading" secondItem="OV3-UF-N6u" secondAttribute="leading" id="vER-pI-yN2"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="itemView" destination="BiA-38-Ue1" id="hij-cj-90E"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ibT-SW-eqm" id="SZS-SR-JZt"/>
+                                    <outlet property="delegate" destination="ibT-SW-eqm" id="KLf-je-ybg"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uo5-NU-SW2" firstAttribute="top" secondItem="dWT-jC-21l" secondAttribute="top" id="IfJ-W3-Aoq"/>
+                            <constraint firstItem="uo5-NU-SW2" firstAttribute="leading" secondItem="dWT-jC-21l" secondAttribute="leading" id="SHP-aC-o9O"/>
+                            <constraint firstItem="uo5-NU-SW2" firstAttribute="trailing" secondItem="dWT-jC-21l" secondAttribute="trailing" id="ZD7-rg-ceT"/>
+                            <constraint firstItem="uo5-NU-SW2" firstAttribute="bottom" secondItem="dWT-jC-21l" secondAttribute="bottom" id="ZvK-NT-lvI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dWT-jC-21l"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Products liked" id="Pqr-1T-iDk" customClass="UINavigationItemLocalized" customModule="Platoun" customModuleProvider="target">
+                        <barButtonItem key="leftBarButtonItem" image="ic-back" id="1pa-XU-UtU">
+                            <connections>
+                                <action selector="onBackPressed:" destination="ibT-SW-eqm" id="Mez-ES-tEN"/>
+                            </connections>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Products liked"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="collectionView" destination="uo5-NU-SW2" id="qvR-PV-hF6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XMB-oy-udJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="326" y="-859"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic-back" width="29" height="24"/>
+    </resources>
+</document>

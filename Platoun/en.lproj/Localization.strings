@@ -1,0 +1,139 @@
+/* 
+  Localization.strings
+  Platoun
+
+  Created by Flavian Mary on 12/04/2020.
+  Copyright © 2020 Flavian Mary. All rights reserved.
+*/
+"lgPrefix" = "EN";//DE for german
+
+
+/* Content */
+"See all" = "See all";
+"No results..n..found" = "No results
+found";
+"Modify your filters" = "Modify your filters";
+"Marketplace" = "Concept Store";
+"All categories" = "All categories";
+"Type of deals" = "Type of deals";
+"Categories" = "Categories";
+"Apply" = "Apply";
+"Group Deals ≥5%" = "Group Deals ≥5%";
+"Group Deals ≥10%" = "Group Deals ≥10%";
+"Group Deals ≥15%" = "Group Deals ≥15%";
+"Price: Lowest to Highest" = "Price: Lowest to Highest";
+"Price: Highest to lowest" = "Price: Highest to lowest";
+"Filters" = "Filters";
+"Price range" = "Price range";
+"Voucher range" = "Voucher range";
+"Age range" = "Age range";
+"Brand" = "Brand";
+"Discard" = "Discard";
+"months" = "months";
+"years" = "years";
+"All" = "All";
+"Yes" = "Yes";
+"YES" = "YES";
+"No" = "No";
+"NO" = "NO";
+"Pin" = "Pin";
+"Validate" = "Validate";
+"validate" = "validate";
+"Quit" = "Quit";
+"Join" = "Join";
+"join" = "join";
+"Later" = "Later";
+"Deal ends in" = "Deal ends in";
+"Deal ends finish" = "Deal ends finish";
+"Create a new group" = "Create a new group";
+"Back to shopping" = "Back to shopping";
+"Back to list" = "Back to list";
+"Create a new group 😉" = "Create a new group 😉";
+"More informations (link to website)" = "More informations (link to website)";
+"Shipping info" = "Shipping info";
+"You can also like this" = "You can also like this";
+"%d item" = "%d item";
+"%d items" = "%d items";
+"Buy it now" = "Buy it now";
+"Buy in group" = "Buy in group";
+"Colors" = "Colors";
+"Done" = "Done";
+"Create a Private Group" = "Create a Private Group";
+"Back to public group" = "Back to public group";
+"You need to" = "You need to";
+"your group before inviting some friends 🙂" = "your group before inviting some friends 🙂";
+"You can’t leave your own group" = "You can’t leave your own group";
+"Your PIN code is" = "Your PIN code is";
+"Reminder :" = "Reminder :";
+"Sorry !" = "Sorry !";
+"The deadline to join this group has been exceeded." = "The deadline to join this group has been exceeded.";
+"Be careful !" = "Be careful !";
+"Oups !" = "Oups !";
+"You can only invite one person at a time" = "You can only invite two person at a time";
+"Keep leaving" = "Keep leaving";
+"undo" = "undo";
+"only %d places left" = "only %d places left";
+"only %d place left" = "only %d place left";
+"invite" = "invite";
+"You didn't select any friends." = "You didn't select any friends.";
+"OK" = "OK";
+"You must click on 'Apply' to invite" = "You must click on 'Apply' to invite";
+"All promocodes have been sold out. Currently, it's not possible to create a group for this product." = "All promocodes have been sold out. Currently, it's not possible to create a group for this product.";
+"You can't be part of more than 1 private group per product" = "You can't be part of more than 1 private group per product";
+"You can't be part of more than 1 public group per product" = "You can't be part of more than 1 public group per product";
+"You can't be part of more than 1 public and 1 private group per product" = "You can't be part of more than 1 public and 1 private group per product";
+"An error has occurred. Please try again later." = "An error has occurred. Please try again later.";
+"Hey, the Momunity app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!" = "Hey, the Momunity app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!";
+"Just download the app for free here :" = "Just download the app for free here :";
+"App Store" = "App Store";
+"Google Play" = "Google Play";
+"The entered pin is incorrect. Do you want to try again ?" = "The entered pin is incorrect. Do you want to try again ?";
+
+"My account" = "My account";
+"Promocodes" = "Promocodes";
+"My Group status" = "My Group status";
+"Group Status" = "Group Status";
+"Products liked" = "Products liked";
+"Support" = "Support";
+"The promo code has been copied to your clipboard. You will now be redirected to the merchant site." = "The promo code has been copied to your clipboard. You will now be redirected to the merchant site.";
+"We do not have any more information for you at this time." = "We do not have any more information for you at this time.";
+"Results: %d item" = "Results: %d item";
+"Results: %d items" = "Results: %d items";
+"Expire in :" = "Expire in :";
+"Promocode :" = "Promocode :";
+"Value:" = "Value:";
+"Time left :" = "Time left :";
+"Status :" = "Status :";
+"Congratulations!" = "Congratulations!";
+"You are part of the group!\nLet's invite a friend to increase the chance of\nsuccess!" = "You are part of the group!\nLet's invite a friend to increase the chance of\n success!";
+"success" = "success";
+"Create a group" = "Create a group";
+"3 members" = "3 members";
+"5 members" = "5 members";
+"Share your interest for this product :" = "Share your interest for this product :";
+"You can already invite some friends..." = "You can also invite some friends...";
+"Invite friends via" = "Invite friends via";
+"Invitation sent" = "Invitation sent";
+"You can also..." = "You can also...";
+"Join a group" = "Join a group";
+"No groups..n..found" = "No groups\nfound";
+"Be the first " = "Be the first ";//Attention à l'espace
+" and.." = " and..";//Attention à l'espace
+"Friends List" = "Friends List";
+"Select your pin code" = "Select your pin code";
+"Minimum 4 numbers" = "Minimum 4 numbers";
+"Success!" = "Success!";
+"Your group has been validated !..n..Click on the code below :" = "Your group has been validated !\nClick on the code below :";
+"or simply" = "or simply";
+"Success" = "Success";
+"Pending" = "Pending";
+"Failed" = "Failed";
+
+"New invitation !" = "New invitation !";
+"offers you to join her group deal." = "offers you to join her group deal.";
+"Do you want to" = "Do you want to";
+"the team ?" = "the team ?";
+"You've been added to this group." = "You've been added to this group.";
+"Continue shopping" = "Continue shopping";
+"Invite friends to your group via :" = "Invite friends to\nyour group via :";
+"Invite friends to join Momunity via :" = "Invite friends to join\nMomunity via :";
