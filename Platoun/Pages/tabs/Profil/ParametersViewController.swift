@@ -83,7 +83,7 @@ class ParametersViewController: UIViewController {
         self.navigationItem.title = "Paramètres"
         self.changeValuesButton.setTitle("Valider le changement", for: .normal)
         self.changePasswordButton.setTitle("Modifier Mot de passe", for: .normal)
-        self.changePasswordButton.setTitle("Supprimer mon compte", for: .normal)
+        self.removeAccountButton.setTitle("Supprimer mon compte", for: .normal)
         self.notificationsLabel.text = "Notifications"
         self.notifCategory1Label.text = "Activités liés à mes groupes"
         self.notifCategory2Label.text = "Publications Tendances"
@@ -110,7 +110,7 @@ class ParametersViewController: UIViewController {
 //        changePasswordContainer.isHidden = !(user?.isPassword ?? false)
         self.changePasswordButton.round(type: .password)
 
-        
+        self.removeAccountButton.round(type: .account)
         
         nickNameTextField.placeholder = "Prénom"
         emailTextField.placeholder = "Adresse email"
