@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseCrashlytics
 
 extension UIView {
     @discardableResult
@@ -78,8 +79,16 @@ class ParametersViewController: UIViewController {
     @IBOutlet weak var notifCategory3Switch: CustomSwitch!
     @IBOutlet weak var removeAccountButton: UIButton!
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardNotification(notification:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil)
+        
         self.navigationItem.title = "Paramètres"
         self.changeValuesButton.setTitle("Valider le changement", for: .normal)
         self.changePasswordButton.setTitle("Modifier Mot de passe", for: .normal)
@@ -107,7 +116,7 @@ class ParametersViewController: UIViewController {
         
         let user = Auth.auth().currentUser
         
-//        changePasswordContainer.isHidden = !(user?.isPassword ?? false)
+        changePasswordContainer.isHidden = !(user?.isPassword ?? false)
         self.changePasswordButton.round(type: .password)
 
         self.removeAccountButton.round(type: .account)
@@ -120,6 +129,28 @@ class ParametersViewController: UIViewController {
         emailTextField.text = user?.email ?? ""
         
     }
+    
+    @objc func keyboardNotification(notification: NSNotification) {
+            if let userInfo = notification.userInfo {
+                let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+                let endFrameY = endFrame?.origin.y ?? 0
+                let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+                let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+                let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+                let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
+                if endFrameY >= UIScreen.main.bounds.size.height {
+                    self.bottomConstraint.constant = 0.0
+                } else {
+                    self.bottomConstraint.constant = -(endFrame?.size.height ?? 0.0) + ( self.tabBarController?.tabBar.frame.size.height ?? 0.0)
+                }
+                UIView.animate(withDuration: duration,
+                               delay: TimeInterval(0),
+                               options: animationCurve,
+                               animations: { self.view.layoutIfNeeded() },
+                               completion: nil
+                )
+            }
+        }
     
     @objc func clickCategory1Container() {
         self.notifCategory1Switch.setOn(on: !self.notifCategory1Switch.isOn, animated: true)
@@ -142,8 +173,8 @@ class ParametersViewController: UIViewController {
         
         let presentationController = CustomPresentationController(presentedViewController: vc, presenting: self)
         
-//        vc.transitioningDelegate = presentationController
-        vc.modalPresentationStyle = .popover
+        vc.transitioningDelegate = presentationController
+//        vc.modalPresentationStyle = .popover
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -170,6 +201,19 @@ class ParametersViewController: UIViewController {
         }
     }
     @IBAction func removeAccountAction(_ sender: Any) {
+        UIKitUtils.showAlert(in: self, message: "Êtes-vous sur de vouloir supprimer votre compte ?", action1Title: "Oui", completionOK: {
+            let user = Auth.auth().currentUser
+            user?.delete { error in
+              if let error = error {
+                Crashlytics.crashlytics().record(error: error)
+                UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors de la suppression de votre compte", completion: {})
+              } else {
+                AuthenticationLogout()
+                (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+              }
+            }
+
+        }, action2Title: "Non") {}
     }
     
     private func updateName(completion: @escaping (Bool?)->Void) {
@@ -225,7 +269,11 @@ class ParametersViewController: UIViewController {
 
 extension ParametersViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == nickNameTextField {
+            emailTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
         return true
     }
         
