@@ -28,8 +28,8 @@ class GradientNavigationItem: UINavigationItem {
     override func awakeFromNib() {
         super.awakeFromNib()
         titleView = titleLabel
-        if !self.titleLabel.applyGradientWith(startColor: #colorLiteral(red: 0, green: 0.804, blue: 0.675, alpha: 1), endColor: #colorLiteral(red: 0.008, green: 0.667, blue: 0.69, alpha: 1)) {
-            self.titleLabel.textColor = #colorLiteral(red: 0.008, green: 0.667, blue: 0.69, alpha: 1)
+        if !self.titleLabel.applyGradientWith(startColor: ThemeColor.BackgroundGradient1, endColor: ThemeColor.BackgroundGradient2) {
+            self.titleLabel.textColor = ThemeColor.BackgroundGradient2
         }
     }
 }

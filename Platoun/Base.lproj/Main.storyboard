@@ -187,7 +187,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon compte" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hm-U2-jAu">
-                                <rect key="frame" x="80" y="113.5" width="142.5" height="29.5"/>
+                                <rect key="frame" x="80" y="113.5" width="141.5" height="29.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="25"/>
                                 <color key="textColor" name="WhiteText"/>
                                 <nil key="highlightedColor"/>
@@ -277,7 +277,7 @@
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1j-nl-fyx" userLabel="ButtonContainer">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1j-nl-fyx" userLabel="Change Value Container">
                                         <rect key="frame" x="0.0" y="252" width="342" height="54"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5E-T0-zlm">
@@ -304,28 +304,55 @@
                                             <constraint firstItem="G5E-T0-zlm" firstAttribute="centerX" secondItem="r1j-nl-fyx" secondAttribute="centerX" id="gud-0m-BlR"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9h2-3V-KdI" userLabel="Change Password Container">
+                                        <rect key="frame" x="0.0" y="306" width="342" height="85"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sRI-u2-Gab">
+                                                <rect key="frame" x="91" y="55" width="160" height="30"/>
+                                                <color key="backgroundColor" name="BackgroundButton"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="af4-R3-Fv5"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="-10" maxY="0.0"/>
+                                                <state key="normal" title="Modifier Mot de passe">
+                                                    <color key="titleColor" name="WhiteText"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="changePasswordAction:" destination="Szk-fy-kQf" eventType="touchUpInside" id="pFo-21-Ih6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="sRI-u2-Gab" firstAttribute="centerX" secondItem="9h2-3V-KdI" secondAttribute="centerX" id="DlA-W4-han"/>
+                                            <constraint firstItem="sRI-u2-Gab" firstAttribute="top" secondItem="9h2-3V-KdI" secondAttribute="top" constant="55" id="UcL-BD-I6j"/>
+                                            <constraint firstAttribute="bottom" secondItem="sRI-u2-Gab" secondAttribute="bottom" id="nHJ-rD-NyK"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ra0-Du-OGJ" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="306" width="342" height="55"/>
+                                        <rect key="frame" x="0.0" y="391" width="342" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="7B7-7T-Lw2"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naJ-Gq-ZSg">
-                                        <rect key="frame" x="0.0" y="361" width="342" height="19"/>
+                                        <rect key="frame" x="0.0" y="446" width="342" height="19"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYv-kj-Kvg" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="380" width="342" height="23"/>
+                                        <rect key="frame" x="0.0" y="465" width="342" height="23"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="aon-eu-p0s"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byp-3A-gb5">
-                                        <rect key="frame" x="0.0" y="403" width="342" height="20"/>
+                                        <rect key="frame" x="0.0" y="488" width="342" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activités liés à mes groupes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2y-Y4-ccf">
                                                 <rect key="frame" x="0.0" y="0.0" width="293" height="20"/>
@@ -349,9 +376,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbTintColor">
-                                                        <color key="value" name="BackgroundGradient2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="thumbCornerRadius">
                                                         <real key="value" value="0.5"/>
@@ -378,14 +402,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peY-H0-Vnz" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="423" width="342" height="24"/>
+                                        <rect key="frame" x="0.0" y="508" width="342" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="fws-1m-vAo"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGc-JU-nPK">
-                                        <rect key="frame" x="0.0" y="447" width="342" height="20"/>
+                                        <rect key="frame" x="0.0" y="532" width="342" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publications Tendances" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhI-tk-u0x">
                                                 <rect key="frame" x="0.0" y="0.0" width="293" height="20"/>
@@ -409,9 +433,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbTintColor">
-                                                        <color key="value" name="BackgroundGradient2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="thumbCornerRadius">
                                                         <real key="value" value="0.5"/>
@@ -438,14 +459,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VB0-js-H1O" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="467" width="342" height="24"/>
+                                        <rect key="frame" x="0.0" y="552" width="342" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="cqG-4Q-pHJ"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5WA-hJ-Cfd">
-                                        <rect key="frame" x="0.0" y="491" width="342" height="20"/>
+                                        <rect key="frame" x="0.0" y="576" width="342" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dernières nouveautés sur l’app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vt-a5-6no">
                                                 <rect key="frame" x="0.0" y="0.0" width="293" height="20"/>
@@ -469,9 +490,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbTintColor">
-                                                        <color key="value" name="BackgroundGradient2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="thumbCornerRadius">
                                                         <real key="value" value="0.5"/>
@@ -497,19 +515,39 @@
                                             <constraint firstAttribute="trailing" secondItem="lQa-4c-9We" secondAttribute="trailing" id="xAA-tk-b4B"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vjp-JX-Ms7" userLabel="Change Password Container">
+                                        <rect key="frame" x="0.0" y="596" width="342" height="85"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZS3-pk-S0P">
+                                                <rect key="frame" x="86.5" y="55" width="169" height="30"/>
+                                                <color key="backgroundColor" name="BackgroundButton"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="1A1-Gl-Hav"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="-10" maxY="0.0"/>
+                                                <state key="normal" title="Supprimer mon compte">
+                                                    <color key="titleColor" name="WhiteText"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="removeAccountAction:" destination="Szk-fy-kQf" eventType="touchUpInside" id="XVe-i2-Vgq"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ZS3-pk-S0P" firstAttribute="top" secondItem="Vjp-JX-Ms7" secondAttribute="top" constant="55" id="8dS-X9-sUC"/>
+                                            <constraint firstItem="ZS3-pk-S0P" firstAttribute="centerX" secondItem="Vjp-JX-Ms7" secondAttribute="centerX" id="XcW-XQ-tar"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZS3-pk-S0P" secondAttribute="bottom" id="tUM-Rx-pX2"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUm-77-bzB" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="511" width="342" height="214"/>
+                                        <rect key="frame" x="0.0" y="681" width="342" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sRI-u2-Gab">
-                                <rect key="frame" x="130.5" y="162" width="153" height="30"/>
-                                <state key="normal" title="Modifier Mot de passe"/>
-                                <connections>
-                                    <action selector="changePasswordAction:" destination="Szk-fy-kQf" eventType="touchUpInside" id="pFo-21-Ih6"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gKW-xY-Mvt"/>
                         <color key="backgroundColor" name="BackgroundPage"/>
@@ -517,13 +555,13 @@
                             <constraint firstItem="8ZE-55-YSd" firstAttribute="leading" secondItem="gKW-xY-Mvt" secondAttribute="leading" constant="36" id="457-aV-i5H"/>
                             <constraint firstItem="8ZE-55-YSd" firstAttribute="bottom" secondItem="gKW-xY-Mvt" secondAttribute="bottom" id="AaI-lc-wU6"/>
                             <constraint firstItem="8ZE-55-YSd" firstAttribute="trailing" secondItem="gKW-xY-Mvt" secondAttribute="trailing" constant="-36" id="Qqn-9L-2Op"/>
-                            <constraint firstItem="sRI-u2-Gab" firstAttribute="centerX" secondItem="vtR-ML-ewq" secondAttribute="centerX" id="V1Z-2X-xHD"/>
                             <constraint firstItem="8ZE-55-YSd" firstAttribute="top" secondItem="gKW-xY-Mvt" secondAttribute="top" id="Yq4-fP-c44"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Paramètres" id="E1B-jY-3O6" customClass="GradientNavigationItem" customModule="Platoun" customModuleProvider="target"/>
                     <connections>
                         <outlet property="changePasswordButton" destination="sRI-u2-Gab" id="iEj-j0-65K"/>
+                        <outlet property="changePasswordContainer" destination="9h2-3V-KdI" id="Oim-FW-bjk"/>
                         <outlet property="changeValueContainer" destination="r1j-nl-fyx" id="6b1-zu-rFx"/>
                         <outlet property="changeValuesButton" destination="G5E-T0-zlm" id="qqT-8F-l8e"/>
                         <outlet property="emailTextField" destination="bYB-y6-u2u" id="WD1-4r-FNy"/>
@@ -538,6 +576,7 @@
                         <outlet property="notifCategory3Label" destination="4vt-a5-6no" id="2fM-A0-JeU"/>
                         <outlet property="notifCategory3Switch" destination="lQa-4c-9We" id="Kle-VW-e8j"/>
                         <outlet property="notificationsLabel" destination="naJ-Gq-ZSg" id="6ao-cX-kzN"/>
+                        <outlet property="removeAccountButton" destination="ZS3-pk-S0P" id="nzd-QS-xLL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJ0-LX-MgK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

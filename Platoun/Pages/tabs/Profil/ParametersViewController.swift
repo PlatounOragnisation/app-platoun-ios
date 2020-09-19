@@ -27,13 +27,28 @@ extension UIView {
 }
 
 fileprivate extension UIButton {
-    func round() {
-        self.backgroundColor = ThemeColor.White
-        self.applyGradient(
-            colours: [
-                ThemeColor.BackgroundGradient1,
-                ThemeColor.BackgroundGradient2
-        ])
+    enum ButtonPage {
+        case value, password, account
+    }
+    
+    func round(type: ButtonPage) {
+        
+        switch type {
+        case .value:
+            self.backgroundColor = ThemeColor.White
+            self.setTitleColor(ThemeColor.White, for: .normal)
+            self.applyGradient(
+                colours: [
+                    ThemeColor.BackgroundGradient1,
+                    ThemeColor.BackgroundGradient2
+            ])
+        case .password:
+            self.backgroundColor = ThemeColor.BackgroundButton
+            self.setTitleColor(ThemeColor.White, for: .normal)
+        case .account:
+            self.backgroundColor = ThemeColor.BackgroundButton
+            self.setTitleColor(ThemeColor.GreyText, for: .normal)
+        }
         
         self.layer.cornerRadius = self.bounds.height/2
         self.layer.borderWidth = 1
@@ -49,6 +64,8 @@ class ParametersViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var changeValueContainer: UIView!
     @IBOutlet weak var changeValuesButton: UIButton!
+    @IBOutlet weak var changePasswordContainer: UIView!
+    @IBOutlet weak var changePasswordButton: UIButton!
     @IBOutlet weak var notificationsLabel: UILabel!
     @IBOutlet weak var notifCategory1Container: UIView!
     @IBOutlet weak var notifCategory1Label: UILabel!
@@ -59,12 +76,14 @@ class ParametersViewController: UIViewController {
     @IBOutlet weak var notifCategory3Container: UIView!
     @IBOutlet weak var notifCategory3Label: UILabel!
     @IBOutlet weak var notifCategory3Switch: CustomSwitch!
-    @IBOutlet weak var changePasswordButton: UIButton!
+    @IBOutlet weak var removeAccountButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Paramètres"
         self.changeValuesButton.setTitle("Valider le changement", for: .normal)
+        self.changePasswordButton.setTitle("Modifier Mot de passe", for: .normal)
+        self.changePasswordButton.setTitle("Supprimer mon compte", for: .normal)
         self.notificationsLabel.text = "Notifications"
         self.notifCategory1Label.text = "Activités liés à mes groupes"
         self.notifCategory2Label.text = "Publications Tendances"
@@ -80,7 +99,7 @@ class ParametersViewController: UIViewController {
         self.notifCategory3Container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.clickCategory3Container)))
         
         
-        self.changeValuesButton.round()
+        self.changeValuesButton.round(type: .value)
         self.changeValueContainer.isHidden = true
         
         self.nickNameTextField.delegate = self
@@ -88,7 +107,9 @@ class ParametersViewController: UIViewController {
         
         let user = Auth.auth().currentUser
         
-        changePasswordButton.isHidden = !(user?.isPassword ?? false)
+//        changePasswordContainer.isHidden = !(user?.isPassword ?? false)
+        self.changePasswordButton.round(type: .password)
+
         
         
         nickNameTextField.placeholder = "Prénom"
@@ -147,6 +168,8 @@ class ParametersViewController: UIViewController {
                 }
             }
         }
+    }
+    @IBAction func removeAccountAction(_ sender: Any) {
     }
     
     private func updateName(completion: @escaping (Bool?)->Void) {
