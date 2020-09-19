@@ -43,22 +43,22 @@ public class Platoun {
         }
     }
     
-    public static func getUsers(_ completion: @escaping ([String])-> Void) {
-        Interactor.shared.fetchUsers(completion)
-    }
+//    public static func getUsers(_ completion: @escaping ([String])-> Void) {
+//        Interactor.shared.fetchUsers(completion)
+//    }
     
-    public static func getUser(userId: String, _ completion: @escaping (WebUser?)-> Void) {
-        NewApi.v1.getUser(userId: userId)
-            .response { (result: Result<WebUser, CustomError>) in
-                switch result {
-                case .success(let web):
-                    completion(web)
-                case .failure(let customError):
-                    print(customError)
-                    completion(nil)
-                }
-        }
-    }
+//    public static func getUser(userId: String, _ completion: @escaping (WebUser?)-> Void) {
+//        NewApi.v1.getUser(userId: userId)
+//            .response { (result: Result<WebUser, CustomError>) in
+//                switch result {
+//                case .success(let web):
+//                    completion(web)
+//                case .failure(let customError):
+//                    print(customError)
+//                    completion(nil)
+//                }
+//        }
+//    }
 }
 
 public enum PlatounEnv: String {

@@ -15,7 +15,7 @@ class TabViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectedIndex = 1
+//        self.selectedIndex = 1
         Platoun.setEnv(env: .develop)
     }
     
@@ -28,6 +28,8 @@ class TabViewController: UITabBarController {
         if let user = Auth.auth().currentUser {
             if let actualVc = self.viewControllers?[1], !(actualVc is DrawerController) {
                 let vc = Platoun.getViewController(userId: user.uid)
+                vc.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_tab_marketplace"), selectedImage: UIImage(named: "ic_tab_marketplace_original"))
+                vc.tabBarItem.titlePositionAdjustment = .zero
                 self.viewControllers?[1] = vc
             }
         } else {

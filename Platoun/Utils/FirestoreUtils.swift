@@ -10,9 +10,12 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseCrashlytics
+import FirebaseAuth
 
 enum FirestoreUtilsError: Error {
     case noErrorGetUser(uid: String)
+    case noErrorGetPost(postId: String)
+    case noErrorGetNotifications(userId: String)
 }
 
 class FirestoreUtils: NSObject {
@@ -36,6 +39,51 @@ class FirestoreUtils: NSObject {
                 let photo = doc.data()?["photoUrl"] as? String
                 let url = photo?.isEmpty ?? true ? nil : URL(string: photo!)
                 completion(Result.success((name, url)))
+            }
+    }
+    
+    static func getPost(postId: String, completion: @escaping (Result<Post, Error>)->Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("posts").document(postId).getDocument { (document, error) in
+            if let doc = document, doc.exists {
+                do {
+                    if let post = try doc.data(as: Post.self) {
+                        completion(Result.success(post))
+                    } else {
+                        completion(Result.failure(FirestoreUtilsError.noErrorGetPost(postId: postId)))
+                    }
+                } catch {
+                    completion(Result.failure(error))
+                }
+            } else {
+                completion(Result.failure(error ?? FirestoreUtilsError.noErrorGetPost(postId: postId)))
+            }
+        }
+    }
+    
+    static func getNotifications(userId: String, completion: @escaping (Result<[Notification], Error>)->Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("notifications").document(userId).getDocument { (document, error) in
+            struct Internal: Codable {
+                let list: [Notification]
+            }
+            
+            guard let doc = document, doc.exists else {
+                completion(Result.failure(error ?? FirestoreUtilsError.noErrorGetNotifications(userId: userId)))
+                return
+            }
+            
+            do {
+                if let inter = try doc.data(as: Internal.self) {
+                    completion(Result.success(inter.list))
+                } else {
+                    completion(Result.failure(FirestoreUtilsError.noErrorGetNotifications(userId: userId)))
+                }
+            } catch {
+                completion(Result.failure(error))
+            }
         }
     }
     
@@ -44,6 +92,7 @@ class FirestoreUtils: NSObject {
         do {
             try db.collection("posts").document(post.postId).setData(from: post, merge: true) { error in
                 if let error = error {
+                    Crashlytics.crashlytics().record(error: error)
                     completion(Result.failure(error))
                 } else {
                     completion(Result.success(Void()))
@@ -55,10 +104,133 @@ class FirestoreUtils: NSObject {
         }
     }
     
+    static func deletePost(postId: String) {
+        let db = Firestore.firestore()
+        db.collection("posts").document(postId).delete()
+    }
+    
+    static func saveReport(post: Post, userUid: String, completion: @escaping (Result<Void,Error>)->Void) {
+        let db = Firestore.firestore()
+        let date = Date()
+        let reportId = "r-\(userUid)-\(date.timeIntervalSince1970)"
+        let report = Report(reportId: reportId, reportedBy: userUid, reportedAt: date, postId: post.postId)
+        do {
+            try db.collection("reports").document(report.reportId).setData(from: report, merge: true) { error in
+                if let error = error {
+                    Crashlytics.crashlytics().record(error: error)
+                    completion(Result.failure(error))
+                } else {
+                    completion(Result.success(Void()))
+                }
+            }
+        } catch let error {
+            Crashlytics.crashlytics().record(error: error)
+            completion(Result.failure(error))
+        }
+    }
+    
+    static func addComment(postId: String, comment: Post.Comment, completion: @escaping (Bool)->Void) {
+        let db = Firestore.firestore()
+        let sfReference = db.collection("posts").document(postId)
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let sfDocument: DocumentSnapshot
+            do {
+                try sfDocument = transaction.getDocument(sfReference)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+            
+            guard sfDocument.exists else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to find post from snapshot \(sfDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            let encoder = Firestore.Encoder()
+            if let obj = try? encoder.encode(comment){
+                transaction.updateData(["comments": FieldValue.arrayUnion([obj])], forDocument: sfReference)
+            }
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                print("Transaction add comment failed: \(error)")
+                completion(false)
+            } else {
+                print("Transaction add comment successfully committed!")
+                completion(true)
+            }
+        }
+    }
+    
+    static func toogleVote(postId: String, userUid: String) {
+        let db = Firestore.firestore()
+        let sfReference = db.collection("posts").document(postId)
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let sfDocument: DocumentSnapshot
+            do {
+                try sfDocument = transaction.getDocument(sfReference)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+            
+            guard let post = try? sfDocument.data(as: Post.self) else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to parse post from snapshot \(sfDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            let encoder = Firestore.Encoder()
+            if let index = post.votes.first(where: { $0.userId == userUid }), let obj = try? encoder.encode(index) {
+                transaction.updateData(["votes": FieldValue.arrayRemove([obj])], forDocument: sfReference)
+            } else if let obj = try? encoder.encode(Post.Vote(userId: userUid, votedAt: Date())){
+                transaction.updateData(["votes": FieldValue.arrayUnion([obj])], forDocument: sfReference)
+            }
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                print("Transaction toogle vote failed: \(error)")
+            } else {
+                print("Transaction toogle vote successfully committed!")
+            }
+        }
+    }
+    
     
     static func getPostQuery() -> Query {
         let db = Firestore.firestore()
         
         return db.collection("posts").order(by: "createAt", descending: true)
     }
+    
+    static func getNotificationsQuery(userId: String) -> Query {
+        let db = Firestore.firestore()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: Date())
+        let start = calendar.date(from: components)!
+        let end = calendar.date(byAdding: .day, value: -3, to: start)!
+        return db.collection("users").document(userId).collection("notifications")
+            .whereField("sendingAt", isGreaterThan: end)
+            .order(by: "sendingAt", descending: true)
+    }
+    //    static func getCommentsQuery(postId: String) -> Query {
+    //        let db = Firestore.firestore()
+    //
+    //        return db.collection("posts").document(postId)..order(by: "createAt", descending: true)
+    //    }
 }
