@@ -16,167 +16,98 @@ class Tab3ViewController: UIViewController {
         return UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Tab3ViewController") as! Tab3ViewController
     }
     
-    enum PickerType {
-        case category, language, none
-        
-        var listItem: [EnumType] {
-            get {
-                switch self {
-                case .category:
-                    return Post.PostType.allCases
-                case .language:
-                    return Post.LanguageType.allCases
-                case .none:
-                    return []
-                }
-            }
-        }
-    }
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var firstAddImageView: AddImageView!
+    @IBOutlet weak var secondAddImageView: AddImageView!
     
-    @IBOutlet weak var addImage1Button: UIButton!
-    @IBOutlet weak var image1ImageView: UIImageView!
-    @IBOutlet weak var addImage2Button: UIButton!
-    @IBOutlet weak var image2ImageView: UIImageView!
+    @IBOutlet weak var categoryDropDown: DropDownPostView!
+    @IBOutlet weak var languageDropDown: DropDownPostView!
     
-    @IBOutlet weak var categoryButton: UIButton!
-    @IBOutlet weak var languageButton: UIButton!
-    @IBOutlet weak var pickerView: UIPickerView!
-    
-    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var textTextView: UITextView!
+    @IBOutlet weak var placeholderLabel: UILabel!
     
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    var pickerSelected: PickerType = .none {
-        didSet {
-            switch self.pickerSelected {
-            case .category:
-                self.pickerView.isHidden = false
-                self.pickerView.reloadComponent(0)
-                let index = Post.PostType.allCases.firstIndex(of: self.categorySelected)!
-                self.pickerView.selectRow(index, inComponent: 0, animated: false)
-            case .language:
-                self.pickerView.isHidden = false
-                self.pickerView.reloadComponent(0)
-                let index = Post.LanguageType.allCases.firstIndex(of: self.languageSelected)!
-                self.pickerView.selectRow(index, inComponent: 0, animated: false)
-            case .none:
-                self.pickerView.isHidden = true
-            }
-        }
-    }
-    
-    var categorySelected: Post.PostType = .suggestion {
-        didSet {
-            self.categoryButton.setTitle("Catégorie: \(self.categorySelected.rawValue)", for: .normal)
-        }
-    }
-    var languageSelected: Post.LanguageType = .french {
-        didSet {
-            self.languageButton.setTitle("Langue: \(self.languageSelected.rawValue)", for: .normal)
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardNotification(notification:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil)
         
-        self.categorySelected = .suggestion
-        self.languageSelected = .french
+        self.titleLabel.text = "Contribuer"
+        self.placeholderLabel.text = "Entrer votre text"
+        self.shareButton.setTitle("Partager", for: .normal)
+        self.titleLabel.applyGradientWith(startColor: ThemeColor.BackgroundGradient1, endColor: ThemeColor.BackgroundGradient2)
         
-        self.image1ImageView.isUserInteractionEnabled = true
-        self.image2ImageView.isUserInteractionEnabled = true
-        self.image1ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(image1Selected(_:))))
-        self.image2ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(image2Selected(_:))))
+        self.categoryDropDown.items = Post.PostType.allCases.map { $0.rawValue }
+        self.languageDropDown.items = Post.LanguageType.allCases.map { $0.rawValue }
+        
+        self.textTextView.delegate = self
     }
     
-    @IBAction func addImage1Action(_ sender: Any) {
-        ImagePickerManager().pickImage(self) { image in
-            self.image1ImageView.image = image
-            self.addImage1Button.isHidden = true
-            self.image1ImageView.isHidden = false
-            self.addImage2Button.isHidden = false
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = true
+        self.initializeBackgroundColor(view: self.view)
+        
+        self.shareButton.applyGradient(colours: [ThemeColor.BackgroundGradient2, ThemeColor.BackgroundGradient1])
+        self.shareButton.layer.cornerRadius = self.shareButton.frame.size.height/2
+        self.shareButton.layer.masksToBounds = true
     }
     
-    @IBAction func addImage2Action(_ sender: Any) {
-        ImagePickerManager().pickImage(self) { image in
-            self.image2ImageView.image = image
-            self.addImage2Button.isHidden = true
-            self.image2ImageView.isHidden = false
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
-    @objc func image1Selected(_ sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(title: "Vous souhaitez ?", message: nil, preferredStyle: .actionSheet)
+    func initializeBackgroundColor(view: UIView) {
+        let layer0 = CAGradientLayer()
+
+        layer0.colors = [
+            ThemeColor.BackgroundGradient1.cgColor,
+            ThemeColor.BackgroundGradient2.cgColor
+        ]
+        layer0.locations = [0, 1]
+        layer0.startPoint = CGPoint(x: 0.25, y: 0.5)
+        layer0.endPoint = CGPoint(x: 0.75, y: 0.5)
+        layer0.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0.94, b: -0.91, c: 0.91, d: 1, tx: -0.45, ty: 0.46))
+        layer0.bounds = view.bounds.insetBy(dx: -0.5*view.bounds.size.width, dy: -0.5*view.bounds.size.height)
+        layer0.position = view.center
+        view.layer.insertSublayer(layer0, at: 0)
         
-        alert.addAction(UIAlertAction(title: "Changer l'image", style: .default, handler: { _ in
-            ImagePickerManager().pickImage(self) { image in
-                self.image1ImageView.image = image
-            }
-        }))
+        let layer1 = CAGradientLayer()
+        layer1.backgroundColor = ThemeColor.BackgroundPage.cgColor
         
-        alert.addAction(UIAlertAction(title: "Supprimer l'image", style: .destructive, handler: { _ in
-            if let image = self.image2ImageView.image, !self.image2ImageView.isHidden {
-                self.image1ImageView.image = image
-                self.image2ImageView.image = nil
-                self.image2ImageView.isHidden = true
-                self.addImage2Button.isHidden = false
-            } else {
-                self.image1ImageView.image = nil
-                self.image1ImageView.isHidden = true
-                self.addImage1Button.isHidden = false
-                self.addImage2Button.isHidden = true
-                self.image2ImageView.isHidden = true
-            }
-        }))
+        layer1.colors = [
+            ThemeColor.BackgroundGradientCircle1.cgColor,
+            ThemeColor.BackgroundGradientCircle2.cgColor
+        ]
+        layer1.startPoint = CGPoint(x: 0.5, y: 0)
+        layer1.endPoint = CGPoint(x: 0.5, y: 1)
+                
+        let isIPhoneX = (UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0) > 20
         
-        alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+        let barHeight: CGFloat = isIPhoneX ? 83 : 49
         
-        self.present(alert, animated: true, completion: nil)
+        let pageHeight = view.bounds.height - barHeight
+        let diameterCircle: CGFloat = pageHeight * 1.12
+        let radiusCircle = diameterCircle / 2
+        let bounds = CGRect(x: 0, y: 0, width: diameterCircle, height: diameterCircle)
+        layer1.bounds = bounds
+        layer1.position = CGPoint(x: 0, y: pageHeight-radiusCircle)
+        layer1.cornerRadius = radiusCircle
+        view.layer.insertSublayer(layer1, at: 1)
     }
     
-    @objc func image2Selected(_ sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(title: "Vous souhaitez ?", message: nil, preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Changer l'image", style: .default, handler: { _ in
-            ImagePickerManager().pickImage(self) { image in
-                self.image2ImageView.image = image
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Supprimer l'image", style: .destructive, handler: { _ in
-            self.image2ImageView.image = nil
-            self.addImage2Button.isHidden = false
-            self.image2ImageView.isHidden = true
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func buttonPickerAction(_ sender: Any) {
-        if (sender as? UIButton) == categoryButton {
-            if self.pickerSelected == .category {
-                self.pickerSelected = .none
-            } else {
-                self.pickerSelected = .category
-            }
-        } else if (sender as? UIButton) == languageButton {
-            if self.pickerSelected == .language {
-                self.pickerSelected = .none
-            } else {
-                self.pickerSelected = .language
-            }
-        }
-    }
     
     @IBAction func shareButtonAction(_ sender: Any) {
         guard Auth.auth().currentUser != nil else { return }
-        guard let title = titleTextField.text, !title.isEmpty else {
-            UIKitUtils.showAlert(in: self, message: "Le titre ne peut pas être vide", completion: {}); return
-        }
-        guard let text = textTextView.text, !text.isEmpty else {
+        guard let text = textTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else {
             UIKitUtils.showAlert(in: self, message: "Le Text ne peut pas être vide", completion: {}); return
         }
         
@@ -184,14 +115,20 @@ class Tab3ViewController: UIViewController {
         UIKitUtils.showAlert(
             in: self,
             message: "Êtes vous sur de vouloir publié ce post ?",
-            action1Title: "Oui", completionOK: { self.publishPost(title: title, text: text) },
+            action1Title: "Oui", completionOK: { self.publishPost(text: text) },
             action2Title: "Non", completionCancel: {})
     }
     
-    func publishPost(title: String, text: String) {
+    func publishPost(text: String) {
         let user = Auth.auth().currentUser!
         let date = Date()
         let postId = "\(user.uid)-\(date.timeIntervalSince1970)"
+        
+        let category = Post.PostType(rawValue: self.categoryDropDown.getItemSelected()) ??
+            Post.PostType.suggestion
+        
+        let language = Post.LanguageType(rawValue: self.languageDropDown.getItemSelected()) ??
+            Post.LanguageType.french
         
         self.uploadImages(postId: postId, images: getImages()) { urls in
             let post = Post.create(
@@ -199,8 +136,8 @@ class Tab3ViewController: UIViewController {
                 for: postId,
                 text: text,
                 images: urls,
-                category: self.categorySelected,
-                language: self.languageSelected,
+                category: category,
+                language: language,
                 createAt: date)
             
             FirestoreUtils.savePost(post: post) { result in
@@ -246,37 +183,54 @@ class Tab3ViewController: UIViewController {
     }
     
     private func getImages() -> [UIImage] {
-        var images: [UIImage] = []
-        if let image1 = self.image1ImageView.image, !self.image1ImageView.isHidden { images.append(image1) }
-        if let image2 = self.image2ImageView.image, !self.image2ImageView.isHidden { images.append(image2) }
-        return images
+        return [self.firstAddImageView, self.secondAddImageView].compactMap { $0?.image }
     }
 }
 
-extension Tab3ViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
+extension Tab3ViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard let string = textView.text, let textRange = Range(range, in: string) else { return false }
+        let updatedText = string.replacingCharacters(in: textRange, with: text)
+        return true
+    }
+        
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        self.placeholderLabel.isHidden = true
+        return true
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.pickerSelected.listItem.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return
-            (self.pickerSelected.listItem[row] as? Post.PostType)?.rawValue ??
-                (self.pickerSelected.listItem[row] as? Post.LanguageType)?.rawValue
-    }
-}
-
-extension Tab3ViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch self.pickerSelected {
-        case .category:
-            self.categorySelected = self.pickerSelected.listItem[row] as! Post.PostType
-        case .language:
-            self.languageSelected = self.pickerSelected.listItem[row] as! Post.LanguageType
-        case .none: break
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        let text = (textView.text ?? "")
+        if text.isEmpty {
+            self.placeholderLabel.isHidden = false
         }
+        return true
     }
+}
+
+extension Tab3ViewController {
+    @objc func keyboardNotification(notification: NSNotification) {
+            if let userInfo = notification.userInfo {
+                let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+                let endFrameY = endFrame?.origin.y ?? 0
+                let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+                let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+                let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+                let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
+                
+                let height: CGFloat
+                if endFrameY >= UIScreen.main.bounds.size.height {
+                    height = 0.0
+                } else {
+                    height = (endFrame?.size.height ?? 0.0) - ( self.tabBarController?.tabBar.frame.size.height ?? self.view.safeAreaInsets.bottom)
+                }
+                self.bottomConstraint.constant = -height
+                UIView.animate(withDuration: duration,
+                               delay: TimeInterval(0),
+                               options: animationCurve,
+                               animations: { self.view.layoutIfNeeded() },
+                               completion: nil
+                )
+            }
+        }
 }

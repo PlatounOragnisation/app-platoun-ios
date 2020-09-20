@@ -42,6 +42,10 @@
 		F07A1F8E25040402002AAEDD /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F8D25040402002AAEDD /* ImagePickerManager.swift */; };
 		F07A1F9025041270002AAEDD /* StorageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F8F25041270002AAEDD /* StorageUtils.swift */; };
 		F07A1F932504179D002AAEDD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F922504179D002AAEDD /* Post.swift */; };
+		F089C0EA251768B100C56984 /* AddImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F089C0E9251768B100C56984 /* AddImageView.swift */; };
+		F089C0F025176B6A00C56984 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = F089C0EF25176B6A00C56984 /* CropViewController */; };
+		F089C0F225176B6A00C56984 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = F089C0F125176B6A00C56984 /* TOCropViewController */; };
+		F089C0F725177C5400C56984 /* AddImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F089C0F625177C5400C56984 /* AddImageView.xib */; };
 		F0A11F162505336F007C29F3 /* FirestoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F152505336F007C29F3 /* FirestoreUtils.swift */; };
 		F0A11F1A25054383007C29F3 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */; };
 		F0A11F1C25058228007C29F3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F1B25058228007C29F3 /* UIImageView+Extension.swift */; };
@@ -180,6 +184,8 @@
 		F0BD4A1325168771008092BA /* CustomThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BD4A1225168771008092BA /* CustomThumbView.swift */; };
 		F0BD4A1F25169598008092BA /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BD4A1E25169598008092BA /* ThemeColor.swift */; };
 		F0BD4A302516CBA5008092BA /* GradientUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BD4A2F2516CBA5008092BA /* GradientUtils.swift */; };
+		F0DB421B25179CF600A8B4FA /* DropDownPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */; };
+		F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +251,8 @@
 		F07A1F8D25040402002AAEDD /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		F07A1F8F25041270002AAEDD /* StorageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUtils.swift; sourceTree = "<group>"; };
 		F07A1F922504179D002AAEDD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F089C0E9251768B100C56984 /* AddImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageView.swift; sourceTree = "<group>"; };
+		F089C0F625177C5400C56984 /* AddImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddImageView.xib; sourceTree = "<group>"; };
 		F0A11F152505336F007C29F3 /* FirestoreUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUtils.swift; sourceTree = "<group>"; };
 		F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		F0A11F1B25058228007C29F3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -385,6 +393,8 @@
 		F0BD4A1225168771008092BA /* CustomThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThumbView.swift; sourceTree = "<group>"; };
 		F0BD4A1E25169598008092BA /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		F0BD4A2F2516CBA5008092BA /* GradientUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientUtils.swift; sourceTree = "<group>"; };
+		F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPostView.swift; sourceTree = "<group>"; };
+		F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownPostView.xib; sourceTree = "<group>"; };
 		F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.release.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -394,6 +404,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C493FFB35131E61992BA394 /* Pods_Platoun.framework in Frameworks */,
+				F089C0F225176B6A00C56984 /* TOCropViewController in Frameworks */,
+				F089C0F025176B6A00C56984 /* CropViewController in Frameworks */,
 				F02802ED24F3349F00775C9E /* FacebookCore in Frameworks */,
 				F02802EF24F3349F00775C9E /* FacebookLogin in Frameworks */,
 			);
@@ -501,6 +513,10 @@
 			isa = PBXGroup;
 			children = (
 				F018D6C424F9781C00DD0D45 /* Tab3ViewController.swift */,
+				F089C0F625177C5400C56984 /* AddImageView.xib */,
+				F089C0E9251768B100C56984 /* AddImageView.swift */,
+				F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */,
+				F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1095,6 +1111,8 @@
 			packageProductDependencies = (
 				F02802EC24F3349F00775C9E /* FacebookCore */,
 				F02802EE24F3349F00775C9E /* FacebookLogin */,
+				F089C0EF25176B6A00C56984 /* CropViewController */,
+				F089C0F125176B6A00C56984 /* TOCropViewController */,
 			);
 			productName = Platoun;
 			productReference = F01C6CA424F31B140016ADE2 /* Platoun.app */;
@@ -1176,6 +1194,7 @@
 			mainGroup = F01C6C9B24F31B140016ADE2;
 			packageReferences = (
 				F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 			);
 			productRefGroup = F01C6CA524F31B140016ADE2 /* Products */;
 			projectDirPath = "";
@@ -1218,9 +1237,11 @@
 				F01C6CD824F31E670016ADE2 /* GoogleService-Info.plist in Resources */,
 				F0AA8D5E2514162B00EA2FBD /* Root.storyboard in Resources */,
 				F0BD49F925166C51008092BA /* Roboto-Thin.ttf in Resources */,
+				F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */,
 				F0AA8D5A2514162B00EA2FBD /* MomunityUsers.storyboard in Resources */,
 				F0AA8D562514162B00EA2FBD /* PourcentView.xib in Resources */,
 				F0BD49FF25166C51008092BA /* Roboto-Light.ttf in Resources */,
+				F089C0F725177C5400C56984 /* AddImageView.xib in Resources */,
 				F0BD49FC25166C51008092BA /* Roboto-Italic.ttf in Resources */,
 				F0AA8D672514162B00EA2FBD /* PriceButton.xib in Resources */,
 				F0AA8D622514162B00EA2FBD /* JoinGroup.storyboard in Resources */,
@@ -1463,6 +1484,7 @@
 				F0AA8D112514162A00EA2FBD /* PromocodesViewController.swift in Sources */,
 				F0AA8D0F2514162A00EA2FBD /* GroupStatusCell.swift in Sources */,
 				F0AA8D102514162A00EA2FBD /* PromocodeCell.swift in Sources */,
+				F089C0EA251768B100C56984 /* AddImageView.swift in Sources */,
 				F0AA8D312514162B00EA2FBD /* AppDelegate+Extension.swift in Sources */,
 				F0AA8D082514162A00EA2FBD /* SuccessViewController.swift in Sources */,
 				F0AA8D062514162A00EA2FBD /* UserCell.swift in Sources */,
@@ -1537,6 +1559,7 @@
 				F0AA8D802514168B00EA2FBD /* PUIViewController.swift in Sources */,
 				F0AA8D302514162B00EA2FBD /* UITextView+Extension.swift in Sources */,
 				F0BD49E425161B1F008092BA /* Notification.swift in Sources */,
+				F0DB421B25179CF600A8B4FA /* DropDownPostView.swift in Sources */,
 				F0AA8D132514162B00EA2FBD /* JoinGroupViewController.swift in Sources */,
 				F0AA8D0C2514162A00EA2FBD /* CategoryViewCell.swift in Sources */,
 				F0AA8D3A2514162B00EA2FBD /* WebSummaryNotification.swift in Sources */,
@@ -1637,7 +1660,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1733,6 +1756,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1759,6 +1783,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1915,6 +1940,14 @@
 				minimumVersion = 7.1.1;
 			};
 		};
+		F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1927,6 +1960,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookLogin;
+		};
+		F089C0EF25176B6A00C56984 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		F089C0F125176B6A00C56984 /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

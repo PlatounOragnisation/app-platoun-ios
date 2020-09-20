@@ -12,6 +12,7 @@ import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
+import DropDown
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Auth.auth().languageCode = "fr"
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
+        DropDown.startListeningToKeyboard()
         
         return true
     }

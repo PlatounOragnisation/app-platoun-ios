@@ -11,7 +11,7 @@ import UIKit
 class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var picker = UIImagePickerController();
-    var alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+    var alert = UIAlertController(title: "Choisissez une image", message: nil, preferredStyle: .actionSheet)
     var viewController: UIViewController?
     var pickImageCallback : ((UIImage) -> ())?;
 
@@ -23,15 +23,15 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         pickImageCallback = callback;
         self.viewController = viewController;
 
-        let cameraAction = UIAlertAction(title: "Camera", style: .default){
+        let cameraAction = UIAlertAction(title: "Appareil Photo", style: .default){
             UIAlertAction in
             self.openCamera()
         }
-        let galleryAction = UIAlertAction(title: "Gallery", style: .default){
+        let galleryAction = UIAlertAction(title: "Galerie", style: .default){
             UIAlertAction in
             self.openGallery()
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){
+        let cancelAction = UIAlertAction(title: "Annuler", style: .cancel){
             UIAlertAction in
         }
 
@@ -49,7 +49,7 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
             picker.sourceType = .camera
             self.viewController!.present(picker, animated: true, completion: nil)
         } else {
-            let alertWarning = UIAlertController(title:"Warning", message: "You don't have camera", preferredStyle: .alert)
+            let alertWarning = UIAlertController(title:"Attention", message: "Vous n'avez pas de caméra", preferredStyle: .alert)
             alertWarning.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             
             self.viewController?.present(alertWarning, animated: true, completion: nil)

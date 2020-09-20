@@ -17,12 +17,13 @@ target 'Platoun' do
   pod 'FirebaseFirestoreSwift'
 
 
-  #For Marketplace
+  # For Marketplace
   pod 'MultiSlider', '~> 1.10.8'
   pod 'Alamofire', '~> 5.1'
   pod 'ImageIOUIKit'
 
-  # Pods for Platoun
+  # For View
+  pod 'DropDown'
 
   target 'PlatounTests' do
     inherit! :search_paths

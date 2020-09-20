@@ -17,7 +17,7 @@ fileprivate extension UIImageView {
     }
 }
 
-class Tab1ViewController: UIViewController {
+class Tab1ViewController: UIViewController { 
     
     @IBOutlet weak var profilImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

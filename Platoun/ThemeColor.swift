@@ -17,4 +17,7 @@ struct ThemeColor {
     static let BackgroundPage = UIColor(named: "BackgroundPage")!
     static let GreyText = UIColor(named: "GreyText")!
     static let ValidateBorder = UIColor(named: "ValidateBorder")!
+    
+    static let BackgroundGradientCircle1 = UIColor(named: "BackgroundGradientCircle1")!
+    static let BackgroundGradientCircle2 = UIColor(named: "BackgroundGradientCircle2")!
 }

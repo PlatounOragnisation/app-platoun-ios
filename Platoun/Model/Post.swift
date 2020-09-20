@@ -8,8 +8,6 @@
 
 import Foundation
 
-protocol EnumType {}
-
 struct Post: Codable {
     let postId: String
     let title: String
@@ -39,13 +37,13 @@ struct Post: Codable {
         let userId: String
     }
     
-    enum PostType: String, EnumType, Codable, CaseIterable {
+    enum PostType: String, Codable, CaseIterable {
         case suggestion = "#Suggestion"
         case question = "#Question"
         //        case review = "#Review"
     }
     
-    enum LanguageType: String, EnumType, Codable, CaseIterable {
+    enum LanguageType: String, Codable, CaseIterable {
         case french = "#Français"
         case german = "#Allemand"
         case english = "#International (Anglais)"
