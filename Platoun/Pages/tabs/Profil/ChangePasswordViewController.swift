@@ -8,69 +8,62 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseCrashlytics
 
-extension UILabel {
-
-    func applyGradientWith(startColor: UIColor, endColor: UIColor) -> Bool {
-
-        var startColorRed:CGFloat = 0
-        var startColorGreen:CGFloat = 0
-        var startColorBlue:CGFloat = 0
-        var startAlpha:CGFloat = 0
-
-        if !startColor.getRed(&startColorRed, green: &startColorGreen, blue: &startColorBlue, alpha: &startAlpha) {
-            return false
-        }
-
-        var endColorRed:CGFloat = 0
-        var endColorGreen:CGFloat = 0
-        var endColorBlue:CGFloat = 0
-        var endAlpha:CGFloat = 0
-
-        if !endColor.getRed(&endColorRed, green: &endColorGreen, blue: &endColorBlue, alpha: &endAlpha) {
-            return false
-        }
-
-        let gradientText = self.text ?? ""
-
-        let textSize: CGSize = gradientText.size(withAttributes: [.font:self.font!])
-        let width:CGFloat = textSize.width
-        let height:CGFloat = textSize.height
-
-        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-
-        guard let context = UIGraphicsGetCurrentContext() else {
-            UIGraphicsEndImageContext()
-            return false
-        }
-
-        UIGraphicsPushContext(context)
-
-        let glossGradient:CGGradient?
-        let rgbColorspace:CGColorSpace?
-        let num_locations:size_t = 2
-        let locations:[CGFloat] = [ 0.0, 1.0 ]
-        let components:[CGFloat] = [startColorRed, startColorGreen, startColorBlue, startAlpha, endColorRed, endColorGreen, endColorBlue, endAlpha]
-        rgbColorspace = CGColorSpaceCreateDeviceRGB()
-        glossGradient = CGGradient(colorSpace: rgbColorspace!, colorComponents: components, locations: locations, count: num_locations)
-        let topCenter = CGPoint.zero
-        let bottomCenter = CGPoint(x: 0, y: textSize.height)
-        context.drawLinearGradient(glossGradient!, start: topCenter, end: bottomCenter, options: CGGradientDrawingOptions.drawsBeforeStartLocation)
-
-        UIGraphicsPopContext()
-
-        guard let gradientImage = UIGraphicsGetImageFromCurrentImageContext() else {
-            UIGraphicsEndImageContext()
-            return false
-        }
-
-        UIGraphicsEndImageContext()
-
-        self.textColor = UIColor(patternImage: gradientImage)
-
-        return true
+fileprivate extension UIView {
+    func roundBar() {
+        self.layer.cornerRadius = self.frame.height / 2
+        self.layer.masksToBounds = true
     }
+}
 
+fileprivate extension UIButton {
+    func customize() {
+        let cornerRadius = self.frame.height/2
+
+        let shadows = UIView()
+        shadows.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        shadows.clipsToBounds = false
+        self.addSubview(shadows)
+        
+        let emp = UIView()
+        emp.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        emp.clipsToBounds = false
+        emp.backgroundColor = ThemeColor.BackgroundPage
+        emp.layer.cornerRadius = cornerRadius
+        emp.layer.masksToBounds = true
+        self.addSubview(emp)
+
+
+        let shadowPath0 = UIBezierPath(roundedRect: shadows.bounds, cornerRadius: cornerRadius)
+
+        let layer0 = CALayer()
+
+        layer0.shadowPath = shadowPath0.cgPath
+        
+        layer0.shadowColor = ThemeColor.Black.withAlphaComponent(0.25).cgColor
+
+        layer0.shadowOpacity = 0.8
+
+        layer0.shadowRadius = 4
+
+        layer0.shadowOffset = CGSize(width: 0, height: 1)
+
+        layer0.bounds = shadows.bounds
+
+        layer0.position = shadows.center
+
+        shadows.layer.addSublayer(layer0)
+
+
+        self.layer.cornerRadius = cornerRadius
+
+        self.layer.borderWidth = 1
+
+        self.layer.borderColor = ThemeColor.ValidateBorder.cgColor
+        
+        self.applyGradientWith(startColor: ThemeColor.BackgroundGradient1, endColor: ThemeColor.BackgroundGradient2)
+    }
 }
 
 class ChangePasswordViewController: UIViewController {
@@ -80,16 +73,53 @@ class ChangePasswordViewController: UIViewController {
         return vc
     }
 
+    @IBOutlet weak var barIndicatorView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var oldPasswordTextField: UITextField!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var newPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var valideButton: UIButton!
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardNotification(notification:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardNotification(notification:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil)
+        
+        barIndicatorView.roundBar()
+        titleLabel.text = "Changement de mot de passe"
+        oldPasswordTextField.placeholder = "Ancien mot de passe"
+        forgotPasswordButton.setTitle("Mot de passe oublié ?", for: .normal)
+        newPasswordTextField.placeholder = "Nouveau mot de passe"
+        confirmPasswordTextField.placeholder = "Confirmer le mot de passe"
+        valideButton.setTitle("Valider", for: .normal)
+        
+        oldPasswordTextField.delegate = self
+        newPasswordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
+        
         self.updatePreferredContentSize(with: self.traitCollection)
         
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(barIndicatorSwiped))
+        gesture.direction = .down
+        self.barIndicatorView.addGestureRecognizer(gesture)
+        
+        valideButton.customize()
+    }
+    
+    @objc func barIndicatorSwiped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,6 +132,7 @@ class ChangePasswordViewController: UIViewController {
             case .success():
                 UIKitUtils.showAlert(in: self, message: "Le mail de réinitialisation de mot de passe à bien été envoyé.") {}
             case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
                 UIKitUtils.showAlert(in: self, message: "Une erreur est survenue : \(error.localizedDescription)") {}
             }
         })
@@ -128,6 +159,7 @@ class ChangePasswordViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
                 UIKitUtils.showAlert(in: self, message: "Une erreur est survenue : \(error.localizedDescription)") {}
             }
         })
@@ -142,5 +174,54 @@ class ChangePasswordViewController: UIViewController {
         self.preferredContentSize = CGSize(
             width: self.view.bounds.size.width,
             height: traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact ? 334 : 520)
+    }
+    
+    func updatePreferredContentSize(with keyboardHeight: CGFloat) {
+        let height = (self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact ? 334 : 520) + keyboardHeight
+        self.preferredContentSize = CGSize(
+            width: self.view.bounds.size.width,
+            height: min(height, UIScreen.main.bounds.height - 40)
+        )
+    }
+    
+    @objc func keyboardNotification(notification: NSNotification) {
+            if let userInfo = notification.userInfo {
+                let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+                let endFrameY = endFrame?.origin.y ?? 0
+                let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+                let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+                let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+                let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
+                
+                let height: CGFloat
+                if endFrameY >= UIScreen.main.bounds.size.height {
+                    height = 0.0
+                } else {
+                    height = (endFrame?.size.height ?? 0.0) - ( self.tabBarController?.tabBar.frame.size.height ?? self.view.safeAreaInsets.bottom)
+                }
+                self.bottomConstraint.constant = -height
+                UIView.animate(withDuration: duration,
+                               delay: TimeInterval(0),
+                               options: animationCurve,
+                               animations: {
+                                self.updatePreferredContentSize(with: height)
+                                self.view.layoutIfNeeded()
+                               },
+                               completion: nil
+                )
+            }
+        }
+}
+
+extension ChangePasswordViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == oldPasswordTextField {
+            self.newPasswordTextField.becomeFirstResponder()
+        } else if textField == newPasswordTextField {
+            self.confirmPasswordTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }

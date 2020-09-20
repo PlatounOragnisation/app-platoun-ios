@@ -25,6 +25,36 @@ class FirestoreUtils: NSObject {
         db.collection("users").document(uid).setData(["displayName": name], merge: true)
     }
     
+    static func saveUser(uid: String, groupNotification: Bool, trendsNotification: Bool, newsNotification: Bool) {
+        let db = Firestore.firestore()
+        db.collection("users").document(uid).setData(
+            [
+                "groupNotification": groupNotification,
+                "trendsNotification": trendsNotification,
+                "newsNotification": newsNotification
+            ], merge: true)
+    }
+    
+    static func getUser(uid: String, completion: @escaping (Result<PlatounUser, Error>)->Void) {
+        Firestore
+            .firestore()
+            .collection("users").document(uid)
+            .getDocument() { (doc, error) in
+                do {
+                    guard let doc = doc, doc.exists, let user = try doc.data(as: PlatounUser.self) else {
+                        let error = error ?? FirestoreUtilsError.noErrorGetUser(uid: uid)
+                        Crashlytics.crashlytics().record(error: error)
+                        completion(Result.failure(error))
+                        return
+                    }
+                    completion(Result.success(user))
+                } catch {
+                    Crashlytics.crashlytics().record(error: error)
+                    completion(Result.failure(error))
+                }
+            }
+    }
+    
     static func getUserInfo(uid: String, completion: @escaping (Result<(name: String, photo:URL?), Error>)->Void) {
         Firestore
             .firestore()

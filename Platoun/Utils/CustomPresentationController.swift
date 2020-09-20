@@ -63,6 +63,10 @@ class CustomPresentationController: UIPresentationController, UIViewControllerTr
         dimmingView.isOpaque = false
         dimmingView.autoresizingMask = .init(arrayLiteral: .flexibleWidth, .flexibleHeight)
         dimmingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dimmingViewTapped)))
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(dimmingViewSwipped))
+        swipeDown.direction = .down
+        dimmingView.addGestureRecognizer(swipeDown)
         self.dimmingView = dimmingView
         self.containerView?.addSubview(dimmingView)
         
@@ -133,6 +137,12 @@ class CustomPresentationController: UIPresentationController, UIViewControllerTr
     }
     
     @objc func dimmingViewTapped(sender: UITapGestureRecognizer) {
+        self.presentingViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    @objc func dimmingViewSwipped(sender: UISwipeGestureRecognizer) {
         self.presentingViewController.dismiss(animated: true, completion: nil)
     }
     

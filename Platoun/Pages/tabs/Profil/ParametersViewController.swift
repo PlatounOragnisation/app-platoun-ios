@@ -10,23 +10,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseCrashlytics
 
-extension UIView {
-    @discardableResult
-    func applyGradient(colours: [UIColor]) -> CAGradientLayer {
-        return self.applyGradient(colours: colours, locations: nil)
-    }
-
-    @discardableResult
-    func applyGradient(colours: [UIColor], locations: [NSNumber]?) -> CAGradientLayer {
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.frame = self.bounds
-        gradient.colors = colours.map { $0.cgColor }
-        gradient.locations = locations
-        self.layer.insertSublayer(gradient, at: 0)
-        return gradient
-    }
-}
-
 fileprivate extension UIButton {
     enum ButtonPage {
         case value, password, account
@@ -77,9 +60,13 @@ class ParametersViewController: UIViewController {
     @IBOutlet weak var notifCategory3Container: UIView!
     @IBOutlet weak var notifCategory3Label: UILabel!
     @IBOutlet weak var notifCategory3Switch: CustomSwitch!
+    @IBOutlet weak var changeValuesNotifContainer: UIView!
+    @IBOutlet weak var changeValuesNotifButton: UIButton!
     @IBOutlet weak var removeAccountButton: UIButton!
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    var platounUser: PlatounUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +78,7 @@ class ParametersViewController: UIViewController {
         
         self.navigationItem.title = "Paramètres"
         self.changeValuesButton.setTitle("Valider le changement", for: .normal)
+        self.changeValuesNotifButton.setTitle("Valider le changement", for: .normal)
         self.changePasswordButton.setTitle("Modifier Mot de passe", for: .normal)
         self.removeAccountButton.setTitle("Supprimer mon compte", for: .normal)
         self.notificationsLabel.text = "Notifications"
@@ -110,6 +98,8 @@ class ParametersViewController: UIViewController {
         
         self.changeValuesButton.round(type: .value)
         self.changeValueContainer.isHidden = true
+        self.changeValuesNotifButton.round(type: .value)
+        self.changeValuesNotifContainer.isHidden = true
         
         self.nickNameTextField.delegate = self
         self.emailTextField.delegate = self
@@ -128,6 +118,29 @@ class ParametersViewController: UIViewController {
         nickNameTextField.text = user?.displayName ?? ""
         emailTextField.text = user?.email ?? ""
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.reload()
+    }
+    
+    func reload() {
+        guard let user = Auth.auth().currentUser else { self.logOut(); return }
+        FirestoreUtils.getUser(uid: user.uid) { result in
+            switch result {
+            case .success(let platounUser):
+                self.platounUser = platounUser
+                self.notifCategory1Switch.setOn(on: platounUser.groupNotification, animated: false)
+                self.notifCategory2Switch.setOn(on: platounUser.trendsNotification, animated: false)
+                self.notifCategory3Switch.setOn(on: platounUser.newsNotification, animated: false)
+                self.checkValueNotifChange()
+            case .failure:
+                UIKitUtils.showAlert(in: self, message: "Une erreur est survenue merci de vous reconnecter.") {
+                    self.logOut()
+                }
+            }
+        }
     }
     
     @objc func keyboardNotification(notification: NSNotification) {
@@ -153,19 +166,29 @@ class ParametersViewController: UIViewController {
         }
     
     @objc func clickCategory1Container() {
-        self.notifCategory1Switch.setOn(on: !self.notifCategory1Switch.isOn, animated: true)
+        let value = !self.notifCategory1Switch.isOn
+        self.notifCategory1Switch.setOn(on: value, animated: true)
+        self.checkValueNotifChange()
     }
     
     @objc func clickCategory2Container() {
-        self.notifCategory2Switch.setOn(on: !self.notifCategory2Switch.isOn, animated: true)
+        let value = !self.notifCategory2Switch.isOn
+        self.notifCategory2Switch.setOn(on: value, animated: true)
+        self.checkValueNotifChange()
     }
     
     @objc func clickCategory3Container() {
-        self.notifCategory3Switch.setOn(on: !self.notifCategory3Switch.isOn, animated: true)
+        let value = !self.notifCategory3Switch.isOn
+        self.notifCategory3Switch.setOn(on: value, animated: true)
+        self.checkValueNotifChange()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func checkValueNotifChange() {
+        guard let user = platounUser else { self.logOut(); return }
+        self.changeValuesNotifContainer.isHidden =
+            notifCategory1Switch.isOn == user.groupNotification &&
+            notifCategory2Switch.isOn == user.trendsNotification &&
+            notifCategory3Switch.isOn == user.newsNotification
     }
     
     @IBAction func changePasswordAction(_ sender: Any) {
@@ -174,8 +197,22 @@ class ParametersViewController: UIViewController {
         let presentationController = CustomPresentationController(presentedViewController: vc, presenting: self)
         
         vc.transitioningDelegate = presentationController
-//        vc.modalPresentationStyle = .popover
+//        if #available(iOS 13.0, *) {
+//            vc.modalPresentationStyle = .automatic
+//        } else {
+//            vc.modalPresentationStyle = .popover
+//        }
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func changeValuesNotifAction(_ sender: Any) {
+        guard let user = Auth.auth().currentUser else { self.logOut(); return }
+        let groupNotif = self.notifCategory1Switch.isOn
+        let trendsNotif = self.notifCategory2Switch.isOn
+        let newsNotif = self.notifCategory3Switch.isOn
+        
+        FirestoreUtils.saveUser(uid: user.uid, groupNotification: groupNotif, trendsNotification: trendsNotif, newsNotification: newsNotif)
+        self.reload()
     }
     
     @IBAction func changeValuesAction(_ sender: Any) {
@@ -196,10 +233,17 @@ class ParametersViewController: UIViewController {
                     let user = Auth.auth().currentUser
                     self.nickNameTextField.text = user?.displayName ?? ""
                     self.emailTextField.text = user?.email ?? ""
+                    self.changeValueContainer.isHidden = true
                 }
             }
         }
     }
+    
+    func logOut() {
+        AuthenticationLogout()
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+    }
+    
     @IBAction func removeAccountAction(_ sender: Any) {
         UIKitUtils.showAlert(in: self, message: "Êtes-vous sur de vouloir supprimer votre compte ?", action1Title: "Oui", completionOK: {
             let user = Auth.auth().currentUser
@@ -208,8 +252,7 @@ class ParametersViewController: UIViewController {
                 Crashlytics.crashlytics().record(error: error)
                 UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors de la suppression de votre compte", completion: {})
               } else {
-                AuthenticationLogout()
-                (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+                self.logOut()
               }
             }
 

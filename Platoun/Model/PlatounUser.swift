@@ -13,4 +13,7 @@ struct PlatounUser: Codable {
     let uid: String
     let displayName: String?
     let photoUrl: String?
+    var groupNotification: Bool
+    var trendsNotification: Bool
+    var newsNotification: Bool
 }
