@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
+import FirebaseCrashlytics
 
 enum AuthenticationError: Error {
     case cancel, googleAuthenticationIsNil, signInNoError, signUpNoError, reAuthWithoutCurrentUser
@@ -36,6 +37,7 @@ enum Authentication {
                     UserDefaults.standard.loginPassword = UserDefaults.LoginPassword(login: email, password: password)
                     callBack(Result.success(authData))
                 } else {
+                    Crashlytics.crashlytics().record(error: error ?? AuthenticationError.signUpNoError)
                     callBack(Result.failure(error ?? AuthenticationError.signUpNoError))
                 }
             }
@@ -57,6 +59,7 @@ enum Authentication {
                         }
                         callBack(Result.success(authData))
                     } else {
+                        Crashlytics.crashlytics().record(error: error ?? AuthenticationError.signInNoError)
                         callBack(Result.failure(error ?? AuthenticationError.signInNoError))
                     }
                 }
@@ -71,6 +74,7 @@ enum Authentication {
         case .email(let email, _):
             Auth.auth().sendPasswordReset(withEmail: email) { e in
                 if let error = e {
+                    Crashlytics.crashlytics().record(error: error)
                     callBack(Result.failure(error))
                 } else {
                     callBack(Result.success(Void()))
@@ -89,11 +93,13 @@ enum Authentication {
             }
             currentUser.reauthenticate(with: credential) { (authDataResult, error) in
                 guard authDataResult != nil else {
+                    Crashlytics.crashlytics().record(error: error ?? AuthenticationError.signInNoError)
                     callBack(Result.failure(error ?? AuthenticationError.signInNoError)); return
                 }
                 
                 currentUser.updatePassword(to: newPassord) { (error) in
                     if let e = error {
+                        Crashlytics.crashlytics().record(error: e)
                         callBack(Result.failure(e))
                     } else {
                         callBack(Result.success(Void()))
@@ -120,6 +126,7 @@ enum Authentication {
                     }
                 }
             case .failure(let error):
+                
                 callBack(Result.failure(error))
             }
         }
@@ -135,6 +142,7 @@ enum Authentication {
                     let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: tokenId, rawNonce: nonce)
                     completion(Result.success(credential))
                 case .failure(let error):
+                    Crashlytics.crashlytics().record(error: error)
                     completion(Result.failure(error))
                 }
             }).signIn()
@@ -144,6 +152,7 @@ enum Authentication {
         case .facebook:
             LoginManager().logIn(permissions: ["public_profile","email"], from: viewController) { (result, errorFB) in
                 if let errorFB = errorFB {
+                    Crashlytics.crashlytics().record(error: errorFB)
                     completion(Result.failure(errorFB))
                 } else if let result = result, result.isCancelled {
                     completion(Result.failure(AuthenticationError.cancel))
@@ -160,6 +169,7 @@ enum Authentication {
                                                                    accessToken: accessToken)
                     completion(Result.success(credential))
                 case .failure(let error):
+                    Crashlytics.crashlytics().record(error: error)
                     completion(Result.failure(error))
                 }
             }).signIn()

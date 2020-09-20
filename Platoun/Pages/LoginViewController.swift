@@ -79,13 +79,46 @@ class LoginViewController: UIViewController {
     private func procedAfterAuth(result: Result<AuthDataResult, Error>) {
         switch result {
         case .success:
-            if Auth.auth().currentUser != nil {
-                self.dismiss(animated: true)
+            if let user = Auth.auth().currentUser {
+                createUserIfNeeded(user: user) {
+                    self.dismiss(animated: true)
+                }
             }
         case .failure(let error):
             UIKitUtils.showAlert(in: self, message: "Login Error: \(error.localizedDescription)") {
                 if (error as? AuthenticationError) == AuthenticationError.cancel {
                     self.dismiss(animated: true)
+                }
+            }
+        }
+    }
+    
+    private func createUserIfNeeded(user: User, completion: @escaping ()->Void) {
+        FirestoreUtils.getUser(uid: user.uid) { result in
+            switch result {
+            case .success:
+                completion()
+            case .failure(let error):
+            
+                guard case .noErrorGetUser(let uid) = (error as? FirestoreUtilsError), uid == user.uid else {
+                    Auth.auth().currentUser?.delete()
+                    AuthenticationLogout()
+                    UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
+                    return
+                }
+                
+                let platounUser = PlatounUser(uid: user.uid, displayName: user.displayName, photoUrl: user.photoURL?.absoluteString, groupNotification: true, trendsNotification: true, newsNotification: true)
+                
+                
+                FirestoreUtils.createUser(user: platounUser) { r in
+                    switch r {
+                    case .success:
+                        completion()
+                    case .failure:
+                        Auth.auth().currentUser?.delete()
+                        AuthenticationLogout()
+                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
+                    }
                 }
             }
         }

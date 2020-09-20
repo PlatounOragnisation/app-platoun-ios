@@ -35,7 +35,7 @@ class FirestoreUtils: NSObject {
             ], merge: true)
     }
     
-    static func getUser(uid: String, completion: @escaping (Result<PlatounUser, Error>)->Void) {
+    static func getUser(uid: String, forCreation: Bool = false, completion: @escaping (Result<PlatounUser, Error>)->Void) {
         Firestore
             .firestore()
             .collection("users").document(uid)
@@ -43,7 +43,9 @@ class FirestoreUtils: NSObject {
                 do {
                     guard let doc = doc, doc.exists, let user = try doc.data(as: PlatounUser.self) else {
                         let error = error ?? FirestoreUtilsError.noErrorGetUser(uid: uid)
-                        Crashlytics.crashlytics().record(error: error)
+                        if !forCreation {
+                            Crashlytics.crashlytics().record(error: error)
+                        }
                         completion(Result.failure(error))
                         return
                     }
@@ -121,6 +123,23 @@ class FirestoreUtils: NSObject {
         let db = Firestore.firestore()
         do {
             try db.collection("posts").document(post.postId).setData(from: post, merge: true) { error in
+                if let error = error {
+                    Crashlytics.crashlytics().record(error: error)
+                    completion(Result.failure(error))
+                } else {
+                    completion(Result.success(Void()))
+                }
+            }
+        } catch let error {
+            Crashlytics.crashlytics().record(error: error)
+            completion(Result.failure(error))
+        }
+    }
+    
+    static func createUser(user: PlatounUser, completion: @escaping (Result<Void, Error>)->Void) {
+        let db = Firestore.firestore()
+        do {
+            try db.collection("users").document(user.uid).setData(from: user, merge: true) { error in
                 if let error = error {
                     Crashlytics.crashlytics().record(error: error)
                     completion(Result.failure(error))

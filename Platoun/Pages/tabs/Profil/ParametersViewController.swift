@@ -234,6 +234,8 @@ class ParametersViewController: UIViewController {
                     self.nickNameTextField.text = user?.displayName ?? ""
                     self.emailTextField.text = user?.email ?? ""
                     self.changeValueContainer.isHidden = true
+                    self.nickNameTextField.resignFirstResponder()
+                    self.emailTextField.resignFirstResponder()
                 }
             }
         }
@@ -245,17 +247,29 @@ class ParametersViewController: UIViewController {
     }
     
     @IBAction func removeAccountAction(_ sender: Any) {
+        guard let authentication = Auth.auth().currentUser?.authentication else { return }
         UIKitUtils.showAlert(in: self, message: "Êtes-vous sur de vouloir supprimer votre compte ?", action1Title: "Oui", completionOK: {
-            let user = Auth.auth().currentUser
-            user?.delete { error in
-              if let error = error {
-                Crashlytics.crashlytics().record(error: error)
-                UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors de la suppression de votre compte", completion: {})
-              } else {
-                self.logOut()
-              }
+            
+            
+            authentication.reAuth(from: self) { authResult in
+                switch authResult {
+                case .success:
+                    let user = Auth.auth().currentUser
+                    user?.delete { error in
+                      if let error = error {
+                        Crashlytics.crashlytics().record(error: error)
+                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors de la suppression de votre compte", completion: {})
+                      } else {
+                        self.logOut()
+                      }
+                    }
+                case .failure(let error):
+                    UIKitUtils.showAlert(in: self, message: "Un problème est survenue merci de vous reconnecter:\n\(error)") {
+                        AuthenticationLogout()
+                        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+                    }
+                }
             }
-
         }, action2Title: "Non") {}
     }
     
