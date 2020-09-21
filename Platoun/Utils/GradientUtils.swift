@@ -20,6 +20,9 @@ extension UIView {
         gradient.frame = self.bounds
         gradient.colors = colours.map { $0.cgColor }
         gradient.locations = locations
+        if self.layer.sublayers?.first is CAGradientLayer {
+            self.layer.sublayers?.first?.removeFromSuperlayer()
+        }
         self.layer.insertSublayer(gradient, at: 0)
         return gradient
     }

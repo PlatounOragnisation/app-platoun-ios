@@ -20,4 +20,9 @@ struct ThemeColor {
     
     static let BackgroundGradientCircle1 = UIColor(named: "BackgroundGradientCircle1")!
     static let BackgroundGradientCircle2 = UIColor(named: "BackgroundGradientCircle2")!
+    static let Suggestion1 = UIColor(named: "Suggestion1")!
+    static let Suggestion2 = UIColor(named: "Suggestion2")!
+    static let Question1 = UIColor(named: "Question1")!
+    static let Question2 = UIColor(named: "Question2")!
+    static let DrakGrey = UIColor(named: "DrakGrey")!
 }

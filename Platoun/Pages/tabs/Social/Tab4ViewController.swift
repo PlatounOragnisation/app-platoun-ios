@@ -13,30 +13,72 @@ import FirebaseUI
 class Tab4ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sentenceTitleLabel: UILabel!
+    @IBOutlet weak var filterAll: UIView!
+    @IBOutlet weak var labelAll: UILabel!
+    @IBOutlet weak var filterSugestion: FilterGradientView!
+    @IBOutlet weak var dotSugestion: UIView!
+    @IBOutlet weak var labelSugestion: UILabel!
+    @IBOutlet weak var filterQuestion: FilterGradientView!
+    @IBOutlet weak var dotQuestion: UIView!
+    @IBOutlet weak var labelQuestion: UILabel!
     
     var dataSource: FUIFirestoreTableViewDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sentenceTitleLabel.text = "Help us find  the next Product/Brand you want on the app"
+        labelAll.text = "All"
+        labelSugestion.text = "Suggestions"
+        labelQuestion.text = "Questions"
+        
         // Do any additional setup after loading the view.
         let query = FirestoreUtils.getPostQuery()
+        self.tableView.delegate = self
         dataSource = FUIFirestoreTableViewDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
             guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTableViewCell.identifier, for: indexPath) as? QuestionTableViewCell,
+                let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell,
                 let post = try? doc.data(as: Post.self) else {
                 return UITableViewCell()
             }
+            cell.setup(post: post)
+            
             FirestoreUtils.getUserInfo(uid: post.createBy) { result in
                 switch result {
                 case .success((let name, let photo)):
-                    cell.setup(post: post, userName: name, userPhoto: photo)
-                case .failure(let error):
-                    cell.setup(post: post, userName: "", userPhoto: nil)
+                    cell.setupUserInfo(userName: name, userPhoto: photo)
+                case .failure:
+                    cell.setupUserInfo(userName: "", userPhoto: nil)
                 }
             }
             cell.delegate = self
             return cell
         })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+        self.view.applyGradient(colours: [ThemeColor.BackgroundGradientCircle1, ThemeColor.BackgroundGradientCircle2])
+        
+        self.filterAll.applyGradient(colours: [ThemeColor.BackgroundGradient2, ThemeColor.BackgroundGradient1])
+        self.filterAll.layer.cornerRadius = 12
+        self.filterAll.layer.masksToBounds = true
+        
+        self.dotSugestion.applyGradient(colours: [ThemeColor.Suggestion2, ThemeColor.Suggestion1])
+        self.dotSugestion.layer.cornerRadius = 5
+        self.dotSugestion.layer.masksToBounds = true
+        
+        self.dotQuestion.applyGradient(colours: [ThemeColor.Question2, ThemeColor.Question1])
+        self.dotQuestion.layer.cornerRadius = 5
+        self.dotQuestion.layer.masksToBounds = true
+        
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     var first = true
@@ -79,5 +121,12 @@ extension Tab4ViewController: QuestionTableViewCellDelegate {
         alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
         
         self.present(alert, animated: true)
+    }
+}
+
+extension Tab4ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        (cell as? PostTableViewCell)?.cancelLoadPost()
+        (cell as? PostTableViewCell)?.cancelLoadUser()
     }
 }

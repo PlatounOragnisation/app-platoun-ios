@@ -34,7 +34,11 @@ class Tab1ViewController: UIViewController {
         self.profilImageView.round()
         
         let profilImage = Auth.auth().currentUser?.photoURL
-        self.profilImageView.setImage(with: profilImage, placeholder: nil, options: .progressiveLoad)
+        if let url = profilImage {
+            self.profilImageView.setImage(with: url, placeholder: #imageLiteral(resourceName: "ic_social_default_profil"), options: .progressiveLoad)
+        } else {
+            self.profilImageView.image = #imageLiteral(resourceName: "ic_social_default_profil")
+        }
         
         self.navigationController?.navigationBar.isHidden = true
         self.initializeBackgroundColor(view: self.view)

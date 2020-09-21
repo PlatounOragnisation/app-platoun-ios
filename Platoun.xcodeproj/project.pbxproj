@@ -47,7 +47,7 @@
 		F089C0F225176B6A00C56984 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = F089C0F125176B6A00C56984 /* TOCropViewController */; };
 		F089C0F725177C5400C56984 /* AddImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F089C0F625177C5400C56984 /* AddImageView.xib */; };
 		F0A11F162505336F007C29F3 /* FirestoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F152505336F007C29F3 /* FirestoreUtils.swift */; };
-		F0A11F1A25054383007C29F3 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */; };
+		F0A11F1A25054383007C29F3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F1925054383007C29F3 /* PostTableViewCell.swift */; };
 		F0A11F1C25058228007C29F3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A11F1B25058228007C29F3 /* UIImageView+Extension.swift */; };
 		F0AA8D012514162A00EA2FBD /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AA8C6B2514162A00EA2FBD /* DrawerViewController.swift */; };
 		F0AA8D022514162A00EA2FBD /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AA8C6C2514162A00EA2FBD /* DrawerController.swift */; };
@@ -186,6 +186,7 @@
 		F0BD4A302516CBA5008092BA /* GradientUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BD4A2F2516CBA5008092BA /* GradientUtils.swift */; };
 		F0DB421B25179CF600A8B4FA /* DropDownPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */; };
 		F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */; };
+		F0DB422B251828C400A8B4FA /* FilterGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB422A251828C400A8B4FA /* FilterGradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,7 +255,7 @@
 		F089C0E9251768B100C56984 /* AddImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageView.swift; sourceTree = "<group>"; };
 		F089C0F625177C5400C56984 /* AddImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddImageView.xib; sourceTree = "<group>"; };
 		F0A11F152505336F007C29F3 /* FirestoreUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUtils.swift; sourceTree = "<group>"; };
-		F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		F0A11F1925054383007C29F3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		F0A11F1B25058228007C29F3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F0AA8C6B2514162A00EA2FBD /* DrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
 		F0AA8C6C2514162A00EA2FBD /* DrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; };
@@ -395,6 +396,7 @@
 		F0BD4A2F2516CBA5008092BA /* GradientUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientUtils.swift; sourceTree = "<group>"; };
 		F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPostView.swift; sourceTree = "<group>"; };
 		F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownPostView.xib; sourceTree = "<group>"; };
+		F0DB422A251828C400A8B4FA /* FilterGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGradientView.swift; sourceTree = "<group>"; };
 		F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.release.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -503,8 +505,9 @@
 			isa = PBXGroup;
 			children = (
 				F018D6C224F9781C00DD0D45 /* Tab4ViewController.swift */,
-				F0A11F1925054383007C29F3 /* QuestionTableViewCell.swift */,
+				F0A11F1925054383007C29F3 /* PostTableViewCell.swift */,
 				F0BD49D425150547008092BA /* CommentsViewController.swift */,
+				F0DB422A251828C400A8B4FA /* FilterGradientView.swift */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -1470,6 +1473,7 @@
 				F018D6DA2500640500DD0D45 /* AppleSignIn.swift in Sources */,
 				F0AA8D2C2514162B00EA2FBD /* UIViewController+Extension.swift in Sources */,
 				F018D6D424FD9BE500DD0D45 /* ChangePasswordViewController.swift in Sources */,
+				F0DB422B251828C400A8B4FA /* FilterGradientView.swift in Sources */,
 				F018D6D224FC6A4A00DD0D45 /* UIKitUtils.swift in Sources */,
 				F018D6C024F977BE00DD0D45 /* Tab1ViewController.swift in Sources */,
 				F0BD4A1325168771008092BA /* CustomThumbView.swift in Sources */,
@@ -1547,7 +1551,7 @@
 				F0AA8D4F2514162B00EA2FBD /* RoundedLabel.swift in Sources */,
 				F0AA8D272514162B00EA2FBD /* UIImageView+ExtensionMarketplace.swift in Sources */,
 				F0AA8D152514162B00EA2FBD /* MarketplaceInteractor.swift in Sources */,
-				F0A11F1A25054383007C29F3 /* QuestionTableViewCell.swift in Sources */,
+				F0A11F1A25054383007C29F3 /* PostTableViewCell.swift in Sources */,
 				F0AA8D332514162B00EA2FBD /* Array+Extension.swift in Sources */,
 				F0AA8D3F2514162B00EA2FBD /* WebCategoryProducts.swift in Sources */,
 				F0AA8D1E2514162B00EA2FBD /* MarketplaceViewController.swift in Sources */,
@@ -1756,7 +1760,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1783,7 +1787,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
