@@ -9,9 +9,10 @@
 import UIKit
 import FirebaseAuth
 import FirebaseUI
+import FirebaseCrashlytics
 
 class Tab4ViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sentenceTitleLabel: UILabel!
     @IBOutlet weak var filterAll: UIView!
@@ -23,37 +24,59 @@ class Tab4ViewController: UIViewController {
     @IBOutlet weak var dotQuestion: UIView!
     @IBOutlet weak var labelQuestion: UILabel!
     
-    var dataSource: FUIFirestoreTableViewDataSource!
-    
+    //    var dataSource: FUIFirestoreTableViewDataSource!
+    var received: Date = Date()
+    var posts: [Post] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         sentenceTitleLabel.text = "Help us find  the next Product/Brand you want on the app"
         labelAll.text = "All"
         labelSugestion.text = "Suggestions"
         labelQuestion.text = "Questions"
-        
-        // Do any additional setup after loading the view.
-        let query = FirestoreUtils.getPostQuery()
         self.tableView.delegate = self
-        dataSource = FUIFirestoreTableViewDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
-            guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell,
-                let post = try? doc.data(as: Post.self) else {
-                return UITableViewCell()
+        self.tableView.dataSource = self
+        // Do any additional setup after loading the view.
+        
+        let time = Date()
+        let query = FirestoreUtils.getPostQuery().addSnapshotListener { querySnapshot, error in
+            self.received = Date()
+            print("toto received:\(self.received.timeIntervalSince1970-time.timeIntervalSince1970)")
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(error!)")
+                return
             }
-            cell.setup(post: post)
-            
-            FirestoreUtils.getUserInfo(uid: post.createBy) { result in
-                switch result {
-                case .success((let name, let photo)):
-                    cell.setupUserInfo(userName: name, userPhoto: photo)
-                case .failure:
-                    cell.setupUserInfo(userName: "", userPhoto: nil)
-                }
-            }
-            cell.delegate = self
-            return cell
-        })
+            self.posts = documents.compactMap { try? $0.data(as: Post.self) }
+            self.tableView.reloadData()
+            let finish = Date()
+            print("toto finish:\(finish.timeIntervalSince1970-self.received.timeIntervalSince1970)")
+            print("toto total:\(finish.timeIntervalSince1970-time.timeIntervalSince1970)")
+        }
+        
+        //        dataSource = FUIFirestoreTableViewDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
+        //            let received = Date()
+        //            print("received:\(received.timeIntervalSince1970-time.timeIntervalSince1970)")
+        //            guard
+        //                let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell,
+        //                let post = try? doc.data(as: Post.self) else {
+        //                return UITableViewCell()
+        //            }
+        //            cell.setup(post: post)
+        //
+        //            FirestoreUtils.getUserInfo(uid: post.createBy) { result in
+        //                switch result {
+        //                case .success((let name, let photo)):
+        //                    cell.setupUserInfo(userName: name, userPhoto: photo)
+        //                case .failure:
+        //                    cell.setupUserInfo(userName: "", userPhoto: nil)
+        //                }
+        //            }
+        //            cell.delegate = self
+        //            return cell
+        //        })
+        //        dataSource.queryErrorHandler = { error in
+        //            print(error)
+        //            Crashlytics.crashlytics().record(error: error)
+        //        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +96,7 @@ class Tab4ViewController: UIViewController {
         self.dotQuestion.layer.cornerRadius = 5
         self.dotQuestion.layer.masksToBounds = true
         
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,7 +108,7 @@ class Tab4ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if first {
-            self.dataSource.bind(to: self.tableView)
+            //            self.dataSource.bind(to: self.tableView)
             first = false
         }
     }
@@ -129,4 +152,32 @@ extension Tab4ViewController: UITableViewDelegate {
         (cell as? PostTableViewCell)?.cancelLoadPost()
         (cell as? PostTableViewCell)?.cancelLoadUser()
     }
+}
+
+extension Tab4ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell else {
+            return UITableViewCell()
+        }
+        let post = self.posts[indexPath.row]
+        cell.setup(post: post)
+//        FirestoreUtils.getUserInfo(uid: post.createBy) { result in
+//            switch result {
+//            case .success((let name, let photo)):
+//                cell.setupUserInfo(userName: name, userPhoto: photo)
+//            case .failure:
+//                cell.setupUserInfo(userName: "", userPhoto: nil)
+//            }
+//        }
+        cell.delegate = self
+        let date = Date()
+        print("toto see\(indexPath.row) \(date.timeIntervalSince1970 - received.timeIntervalSince1970) \(post.text)")
+        return cell
+    }
+    
+    
 }

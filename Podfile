@@ -1,3 +1,6 @@
+source 'https://github.com/CocoaPods/Specs.git'
+# source 'https://cdn.cocoapods.org/'
+
 # Uncomment the next line to define a global platform for your project
 platform :ios, '11.0'
 
@@ -22,6 +25,8 @@ target 'Platoun' do
   pod 'Alamofire', '~> 5.1'
   pod 'ImageIOUIKit'
 
+  pod 'netfox', :configurations => ['Debug']
+  
   # For View
   pod 'DropDown'
 

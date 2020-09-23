@@ -9,10 +9,12 @@
 import UIKit
 import FirebaseCore
 import FirebaseAuth
+import FirebaseFirestore
 import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
 import DropDown
+import netfox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        NFX.sharedInstance().start()
         FirebaseApp.configure()
+        Firestore.enableLogging(true)
         signOutOldUser()
         Auth.auth().languageCode = "fr"
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID

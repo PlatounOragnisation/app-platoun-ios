@@ -405,6 +405,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - netfox (1.19.0)
   - PromisesObjC (1.2.10)
   - Protobuf (3.13.0)
   - SDWebImage (5.9.0):
@@ -427,9 +428,10 @@ DEPENDENCIES:
   - GoogleSignIn
   - ImageIOUIKit
   - MultiSlider (~> 1.10.8)
+  - netfox
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - abseil
     - Alamofire
     - AppAuth
@@ -464,6 +466,7 @@ SPEC REPOS:
     - leveldb-library
     - MultiSlider
     - nanopb
+    - netfox
     - PromisesObjC
     - Protobuf
     - SDWebImage
@@ -504,11 +507,12 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MultiSlider: 606824c5e1c25091eb64fac673b193276fc46f7a
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  netfox: efeec1d23406df6cd605212f09a40957bb5654eb
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SweeterSwift: d909211f6833405628c8c7c6bf9f8f2e8a0e9df9
 
-PODFILE CHECKSUM: 99249f87dc237fd137146795f7aefc5007051678
+PODFILE CHECKSUM: 2c7033587c37d4390b6fe91b90b7aeafe19093b3
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

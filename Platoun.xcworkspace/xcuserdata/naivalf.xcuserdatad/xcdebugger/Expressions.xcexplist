@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "PostTableViewCell.initializeBackground():PostTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.contentView.frame.width-32">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TabViewController.viewDidAppear(_:):TabViewController.swift">
          <PersistentStrings>
             <PersistentString

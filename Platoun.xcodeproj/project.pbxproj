@@ -30,8 +30,6 @@
 		F01C6CCA24F31B160016ADE2 /* PlatounUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CC924F31B160016ADE2 /* PlatounUITests.swift */; };
 		F01C6CD824F31E670016ADE2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CD724F31E670016ADE2 /* GoogleService-Info.plist */; };
 		F01C6CFE24F32CE80016ADE2 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CFD24F32CE80016ADE2 /* TabViewController.swift */; };
-		F02802ED24F3349F00775C9E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = F02802EC24F3349F00775C9E /* FacebookCore */; };
-		F02802EF24F3349F00775C9E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = F02802EE24F3349F00775C9E /* FacebookLogin */; };
 		F04A7DB52514EB3400F99143 /* PlatounUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DB42514EB3400F99143 /* PlatounUser.swift */; };
 		F04A7DBA2514EC2000F99143 /* PlatounBackendApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DB92514EC2000F99143 /* PlatounBackendApi.swift */; };
 		F04A7DBF2514EC5B00F99143 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DBE2514EC5B00F99143 /* CustomError.swift */; };
@@ -187,6 +185,9 @@
 		F0DB421B25179CF600A8B4FA /* DropDownPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */; };
 		F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */; };
 		F0DB422B251828C400A8B4FA /* FilterGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB422A251828C400A8B4FA /* FilterGradientView.swift */; };
+		F0DB4236251A721200A8B4FA /* CellGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB4235251A721200A8B4FA /* CellGradientView.swift */; };
+		F0DB42C7251AAABD00A8B4FA /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = F0DB42C6251AAABD00A8B4FA /* FacebookCore */; };
+		F0DB42C9251AAABD00A8B4FA /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = F0DB42C8251AAABD00A8B4FA /* FacebookLogin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -397,6 +398,7 @@
 		F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPostView.swift; sourceTree = "<group>"; };
 		F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownPostView.xib; sourceTree = "<group>"; };
 		F0DB422A251828C400A8B4FA /* FilterGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGradientView.swift; sourceTree = "<group>"; };
+		F0DB4235251A721200A8B4FA /* CellGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellGradientView.swift; sourceTree = "<group>"; };
 		F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.release.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -405,11 +407,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0DB42C9251AAABD00A8B4FA /* FacebookLogin in Frameworks */,
 				1C493FFB35131E61992BA394 /* Pods_Platoun.framework in Frameworks */,
 				F089C0F225176B6A00C56984 /* TOCropViewController in Frameworks */,
 				F089C0F025176B6A00C56984 /* CropViewController in Frameworks */,
-				F02802ED24F3349F00775C9E /* FacebookCore in Frameworks */,
-				F02802EF24F3349F00775C9E /* FacebookLogin in Frameworks */,
+				F0DB42C7251AAABD00A8B4FA /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +510,7 @@
 				F0A11F1925054383007C29F3 /* PostTableViewCell.swift */,
 				F0BD49D425150547008092BA /* CommentsViewController.swift */,
 				F0DB422A251828C400A8B4FA /* FilterGradientView.swift */,
+				F0DB4235251A721200A8B4FA /* CellGradientView.swift */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -1112,10 +1115,10 @@
 			);
 			name = Platoun;
 			packageProductDependencies = (
-				F02802EC24F3349F00775C9E /* FacebookCore */,
-				F02802EE24F3349F00775C9E /* FacebookLogin */,
 				F089C0EF25176B6A00C56984 /* CropViewController */,
 				F089C0F125176B6A00C56984 /* TOCropViewController */,
+				F0DB42C6251AAABD00A8B4FA /* FacebookCore */,
+				F0DB42C8251AAABD00A8B4FA /* FacebookLogin */,
 			);
 			productName = Platoun;
 			productReference = F01C6CA424F31B140016ADE2 /* Platoun.app */;
@@ -1196,8 +1199,8 @@
 			);
 			mainGroup = F01C6C9B24F31B140016ADE2;
 			packageReferences = (
-				F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+				F0DB42C5251AAABD00A8B4FA /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = F01C6CA524F31B140016ADE2 /* Products */;
 			projectDirPath = "";
@@ -1526,6 +1529,7 @@
 				F0AA8D202514162B00EA2FBD /* PageImageController.swift in Sources */,
 				F0BD4A082516724E008092BA /* GradientNavigationItem.swift in Sources */,
 				F0AA8D6D2514162B00EA2FBD /* Cache.swift in Sources */,
+				F0DB4236251A721200A8B4FA /* CellGradientView.swift in Sources */,
 				F0AA8D462514162B00EA2FBD /* Category.swift in Sources */,
 				F0AA8D162514162B00EA2FBD /* MarketplaceFilterViewController.swift in Sources */,
 				F0AA8D052514162A00EA2FBD /* CreateGroupViewController.swift in Sources */,
@@ -1760,7 +1764,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1787,7 +1791,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1936,14 +1940,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.1.1;
-			};
-		};
 		F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TimOliver/TOCropViewController";
@@ -1952,19 +1948,17 @@
 				minimumVersion = 2.5.4;
 			};
 		};
+		F0DB42C5251AAABD00A8B4FA /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F02802EC24F3349F00775C9E /* FacebookCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookCore;
-		};
-		F02802EE24F3349F00775C9E /* FacebookLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F02802EB24F3349F00775C9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookLogin;
-		};
 		F089C0EF25176B6A00C56984 /* CropViewController */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
@@ -1974,6 +1968,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
 			productName = TOCropViewController;
+		};
+		F0DB42C6251AAABD00A8B4FA /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0DB42C5251AAABD00A8B4FA /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		F0DB42C8251AAABD00A8B4FA /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0DB42C5251AAABD00A8B4FA /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

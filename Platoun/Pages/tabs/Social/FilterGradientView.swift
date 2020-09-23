@@ -70,6 +70,10 @@ class FilterGradientView: UIView {
 //        self.shapes.layer.cornerRadius = 12
 
         viewLabel.translatesAutoresizingMaskIntoConstraints = false
+        viewLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        viewLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        viewLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        viewLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
     }
     
 }

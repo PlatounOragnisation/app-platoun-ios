@@ -149,7 +149,7 @@ enum Authentication {
         case .email(email: let email, password: let password):
             let credential = EmailAuthProvider.credential(withEmail: email, password: password)
             completion(Result.success(credential))
-        case .facebook:
+        case .facebook: break
             LoginManager().logIn(permissions: ["public_profile","email"], from: viewController) { (result, errorFB) in
                 if let errorFB = errorFB {
                     Crashlytics.crashlytics().record(error: errorFB)

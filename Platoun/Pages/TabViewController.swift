@@ -8,14 +8,13 @@
 
 import UIKit
 import FirebaseAuth
-import FBSDKLoginKit
 
 class TabViewController: UITabBarController {
     let loginSegue = "displayAuth"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectedIndex = 3
+        self.selectedIndex = 0
         Platoun.setEnv(env: .develop)
     }
     
