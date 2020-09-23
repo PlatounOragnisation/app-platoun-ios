@@ -39,23 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0AA2DD8B-2CBE-4F17-B318-58E1DB352FFE"
-            shouldBeEnabled = "Yes"
-            condition = "frame.width &lt; 343"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Platoun/Pages/tabs/Social/PostTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "initializeBackground()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "90544347-CF14-46CD-A7C8-314BC2E5955E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -72,16 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5A3AA587-95C8-485B-84C3-57D54C350C80"
+            uuid = "E4C5D57F-438E-4EBE-BE74-7DFB5F97934C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Platoun/Utils/UIImageView+Extension.swift"
+            filePath = "Platoun/Utils/FirestoreUtils.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "setImage(with:placeholder:options:completion:)"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "addComment(postId:comment:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

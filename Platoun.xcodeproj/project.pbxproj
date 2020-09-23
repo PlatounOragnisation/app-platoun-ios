@@ -21,6 +21,7 @@
 		F018D6D624FDA3B700DD0D45 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6D524FDA3B700DD0D45 /* CustomPresentationController.swift */; };
 		F018D6D8250040E700DD0D45 /* FIRUser+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6D7250040E700DD0D45 /* FIRUser+Extension.swift */; };
 		F018D6DA2500640500DD0D45 /* AppleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6D92500640500DD0D45 /* AppleSignIn.swift */; };
+		F01BFB6B251BF52200C6E0FB /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BFB6A251BF52200C6E0FB /* Comment.swift */; };
 		F01C6CA824F31B140016ADE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CA724F31B140016ADE2 /* AppDelegate.swift */; };
 		F01C6CAC24F31B140016ADE2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CAB24F31B140016ADE2 /* LoginViewController.swift */; };
 		F01C6CAF24F31B140016ADE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CAD24F31B140016ADE2 /* Main.storyboard */; };
@@ -185,9 +186,12 @@
 		F0DB421B25179CF600A8B4FA /* DropDownPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */; };
 		F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */; };
 		F0DB422B251828C400A8B4FA /* FilterGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB422A251828C400A8B4FA /* FilterGradientView.swift */; };
-		F0DB4236251A721200A8B4FA /* CellGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB4235251A721200A8B4FA /* CellGradientView.swift */; };
+		F0DB4236251A721200A8B4FA /* DrawGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB4235251A721200A8B4FA /* DrawGradientView.swift */; };
 		F0DB42C7251AAABD00A8B4FA /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = F0DB42C6251AAABD00A8B4FA /* FacebookCore */; };
 		F0DB42C9251AAABD00A8B4FA /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = F0DB42C8251AAABD00A8B4FA /* FacebookLogin */; };
+		F0DB42D1251BC7A700A8B4FA /* DrawRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB42D0251BC7A700A8B4FA /* DrawRoundView.swift */; };
+		F0DB42D6251BC91500A8B4FA /* DrawShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB42D5251BC91500A8B4FA /* DrawShadowView.swift */; };
+		F0DB42DC251BDDB000A8B4FA /* DrawBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB42DB251BDDB000A8B4FA /* DrawBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,6 +231,7 @@
 		F018D6D524FDA3B700DD0D45 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
 		F018D6D7250040E700DD0D45 /* FIRUser+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRUser+Extension.swift"; sourceTree = "<group>"; };
 		F018D6D92500640500DD0D45 /* AppleSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignIn.swift; sourceTree = "<group>"; };
+		F01BFB6A251BF52200C6E0FB /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		F01C6CA424F31B140016ADE2 /* Platoun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platoun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01C6CA724F31B140016ADE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F01C6CAB24F31B140016ADE2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -398,7 +403,10 @@
 		F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPostView.swift; sourceTree = "<group>"; };
 		F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownPostView.xib; sourceTree = "<group>"; };
 		F0DB422A251828C400A8B4FA /* FilterGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGradientView.swift; sourceTree = "<group>"; };
-		F0DB4235251A721200A8B4FA /* CellGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellGradientView.swift; sourceTree = "<group>"; };
+		F0DB4235251A721200A8B4FA /* DrawGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawGradientView.swift; sourceTree = "<group>"; };
+		F0DB42D0251BC7A700A8B4FA /* DrawRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawRoundView.swift; sourceTree = "<group>"; };
+		F0DB42D5251BC91500A8B4FA /* DrawShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawShadowView.swift; sourceTree = "<group>"; };
+		F0DB42DB251BDDB000A8B4FA /* DrawBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawBackgroundView.swift; sourceTree = "<group>"; };
 		F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.release.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -510,7 +518,7 @@
 				F0A11F1925054383007C29F3 /* PostTableViewCell.swift */,
 				F0BD49D425150547008092BA /* CommentsViewController.swift */,
 				F0DB422A251828C400A8B4FA /* FilterGradientView.swift */,
-				F0DB4235251A721200A8B4FA /* CellGradientView.swift */,
+				F0DB42DB251BDDB000A8B4FA /* DrawBackgroundView.swift */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -578,6 +586,7 @@
 				F0AA8C682514162A00EA2FBD /* Marcketplace */,
 				F018D6B824F9770C00DD0D45 /* Utils */,
 				F07A1F912504178F002AAEDD /* Model */,
+				F0DB42DA251BDD8C00A8B4FA /* DrawView */,
 				F018D6B624F976F300DD0D45 /* Pages */,
 				F01C6CD724F31E670016ADE2 /* GoogleService-Info.plist */,
 				F0AA8D85251416F000EA2FBD /* Localization.strings */,
@@ -611,6 +620,7 @@
 				F04A7DB42514EB3400F99143 /* PlatounUser.swift */,
 				F0BD49D92515EEF3008092BA /* Report.swift */,
 				F0BD49E325161B1F008092BA /* Notification.swift */,
+				F01BFB6A251BF52200C6E0FB /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1084,6 +1094,16 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		F0DB42DA251BDD8C00A8B4FA /* DrawView */ = {
+			isa = PBXGroup;
+			children = (
+				F0DB4235251A721200A8B4FA /* DrawGradientView.swift */,
+				F0DB42D0251BC7A700A8B4FA /* DrawRoundView.swift */,
+				F0DB42D5251BC91500A8B4FA /* DrawShadowView.swift */,
+			);
+			path = DrawView;
+			sourceTree = "<group>";
+		};
 		F3158A175E9598B279AE5C6A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1498,6 +1518,8 @@
 				F0AA8D0E2514162A00EA2FBD /* FilterCell.swift in Sources */,
 				F0AA8D4E2514162B00EA2FBD /* GradientView.swift in Sources */,
 				F0AA8D432514162B00EA2FBD /* WebUser.swift in Sources */,
+				F0DB42DC251BDDB000A8B4FA /* DrawBackgroundView.swift in Sources */,
+				F0DB42D6251BC91500A8B4FA /* DrawShadowView.swift in Sources */,
 				F07A1F8C25008684002AAEDD /* GoogleSignIn.swift in Sources */,
 				F018D6D024F98C9C00DD0D45 /* UserDefaultsUtils.swift in Sources */,
 				F0AA8D452514162B00EA2FBD /* ProductLiked.swift in Sources */,
@@ -1513,6 +1535,7 @@
 				F0AA8D3C2514162B00EA2FBD /* WebSummaryProduct.swift in Sources */,
 				F0AA8D192514162B00EA2FBD /* RateView.swift in Sources */,
 				F0AA8D402514162B00EA2FBD /* WebBrand.swift in Sources */,
+				F01BFB6B251BF52200C6E0FB /* Comment.swift in Sources */,
 				F0AA8D492514162B00EA2FBD /* RoundedView.swift in Sources */,
 				F0AA8D012514162A00EA2FBD /* DrawerViewController.swift in Sources */,
 				F0AA8D482514162B00EA2FBD /* Product.swift in Sources */,
@@ -1529,7 +1552,7 @@
 				F0AA8D202514162B00EA2FBD /* PageImageController.swift in Sources */,
 				F0BD4A082516724E008092BA /* GradientNavigationItem.swift in Sources */,
 				F0AA8D6D2514162B00EA2FBD /* Cache.swift in Sources */,
-				F0DB4236251A721200A8B4FA /* CellGradientView.swift in Sources */,
+				F0DB4236251A721200A8B4FA /* DrawGradientView.swift in Sources */,
 				F0AA8D462514162B00EA2FBD /* Category.swift in Sources */,
 				F0AA8D162514162B00EA2FBD /* MarketplaceFilterViewController.swift in Sources */,
 				F0AA8D052514162A00EA2FBD /* CreateGroupViewController.swift in Sources */,
@@ -1561,6 +1584,7 @@
 				F0AA8D1E2514162B00EA2FBD /* MarketplaceViewController.swift in Sources */,
 				F0AA8D372514162B00EA2FBD /* WebNotification.swift in Sources */,
 				F0AA8D0A2514162A00EA2FBD /* ViewStack.swift in Sources */,
+				F0DB42D1251BC7A700A8B4FA /* DrawRoundView.swift in Sources */,
 				F07A1F932504179D002AAEDD /* Post.swift in Sources */,
 				F0AA8D4A2514162B00EA2FBD /* ButtonPicker.swift in Sources */,
 				F0AA8D342514162B00EA2FBD /* Join.swift in Sources */,

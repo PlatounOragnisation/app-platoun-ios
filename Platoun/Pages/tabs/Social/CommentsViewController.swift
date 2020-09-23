@@ -24,7 +24,7 @@ class CommentsViewController: UIViewController {
 
     var postId: String!
     var focussed: Bool = false
-    var comments: [Post.Comment] = []
+    var comments: [Comment] = []
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
@@ -76,10 +76,10 @@ class CommentsViewController: UIViewController {
         }
     
     func reload() {
-        FirestoreUtils.getPost(postId: postId) { result in
+        FirestoreUtils.getComments(postId: postId) { result in
             switch result {
-            case .success(let post):
-                self.comments = post.comments.sorted(by: { (lhs, rhs) -> Bool in
+            case .success(let comments):
+                self.comments = comments.sorted(by: { (lhs, rhs) -> Bool in
                     return lhs.createdAt > rhs.createdAt
                 })
                 DispatchQueue.main.async {
@@ -102,7 +102,7 @@ class CommentsViewController: UIViewController {
             return
         }
         
-        let comment = Post.Comment(text: text, images: [], createdAt: Date(), userId: currentUser.uid)
+        let comment = Comment(text: text, images: [], createdAt: Date(), createBy: currentUser.uid, authorName: currentUser.displayName, authorPhoto: currentUser.photoURL?.absoluteString)
         
         FirestoreUtils.addComment(postId: self.postId, comment: comment) { success in
             if success {

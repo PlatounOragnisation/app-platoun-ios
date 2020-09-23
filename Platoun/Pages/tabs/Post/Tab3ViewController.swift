@@ -134,6 +134,8 @@ class Tab3ViewController: UIViewController {
             let post = Post.create(
                 by: user.uid,
                 for: postId,
+                authorName: user.displayName,
+                authorPhoto: user.photoURL?.absoluteString,
                 text: text,
                 images: urls,
                 category: category,

@@ -10,6 +10,8 @@ import Foundation
 
 struct Post: Codable {
     let postId: String
+    let authorName: String?
+    let authorPhoto: String?
     let title: String
     let text: String
     let images: [String]
@@ -18,23 +20,16 @@ struct Post: Codable {
     let createAt: Date
     let createBy: String
     let votes: [Vote]
-    let comments: [Comment]
+    let commentsCount: Int
     
-    static func create(by userId: String, for postId: String, text: String, images: [String], category: PostType, language: LanguageType, createAt: Date) -> Post {
-        let post = Post(postId: postId, title: "", text: text, images: images, category: category, language: language, createAt: createAt, createBy: userId, votes: [], comments: [])
+    static func create(by userId: String, for postId: String, authorName: String?, authorPhoto: String?, text: String, images: [String], category: PostType, language: LanguageType, createAt: Date) -> Post {
+        let post = Post(postId: postId, authorName: authorName, authorPhoto: authorPhoto, title: "", text: text, images: images, category: category, language: language, createAt: createAt, createBy: userId, votes: [], commentsCount: 0)
         return post
     }
     
     struct Vote: Codable {
         let userId: String
         let votedAt: Date
-    }
-    
-    struct Comment: Codable {
-        let text: String
-        let images: [String]
-        let createdAt: Date
-        let userId: String
     }
     
     enum PostType: String, Codable, CaseIterable {

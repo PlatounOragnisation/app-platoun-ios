@@ -94,6 +94,21 @@ class FirestoreUtils: NSObject {
         }
     }
     
+    static func getComments(postId: String, completion: @escaping (Result<[Comment], Error>)->Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("posts").document(postId).collection("comments")
+            .getDocuments { (query, error) in
+                guard let query = query else {
+                    completion(Result.failure(error ?? FirestoreUtilsError.noErrorGetPost(postId: postId)))
+                    return
+                }
+                
+                let comments = query.documents.compactMap { try? $0.data(as: Comment.self) }
+                completion(Result.success(comments))
+            }
+    }
+    
     static func getNotifications(userId: String, completion: @escaping (Result<[Notification], Error>)->Void) {
         let db = Firestore.firestore()
         
@@ -178,42 +193,24 @@ class FirestoreUtils: NSObject {
         }
     }
     
-    static func addComment(postId: String, comment: Post.Comment, completion: @escaping (Bool)->Void) {
+    static func addComment(postId: String, comment: Comment, completion: @escaping (Bool)->Void) {
         let db = Firestore.firestore()
-        let sfReference = db.collection("posts").document(postId)
+        let postReference = db.collection("posts").document(postId)
+        let commentsReference = postReference.collection("comments").document()
+        guard let commentData = try? Firestore.Encoder().encode(comment) else { completion(false); return }
         
-        db.runTransaction({ (transaction, errorPointer) -> Any? in
-            let sfDocument: DocumentSnapshot
-            do {
-                try sfDocument = transaction.getDocument(sfReference)
-            } catch let fetchError as NSError {
-                errorPointer?.pointee = fetchError
-                return nil
-            }
-            
-            guard sfDocument.exists else {
-                let error = NSError(
-                    domain: "AppErrorDomain",
-                    code: -1,
-                    userInfo: [
-                        NSLocalizedDescriptionKey: "Unable to find post from snapshot \(sfDocument)"
-                    ]
-                )
-                errorPointer?.pointee = error
-                return nil
-            }
-            
-            let encoder = Firestore.Encoder()
-            if let obj = try? encoder.encode(comment){
-                transaction.updateData(["comments": FieldValue.arrayUnion([obj])], forDocument: sfReference)
-            }
-            return nil
-        }) { (object, error) in
-            if let error = error {
-                print("Transaction add comment failed: \(error)")
+        let batch = db.batch()
+        
+        batch.updateData(["commentsCount": FieldValue.increment(Int64(1))], forDocument: postReference)
+        batch.setData(commentData, forDocument: commentsReference)
+        
+        batch.commit { (error) in
+            if let err = error {
+                Crashlytics.crashlytics().record(error: err)
+                print("Error writing batch \(err)")
                 completion(false)
             } else {
-                print("Transaction add comment successfully committed!")
+                print("Batch write succeeded.")
                 completion(true)
             }
         }

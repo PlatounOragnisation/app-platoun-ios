@@ -14,7 +14,7 @@ class TabViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectedIndex = 0
+        self.selectedIndex = 3
         Platoun.setEnv(env: .develop)
     }
     
