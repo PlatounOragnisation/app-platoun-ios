@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import FirebaseCrashlytics
 
 enum AuthenticationError: Error {
-    case cancel, googleAuthenticationIsNil, signInNoError, signUpNoError, reAuthWithoutCurrentUser
+    case googleAuthenticationIsNil, signInNoError, signUpNoError, reAuthWithoutCurrentUser
 }
 
 func AuthenticationLogout() {
@@ -149,13 +149,13 @@ enum Authentication {
         case .email(email: let email, password: let password):
             let credential = EmailAuthProvider.credential(withEmail: email, password: password)
             completion(Result.success(credential))
-        case .facebook: break
+        case .facebook:
             LoginManager().logIn(permissions: ["public_profile","email"], from: viewController) { (result, errorFB) in
                 if let errorFB = errorFB {
                     Crashlytics.crashlytics().record(error: errorFB)
                     completion(Result.failure(errorFB))
                 } else if let result = result, result.isCancelled {
-                    completion(Result.failure(AuthenticationError.cancel))
+                    completion(Result.failure(SignInError.cancelByUser))
                 } else {
                     let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
                     completion(Result.success(credential))

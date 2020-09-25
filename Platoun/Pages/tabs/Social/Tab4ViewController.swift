@@ -24,7 +24,7 @@ class Tab4ViewController: UIViewController {
     @IBOutlet weak var dotQuestion: UIView!
     @IBOutlet weak var labelQuestion: UILabel!
     
-    var dataSource: FUIFirestoreTableViewDataSource!
+    var dataSource: FUIFirestoreTableViewDataSource?
     var received: Date = Date()
     var posts: [Post] = []
     override func viewDidLoad() {
@@ -37,11 +37,7 @@ class Tab4ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let query = FirestoreUtils.getPostQuery()
-//        self.requestBy(query: query)
-        let time = Date()
-        dataSource = FUIFirestoreTableViewDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
-            let received = Date()
-            print("received:\(received.timeIntervalSince1970-time.timeIntervalSince1970)")
+        self.dataSource = FUIFirestoreTableViewDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
             guard
                 let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell,
                 let post = try? doc.data(as: Post.self) else {
@@ -51,7 +47,7 @@ class Tab4ViewController: UIViewController {
             cell.delegate = self
             return cell
         })
-        dataSource.queryErrorHandler = { error in
+        self.dataSource?.queryErrorHandler = { error in
             print(error)
             Crashlytics.crashlytics().record(error: error)
         }
@@ -86,15 +82,29 @@ class Tab4ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if first {
-            self.dataSource.bind(to: self.tableView)
+            self.dataSource?.bind(to: self.tableView)
             first = false
         }
+    }
+    @IBAction func actionTapAllFilter(_ sender: Any) {
+        self.dataSource?.query = FirestoreUtils.getPostQuery()
+//        self.generateDataSource()
+    }
+    @IBAction func actionTapQuestionFilter(_ sender: Any) {
+        self.dataSource?.query = FirestoreUtils.getPostQuery(filter: .question)
+
+//        self.generateDataSource(filter: .question)
+    }
+    @IBAction func actionTapSuggestionFilter(_ sender: Any) {
+        self.dataSource?.query = FirestoreUtils.getPostQuery(filter: .suggestion)
+
+//        self.generateDataSource(filter: .suggestion)
     }
 }
 
 extension Tab4ViewController: QuestionTableViewCellDelegate {
-    func displayComments(postId: String, focused: Bool) {
-        let vc = CommentsViewController.instance(postId: postId, focussed: focused)
+    func displayComments(postId: String, postCreator: String? ,focused: Bool) {
+        let vc = CommentsViewController.instance(postId: postId, postCreator: postCreator, focussed: focused)
         self.present(vc, animated: true)
     }
     

@@ -26,4 +26,5 @@ struct ThemeColor {
     static let Question2 = UIColor(named: "Question2")!
     static let DrakGrey = UIColor(named: "DrakGrey")!
     static let F7F6FB = UIColor(named: "F7F6FB")!
+    static let c96A7AF = UIColor(named: "96A7AF")!
 }

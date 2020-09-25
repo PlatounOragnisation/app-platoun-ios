@@ -11,6 +11,7 @@ import Foundation
 
 struct PlatounUser: Codable {
     let uid: String
+    let fcmToken: String?
     let displayName: String?
     let photoUrl: String?
     var groupNotification: Bool

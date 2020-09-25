@@ -14,45 +14,69 @@ class LoginViewController: UIViewController {
     static func show(in viewController: UIViewController, isForCredential: Bool = false, completionAuth: @escaping (Bool)->Void) {
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         vc.completionAuth = completionAuth
-
-        vc.modalPresentationStyle = .popover
-        viewController.present(vc, animated: true)
+        let nav = UINavigationController(rootViewController: vc)
+        if #available(iOS 13.0, *) {
+            nav.isModalInPresentation = true
+        }
+        nav.navigationBar.isHidden = true
+        nav.modalPresentationStyle = .popover
+        viewController.present(nav, animated: true)
 
     }
     
     var completionAuth: ((Bool)->Void)?
     
     
-    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-            
+    @IBOutlet weak var seePasswordButton: UIButton!
+    @IBOutlet weak var forgotButton: UIButton!
+    @IBOutlet weak var signInButtonLabel: UILabel!
+    @IBOutlet weak var signUpButtonLabel: UILabel!
+    
+    
+    @IBAction func seePasswordButtonAction(_ sender: Any) {
+        self.passwordTextField.isSecureTextEntry = !self.passwordTextField.isSecureTextEntry
+        
+        let image = self.passwordTextField.isSecureTextEntry ? #imageLiteral(resourceName: "ic_eyes_close") : #imageLiteral(resourceName: "ic_eyes_open")
+        seePasswordButton.setImage(image, for: .normal)
+    }
+    
+    @IBAction func unwind( _ seg: UIStoryboardSegue) {
+        if seg.source is ForgotPasswordViewController { return }
+        self.exit(creation: true)
+    }
+    
+    func exit(creation: Bool) {
+        if creation && Auth.auth().currentUser == nil { return }
+        
+        self.completionAuth?(Auth.auth().currentUser != nil)
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.signUpButton.isHidden = isForCredential
-        // Do any additional setup after loading the view.
+
+        titleLabel.text = "Se connecter"
+        self.emailTextField.placeholder = "Email"
+        self.passwordTextField.placeholder = "Mot de passe"
+        signInButtonLabel.text = "Connexion →"
+        signUpButtonLabel.text = "Créer un compte"
+        forgotButton.setTitle("Mot de passe oublié ?", for: .normal)
         
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.completionAuth?(Auth.auth().currentUser != nil)
     }
-    
-    @IBAction func cancelAction(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
-    
+        
     @IBAction func loginAction(sender: Any) {
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         self.signIn(with: .email(email: email, password: password))
-    }
-    
-    @IBAction func SignUpAction(sender: Any) {
-        let email = emailTextField.text ?? ""
-        let password = passwordTextField.text ?? ""        
-        self.signUp(with: .email(email: email, password: password))
     }
     
     @IBAction func loginWithFacebook(sender: Any) {
@@ -71,24 +95,22 @@ class LoginViewController: UIViewController {
     private func signIn(with auth: Authentication) {
         auth.signIn(from: self, callBack: procedAfterAuth)
     }
-    
-    private func signUp(with auth: Authentication) {
-        auth.signUp(from: self, callBack: procedAfterAuth)
-    }
-    
+        
     private func procedAfterAuth(result: Result<AuthDataResult, Error>) {
         switch result {
         case .success:
             if let user = Auth.auth().currentUser {
                 createUserIfNeeded(user: user) {
-                    self.dismiss(animated: true)
+                    self.exit(creation: false)
                 }
             }
         case .failure(let error):
+            if case .cancelByUser = (error as? SignInError) {
+                return
+            }
+            
             UIKitUtils.showAlert(in: self, message: "Login Error: \(error.localizedDescription)") {
-                if (error as? AuthenticationError) == AuthenticationError.cancel {
-                    self.dismiss(animated: true)
-                }
+                
             }
         }
     }
@@ -96,7 +118,10 @@ class LoginViewController: UIViewController {
     private func createUserIfNeeded(user: User, completion: @escaping ()->Void) {
         FirestoreUtils.getUser(uid: user.uid) { result in
             switch result {
-            case .success:
+            case .success(let user):
+                if let fcmToken = UserDefaults.standard.FCMToken, fcmToken != user.fcmToken {
+                    FirestoreUtils.saveUser(uid: user.uid, fcmToken: fcmToken)
+                }
                 completion()
             case .failure(let error):
             
@@ -107,7 +132,7 @@ class LoginViewController: UIViewController {
                     return
                 }
                 
-                let platounUser = PlatounUser(uid: user.uid, displayName: user.displayName, photoUrl: user.photoURL?.absoluteString, groupNotification: true, trendsNotification: true, newsNotification: true)
+                let platounUser = PlatounUser(uid: user.uid, fcmToken: UserDefaults.standard.FCMToken, displayName: user.displayName, photoUrl: user.photoURL?.absoluteString, groupNotification: true, trendsNotification: true, newsNotification: true)
                 
                 
                 FirestoreUtils.createUser(user: platounUser) { r in
@@ -126,15 +151,13 @@ class LoginViewController: UIViewController {
     
 }
 
-//extension LoginViewController: FirebaseUtilsDelegate {
-//    func firebaseAuth(result: AuthDataResult) {
-//        if Auth.auth().currentUser != nil {
-//            print("Login successfuly")
-//            self.dismiss(animated: true)
-//        }
-//    }
-//
-//    func firebaseAuthError(error: Error) {
-//        print("Login error: \(error.localizedDescription)")
-//    }
-//}
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.emailTextField {
+            self.passwordTextField.becomeFirstResponder()
+        } else if textField == self.passwordTextField {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+}

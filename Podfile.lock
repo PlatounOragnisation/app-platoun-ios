@@ -242,6 +242,9 @@ PODS:
   - Firebase/Firestore (6.31.1):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.17.0)
+  - Firebase/Messaging (6.31.1):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.6.2)
   - Firebase/Performance (6.31.1):
     - Firebase/CoreOnly
     - FirebasePerformance (~> 3.3.0)
@@ -298,6 +301,19 @@ PODS:
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/UserDefaults (~> 6.7)
     - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.7.0):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+  - FirebaseMessaging (4.6.2):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstanceID (~> 4.6)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Reachability (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - Protobuf (>= 3.9.2, ~> 3.9)
   - FirebasePerformance (3.3.0):
     - FirebaseCore (~> 6.9)
     - FirebaseInstallations (~> 1.5)
@@ -420,6 +436,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Crashlytics
   - Firebase/Firestore
+  - Firebase/Messaging
   - Firebase/Performance
   - Firebase/Storage
   - FirebaseFirestoreSwift
@@ -448,6 +465,8 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseFirestoreSwift
     - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
     - FirebasePerformance
     - FirebaseRemoteConfig
     - FirebaseStorage
@@ -489,6 +508,8 @@ SPEC CHECKSUMS:
   FirebaseFirestore: ef0ad529a72c8e6542050dc7742fbd4cf009f297
   FirebaseFirestoreSwift: 2c46dbc1156db97dc4f6dd798d4f5b57b9c7fab6
   FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  FirebaseInstanceID: ac5a82fcd21f804dbfc8f318eff9e1d7a9916e49
+  FirebaseMessaging: 82d75b3770a78bbce470769a6980429608b4c407
   FirebasePerformance: 269607f1dcf37bb1f21e3b3ae0ab5b2691644c54
   FirebaseRemoteConfig: e40f9e084658210c4d9c341cfa9f6cab6ad4f67e
   FirebaseStorage: 33b92875a9b556824886cc7a65120c7d2cb3a8d8
@@ -513,6 +534,6 @@ SPEC CHECKSUMS:
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SweeterSwift: d909211f6833405628c8c7c6bf9f8f2e8a0e9df9
 
-PODFILE CHECKSUM: 2c7033587c37d4390b6fe91b90b7aeafe19093b3
+PODFILE CHECKSUM: 9eb28049897a8b31af8c71443cabf0d22601c753
 
 COCOAPODS: 1.9.3

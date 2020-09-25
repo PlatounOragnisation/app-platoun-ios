@@ -9,6 +9,10 @@
 import Foundation
 import GoogleSignIn
 
+enum SignInError: Error {
+    case cancelByUser
+}
+
 class GoogleSignInUtils: NSObject {
     typealias SignInResult = Result<(String,String),Error>
     fileprivate static var instance: GoogleSignInUtils?
@@ -40,9 +44,13 @@ class GoogleSignInUtils: NSObject {
 }
 
 extension GoogleSignInUtils: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        guard let authentication = user.authentication, error == nil else {
-            self.callBack(Result.failure(error ?? AuthenticationError.googleAuthenticationIsNil))
+    func sign(_ signIn: GIDSignIn?, didSignInFor user: GIDGoogleUser?, withError error: Error!) {
+        guard let authentication = user?.authentication, error == nil else {
+            if (error as NSError).code == GIDSignInErrorCode.canceled.rawValue {
+                self.callBack(.failure(SignInError.cancelByUser))
+            } else {
+                self.callBack(Result.failure(error ?? AuthenticationError.googleAuthenticationIsNil))
+            }
             return
         }
         

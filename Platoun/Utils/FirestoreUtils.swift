@@ -25,6 +25,11 @@ class FirestoreUtils: NSObject {
         db.collection("users").document(uid).setData(["displayName": name], merge: true)
     }
     
+    static func saveUser(uid: String, fcmToken: String) {
+        let db = Firestore.firestore()
+        db.collection("users").document(uid).setData(["fcmToken": fcmToken], merge: true)
+    }
+    
     static func saveUser(uid: String, groupNotification: Bool, trendsNotification: Bool, newsNotification: Bool) {
         let db = Firestore.firestore()
         db.collection("users").document(uid).setData(
@@ -196,7 +201,7 @@ class FirestoreUtils: NSObject {
     static func addComment(postId: String, comment: Comment, completion: @escaping (Bool)->Void) {
         let db = Firestore.firestore()
         let postReference = db.collection("posts").document(postId)
-        let commentsReference = postReference.collection("comments").document()
+        let commentsReference = postReference.collection("comments").document(comment.id)
         guard let commentData = try? Firestore.Encoder().encode(comment) else { completion(false); return }
         
         let batch = db.batch()
@@ -258,10 +263,15 @@ class FirestoreUtils: NSObject {
     }
     
     
-    static func getPostQuery() -> Query {
+    static func getPostQuery(filter: Post.PostType? = nil) -> Query {
         let db = Firestore.firestore()
+        var query: Query = db.collection("posts")
         
-        return db.collection("posts").order(by: "createAt", descending: true)
+        if let filter = filter {
+            query = query.whereField("category", isEqualTo: filter.rawValue)
+        }
+        
+        return query.order(by: "createAt", descending: true)
     }
     
     static func getNotificationsQuery(userId: String) -> Query {

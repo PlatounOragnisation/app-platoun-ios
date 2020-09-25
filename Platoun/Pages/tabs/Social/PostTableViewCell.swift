@@ -13,7 +13,7 @@ import FirebaseStorage
 import FirebaseCrashlytics
 
 protocol QuestionTableViewCellDelegate {
-    func displayComments(postId: String, focused: Bool)
+    func displayComments(postId: String, postCreator: String?, focused: Bool)
     func displayActionMore(post: Post)
 }
 
@@ -99,7 +99,7 @@ class PostTableViewCell: UITableViewCell {
     
     @IBAction func commentsButtonAction(_ sender: Any) {
         guard let post = self.post else { return }
-        delegate?.displayComments(postId: post.postId, focused: false)
+        delegate?.displayComments(postId: post.postId, postCreator: post.authorName, focused: false)
     }
     
     @objc func upVoteButtonAction() {
@@ -109,7 +109,7 @@ class PostTableViewCell: UITableViewCell {
     
     func writeCommentAction() {
         guard let post = self.post else { return }
-        delegate?.displayComments(postId: post.postId, focused: true)
+        delegate?.displayComments(postId: post.postId, postCreator: post.authorName, focused: true)
     }
     
 }

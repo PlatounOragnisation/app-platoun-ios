@@ -19,7 +19,7 @@ protocol IDrawGradientView: UIView {
 }
 
 extension IDrawGradientView {
-    func drawGradient(context: CGContext) {
+    func drawGradient(context: CGContext, stpt: CGPoint? = nil, enpt: CGPoint? = nil) {
         let colors = [startColor.cgColor, endColor.cgColor]
 
         let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -39,8 +39,8 @@ extension IDrawGradientView {
         let startPoint = CGPoint(x: sX, y: sY)
         let endPoint = CGPoint(x: eX, y: eY)
         context.drawLinearGradient(gradient,
-                            start: startPoint,
-                              end: endPoint,
+                            start: stpt ?? startPoint,
+                              end: enpt ?? endPoint,
                           options: [CGGradientDrawingOptions(rawValue: 0)])
     }
 }

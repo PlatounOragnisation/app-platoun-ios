@@ -9,6 +9,7 @@
 import Foundation
 
 struct Comment: Codable {
+    let id: String
     let text: String
     let images: [String]
     let createdAt: Date

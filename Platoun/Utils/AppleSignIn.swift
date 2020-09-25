@@ -136,6 +136,15 @@ extension AppleSignInUtils: ASAuthorizationControllerDelegate {
     }
     
     @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        if let err = error as? ASAuthorizationError, err.code == ASAuthorizationError.canceled {
+            self.callBack(.failure(SignInError.cancelByUser))
+        } else {
+            self.callBack(.failure(error))
+        }
+    }
+    
+    @available(iOS 13.0, *)
     func AppleSignIn(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
         print("Sign in with Apple errored: \(error)")

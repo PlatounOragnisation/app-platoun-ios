@@ -13,6 +13,7 @@ target 'Platoun' do
   pod 'Firebase/Performance'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'Firebase/Messaging'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
   pod 'Firebase/Firestore'
