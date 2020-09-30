@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol GroupCellDelegate {
     func joinGroup(_ cell: GroupCell, group: Group)
@@ -40,14 +41,19 @@ class GroupCell: UITableViewCell {
     private var timer: Timer?
 
     var isLoading: Bool = false
-    
-    func setup(group: Group, delegate: GroupCellDelegate?, isLoading: Bool) {
+    var users: [String: PlatounUser] = [:]
+    func setup(group: Group, users: [String:PlatounUser], delegate: GroupCellDelegate?, isLoading: Bool) {
         self.group = group
+        self.users = users
         self.delegate = delegate
         self.isLoading = isLoading
         
-        self.creatorImage.downloaded(from: group.groupCreator.image, contentMode: .scaleAspectFill)
-        self.creatorLabel.text = group.groupCreator.name
+        if let value = users[group.groupCreator.id]?.photoUrl, let url = URL(string: value) {
+            self.creatorImage.setImage(with: url, placeholder: #imageLiteral(resourceName: "ic_social_default_profil"), options: .progressiveLoad)
+        } else {
+            self.creatorImage.image = #imageLiteral(resourceName: "ic_social_default_profil")
+        }
+        self.creatorLabel.text = users[group.groupCreator.id]?.displayName ?? "No Name"
         
         
         definedUserImage(self.user1Image, index: 0)
@@ -114,6 +120,7 @@ class GroupCell: UITableViewCell {
     
     @objc func actionClicUser(_ sender: UITapGestureRecognizer) {
         guard !isLoading else { return }
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
         guard self.group.endDate >= Date() else {
             self.delegate?.endOfTime()
             return
@@ -144,7 +151,7 @@ class GroupCell: UITableViewCell {
         } else {
             let user = self.group.users.getOrNil(index)
             
-            if user?.id == HttpServices.shared.user?.id {
+            if user?.id == currentUserId {
                 if index > 0 {
                     self.delegate?.leaveGroup(self, group: self.group)
                 } else {
@@ -197,7 +204,11 @@ class GroupCell: UITableViewCell {
     
     func definedUserImage(_ image: UIImageView, index: Int) {
         if let user = (self.group?.users ?? []).getOrNil(index) {
-            image.downloaded(from: user.image, contentMode: .scaleAspectFill)
+            if let value = self.users[user.id]?.photoUrl, let url = URL(string: value) {
+                image.setImage(with: url, placeholder: #imageLiteral(resourceName: "ic_social_default_profil"), options: .progressiveLoad)
+            } else {
+                image.image = #imageLiteral(resourceName: "ic_social_default_profil")
+            }
         } else {
             let name = self.group.isPrivate ? "ic-private" : "ic-noUser"
             
@@ -207,13 +218,14 @@ class GroupCell: UITableViewCell {
     
     @IBAction func actionJoin(_ sender: Any) {
         guard !isLoading else { return }
+        guard let userId = Auth.auth().currentUser?.uid else { return }
         guard self.group.endDate >= Date() else {
             self.delegate?.endOfTime()
             return
         }
         
         if self.group.haveJoin {
-            if self.group.users.getOrNil(0)?.id != HttpServices.shared.user?.id {
+            if self.group.users.getOrNil(0)?.id != userId {
                 self.delegate?.leaveGroup(self, group: self.group)
             } else {
                 self.delegate?.iamCreator(self, group: self.group)

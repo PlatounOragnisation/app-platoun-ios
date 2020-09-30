@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol ProductViewControllerDelegate {
     func haveClickLike(productId: String, isLike: Bool)
@@ -79,7 +80,8 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
     }
     
     func reload(forceUpdate: Bool = false) {
-        Interactor.shared.fetchProduct(forceUpdate: forceUpdate, userId: HttpServices.shared.userId, productId: self.productId) { product in
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        Interactor.shared.fetchProduct(forceUpdate: forceUpdate, userId: userId, productId: self.productId) { product in
             self.scrollView.refreshControl?.endRefreshing()
             self.scrollView.isHidden = false
             self.emptyView.isHidden = true
@@ -198,9 +200,9 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
     }
 
     @objc func likeCurrentProduct() {
-        guard let product = self.product else { return }
+        guard let product = self.product, let userId = Auth.auth().currentUser?.uid else { return }
         self.likeButton.state = .processing
-        Interactor.shared.postLike(userId: HttpServices.shared.userId, liked: !product.isLike, productId: productId) {
+        Interactor.shared.postLike(userId: userId, liked: !product.isLike, productId: productId) {
             self.product?.isLike = $0 ?? product.isLike
             self.updateLike()
 //            self.delegate?.haveClickLike(productId: product.id, isLike: $0 ?? product.isLike)

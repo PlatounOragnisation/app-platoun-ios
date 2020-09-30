@@ -18,7 +18,5 @@ struct WebGroup: Codable {
     
     struct User: Codable {
         let userId: String
-        let name: String
-        let profilePictureLink: String?
     }
 }

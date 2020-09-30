@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseCrashlytics
 
 class Interactor {
     static let shared = Interactor()
@@ -137,6 +138,18 @@ class Interactor {
         }
     }
     
+    func updateToken(userId: String, token: String) {
+        NewApi.v1.updateToken(userId: userId, token: token)
+            .response { (result: Result<String, CustomError>) in
+                switch result {
+                case .success(let res):
+                    print(res)
+                case .failure(let error):
+                    Crashlytics.crashlytics().record(error: error)
+                }
+            }
+    }
+    
     func joinGroup(groupId: String, productId: String, userId: String,_ completion: @escaping (Join?, String?)->Void) {
         NewApi.v1.putUserInGroup(userId: userId, groupId: groupId)
             .response { (result: Result<WebJoin, CustomError>) in
@@ -212,7 +225,7 @@ class Interactor {
         cache.removeValue(forKey: NewApi.v1.getAllProducts(userId: userId))
         cache.removeValue(forKey: NewApi.v1.getProduct(userId: userId, productId: productId))
         cache.removeValue(forKey: NewApi.v1.getProductsLiked(userId: userId))
-        let uid = HttpServices.shared.user!.id
+        let uid = userId
         var list = self.productLike[uid] ?? [:]
         list[productId] = .loading
         self.productLike[uid] = list
@@ -241,22 +254,22 @@ class Interactor {
         }
     }
     
-    func fetchUser(userId: String, _ completion: @escaping (UserMomunity)->Void) {
-        NewApi.v1.getUser(userId: userId)
-            .response { (result: Result<WebUser, CustomError>) in
-                switch result {
-                case .success(let web):
-                    completion(UserMomunity.setup(from: web))
-                case .failure(let customError):
-                    switch customError {
-                    case .parsingError: break
-                    case .platounError: break
-                    case .http(_, _, _): break
-                    case .unknown: break
-                    }
-                }
-        }
-    }
+//    func fetchUser(userId: String, _ completion: @escaping (UserMomunity)->Void) {
+//        NewApi.v1.getUser(userId: userId)
+//            .response { (result: Result<WebUser, CustomError>) in
+//                switch result {
+//                case .success(let web):
+//                    completion(UserMomunity.setup(from: web))
+//                case .failure(let customError):
+//                    switch customError {
+//                    case .parsingError: break
+//                    case .platounError: break
+//                    case .http(_, _, _): break
+//                    case .unknown: break
+//                    }
+//                }
+//        }
+//    }
     
     func fetchProduct(forceUpdate: Bool, userId: String, productId: String, _ completion: @escaping (Product)->Void) {
         NewApi.v1.getProduct(userId: userId, productId: productId)

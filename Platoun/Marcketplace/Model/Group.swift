@@ -21,15 +21,13 @@ struct Group {
     
     struct User {
         let id: String
-        let image: String
-        let name: String
     }
     
     
     static func setup(_ web: WebGroup, in productId: String) -> Group {
         let count = (web.maxUsers == 5 ? 72 : 48) * 60 * 60
         
-        let users = web.users.map { User(id: $0.userId, image: $0.profilePictureLink.trimed ?? HttpServices.defaultUserImg, name: $0.name) }
+        let users = web.users.map { User(id: $0.userId) }
         return Group(
             id: web.id,
             productId: productId,

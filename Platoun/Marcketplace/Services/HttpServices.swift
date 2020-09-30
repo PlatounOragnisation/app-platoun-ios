@@ -13,17 +13,15 @@ public enum PlatounError: Error {
 }
 
 public class Platoun {
-    
-    public static func setEnv(env: PlatounEnv) {
-        HttpServices.shared.env = env
-    }
-    
-    public static func getViewController(userId: String) -> UIViewController {
-        HttpServices.shared.userId = userId
         
+    public static func getViewController() -> UIViewController {
         let rootController = RootViewController.instance()
         let menuVC = DrawerViewController.instance()
         return DrawerController(rootViewController: rootController, menuController: menuVC)
+    }
+    
+    public static func update(userId: String) {
+//        HttpServices.shared.userId = userId
     }
     
     public static func getNotificationViewController(currentUserId: String, notificationSendBy: String, groupId: String) -> UIViewController {
@@ -83,7 +81,7 @@ class HttpServices {
     
     private static let versionApi = "/v1"
     
-    var user: UserMomunity?
+//    var user: UserMomunity?
     
     var env = PlatounEnv.develop
     
@@ -91,11 +89,11 @@ class HttpServices {
         get { "\(env.url)/api\(HttpServices.versionApi)" }
     }
     
-    var userId: String = "" {
-        didSet {
-            Interactor.shared.fetchUser(userId: HttpServices.shared.userId) {
-                self.user = $0
-            }
-        }
-    }
+//    var userId: String? {
+//        didSet {
+////            Interactor.shared.fetchUser(userId: HttpServices.shared.userId) {
+////                self.user = $0
+////            }
+//        }
+//    }
 }

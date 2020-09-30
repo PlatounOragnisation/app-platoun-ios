@@ -98,7 +98,11 @@ class NotificationInvitationViewController: LightViewController {
         stack4_5.isHidden = webNotification.maxUsers == 3
         
         if let user = webNotification.users.getOrNil(0) {
-            user1ImageView.downloaded(from: user.profilePictureLink.trimed ?? HttpServices.defaultUserImg)
+            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
+                user1ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
+            } else {
+                user1ImageView.imageView.image = UIImage(named: "ic-no-user")
+            }
             user1Label.text = user.name
             
             offerYouLabel.attributedText = NSMutableAttributedString()
@@ -106,16 +110,32 @@ class NotificationInvitationViewController: LightViewController {
                 .normal(" " + "offers you to join her group deal.".localise(), fontSize: 14)
         }
         if let user = webNotification.users.getOrNil(1) {
-            user2ImageView.downloaded(from: user.profilePictureLink.trimed ?? HttpServices.defaultUserImg)
+            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
+                user2ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
+            } else {
+                user2ImageView.imageView.image = UIImage(named: "ic-no-user")
+            }
         }
         if let user = webNotification.users.getOrNil(2) {
-            user3ImageView.downloaded(from: user.profilePictureLink.trimed ?? HttpServices.defaultUserImg)
+            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
+                user3ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
+            } else {
+                user3ImageView.imageView.image = UIImage(named: "ic-no-user")
+            }
         }
         if let user = webNotification.users.getOrNil(3) {
-            user4ImageView.downloaded(from: user.profilePictureLink.trimed ?? HttpServices.defaultUserImg)
+            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
+                user4ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
+            } else {
+                user4ImageView.imageView.image = UIImage(named: "ic-no-user")
+            }
         }
         if let user = webNotification.users.getOrNil(4) {
-            user5ImageView.downloaded(from: user.profilePictureLink.trimed ?? HttpServices.defaultUserImg)
+            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
+                user5ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
+            } else {
+                user5ImageView.imageView.image = UIImage(named: "ic-no-user")
+            }
         }
     }
     

@@ -13,6 +13,7 @@ import Alamofire
 enum NewApi {
     enum v1 : Hashable {
         case getUser(userId: String)
+        case updateToken(userId: String, token: String)
 //        case getUsers
 //        case getFriends(userId: String)
         case getProductCategories
@@ -35,6 +36,8 @@ enum NewApi {
             switch self {
             case .getUser(let userId):
                 return "\(HttpServices.shared.baseURL)/momunity-users/\(userId)"
+            case .updateToken(let userId, let token):
+                return "\(HttpServices.shared.baseURL)/platoun-users/token"
 //            case .getUsers:
 //                return "\(HttpServices.shared.baseURL)/platoun-users"
 //            case .getFriends(let userId):
@@ -87,6 +90,7 @@ enum NewApi {
                  .allNotif:
                 return false
             case .getUser,
+                 .updateToken,
 //                 .getUsers,
 //                 .getFriends,
                  .getProductCategories,
@@ -105,6 +109,7 @@ enum NewApi {
                  .respondNotif:
                 return .put
             case .postCreateGroup,
+                 .updateToken,
                  .postLikeProduct,
                  .showNotif,
                  .sendNotif,
@@ -134,6 +139,8 @@ enum NewApi {
                 return nil
             case .deleteUserInGroup(let userId, let groupId):
                 return [ "groupId": groupId, "userId": userId ]
+            case .updateToken(let userId, let token):
+                return ["id": userId, "token":token]
             case .putUserInGroup(let userId, let groupId):
                 return [ "groupId": groupId, "userId": userId ]
             case .postCreateGroup(let code, let userCount, let userId, let productId):
@@ -178,6 +185,7 @@ enum NewApi {
         var encoding: ParameterEncoding {
             switch self {
             case .postCreateGroup,
+                 .updateToken,
                  .showNotif,
                  .sendNotif,
                  .respondNotif:

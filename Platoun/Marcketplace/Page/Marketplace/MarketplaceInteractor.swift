@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class MarketplaceInteractor {
     func fetchCategories(_ completion: @escaping ([Category])->Void) {
@@ -14,6 +15,7 @@ class MarketplaceInteractor {
     }
     
     func fetchData(_ completion: @escaping ([ProductSummary])->Void) {
-        Interactor.shared.fetchProducts(userId: HttpServices.shared.userId, completion)
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        Interactor.shared.fetchProducts(userId: userId, completion)
     }
 }

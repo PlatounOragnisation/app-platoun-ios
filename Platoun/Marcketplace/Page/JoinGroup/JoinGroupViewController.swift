@@ -7,6 +7,24 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseCrashlytics
+
+extension Array where Element: Equatable {
+    mutating func appendIfDontExist(_ value: Element) {
+        if self.firstIndex(of: value) == nil {
+            self.append(value)
+        }
+    }
+    
+    mutating func appendIfDontExist(_ values: [Element]) {
+        values.forEach {
+            if self.firstIndex(of: $0) == nil {
+                self.append($0)
+            }
+        }
+    }
+}
 
 class JoinGroupViewController: PUIViewController, UISearchBarDelegate {
     static func instance(product: ProductSummary, scrollBottom: Bool) -> JoinGroupViewController {
@@ -37,24 +55,42 @@ class JoinGroupViewController: PUIViewController, UISearchBarDelegate {
     var scrollBottom: Bool!
     
     private var groups: [Group] = []
+    var users: [String: PlatounUser] = [:]
     var groupIsLoading: String?
         
     func reload(_ completion: (()-> Void)? = nil) {
-        Interactor.shared.fetchGroups(userId: HttpServices.shared.userId, productId: product.id) { groups in
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        Interactor.shared.fetchGroups(userId: userId, productId: product.id) { groups in
             self.groupIsLoading = nil
             self.groups = groups
                 .filter({ $0.maxUsers > $0.users.count })
                 .sorted(by: { $0.endDate < $1.endDate })
-
-            DispatchQueue.main.async {
-                self.showOrHideTableView()
-                self.tableView.refreshControl?.endRefreshing()
-                self.tableView.reloadData()
-                if self.scrollBottom {
-                    self.scrollBottom = false
-                    self.tableView.scrollToBottom(animated: true)
+            
+            let temp: [String] = self.groups.flatMap { group -> [String] in
+                let ids = group.users.map { $0.id }
+                return ids + [group.groupCreator.id]
+            }
+            
+            var userIds = [String]()
+            userIds.appendIfDontExist(temp)
+            
+            FirestoreUtils.getUsers(ids: userIds) { result in
+                switch result {
+                case .success(let users):
+                    self.users = users
+                    DispatchQueue.main.async {
+                        self.showOrHideTableView()
+                        self.tableView.refreshControl?.endRefreshing()
+                        self.tableView.reloadData()
+                        if self.scrollBottom {
+                            self.scrollBottom = false
+                            self.tableView.scrollToBottom(animated: true)
+                        }
+                        completion?()
+                    }
+                case .failure(let error):
+                    Crashlytics.crashlytics().record(error: error)
                 }
-                completion?()
             }
         }
     }
@@ -123,7 +159,8 @@ class JoinGroupViewController: PUIViewController, UISearchBarDelegate {
     func getVisibleGroups() -> [Group] {
         if self.searchBarIsVisible && !(self.searchBar.text?.isEmpty ?? true){
             let text = self.searchBar.text ?? ""
-            return self.groups.filter { $0.groupCreator.name.lowercased().contains(text.lowercased()) }
+            return self.groups.filter {
+                self.users[$0.groupCreator.id]?.displayName?.lowercased() .contains(text.lowercased()) ?? false }
         } else {
             return self.groups
         }
@@ -150,7 +187,7 @@ extension JoinGroupViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let group = self.getVisibleGroups()[indexPath.row]
-        cell.setup(group: group, delegate: self, isLoading: group.id == groupIsLoading)
+        cell.setup(group: group, users: self.users, delegate: self, isLoading: group.id == groupIsLoading)
         cell.startTimer()
         return cell
     }
@@ -200,14 +237,15 @@ extension JoinGroupViewController: GroupCellDelegate {
     }
     
     func leaveGroup(_ cell: GroupCell, group: Group) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
         groupIsLoading = group.id
         self.tableView.reloadData()
-        Interactor.shared.deleteUserInGroup(groupId: group.id, productId: group.productId, userId: HttpServices.shared.userId) { isLeaved in
+        Interactor.shared.deleteUserInGroup(groupId: group.id, productId: group.productId, userId: userId) { isLeaved in
             self.groupIsLoading = nil
             guard let index = self.groups.firstIndex(where: { $0.id == group.id }) else { return }
             if isLeaved {
                 self.groups[index].haveJoin = false
-                if let userIndex = self.groups[index].users.firstIndex(where: { $0.id == HttpServices.shared.user?.id }) {
+                if let userIndex = self.groups[index].users.firstIndex(where: { $0.id == userId }) {
                     self.groups[index].users.remove(at: userIndex)
                 }
             }
@@ -217,9 +255,10 @@ extension JoinGroupViewController: GroupCellDelegate {
     }
     
     func joinGroup(_ cell: GroupCell, group: Group) {
+        guard let currentUser = Auth.auth().currentUser else { return }
         groupIsLoading = group.id
         self.tableView.reloadData()
-        Interactor.shared.joinGroup(groupId: group.id, productId: group.productId, userId: HttpServices.shared.userId) { (join: Join?, error: String?) in
+        Interactor.shared.joinGroup(groupId: group.id, productId: group.productId, userId: currentUser.uid) { (join: Join?, error: String?) in
             self.groupIsLoading = nil
             
             if let message = error {
@@ -236,18 +275,13 @@ extension JoinGroupViewController: GroupCellDelegate {
             guard let index = self.groups.firstIndex(where: { $0.id == group.id }) else { return }
             guard let join = join else { return }
             
-            if let user = HttpServices.shared.user {
-                if join.isJoined {
-                    self.groups[index].haveJoin = true
-                    self.groups[index].users.append(Group.User(id: user.id, image: user.picture, name: user.firstName))
-                }
-                self.tableView.reloadData()
-                self.validateJoin(group: group, join: join)
-            } else {
-                self.reload() {
-                    self.validateJoin(group: group, join: join)
-                }
+            if join.isJoined {
+                self.groups[index].haveJoin = true
+                self.groups[index].users.append(Group.User(id: currentUser.uid))
+                self.users[currentUser.uid] = PlatounUser(uid: currentUser.uid, fcmToken: nil, displayName: currentUser.displayName, photoUrl: currentUser.photoURL?.absoluteString, groupNotification: true, trendsNotification: true, newsNotification: true)
             }
+            self.tableView.reloadData()
+            self.validateJoin(group: group, join: join)
         }
     }
     

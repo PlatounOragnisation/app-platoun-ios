@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol ItemShopDelegate {
     func onClicLike(productId: String, isLiked: Bool)
@@ -155,11 +156,11 @@ class ItemShop: UIView, ProductViewControllerDelegate {
     }
     
     @objc func onClicLike() {
-        guard let productId = self.product?.id ?? self.productLiked?.id, self.likeButton.state != .processing else { return }
+        guard let productId = self.product?.id ?? self.productLiked?.id, self.likeButton.state != .processing, let userId = Auth.auth().currentUser?.uid else { return }
         
         let isLike = self.likeButton.state == .selected
         self.likeButton.state = .processing
-        Interactor.shared.postLike(userId: HttpServices.shared.userId, liked: !isLike, productId: productId) { value in
+        Interactor.shared.postLike(userId: userId, liked: !isLike, productId: productId) { value in
             let isLiked = value ?? isLike
             self.likeButton.state = isLiked ? .selected : .noSelected
             

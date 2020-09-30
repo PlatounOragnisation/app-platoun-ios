@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol MomunityUsersViewControllerDelegate {
     func onClose(viewController: MomunityUsersViewController)
@@ -40,8 +41,8 @@ class MomunityUsersViewController: LightViewController {
         super.viewWillAppear(animated)
         
         self.tableView.refreshControl = UIRefreshControl()
-        
-        Interactor.shared.fetchMomunityUsers(userId: HttpServices.shared.userId) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        Interactor.shared.fetchMomunityUsers(userId: userId) {
             self.users = $0
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -90,7 +91,8 @@ class MomunityUsersViewController: LightViewController {
     }
     
     func sendInvitation(users: [UserMomunity], index: Int) {
-        Interactor.shared.sendNotif(userId: HttpServices.shared.userId, inviteUserId: users[index].id, groupId: self.groupId) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        Interactor.shared.sendNotif(userId: userId, inviteUserId: users[index].id, groupId: self.groupId) {
             if index == users.count - 1 {
                 if $0 {
                     let vc = InviteSuccessViewController.instance(delegate: self)

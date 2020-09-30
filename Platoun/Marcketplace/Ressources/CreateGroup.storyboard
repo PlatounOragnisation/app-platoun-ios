@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="58y-C7-zbG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="58y-C7-zbG">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -214,13 +214,13 @@
                                                         <rect key="frame" x="0.0" y="20" width="414" height="20"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back to public group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhX-yR-r6f">
-                                                                <rect key="frame" x="19" y="1.5" width="135.5" height="17"/>
+                                                                <rect key="frame" x="19" y="2.5" width="125.5" height="15.5"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JQZ-yd-4lG">
-                                                                <rect key="frame" x="159.5" y="-5.5" width="51" height="31"/>
+                                                                <rect key="frame" x="149.5" y="-5.5" width="51" height="31"/>
                                                                 <color key="onTintColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="0.57999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <color key="thumbTintColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <connections>
@@ -228,7 +228,7 @@
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pin : _ _ _ _" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foD-Tt-Ufs">
-                                                                <rect key="frame" x="296.5" y="1.5" width="72.5" height="17"/>
+                                                                <rect key="frame" x="302" y="2.5" width="67" height="15.5"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -265,7 +265,7 @@
                                                 <rect key="frame" x="0.0" y="291" width="414" height="61"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can already invite some friends..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHh-Rq-cZj" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="25" width="414" height="16"/>
+                                                        <rect key="frame" x="16" y="25" width="382" height="16"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -290,32 +290,32 @@
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3z-1W-39r" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="n3z-1W-39r" secondAttribute="height" multiplier="1:1" id="2M5-zn-F64"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qb3-X8-nmF" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                 <rect key="frame" x="94.5" y="0.0" width="81" height="81"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="qb3-X8-nmF" secondAttribute="height" multiplier="1:1" id="YfV-EE-Kuj"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRQ-mg-89A" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                 <rect key="frame" x="189" y="0.0" width="81" height="81"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="NRQ-mg-89A" secondAttribute="height" multiplier="1:1" id="ImW-Ts-ubz"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
@@ -329,22 +329,22 @@
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfr-qN-I11" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="qfr-qN-I11" secondAttribute="height" multiplier="1:1" id="Iva-uN-Zyv"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVK-is-gDn" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                 <rect key="frame" x="89" y="0.0" width="81" height="81"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="uVK-is-gDn" secondAttribute="height" multiplier="1:1" id="nmB-Ba-4Bb"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
@@ -366,7 +366,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKT-kA-bSa" userLabel="ValidateContainer">
                                                 <rect key="frame" x="0.0" y="524" width="414" height="90"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QA1-0Z-WDR" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QA1-0Z-WDR" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                                         <rect key="frame" x="89.5" y="40" width="235" height="50"/>
                                                         <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -414,6 +414,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="dyq-UO-LXb"/>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="czm-jb-A0s" firstAttribute="leading" secondItem="dyq-UO-LXb" secondAttribute="leading" id="CIk-Xa-wWh"/>
@@ -426,7 +427,6 @@
                             <constraint firstItem="SvO-Eq-E3X" firstAttribute="bottom" secondItem="dyq-UO-LXb" secondAttribute="bottom" id="fC4-si-JRM"/>
                             <constraint firstItem="SvO-Eq-E3X" firstAttribute="leading" secondItem="dyq-UO-LXb" secondAttribute="leading" id="ng9-xg-JZB"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dyq-UO-LXb"/>
                     </view>
                     <connections>
                         <outlet property="containerUser4_5" destination="JOH-iD-33f" id="gqL-kx-otu"/>
@@ -439,7 +439,7 @@
                         <outlet property="publicGroupSwitch" destination="JQZ-yd-4lG" id="VA9-R4-4Og"/>
                         <outlet property="textView" destination="Dn3-QQ-Hic" id="rDk-A4-ROZ"/>
                         <outlet property="titlePinLabel" destination="HhX-yR-r6f" id="1u8-dL-pZ8"/>
-                        <outlet property="user1" destination="n3z-1W-39r" id="aaI-ft-6w4"/>
+                        <outlet property="user1" destination="n3z-1W-39r" id="p89-Gd-wHn"/>
                         <outlet property="user2" destination="qb3-X8-nmF" id="4xh-wb-4kl"/>
                         <outlet property="user3" destination="NRQ-mg-89A" id="ckd-NC-gRf"/>
                         <outlet property="user4" destination="qfr-qN-I11" id="BP4-8I-sCH"/>
@@ -451,6 +451,11 @@
             <point key="canvasLocation" x="1873" y="613"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="QA1-0Z-WDR">
+            <size key="intrinsicContentSize" width="66" height="34"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ic-check-off" width="16" height="14"/>
         <image name="ic-check-on" width="16" height="14"/>

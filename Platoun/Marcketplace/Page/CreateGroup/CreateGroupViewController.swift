@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CreateGroupViewController: LightViewController {
     
@@ -122,6 +123,7 @@ class CreateGroupViewController: LightViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let user = Auth.auth().currentUser else { return }
         self.hideKeyboardWhenTappedAround()
         self.textView.addDoneButton(title: "Done".localise(), target: self, selector: #selector(okPressed))
         self.containerUser4_5.isHidden = self.members3IsSelected
@@ -141,10 +143,11 @@ class CreateGroupViewController: LightViewController {
         let prct = self.product.percentage + (self.members3IsSelected ? 0 : 5)
         self.promoCodeLabel.text = "-\(prct)%"
         
-        Interactor.shared.fetchUser(userId: HttpServices.shared.userId) { user in
-            self.user1.downloaded(from: user.picture)
+        if let value = user.photoURL {
+            self.user1.imageView.setImage(with: value, placeholder: #imageLiteral(resourceName: "ic_social_default_profil"), options: .progressiveLoad)
+        } else {
+            self.user1.imageContent = #imageLiteral(resourceName: "ic_social_default_profil")
         }
-        
     }
     
     @objc func onClicUser() {

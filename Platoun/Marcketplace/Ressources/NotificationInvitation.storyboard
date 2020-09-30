@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0b8-rA-vAN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0b8-rA-vAN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -105,7 +106,7 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="seb-Ph-aiJ" firstAttribute="centerX" secondItem="eE4-Q4-yJv" secondAttribute="centerX" id="0WT-eP-VaR"/>
                                                     <constraint firstItem="fG8-ln-Iz2" firstAttribute="centerX" secondItem="eE4-Q4-yJv" secondAttribute="centerX" id="8Ry-NO-9Cq"/>
@@ -129,7 +130,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFu-cR-9Uh">
                                                 <rect key="frame" x="0.0" y="274" width="414" height="15"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="XCe-vT-fKx"/>
                                                 </constraints>
@@ -145,12 +146,12 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9h-l8-SqP" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="D9h-l8-SqP" secondAttribute="height" multiplier="1:1" id="X4u-3g-nUi"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloé" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gj-gn-kDn">
@@ -160,7 +161,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="D9h-l8-SqP" firstAttribute="leading" secondItem="hy2-It-PeW" secondAttribute="leading" id="485-qY-cU7"/>
                                                                     <constraint firstAttribute="trailing" secondItem="D9h-l8-SqP" secondAttribute="trailing" id="P0e-jj-GOG"/>
@@ -176,12 +177,12 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvP-Ek-QOf" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="zvP-Ek-QOf" secondAttribute="height" multiplier="1:1" id="D49-z6-3p8"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQW-mH-9Cr">
@@ -191,7 +192,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="cQW-mH-9Cr" firstAttribute="top" secondItem="zvP-Ek-QOf" secondAttribute="bottom" constant="5" id="3TD-pw-xaP"/>
                                                                     <constraint firstAttribute="trailing" secondItem="cQW-mH-9Cr" secondAttribute="trailing" id="5w5-Ap-J2f"/>
@@ -207,12 +208,12 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyw-CX-2IC" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="fyw-CX-2IC" secondAttribute="height" multiplier="1:1" id="Fa6-o4-XLQ"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMI-1T-EhG">
@@ -222,7 +223,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="fyw-CX-2IC" firstAttribute="top" secondItem="rMS-0H-sJw" secondAttribute="top" id="2IM-5M-RrV"/>
                                                                     <constraint firstAttribute="trailing" secondItem="fyw-CX-2IC" secondAttribute="trailing" id="YMr-tb-11z"/>
@@ -243,12 +244,12 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dv4-sC-54P" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="dv4-sC-54P" secondAttribute="height" multiplier="1:1" id="S4n-It-iXR"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWo-Tw-v0U">
@@ -258,7 +259,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="dv4-sC-54P" secondAttribute="trailing" id="7u3-Yb-lO3"/>
                                                                     <constraint firstItem="FWo-Tw-v0U" firstAttribute="top" secondItem="dv4-sC-54P" secondAttribute="bottom" constant="5" id="DNa-Ha-J0K"/>
@@ -274,12 +275,12 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYp-rn-2rv" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="vYp-rn-2rv" secondAttribute="height" multiplier="1:1" id="Ieu-8l-7XN"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-invite"/>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="imageContent" value="ic-invite"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdR-ww-Efb">
@@ -289,7 +290,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="vYp-rn-2rv" firstAttribute="leading" secondItem="ZRE-NR-vq6" secondAttribute="leading" id="7bk-2N-GRD"/>
                                                                     <constraint firstAttribute="trailing" secondItem="QdR-ww-Efb" secondAttribute="trailing" id="La6-pN-B9G"/>
@@ -322,7 +323,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="0Z0-AU-NJS" firstAttribute="top" secondItem="u8e-41-CQD" secondAttribute="top" id="0vi-fb-Vqx"/>
                                                     <constraint firstAttribute="bottom" secondItem="0Z0-AU-NJS" secondAttribute="bottom" id="4hc-br-uaf"/>
@@ -380,7 +381,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="oXJ-On-oPK">
                                                         <rect key="frame" x="90" y="15" width="234" height="33"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmg-p2-Glf" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmg-p2-Glf" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="33"/>
                                                                 <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
@@ -401,7 +402,7 @@
                                                                     <action selector="actionYes:" destination="0b8-rA-vAN" eventType="touchUpInside" id="XvF-kp-eVC"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJJ-lE-dwt" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJJ-lE-dwt" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                                                 <rect key="frame" x="82" y="0.0" width="70" height="33"/>
                                                                 <color key="backgroundColor" red="0.83921568627450982" green="0.83137254901960778" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
@@ -422,7 +423,7 @@
                                                                     <action selector="actionNo:" destination="0b8-rA-vAN" eventType="touchUpInside" id="5ts-vM-I9S"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czP-4u-bXC" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czP-4u-bXC" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                                                 <rect key="frame" x="164" y="0.0" width="70" height="33"/>
                                                                 <color key="backgroundColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
@@ -449,7 +450,7 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="oXJ-On-oPK" firstAttribute="top" secondItem="0uo-4C-6fn" secondAttribute="top" constant="15" id="3s8-Wk-Uvg"/>
                                                     <constraint firstAttribute="bottom" secondItem="oXJ-On-oPK" secondAttribute="bottom" id="BZz-eT-auO"/>
@@ -501,6 +502,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="5qf-R9-TQd"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vYp-rn-2rv" firstAttribute="width" secondItem="5qf-R9-TQd" secondAttribute="width" multiplier="81:375" id="0Tz-3D-A5O"/>
@@ -515,7 +517,6 @@
                             <constraint firstItem="li5-wb-zg8" firstAttribute="centerY" secondItem="NuE-Nt-XPm" secondAttribute="centerY" id="VPP-77-Dxe"/>
                             <constraint firstItem="zvP-Ek-QOf" firstAttribute="width" secondItem="5qf-R9-TQd" secondAttribute="width" multiplier="81:375" id="wtu-rg-fAn"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="5qf-R9-TQd"/>
                     </view>
                     <connections>
                         <outlet property="brandNameLabel" destination="mHe-Hq-aqZ" id="z31-1c-Heu"/>
@@ -545,9 +546,26 @@
             <point key="canvasLocation" x="-2204" y="-285"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="PJJ-lE-dwt">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="czP-4u-bXC">
+            <size key="intrinsicContentSize" width="38" height="30"/>
+        </designable>
+        <designable name="ev1-Ua-O2m">
+            <size key="intrinsicContentSize" width="33" height="15.5"/>
+        </designable>
+        <designable name="tmg-p2-Glf">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ic-invite" width="75" height="75"/>
         <image name="ic-timer" width="15" height="15"/>
         <image name="img-confeti" width="225" height="199.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

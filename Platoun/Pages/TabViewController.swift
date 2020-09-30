@@ -14,8 +14,12 @@ class TabViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         self.selectedIndex = 0
-        Platoun.setEnv(env: .develop)
+        let vc = Platoun.getViewController()
+        vc.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_tab_marketplace"), selectedImage: UIImage(named: "ic_tab_marketplace_original"))
+        vc.tabBarItem.titlePositionAdjustment = .zero
+        self.viewControllers?[1] = vc
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -24,14 +28,7 @@ class TabViewController: UITabBarController {
     }
     
     func connexion() {
-        if let user = Auth.auth().currentUser {
-            if let actualVc = self.viewControllers?[1], !(actualVc is DrawerController) {
-                let vc = Platoun.getViewController(userId: user.uid)
-                vc.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_tab_marketplace"), selectedImage: UIImage(named: "ic_tab_marketplace_original"))
-                vc.tabBarItem.titlePositionAdjustment = .zero
-                self.viewControllers?[1] = vc
-            }
-        } else {
+        if Auth.auth().currentUser == nil {
             LoginViewController.show(in: self) { isConnected in
                 if !isConnected {
                     UIKitUtils.showAlert(in: self, message: "Vous devez être connecter pour continuer") {
@@ -40,5 +37,15 @@ class TabViewController: UITabBarController {
                 }
             }
         }
+    }
+}
+
+extension TabViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let user = Auth.auth().currentUser else { return false }
+        if viewController is DrawerController {
+            Platoun.update(userId: user.uid)
+        }
+        return true
     }
 }

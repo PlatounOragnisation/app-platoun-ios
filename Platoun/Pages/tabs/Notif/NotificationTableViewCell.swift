@@ -14,17 +14,17 @@ class NotificationTableViewCell: UITableViewCell {
     @IBOutlet weak var notificationTitleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var notification: Notification?
+    var notification: PlatounNotification?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func setup(notification: Notification) {
+    func setup(notification: PlatounNotification) {
         self.notification = notification
         self.notificationTitleLabel.text = notification.title
-        self.descriptionLabel.text = notification.description
+        self.descriptionLabel.text = notification.message
     }
 
 }

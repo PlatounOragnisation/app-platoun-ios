@@ -119,8 +119,11 @@ class LoginViewController: UIViewController {
         FirestoreUtils.getUser(uid: user.uid) { result in
             switch result {
             case .success(let user):
-                if let fcmToken = UserDefaults.standard.FCMToken, fcmToken != user.fcmToken {
-                    FirestoreUtils.saveUser(uid: user.uid, fcmToken: fcmToken)
+                if let fcmToken = UserDefaults.standard.FCMToken {
+                    Interactor.shared.updateToken(userId: user.uid, token: fcmToken)
+                    if fcmToken != user.fcmToken {
+                        FirestoreUtils.saveUser(uid: user.uid, fcmToken: fcmToken)
+                    }
                 }
                 completion()
             case .failure(let error):
@@ -145,6 +148,7 @@ class LoginViewController: UIViewController {
                         UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
                     }
                 }
+                Interactor.shared.updateToken(userId: user.uid, token: UserDefaults.standard.FCMToken ?? "")
             }
         }
     }

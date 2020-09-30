@@ -70,14 +70,16 @@ private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, 
 }
 
 extension ImageShadow {
-    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
-        contentMode = mode
-        downloadImg(from: link) { (image) in
-            DispatchQueue.main.async() {
-                self.image = image
-            }
-        }
-    }
+//    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+//        contentMode = mode
+//
+//        SD_
+//        downloadImg(from: link) { (image) in
+//            DispatchQueue.main.async() {
+//                self.image = image
+//            }
+//        }
+//    }
 }
 
 extension UIImage {

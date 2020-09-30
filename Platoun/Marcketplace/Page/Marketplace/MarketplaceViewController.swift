@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol ContainerLikedProduct {
     func updateLike()
 }
 
 func productLike(_ productId: String) -> LikeButton.State {
-    guard let userId = HttpServices.shared.user?.id else { return .noSelected }
+    guard let userId = Auth.auth().currentUser?.uid else { return .noSelected }
     switch Interactor.shared.productLike[userId]?[productId] {
     case .yes:
         return .selected

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProductsLikedViewController: LightViewController {
     static func instance() -> ProductsLikedViewController {
@@ -36,7 +37,8 @@ class ProductsLikedViewController: LightViewController {
     }
     
     @objc func reload() {
-        Interactor.shared.fetchLiked(userId: HttpServices.shared.userId) { (products) in
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        Interactor.shared.fetchLiked(userId: userId) { (products) in
             self.products = products
             DispatchQueue.main.async {
                 self.collectionView.reloadSections(IndexSet(integer: 0))

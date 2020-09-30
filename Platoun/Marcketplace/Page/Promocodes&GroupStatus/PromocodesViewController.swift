@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class PromocodesViewController: LightViewController {
     
@@ -38,12 +39,13 @@ class PromocodesViewController: LightViewController {
     }
     
     @objc func reload() {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
         if isForPromocode {
-            Interactor.shared.fetchPromocodes(userId: HttpServices.shared.userId) { (o: [PromocodeCell.Object]) in
+            Interactor.shared.fetchPromocodes(userId: userId) { (o: [PromocodeCell.Object]) in
                 self.objs = o.sorted(by: { $0.dateValidated > $1.dateValidated })
             }
         } else {
-            Interactor.shared.fetchGroupStatus(userId: HttpServices.shared.userId) { (o: [GroupStatusCell.Object]) in
+            Interactor.shared.fetchGroupStatus(userId: userId) { (o: [GroupStatusCell.Object]) in
                 self.objs = o.sorted(by: { $0.dateAdded > $1.dateAdded })
             }
         }

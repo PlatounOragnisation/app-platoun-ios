@@ -14,6 +14,8 @@ import FirebaseAuth
 
 enum FirestoreUtilsError: Error {
     case noErrorGetUser(uid: String)
+    case noErrorGetUsers
+    case parseUserError
     case noErrorGetPost(postId: String)
     case noErrorGetNotifications(userId: String)
 }
@@ -38,6 +40,39 @@ class FirestoreUtils: NSObject {
                 "trendsNotification": trendsNotification,
                 "newsNotification": newsNotification
             ], merge: true)
+    }
+    
+    static func getUsers(ids: [String], res: [String: PlatounUser] = [:], completion:  @escaping (Result<[String: PlatounUser], Error>)->Void) {
+        guard res.count != ids.count else { completion(.success(res)); return }
+        
+        let index:Int = res.count / 10
+        let minIndex = min(((index*10)+10), ids.count)
+        let list: [String] = Array(ids[(index*10)..<minIndex])
+        Firestore
+            .firestore()
+            .collection("users").whereField("uid", in: list)
+            .getDocuments { (query, err) in
+                guard let query = query else {
+                    completion(.failure(err ?? FirestoreUtilsError.noErrorGetUsers))
+                    return
+                }
+                var newRes = res
+                for doc in query.documents {
+                    do {
+                        guard let user = try doc.data(as: PlatounUser.self) else {
+                            throw FirestoreUtilsError.parseUserError
+                        }
+                        newRes[user.uid] = user
+                    } catch {
+                        completion(.failure(error)); return
+                    }
+                }
+                if list.count != query.documents.count {
+                    completion(.success(newRes)); return
+                }
+                
+                self.getUsers(ids: ids, res: newRes, completion: completion)
+            }
     }
     
     static func getUser(uid: String, forCreation: Bool = false, completion: @escaping (Result<PlatounUser, Error>)->Void) {
@@ -114,30 +149,30 @@ class FirestoreUtils: NSObject {
             }
     }
     
-    static func getNotifications(userId: String, completion: @escaping (Result<[Notification], Error>)->Void) {
-        let db = Firestore.firestore()
-        
-        db.collection("notifications").document(userId).getDocument { (document, error) in
-            struct Internal: Codable {
-                let list: [Notification]
-            }
-            
-            guard let doc = document, doc.exists else {
-                completion(Result.failure(error ?? FirestoreUtilsError.noErrorGetNotifications(userId: userId)))
-                return
-            }
-            
-            do {
-                if let inter = try doc.data(as: Internal.self) {
-                    completion(Result.success(inter.list))
-                } else {
-                    completion(Result.failure(FirestoreUtilsError.noErrorGetNotifications(userId: userId)))
-                }
-            } catch {
-                completion(Result.failure(error))
-            }
-        }
-    }
+//    static func getNotifications(userId: String, completion: @escaping (Result<[Notification], Error>)->Void) {
+//        let db = Firestore.firestore()
+//
+//        db.collection("notifications").document(userId).getDocument { (document, error) in
+//            struct Internal: Codable {
+//                let list: [Notification]
+//            }
+//
+//            guard let doc = document, doc.exists else {
+//                completion(Result.failure(error ?? FirestoreUtilsError.noErrorGetNotifications(userId: userId)))
+//                return
+//            }
+//
+//            do {
+//                if let inter = try doc.data(as: Internal.self) {
+//                    completion(Result.success(inter.list))
+//                } else {
+//                    completion(Result.failure(FirestoreUtilsError.noErrorGetNotifications(userId: userId)))
+//                }
+//            } catch {
+//                completion(Result.failure(error))
+//            }
+//        }
+//    }
     
     static func savePost(post: Post, completion: @escaping (Result<Void,Error>)->Void) {
         let db = Firestore.firestore()
@@ -281,8 +316,8 @@ class FirestoreUtils: NSObject {
         let start = calendar.date(from: components)!
         let end = calendar.date(byAdding: .day, value: -3, to: start)!
         return db.collection("users").document(userId).collection("notifications")
-            .whereField("sendingAt", isGreaterThan: end)
-            .order(by: "sendingAt", descending: true)
+            .whereField("dateTimeCreation", isGreaterThan: end)
+            .order(by: "dateTimeCreation", descending: true)
     }
     //    static func getCommentsQuery(postId: String) -> Query {
     //        let db = Firestore.firestore()
