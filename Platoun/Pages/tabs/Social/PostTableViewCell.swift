@@ -23,6 +23,7 @@ class PostTableViewCell: UITableViewCell {
     var post: Post?
     var delegate: QuestionTableViewCellDelegate?
     
+    @IBOutlet weak var cellBackgroundView: DrawBackgroundView!
     @IBOutlet weak var creatorImageView: UIImageView!
     @IBOutlet weak var creatorNameLabel: UILabel!
     @IBOutlet weak var postCategoryLabel: UILabel!
@@ -76,6 +77,7 @@ class PostTableViewCell: UITableViewCell {
         
         self.upVoteView.isUserInteractionEnabled = true
         self.upVoteView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.upVoteButtonAction)))
+        self.cellBackgroundView.setNeedsDisplay()
     }
     
     override func layoutSubviews() {

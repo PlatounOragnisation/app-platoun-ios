@@ -16,7 +16,7 @@ protocol IDrawRoundView: UIView {
 extension IDrawRoundView {
     func drawRound(rect: CGRect, context: CGContext) {
         let path = UIBezierPath(
-          roundedRect: rect,
+            roundedRect: self.bounds,
           byRoundingCorners: .allCorners,
             cornerRadii: CGSize(width: self.cornerRadius, height: self.cornerRadius)
         )

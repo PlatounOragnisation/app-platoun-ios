@@ -16,14 +16,16 @@ class Tab5ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var dataSource: CustomDataSource?
+    var dataSource: EditableFirestoreTableViewDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let currentUser = Auth.auth().currentUser else { return }
+        self.tableView.delegate = self
+        
         let query = FirestoreUtils.getNotificationsQuery(userId: currentUser.uid)
         
-        dataSource = CustomDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
+        dataSource = EditableFirestoreTableViewDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
             
             guard
                 let cell = tableView.dequeueReusableCell(withIdentifier: NotificationTableViewCell.identifier, for: indexPath) as? NotificationTableViewCell,
@@ -61,7 +63,7 @@ class Tab5ViewController: UIViewController {
     }
 }
 
-extension Tab5ViewController: CustomDataSourceDelegate {
+extension Tab5ViewController: EditableFirestoreTableViewDataSourceDelegate {
     func deleteRow(indexPath: IndexPath) {
         guard let snap = self.dataSource?.snapshot(at: indexPath.row) else { return }
         snap.reference.delete { (error) in
@@ -73,25 +75,23 @@ extension Tab5ViewController: CustomDataSourceDelegate {
     }
 }
 
-protocol CustomDataSourceDelegate {
-    func deleteRow(indexPath: IndexPath)
-}
-
-class CustomDataSource: FUIFirestoreTableViewDataSource {
-    var delegate: CustomDataSourceDelegate?
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        switch editingStyle {
-        case .none:
-            break
-        case .delete:
-            self.delegate?.deleteRow(indexPath: indexPath)
-        case .insert:
-            break
+extension Tab5ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard
+            let userId = Auth.auth().currentUser?.uid,
+            let snap = self.dataSource?.snapshot(at: indexPath.row),
+            let data = snap.data(),
+            let notif = try? notificationParse(data, id: snap.documentID)
+            else { return }
+        
+        if let statusNotification = notif as? StatusPlatounNotification {
+            if statusNotification.status == .validated {
+                let vc = Platoun.getNotificationViewController(currentUserId: userId, notificationSendBy: statusNotification.senderUserId, groupId: statusNotification.groupId)
+                
+                self.present(vc, animated: true)
+            }
+        } else {
+            
         }
     }
 }

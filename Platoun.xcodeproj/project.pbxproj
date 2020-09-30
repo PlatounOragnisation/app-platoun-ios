@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B95D0D72524AD5300A90938 /* NotificationBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B95D0D62524AD5300A90938 /* NotificationBackgroundView.swift */; };
+		0B95D0DF2524C44C00A90938 /* EditableFirestoreTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B95D0DE2524C44C00A90938 /* EditableFirestoreTableViewDataSource.swift */; };
 		1C493FFB35131E61992BA394 /* Pods_Platoun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800E9816F838EEAEB4640F58 /* Pods_Platoun.framework */; };
 		43978D92FC270A19E7D9BBE5 /* Pods_PlatounTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D3E7F3C28B9AE1B6E4CD15 /* Pods_PlatounTests.framework */; };
 		9A3BEAFCAA4F91297A2FABB9 /* Pods_Platoun_PlatounUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125708D26EA307293C3F011A /* Pods_Platoun_PlatounUITests.framework */; };
@@ -219,6 +221,8 @@
 
 /* Begin PBXFileReference section */
 		04790D75F02F66999F2515AE /* Pods-Platoun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun.release.xcconfig"; path = "Target Support Files/Pods-Platoun/Pods-Platoun.release.xcconfig"; sourceTree = "<group>"; };
+		0B95D0D62524AD5300A90938 /* NotificationBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBackgroundView.swift; sourceTree = "<group>"; };
+		0B95D0DE2524C44C00A90938 /* EditableFirestoreTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableFirestoreTableViewDataSource.swift; sourceTree = "<group>"; };
 		125708D26EA307293C3F011A /* Pods_Platoun_PlatounUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Platoun_PlatounUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DDC87C3ACE923BFEF07336F /* Pods-Platoun-PlatounUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun-PlatounUITests.debug.xcconfig"; path = "Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		78738F41EED7966EA2CA3723 /* Pods-PlatounTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.debug.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -481,7 +485,6 @@
 			isa = PBXGroup;
 			children = (
 				F018D6BA24F9775C00DD0D45 /* Profil */,
-				F018D6C524F9781C00DD0D45 /* Marketplace */,
 				F018D6C324F9781C00DD0D45 /* Post */,
 				F018D6C124F9781C00DD0D45 /* Social */,
 				F018D6C724F9781C00DD0D45 /* Notif */,
@@ -550,18 +553,13 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
-		F018D6C524F9781C00DD0D45 /* Marketplace */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Marketplace;
-			sourceTree = "<group>";
-		};
 		F018D6C724F9781C00DD0D45 /* Notif */ = {
 			isa = PBXGroup;
 			children = (
 				F018D6C824F9781C00DD0D45 /* Tab5ViewController.swift */,
 				F0BD49DE251617D2008092BA /* NotificationTableViewCell.swift */,
+				0B95D0D62524AD5300A90938 /* NotificationBackgroundView.swift */,
+				0B95D0DE2524C44C00A90938 /* EditableFirestoreTableViewDataSource.swift */,
 			);
 			path = Notif;
 			sourceTree = "<group>";
@@ -1512,8 +1510,10 @@
 				F0AA8D382514162B00EA2FBD /* WebGroupStatus.swift in Sources */,
 				F0AA8D0B2514162A00EA2FBD /* ImageSpacingBorderView.swift in Sources */,
 				F0AA8D3B2514162B00EA2FBD /* WebCategory.swift in Sources */,
+				0B95D0DF2524C44C00A90938 /* EditableFirestoreTableViewDataSource.swift in Sources */,
 				F0BD4A0D251683C9008092BA /* CustomSwitch.swift in Sources */,
 				F0A11F1C25058228007C29F3 /* UIImageView+Extension.swift in Sources */,
+				0B95D0D72524AD5300A90938 /* NotificationBackgroundView.swift in Sources */,
 				F0AA8D2E2514162B00EA2FBD /* NSMutableAttributedString+Extension.swift in Sources */,
 				F0C252C5251D612B00BCB677 /* CGContext+Extension.swift in Sources */,
 				F0AA8D262514162B00EA2FBD /* ProductsLikedViewController.swift in Sources */,

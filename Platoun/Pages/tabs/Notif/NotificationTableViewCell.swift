@@ -13,6 +13,7 @@ class NotificationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var notificationTitleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var openLabel: UILabel!
     
     var notification: PlatounNotification?
     
@@ -22,9 +23,16 @@ class NotificationTableViewCell: UITableViewCell {
     }
     
     func setup(notification: PlatounNotification) {
+        self.openLabel.text = "Ouvrir"
         self.notification = notification
         self.notificationTitleLabel.text = notification.title
         self.descriptionLabel.text = notification.message
+        
+        if let statusNotification = notification as? StatusPlatounNotification {
+            self.openLabel.isHidden = statusNotification.status != .validated
+        } else {
+            self.openLabel.isHidden = true
+        }
     }
 
 }
