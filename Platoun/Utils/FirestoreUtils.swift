@@ -216,6 +216,20 @@ class FirestoreUtils: NSObject {
         }
     }
     
+    static func saveInvitNotification(userId: String, notif: InvitPlatournNotification, completion: @escaping (Result<Void, Error>)->Void) {
+        Firestore.firestore()
+            .collection("users").document(userId).collection("notifications")
+            .document(notif.id)
+            .setData(notif.getData()) { error in
+                if let error = error {
+                    Crashlytics.crashlytics().record(error: error)
+                    completion(Result.failure(error))
+                } else {
+                    completion(Result.success(Void()))
+                }
+            }
+    }
+    
     static func createUser(user: PlatounUser, completion: @escaping (Result<Void, Error>)->Void) {
         let db = Firestore.firestore()
         do {

@@ -30,6 +30,8 @@ class NotificationTableViewCell: UITableViewCell {
         
         if let statusNotification = notification as? StatusPlatounNotification {
             self.openLabel.isHidden = statusNotification.status != .validated
+        } else if notification is InvitPlatournNotification {
+            self.openLabel.isHidden = false
         } else {
             self.openLabel.isHidden = true
         }

@@ -14,6 +14,7 @@ class PromocodeCell: UITableViewCell {
     struct Object {
         let imageUrl: String
         let promocode: Int
+        let groupId: String
         let title: String
         let subTitle: String
         let timeEnd: Date
@@ -25,6 +26,7 @@ class PromocodeCell: UITableViewCell {
             return Object(
                 imageUrl: from.productPicture,
                 promocode: from.percentage,
+                groupId: from.groupId,
                 title: from.productName,
                 subTitle: from.productBrand,
                 timeEnd: from.dateValidated.addingTimeInterval(72 * 60 * 60),

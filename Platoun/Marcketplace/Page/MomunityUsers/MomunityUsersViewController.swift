@@ -9,6 +9,9 @@
 import UIKit
 import FirebaseAuth
 import FirebaseCrashlytics
+import FirebaseMessaging
+import FirebaseFirestore
+import Alamofire
 
 protocol MomunityUsersViewControllerDelegate {
     func onClose(viewController: MomunityUsersViewController)
@@ -46,7 +49,7 @@ class MomunityUsersViewController: LightViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.refreshControl = UIRefreshControl()
+//        self.tableView.refreshControl = UIRefreshControl()
     }
     
     func update(_ search: String) {
@@ -111,18 +114,62 @@ class MomunityUsersViewController: LightViewController {
         return
     }
     
-    func sendInvitation(users: [PlatounUser], index: Int) {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        Interactor.shared.sendNotif(userId: userId, inviteUserId: users[index].uid, groupId: self.groupId) {
-            guard $0 else {
-                UIKitUtils.showAlert(in: self, message: "Désolé. Une erreur est survenue lors de l'invitation.") {}
-                return
+    func sendNotif(fcmToken: String, notif: InvitPlatournNotification) {
+        AF.request(
+            "https://fcm.googleapis.com/fcm/send",
+            method: .post,
+            parameters: [
+                "notification": [
+                    "body": notif.message,
+                    "title": notif.title
+                ],
+                "data": [
+                    "notifId": notif.id
+                ],
+                "to": fcmToken
+            ],
+            encoding: JSONEncoding(),
+            headers: [
+                "Content-Type": "application/json",
+                "Authorization": "key=AAAAEv-sP9w:APA91bEswEMe3nFEpiMRrUZQJkYxgMqtZaMDvbHOZKNbVCIlhUEN91guSL663D5_IjWawiZQnCYwwMaIns7UsK4-8GX52UmwuMIbsLINjJUsAjpv2-VW0nkOEy8h4iGwsXEZM8NyLL4q"
+            ])
+            .response { response in
+                print(response)
             }
-            if index == users.count - 1 {
-                let vc = InviteSuccessViewController.instance(delegate: self)
-                self.present(vc, animated: true)
-            } else {
-                self.sendInvitation(users: users, index: index + 1)
+    }
+    
+    func sendInvitation(users: [PlatounUser], index: Int) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        let message = (user.displayName ?? "").isEmpty
+            ? "Une personne t’invite à rejoindre son groupe"
+            : "\(user.displayName!) t’invite à rejoindre son groupe"
+        
+        
+        let notif = InvitPlatournNotification(
+            id: UUID().uuidString,
+            title: "L’offre expire bientôt.",
+            message: message,
+            senderUserId: user.uid,
+            senderName: user.displayName,
+            groupId: self.groupId)
+        
+        
+        FirestoreUtils.saveInvitNotification(userId: users[index].uid, notif: notif) { result in
+            switch result {
+            case .success():
+                if let token = users[index].fcmToken {
+                    self.sendNotif(fcmToken: token, notif: notif)
+                }
+                if index == users.count - 1 {
+                    let vc = InviteSuccessViewController.instance(delegate: self)
+                    self.present(vc, animated: true)
+                } else {
+                    self.sendInvitation(users: users, index: index + 1)
+                }
+            case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
+                UIKitUtils.showAlert(in: self, message: "Désolé. Une erreur est survenue lors de l'invitation.") {}
             }
         }
     }

@@ -12,6 +12,7 @@ struct WebPromoStatus: Codable {
     let productName: String
     let productPicture: String
     let productBrand: String
+    let groupId: String
     let percentage: Int
     let promoCode: String
     let status: Status
