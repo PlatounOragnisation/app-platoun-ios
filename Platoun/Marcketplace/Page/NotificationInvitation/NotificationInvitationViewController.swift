@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
 
 class NotificationInvitationViewController: LightViewController {
     static func instance(sendUserId: String, currentUserId: String, groupId: String) -> NotificationInvitationViewController {
@@ -53,6 +54,12 @@ class NotificationInvitationViewController: LightViewController {
         }
     }
     
+    var users: [String: PlatounUser] = [:] {
+        didSet {
+            self.updateUsersImage()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -66,9 +73,47 @@ class NotificationInvitationViewController: LightViewController {
                 self.dismiss(animated: true, completion: nil)
                 return
             }
+            
+            FirestoreUtils.getUsers(ids: notif.users.map { $0.userId }) { result in
+                switch result {
+                case .success(let res):
+                    self.users = res
+                case .failure(let error):
+                    Crashlytics.crashlytics().record(error: error)
+                }
+            }
+            
             self.webNotification = value
             self.startTimer()
         }
+    }
+    
+    func setUser(image: ImageShadow, label: UILabel?, user: WebUser?) {
+        if let user = user {
+            if let value = users[user.userId]?.photoUrl, let url = URL(string: value) {
+                image.imageView.setImage(with: url, placeholder: #imageLiteral(resourceName: "ic_social_default_profil"), options: .progressiveLoad)
+            } else {
+                image.imageView.image = #imageLiteral(resourceName: "ic_social_default_profil")
+            }
+            label?.text = users[user.userId]?.displayName ?? "No name"
+            if label != nil {
+                offerYouLabel.attributedText = NSMutableAttributedString()
+                    .bold(label?.text ?? "", fontSize: 14)
+                    .normal(" " + "offers you to join her group deal.".localise(), fontSize: 14)
+            }
+        } else {
+            image.imageView.image = UIImage(named: "ic-no-user")
+        }
+    }
+    
+    func updateUsersImage() {
+        guard let webNotification = self.webNotification else { return }
+        
+        setUser(image: user1ImageView, label: user1Label, user: webNotification.users.getOrNil(0))
+        setUser(image: user2ImageView, label: nil, user: webNotification.users.getOrNil(1))
+        setUser(image: user3ImageView, label: nil, user: webNotification.users.getOrNil(2))
+        setUser(image: user4ImageView, label: nil, user: webNotification.users.getOrNil(3))
+        setUser(image: user5ImageView, label: nil, user: webNotification.users.getOrNil(4))
     }
     
     func updateView() {
@@ -96,47 +141,6 @@ class NotificationInvitationViewController: LightViewController {
         
         placesLeftLabel.text = placesLeftText.localise(count)
         stack4_5.isHidden = webNotification.maxUsers == 3
-        
-        if let user = webNotification.users.getOrNil(0) {
-            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
-                user1ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
-            } else {
-                user1ImageView.imageView.image = UIImage(named: "ic-no-user")
-            }
-            user1Label.text = user.name
-            
-            offerYouLabel.attributedText = NSMutableAttributedString()
-                .bold(user.name ?? "", fontSize: 14)
-                .normal(" " + "offers you to join her group deal.".localise(), fontSize: 14)
-        }
-        if let user = webNotification.users.getOrNil(1) {
-            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
-                user2ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
-            } else {
-                user2ImageView.imageView.image = UIImage(named: "ic-no-user")
-            }
-        }
-        if let user = webNotification.users.getOrNil(2) {
-            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
-                user3ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
-            } else {
-                user3ImageView.imageView.image = UIImage(named: "ic-no-user")
-            }
-        }
-        if let user = webNotification.users.getOrNil(3) {
-            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
-                user4ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
-            } else {
-                user4ImageView.imageView.image = UIImage(named: "ic-no-user")
-            }
-        }
-        if let user = webNotification.users.getOrNil(4) {
-            if let value = user.profilePictureLink.trimed, let url = URL(string: value) {
-                user5ImageView.imageView.setImage(with: url, placeholder: UIImage(named: "ic-no-user"), options: .progressiveLoad)
-            } else {
-                user5ImageView.imageView.image = UIImage(named: "ic-no-user")
-            }
-        }
     }
     
     @objc func updateDealEnd() -> Int {

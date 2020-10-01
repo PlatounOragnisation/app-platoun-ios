@@ -10,6 +10,4 @@ import Foundation
 
 public struct WebUser: Codable {
     public let userId: String
-    public let name: String?
-    public let profilePictureLink: String?
 }

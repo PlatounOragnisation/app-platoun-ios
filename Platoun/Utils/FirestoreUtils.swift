@@ -26,6 +26,10 @@ class FirestoreUtils: NSObject {
         let db = Firestore.firestore()
         db.collection("users").document(uid).setData(["displayName": name], merge: true)
     }
+    static func saveUser(uid: String, photo: String) {
+        let db = Firestore.firestore()
+        db.collection("users").document(uid).setData(["photoUrl": photo], merge: true)
+    }
     
     static func saveUser(uid: String, fcmToken: String) {
         let db = Firestore.firestore()
@@ -40,6 +44,27 @@ class FirestoreUtils: NSObject {
                 "trendsNotification": trendsNotification,
                 "newsNotification": newsNotification
             ], merge: true)
+    }
+    
+    static func getUsers(search: String, completion: @escaping (Result<[PlatounUser], Error>)->Void) {
+        Firestore.firestore()
+            .collection("users")
+            .whereField("displayName", isGreaterThanOrEqualTo: search)
+            .whereField("displayName", isLessThanOrEqualTo: "\(search)~")
+            .order(by: "displayName")
+            .getDocuments { (query, err) in
+                guard let query = query else {
+                    completion(.failure(err ?? FirestoreUtilsError.noErrorGetUsers))
+                    return
+                }
+                
+                do {
+                    let res = try query.documents.compactMap { try $0.data(as: PlatounUser.self) }
+                    completion(.success(res))
+                } catch {
+                    completion(.failure(error)); return
+                }
+            }
     }
     
     static func getUsers(ids: [String], res: [String: PlatounUser] = [:], completion:  @escaping (Result<[String: PlatounUser], Error>)->Void) {

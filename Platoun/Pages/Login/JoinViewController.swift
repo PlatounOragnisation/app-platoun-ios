@@ -70,8 +70,23 @@ class JoinViewController: UIViewController {
         switch result {
         case .success:
             if let user = Auth.auth().currentUser {
-                createUserIfNeeded(user: user) {
-                    self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
+                if user.isPassword {
+                    let pseudo = pseudoTextFIeld.text ?? ""
+                    self.createUserIfNeeded(user: user, name: pseudo) {
+                        self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
+                    }
+                } else {
+                    if (user.displayName ?? "").isEmpty {
+                        UIKitUtils.requestAlert(in: self, message: "Choissez un nom :") { name in
+                            self.createUserIfNeeded(user: user, name: name) {
+                                self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
+                            }
+                        }
+                    } else {
+                        createUserIfNeeded(user: user, name: user.displayName!) {
+                            self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
+                        }
+                    }
                 }
             }
         case .failure(let error):
@@ -85,7 +100,7 @@ class JoinViewController: UIViewController {
         }
     }
     
-    private func createUserIfNeeded(user: User, completion: @escaping ()->Void) {
+    private func createUserIfNeeded(user: User, name: String, completion: @escaping ()->Void) {
         FirestoreUtils.getUser(uid: user.uid) { result in
             switch result {
             case .success(let user):
@@ -105,22 +120,27 @@ class JoinViewController: UIViewController {
                     return
                 }
                 
-                let pseudo = self.pseudoTextFIeld.text ?? ""
-                
-                let platounUser = PlatounUser(uid: user.uid, fcmToken: UserDefaults.standard.FCMToken, displayName: pseudo, photoUrl: user.photoURL?.absoluteString, groupNotification: true, trendsNotification: true, newsNotification: true)
-                
-                
-                FirestoreUtils.createUser(user: platounUser) { r in
-                    switch r {
-                    case .success:
-                        completion()
-                    case .failure:
-                        Auth.auth().currentUser?.delete()
-                        AuthenticationLogout()
-                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
+                let request = user.createProfileChangeRequest()
+                request.displayName = name
+                request.commitChanges {
+                    if let error = $0 {
+                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre nom : \(error.localizedDescription)") { }
                     }
+                    let platounUser = PlatounUser(uid: user.uid, fcmToken: UserDefaults.standard.FCMToken, displayName: name, photoUrl: user.photoURL?.absoluteString, groupNotification: true, trendsNotification: true, newsNotification: true)
+                    
+                    
+                    FirestoreUtils.createUser(user: platounUser) { r in
+                        switch r {
+                        case .success:
+                            completion()
+                        case .failure:
+                            Auth.auth().currentUser?.delete()
+                            AuthenticationLogout()
+                            UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
+                        }
+                    }
+                    Interactor.shared.updateToken(userId: user.uid, token: UserDefaults.standard.FCMToken ?? "")
                 }
-                Interactor.shared.updateToken(userId: user.uid, token: UserDefaults.standard.FCMToken ?? "")
             }
         }
     }

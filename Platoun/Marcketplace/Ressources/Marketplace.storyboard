@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xbE-cv-mVQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xbE-cv-mVQ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="3" width="414" height="35"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZmU-oU-lgj">
-                                        <rect key="frame" x="155.5" y="5.5" width="103.5" height="24"/>
+                                        <rect key="frame" x="155" y="5.5" width="104" height="24"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8a-0S-caV">
                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="24"/>
@@ -54,7 +55,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All categories" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEh-sw-fUa" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                <rect key="frame" x="25" y="0.0" width="78.5" height="24"/>
+                                                <rect key="frame" x="25" y="0.0" width="79" height="24"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -84,7 +85,7 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gL8-GV-ty1">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="PSv-rY-FTl">
                                             <size key="itemSize" width="185" height="260"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -101,7 +102,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="743-tv-iXa" customClass="ItemShop" customModule="Platoun" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="185" height="260"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
@@ -140,19 +141,19 @@
                                         </constraints>
                                     </scrollView>
                                     <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSq-SZ-aUp" userLabel="EmptyScroll">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="770"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMt-QF-DLI">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-results" translatesAutoresizingMaskIntoConstraints="NO" id="MYT-By-hxS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ko6-9Z-S0B">
-                                                        <rect key="frame" x="104.5" y="311.5" width="205" height="113"/>
+                                                        <rect key="frame" x="104.5" y="328" width="205" height="118"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results  found" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b81-VD-Y7S" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                                <rect key="frame" x="53" y="0.0" width="99" height="48"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="48"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                                 <color key="textColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -160,8 +161,8 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="No results..n..found"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDv-dw-RZL" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="78" width="205" height="35"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDv-dw-RZL" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="78" width="205" height="40"/>
                                                                 <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="205" id="7Kp-qV-zZ0"/>
@@ -199,7 +200,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="Ko6-9Z-S0B" firstAttribute="centerX" secondItem="gMt-QF-DLI" secondAttribute="centerX" id="4YT-vd-i2x"/>
                                                     <constraint firstItem="MYT-By-hxS" firstAttribute="top" secondItem="gMt-QF-DLI" secondAttribute="top" id="DEu-Ox-8eh"/>
@@ -236,7 +237,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="cuq-0Y-hKh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xKj-pN-DVe" firstAttribute="leading" secondItem="cuq-0Y-hKh" secondAttribute="leading" id="MK7-a0-kKn"/>
                             <constraint firstItem="jGl-AN-rNK" firstAttribute="leading" secondItem="cuq-0Y-hKh" secondAttribute="leading" id="RRa-kp-KeQ"/>
@@ -251,15 +253,9 @@
                             <constraint firstItem="ACz-ub-p1V" firstAttribute="leading" secondItem="cuq-0Y-hKh" secondAttribute="leading" id="gkE-ti-Z5I"/>
                             <constraint firstAttribute="bottom" secondItem="cSq-SZ-aUp" secondAttribute="bottom" id="jSP-pa-d1f"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cuq-0Y-hKh"/>
                     </view>
                     <navigationItem key="navigationItem" title="Marketplace" id="abR-YX-pMe" customClass="UINavigationItemLocalized" customModule="Platoun" customModuleProvider="target">
                         <barButtonItem key="backBarButtonItem" id="yhq-Xg-onq"/>
-                        <barButtonItem key="leftBarButtonItem" image="ic-menu" id="wh2-lf-gBP">
-                            <connections>
-                                <action selector="actionOpenDrawer:" destination="xbE-cv-mVQ" id="Egc-aB-vpd"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic-loupe" id="2Ww-RJ-cDZ">
                             <connections>
                                 <action selector="onClicSearch:" destination="xbE-cv-mVQ" id="OUR-vt-gHd"/>
@@ -288,10 +284,17 @@
             <point key="canvasLocation" x="-1191" y="471"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="eDv-dw-RZL">
+            <size key="intrinsicContentSize" width="201" height="24"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ic-filter" width="24" height="24"/>
         <image name="ic-loupe" width="22" height="24"/>
-        <image name="ic-menu" width="24" height="24"/>
         <image name="img-results" width="456.5" height="812"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

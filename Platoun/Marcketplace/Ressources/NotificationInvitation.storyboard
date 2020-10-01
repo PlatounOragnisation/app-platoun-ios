@@ -146,7 +146,7 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9h-l8-SqP" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="D9h-l8-SqP" secondAttribute="height" multiplier="1:1" id="X4u-3g-nUi"/>
                                                                         </constraints>
@@ -177,7 +177,7 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvP-Ek-QOf" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="zvP-Ek-QOf" secondAttribute="height" multiplier="1:1" id="D49-z6-3p8"/>
                                                                         </constraints>
@@ -208,7 +208,7 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyw-CX-2IC" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="fyw-CX-2IC" secondAttribute="height" multiplier="1:1" id="Fa6-o4-XLQ"/>
                                                                         </constraints>
@@ -244,7 +244,7 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dv4-sC-54P" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="dv4-sC-54P" secondAttribute="height" multiplier="1:1" id="S4n-It-iXR"/>
                                                                         </constraints>
@@ -275,7 +275,7 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYp-rn-2rv" customClass="ImageShadow" customModule="Platoun" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="89.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="vYp-rn-2rv" secondAttribute="height" multiplier="1:1" id="Ieu-8l-7XN"/>
                                                                         </constraints>

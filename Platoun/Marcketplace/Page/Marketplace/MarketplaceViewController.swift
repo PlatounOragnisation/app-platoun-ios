@@ -73,7 +73,7 @@ class MarketplaceViewController: LightViewController, ContainerLikedProduct {
         self.scrollView.refreshControl?.beginRefreshing()
         self.reload()
         
-        (self.navigationController as? RootViewController)?.setMenu(delegate: self)
+//        (self.navigationController as? RootViewController)?.setMenu(delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -246,32 +246,6 @@ extension MarketplaceViewController: MarketplaceCategoryViewAction {
 extension MarketplaceViewController: FilterViewControllerDelegate {
     func update(filters: MarketplaceFilters) {
         self.categoriesFiltred = filters
-    }
-}
-
-extension MarketplaceViewController: DrawerViewControllerDelegate {
-    func showGroupStatus() {
-        (self.navigationController as? RootViewController)?.handleMenuButton()
-        let vc = PromocodesViewController.instance(isForPromocode: false)
-        self.show(vc, sender: nil)
-    }
-    
-    func showProductsLiked() {
-        (self.navigationController as? RootViewController)?.handleMenuButton()
-        let vc = ProductsLikedViewController.instance()
-        self.show(vc, sender: nil)
-    }
-    
-    func showSupport() {
-        (self.navigationController as? RootViewController)?.handleMenuButton()
-        guard let url = URL(string: "https://www.momunity.com/kontakt") else { return }
-        UIApplication.shared.open(url)
-    }
-    
-    func showPromoCode() {
-        (self.navigationController as? RootViewController)?.handleMenuButton()
-        let vc = PromocodesViewController.instance(isForPromocode: true)
-        self.show(vc, sender: nil)
     }
 }
 

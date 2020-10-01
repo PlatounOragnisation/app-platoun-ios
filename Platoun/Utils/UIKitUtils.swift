@@ -40,4 +40,23 @@ class UIKitUtils {
         viewControler.present(alert, animated: true, completion: nil)
     }
     
+    static func requestAlert(in viewControler: UIViewController, message: String, completion: @escaping (String)->Void) {
+        var textField: UITextField?
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        alert.addTextField { (tf) in
+            textField = tf
+            tf.placeholder = "Entrée votre nom"
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            if let text = textField?.text, !text.isEmpty {
+                completion(text)
+            } else {
+                requestAlert(in: viewControler, message: message, completion: completion)
+            }
+        }))
+        
+        viewControler.present(alert, animated: true, completion: nil)
+
+    }
 }

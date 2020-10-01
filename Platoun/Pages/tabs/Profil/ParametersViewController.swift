@@ -25,11 +25,11 @@ fileprivate extension UIButton {
                 colours: [
                     ThemeColor.BackgroundGradient1,
                     ThemeColor.BackgroundGradient2
-            ])
-        case .password:
+                ])
+        case .account:
             self.backgroundColor = ThemeColor.BackgroundButton
             self.setTitleColor(ThemeColor.White, for: .normal)
-        case .account:
+        case .password:
             self.backgroundColor = ThemeColor.BackgroundButton
             self.setTitleColor(ThemeColor.GreyText, for: .normal)
         }
@@ -44,6 +44,7 @@ fileprivate extension UIButton {
 
 class ParametersViewController: UIViewController {
     
+    @IBOutlet weak var profilImage: AddImageView!
     @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var changeValueContainer: UIView!
@@ -63,6 +64,7 @@ class ParametersViewController: UIViewController {
     @IBOutlet weak var changeValuesNotifContainer: UIView!
     @IBOutlet weak var changeValuesNotifButton: UIButton!
     @IBOutlet weak var removeAccountButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
@@ -77,9 +79,11 @@ class ParametersViewController: UIViewController {
             object: nil)
         
         self.navigationItem.title = "Paramètres"
+        self.profilImage.delegate = self
         self.changeValuesButton.setTitle("Valider le changement", for: .normal)
         self.changeValuesNotifButton.setTitle("Valider le changement", for: .normal)
         self.changePasswordButton.setTitle("Modifier Mot de passe", for: .normal)
+        self.logoutButton.setTitle("Se déconnecter ", for: .normal)
         self.removeAccountButton.setTitle("Supprimer mon compte", for: .normal)
         self.notificationsLabel.text = "Notifications"
         self.notifCategory1Label.text = "Activités liés à mes groupes"
@@ -108,7 +112,8 @@ class ParametersViewController: UIViewController {
         
         changePasswordContainer.isHidden = !(user?.isPassword ?? false)
         self.changePasswordButton.round(type: .password)
-
+        self.logoutButton.round(type: .password)
+        
         self.removeAccountButton.round(type: .account)
         
         nickNameTextField.placeholder = "Prénom"
@@ -118,6 +123,12 @@ class ParametersViewController: UIViewController {
         nickNameTextField.text = user?.displayName ?? ""
         emailTextField.text = user?.email ?? ""
         
+        let profilImage = Auth.auth().currentUser?.photoURL
+        if let url = profilImage {
+            self.profilImage.imageView.setImage(with: url, placeholder: nil, options: .progressiveLoad) { _ in
+                self.profilImage.checkVisibility()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,26 +155,26 @@ class ParametersViewController: UIViewController {
     }
     
     @objc func keyboardNotification(notification: NSNotification) {
-            if let userInfo = notification.userInfo {
-                let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-                let endFrameY = endFrame?.origin.y ?? 0
-                let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-                let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
-                let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
-                let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
-                if endFrameY >= UIScreen.main.bounds.size.height {
-                    self.bottomConstraint.constant = 0.0
-                } else {
-                    self.bottomConstraint.constant = -(endFrame?.size.height ?? 0.0) + ( self.tabBarController?.tabBar.frame.size.height ?? 0.0)
-                }
-                UIView.animate(withDuration: duration,
-                               delay: TimeInterval(0),
-                               options: animationCurve,
-                               animations: { self.view.layoutIfNeeded() },
-                               completion: nil
-                )
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                self.bottomConstraint.constant = 0.0
+            } else {
+                self.bottomConstraint.constant = -(endFrame?.size.height ?? 0.0) + ( self.tabBarController?.tabBar.frame.size.height ?? 0.0)
             }
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil
+            )
         }
+    }
     
     @objc func clickCategory1Container() {
         let value = !self.notifCategory1Switch.isOn
@@ -197,12 +208,17 @@ class ParametersViewController: UIViewController {
         let presentationController = CustomPresentationController(presentedViewController: vc, presenting: self)
         
         vc.transitioningDelegate = presentationController
-//        if #available(iOS 13.0, *) {
-//            vc.modalPresentationStyle = .automatic
-//        } else {
-//            vc.modalPresentationStyle = .popover
-//        }
+        //        if #available(iOS 13.0, *) {
+        //            vc.modalPresentationStyle = .automatic
+        //        } else {
+        //            vc.modalPresentationStyle = .popover
+        //        }
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func logoutButtonAction(_ sender: Any) {
+        AuthenticationLogout()
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
     }
     
     @IBAction func changeValuesNotifAction(_ sender: Any) {
@@ -216,26 +232,36 @@ class ParametersViewController: UIViewController {
     }
     
     @IBAction func changeValuesAction(_ sender: Any) {
-        self.updateName { nameChanged in
-            self.updateEmail { emailChanged in
-                var message: String = ""
-                if nameChanged == true && emailChanged == true {
-                    message = "Votre nom et votre email ont bien été changé."
-                } else if nameChanged == true {
-                    message = "Votre nom a bien été changé."
-                } else if emailChanged == true {
-                    message = "Votre email a bien été changé.\n"
-                } else if nameChanged == false && emailChanged == false {
-                    message = "Votre email et votre nom sont inchangé."
-                }
-                if message.isEmpty { return }
-                UIKitUtils.showAlert(in: self, message: message) {
-                    let user = Auth.auth().currentUser
-                    self.nickNameTextField.text = user?.displayName ?? ""
-                    self.emailTextField.text = user?.email ?? ""
-                    self.changeValueContainer.isHidden = true
-                    self.nickNameTextField.resignFirstResponder()
-                    self.emailTextField.resignFirstResponder()
+        self.updatePhoto { photoChanged in
+            self.updateName { nameChanged in
+                self.updateEmail { emailChanged in
+                    var message: String = ""
+                    if photoChanged == true && nameChanged == true && emailChanged == true {
+                        message = "Votre photo, votre nom et votre email ont bien été changé."
+                    } else if photoChanged == true && nameChanged == true {
+                        message = "Votre photo et votre nom ont bien été changé."
+                    } else if photoChanged == true && emailChanged == true {
+                        message = "Votre photo et votre email ont bien été changé.\n"
+                    } else if nameChanged == true && emailChanged == true {
+                        message = "Votre nom et votre email ont bien été changé.\n"
+                    } else if nameChanged == true {
+                        message = "Votre nom a bien été changé."
+                    } else if emailChanged == true {
+                        message = "Votre email a bien été changé.\n"
+                    } else if photoChanged == true {
+                        message = "Votre photo a bien été changé.\n"
+                    } else if nameChanged == false && emailChanged == false && photoChanged == false {
+                        message = "Votre photo, votre email et votre nom sont inchangé."
+                    }
+                    if message.isEmpty { return }
+                    UIKitUtils.showAlert(in: self, message: message) {
+                        let user = Auth.auth().currentUser
+                        self.nickNameTextField.text = user?.displayName ?? ""
+                        self.emailTextField.text = user?.email ?? ""
+                        self.changeValueContainer.isHidden = true
+                        self.nickNameTextField.resignFirstResponder()
+                        self.emailTextField.resignFirstResponder()
+                    }
                 }
             }
         }
@@ -256,12 +282,12 @@ class ParametersViewController: UIViewController {
                 case .success:
                     let user = Auth.auth().currentUser
                     user?.delete { error in
-                      if let error = error {
-                        Crashlytics.crashlytics().record(error: error)
-                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors de la suppression de votre compte", completion: {})
-                      } else {
-                        self.logOut()
-                      }
+                        if let error = error {
+                            Crashlytics.crashlytics().record(error: error)
+                            UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors de la suppression de votre compte", completion: {})
+                        } else {
+                            self.logOut()
+                        }
                     }
                 case .failure(let error):
                     UIKitUtils.showAlert(in: self, message: "Un problème est survenue merci de vous reconnecter:\n\(error)") {
@@ -271,6 +297,31 @@ class ParametersViewController: UIViewController {
                 }
             }
         }, action2Title: "Non") {}
+    }
+    
+    private func updatePhoto(completion: @escaping (Bool?)->Void) {
+        guard let user = Auth.auth().currentUser,
+              let image = profilImage.image,
+              profilImage.modified else { completion(false); return }
+        
+        StorageUtils.uploadImageProfil(image: image, userId: user.uid) { result in
+            switch result {
+            case .success(let urlString):
+                let request = user.createProfileChangeRequest()
+                request.photoURL = URL(string: urlString)
+                request.commitChanges {
+                    if let error = $0 {
+                        Crashlytics.crashlytics().record(error: error)
+                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre photo : \(error.localizedDescription)") { completion(nil) }
+                    }
+                    FirestoreUtils.saveUser(uid: user.uid, photo: urlString)
+                    completion(true)
+                }
+            case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
+                completion(nil)
+            }
+        }
     }
     
     private func updateName(completion: @escaping (Bool?)->Void) {
@@ -283,6 +334,7 @@ class ParametersViewController: UIViewController {
         request.displayName = displayName
         request.commitChanges {
             if let error = $0 {
+                Crashlytics.crashlytics().record(error: error)
                 UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre nom : \(error.localizedDescription)") { completion(nil) }
             }
             FirestoreUtils.saveUser(uid: user.uid, name: displayName)
@@ -324,6 +376,16 @@ class ParametersViewController: UIViewController {
     }
 }
 
+extension ParametersViewController: AddImageViewDelegate {
+    func imageWasChanged() {
+        guard let user = Auth.auth().currentUser else { return }
+        let newName = nickNameTextField.text
+        let newEmail = emailTextField.text
+        
+        self.changeValueContainer.isHidden = user.displayName == newName && user.email == newEmail && !profilImage.modified
+    }
+}
+
 extension ParametersViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nickNameTextField {
@@ -333,7 +395,7 @@ extension ParametersViewController: UITextFieldDelegate {
         }
         return true
     }
-        
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text, let textRange = Range(range, in: text), let user = Auth.auth().currentUser else { return false }
         let updatedText = text.replacingCharacters(in: textRange, with: string)
@@ -342,7 +404,7 @@ extension ParametersViewController: UITextFieldDelegate {
         let newEmail = textField == emailTextField ? updatedText : emailTextField.text
         
         
-        self.changeValueContainer.isHidden = user.displayName == newName && user.email == newEmail
+        self.changeValueContainer.isHidden = user.displayName == newName && user.email == newEmail && !profilImage.modified
         
         return true
     }

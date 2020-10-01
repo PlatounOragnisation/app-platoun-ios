@@ -100,8 +100,16 @@ class LoginViewController: UIViewController {
         switch result {
         case .success:
             if let user = Auth.auth().currentUser {
-                createUserIfNeeded(user: user) {
-                    self.exit(creation: false)
+                if (user.displayName ?? "").isEmpty {
+                    UIKitUtils.requestAlert(in: self, message: "Choissez un nom :") { name in
+                        self.createUserIfNeeded(user: user, name: name) {
+                            self.exit(creation: false)
+                        }
+                    }
+                } else {
+                    createUserIfNeeded(user: user, name: user.displayName!) {
+                        self.exit(creation: false)
+                    }
                 }
             }
         case .failure(let error):
@@ -115,7 +123,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func createUserIfNeeded(user: User, completion: @escaping ()->Void) {
+    private func createUserIfNeeded(user: User, name: String, completion: @escaping ()->Void) {
         FirestoreUtils.getUser(uid: user.uid) { result in
             switch result {
             case .success(let user):
@@ -135,20 +143,28 @@ class LoginViewController: UIViewController {
                     return
                 }
                 
-                let platounUser = PlatounUser(uid: user.uid, fcmToken: UserDefaults.standard.FCMToken, displayName: user.displayName, photoUrl: user.photoURL?.absoluteString, groupNotification: true, trendsNotification: true, newsNotification: true)
-                
-                
-                FirestoreUtils.createUser(user: platounUser) { r in
-                    switch r {
-                    case .success:
-                        completion()
-                    case .failure:
-                        Auth.auth().currentUser?.delete()
-                        AuthenticationLogout()
-                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
+                let request = user.createProfileChangeRequest()
+                request.displayName = name
+                request.commitChanges {
+                    if let error = $0 {
+                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre nom : \(error.localizedDescription)") { }
                     }
+                    
+                    let platounUser = PlatounUser(uid: user.uid, fcmToken: UserDefaults.standard.FCMToken, displayName: name, photoUrl: user.photoURL?.absoluteString, groupNotification: true, trendsNotification: true, newsNotification: true)
+                    
+                    
+                    FirestoreUtils.createUser(user: platounUser) { r in
+                        switch r {
+                        case .success:
+                            completion()
+                        case .failure:
+                            Auth.auth().currentUser?.delete()
+                            AuthenticationLogout()
+                            UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
+                        }
+                    }
+                    Interactor.shared.updateToken(userId: user.uid, token: UserDefaults.standard.FCMToken ?? "")
                 }
-                Interactor.shared.updateToken(userId: user.uid, token: UserDefaults.standard.FCMToken ?? "")
             }
         }
     }

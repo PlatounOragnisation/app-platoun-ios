@@ -55,7 +55,8 @@ class Interactor {
                 switch result {
                 case .success(let web):
                     completion(web.contains("SUCCESS"))
-                case .failure(_):
+                case .failure(let error):
+                    Crashlytics.crashlytics().record(error: error)
                     completion(false)
                 }
         }

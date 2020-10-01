@@ -29,10 +29,8 @@
 		F01C6CAC24F31B140016ADE2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CAB24F31B140016ADE2 /* LoginViewController.swift */; };
 		F01C6CAF24F31B140016ADE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CAD24F31B140016ADE2 /* Main.storyboard */; };
 		F01C6CB124F31B160016ADE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB024F31B160016ADE2 /* Assets.xcassets */; };
-		F01C6CB424F31B160016ADE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB224F31B160016ADE2 /* LaunchScreen.storyboard */; };
 		F01C6CBF24F31B160016ADE2 /* PlatounTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CBE24F31B160016ADE2 /* PlatounTests.swift */; };
 		F01C6CCA24F31B160016ADE2 /* PlatounUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CC924F31B160016ADE2 /* PlatounUITests.swift */; };
-		F01C6CD824F31E670016ADE2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CD724F31E670016ADE2 /* GoogleService-Info.plist */; };
 		F01C6CFE24F32CE80016ADE2 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CFD24F32CE80016ADE2 /* TabViewController.swift */; };
 		F033D561251E773200E02F10 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F033D560251E773200E02F10 /* LoginBackgroundView.swift */; };
 		F038B7AF251E55CF00DA0719 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038B7AE251E55CF00DA0719 /* ForgotPasswordViewController.swift */; };
@@ -42,6 +40,8 @@
 		F04A7DBF2514EC5B00F99143 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DBE2514EC5B00F99143 /* CustomError.swift */; };
 		F04A7DCD2514F90000F99143 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DCC2514F90000F99143 /* Encodable+Extension.swift */; };
 		F0504A182516E260007B9277 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0504A172516E260007B9277 /* GradientButton.swift */; };
+		F054D6A825252EB20053ABA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F054D6A725252EB20053ABA7 /* GoogleService-Info.plist */; };
+		F054D6CD252548F20053ABA7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F054D6CC252548F20053ABA7 /* LaunchScreen.xib */; };
 		F07A1F8A2500811B002AAEDD /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02802F024F336D800775C9E /* Authentication.swift */; };
 		F07A1F8C25008684002AAEDD /* GoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F8B25008684002AAEDD /* GoogleSignIn.swift */; };
 		F07A1F8E25040402002AAEDD /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F8D25040402002AAEDD /* ImagePickerManager.swift */; };
@@ -248,7 +248,6 @@
 		F01C6CAB24F31B140016ADE2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F01C6CAE24F31B140016ADE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F01C6CB024F31B160016ADE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F01C6CB324F31B160016ADE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F01C6CB524F31B160016ADE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F01C6CBA24F31B160016ADE2 /* PlatounTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlatounTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01C6CBE24F31B160016ADE2 /* PlatounTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatounTests.swift; sourceTree = "<group>"; };
@@ -256,7 +255,6 @@
 		F01C6CC524F31B160016ADE2 /* PlatounUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlatounUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01C6CC924F31B160016ADE2 /* PlatounUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatounUITests.swift; sourceTree = "<group>"; };
 		F01C6CCB24F31B160016ADE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F01C6CD724F31E670016ADE2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F01C6CFD24F32CE80016ADE2 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		F02802F024F336D800775C9E /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		F02802F224F347C000775C9E /* Platoun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Platoun.entitlements; sourceTree = "<group>"; };
@@ -268,6 +266,8 @@
 		F04A7DBE2514EC5B00F99143 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		F04A7DCC2514F90000F99143 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		F0504A172516E260007B9277 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		F054D6A725252EB20053ABA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F054D6CC252548F20053ABA7 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		F07A1F8B25008684002AAEDD /* GoogleSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignIn.swift; sourceTree = "<group>"; };
 		F07A1F8D25040402002AAEDD /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		F07A1F8F25041270002AAEDD /* StorageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUtils.swift; sourceTree = "<group>"; };
@@ -594,15 +594,15 @@
 				F01C6CA724F31B140016ADE2 /* AppDelegate.swift */,
 				F01C6CB524F31B160016ADE2 /* Info.plist */,
 				F01C6CAD24F31B140016ADE2 /* Main.storyboard */,
-				F01C6CB224F31B160016ADE2 /* LaunchScreen.storyboard */,
+				F054D6CC252548F20053ABA7 /* LaunchScreen.xib */,
 				F01C6CB024F31B160016ADE2 /* Assets.xcassets */,
 				F0AA8C682514162A00EA2FBD /* Marcketplace */,
 				F018D6B824F9770C00DD0D45 /* Utils */,
 				F07A1F912504178F002AAEDD /* Model */,
 				F0DB42DA251BDD8C00A8B4FA /* DrawView */,
 				F018D6B624F976F300DD0D45 /* Pages */,
-				F01C6CD724F31E670016ADE2 /* GoogleService-Info.plist */,
 				F0AA8D85251416F000EA2FBD /* Localization.strings */,
+				F054D6A725252EB20053ABA7 /* GoogleService-Info.plist */,
 				F0BD49EB25166C2A008092BA /* fonts */,
 			);
 			path = Platoun;
@@ -1272,6 +1272,7 @@
 				F0AA8D602514162B00EA2FBD /* CategoryFilter.storyboard in Resources */,
 				F0AA8D5B2514162B00EA2FBD /* Drawer.storyboard in Resources */,
 				F0AA8D682514162B00EA2FBD /* InviteSuccess.storyboard in Resources */,
+				F054D6A825252EB20053ABA7 /* GoogleService-Info.plist in Resources */,
 				F0AA8D662514162B00EA2FBD /* Invite.storyboard in Resources */,
 				F0AA8D6A2514162B00EA2FBD /* MarketplaceCategoryView.xib in Resources */,
 				F0BD4A0325166C51008092BA /* Roboto-Bold.ttf in Resources */,
@@ -1281,10 +1282,9 @@
 				F0AA8D532514162B00EA2FBD /* MarketplaceFilter.storyboard in Resources */,
 				F0AA8D692514162B00EA2FBD /* RateView.xib in Resources */,
 				F0AA8D612514162B00EA2FBD /* CreateGroup.storyboard in Resources */,
+				F054D6CD252548F20053ABA7 /* LaunchScreen.xib in Resources */,
 				F0AA8D5C2514162B00EA2FBD /* Success.storyboard in Resources */,
 				F0BD49FE25166C51008092BA /* Roboto-BoldItalic.ttf in Resources */,
-				F01C6CB424F31B160016ADE2 /* LaunchScreen.storyboard in Resources */,
-				F01C6CD824F31E670016ADE2 /* GoogleService-Info.plist in Resources */,
 				F0AA8D5E2514162B00EA2FBD /* Root.storyboard in Resources */,
 				F0BD49F925166C51008092BA /* Roboto-Thin.ttf in Resources */,
 				F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */,
@@ -1670,14 +1670,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		F01C6CB224F31B160016ADE2 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F01C6CB324F31B160016ADE2 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		F0AA8D85251416F000EA2FBD /* Localization.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1833,6 +1825,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

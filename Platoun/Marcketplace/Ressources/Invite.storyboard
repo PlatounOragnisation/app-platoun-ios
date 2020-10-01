@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cZM-Ln-hAt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cZM-Ln-hAt">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,10 +26,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="344" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3lI-8V-5oh">
-                                                        <rect key="frame" x="72" y="-25" width="200" height="110"/>
+                                                        <rect key="frame" x="33.5" y="12" width="277" height="36"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Invite friends to your group via :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZi-VM-Gji" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                                <rect key="frame" x="-10" y="46" width="219" height="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="226" height="36"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -37,8 +37,8 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Invite friends to your group via :"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-momunity" translatesAutoresizingMaskIntoConstraints="NO" id="LCw-0B-TUt">
-                                                                <rect key="frame" x="82" y="37" width="36" height="36"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Platoun" translatesAutoresizingMaskIntoConstraints="NO" id="LCw-0B-TUt">
+                                                                <rect key="frame" x="241" y="0.0" width="36" height="36"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="36" id="BJb-7H-cbb"/>
                                                                     <constraint firstAttribute="height" constant="36" id="Kq6-l6-DOG"/>
@@ -62,19 +62,19 @@
                                                 <rect key="frame" x="0.0" y="60" width="344" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="6ys-U4-902">
-                                                        <rect key="frame" x="72" y="-25" width="200" height="110"/>
+                                                        <rect key="frame" x="33.5" y="12" width="277" height="36"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Invite friends to join Momunity via :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQh-bX-dbK" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                                <rect key="frame" x="-21" y="46" width="241.5" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Invite friends to join Platoun via :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQh-bX-dbK" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="226" height="36"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Invite friends to join Momunity via :"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Invite friends to join Platoun via :"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-wathsapp" translatesAutoresizingMaskIntoConstraints="NO" id="Brd-Pg-bDD">
-                                                                <rect key="frame" x="82" y="37" width="36" height="36"/>
+                                                                <rect key="frame" x="241" y="0.0" width="36" height="36"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="36" id="Uc2-Ny-mYJ"/>
                                                                     <constraint firstAttribute="height" constant="36" id="hLU-bH-fW1"/>
@@ -98,19 +98,19 @@
                                                 <rect key="frame" x="0.0" y="120" width="344" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ygl-CB-F7v">
-                                                        <rect key="frame" x="-18.5" y="21" width="332.5" height="76"/>
+                                                        <rect key="frame" x="33.5" y="12" width="277" height="36"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Invite friends to join Momunity via :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYL-2P-YDf" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                                <rect key="frame" x="20" y="29" width="241.5" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Invite friends to join Platoun via :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYL-2P-YDf" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="226" height="36"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Invite friends to join Momunity via :"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Invite friends to join Platoun via :"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-messenger" translatesAutoresizingMaskIntoConstraints="NO" id="eCr-HA-yzI">
-                                                                <rect key="frame" x="276.5" y="20" width="36" height="36"/>
+                                                                <rect key="frame" x="241" y="0.0" width="36" height="36"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="36" id="DNU-4f-wWO"/>
                                                                     <constraint firstAttribute="width" constant="36" id="jEW-Yt-r0c"/>
@@ -134,19 +134,19 @@
                                                 <rect key="frame" x="0.0" y="180" width="344" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="9dL-B6-hQr">
-                                                        <rect key="frame" x="-18.5" y="21" width="332.5" height="76"/>
+                                                        <rect key="frame" x="33.5" y="12" width="277" height="36"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Invite friends to join Momunity via :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yha-9k-pzx" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                                <rect key="frame" x="20" y="29" width="241.5" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Invite friends to join Platoun via :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yha-9k-pzx" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="226" height="36"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Invite friends to join Momunity via :"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Invite friends to join Platoun via :"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-email" translatesAutoresizingMaskIntoConstraints="NO" id="noh-1e-av7">
-                                                                <rect key="frame" x="276.5" y="20" width="36" height="36"/>
+                                                                <rect key="frame" x="241" y="0.0" width="36" height="36"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="36" id="cmM-Qo-rWt"/>
                                                                     <constraint firstAttribute="width" constant="36" id="fKO-mf-Sco"/>
@@ -170,19 +170,19 @@
                                                 <rect key="frame" x="0.0" y="240" width="344" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NhM-z9-weK">
-                                                        <rect key="frame" x="-18.5" y="21" width="332.5" height="76"/>
+                                                        <rect key="frame" x="33.5" y="12" width="277" height="36"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Invite friends to join Momunity via :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od5-gT-hU0" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                                <rect key="frame" x="20" y="29" width="241.5" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Invite friends to join Platoun via :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od5-gT-hU0" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="226" height="36"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Invite friends to join Momunity via :"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Invite friends to join Platoun via :"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-sms" translatesAutoresizingMaskIntoConstraints="NO" id="zNG-43-o2b">
-                                                                <rect key="frame" x="276.5" y="20" width="36" height="36"/>
+                                                                <rect key="frame" x="241" y="0.0" width="36" height="36"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="36" id="PGB-8b-zpO"/>
                                                                     <constraint firstAttribute="height" constant="36" id="eDs-FW-u3N"/>
@@ -225,6 +225,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="CZ7-A3-K7t"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.62" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
@@ -233,7 +234,6 @@
                             <constraint firstItem="ajS-vI-cOD" firstAttribute="centerY" secondItem="u1O-HL-RZt" secondAttribute="centerY" id="XvE-cP-Rbj"/>
                             <constraint firstItem="ajS-vI-cOD" firstAttribute="leading" secondItem="CZ7-A3-K7t" secondAttribute="leading" constant="35" id="c3U-r4-p2t"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="CZ7-A3-K7t"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="paU-zC-Bid" appends="YES" id="wM8-tt-AOm"/>
                         </connections>
@@ -275,9 +275,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Platoun" width="512" height="512"/>
         <image name="ic-email" width="43" height="44"/>
         <image name="ic-messenger" width="43" height="44"/>
-        <image name="ic-momunity" width="43" height="44"/>
         <image name="ic-sms" width="43" height="44"/>
         <image name="ic-wathsapp" width="43" height="44"/>
     </resources>

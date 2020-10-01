@@ -17,15 +17,30 @@ fileprivate extension UIImageView {
     }
 }
 
-class Tab1ViewController: UIViewController { 
+protocol ReloadedViewController {
+    func reload()
+}
+
+class Tab1ViewController: UIViewController, ReloadedViewController {
     
     @IBOutlet weak var profilImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var codeButton: UIButton!
+    @IBOutlet weak var groupButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var paramButton: UIButton!
+    @IBOutlet weak var supportButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         titleLabel.text = "Mon compte"
+        
+        codeButton.setTitle("Codes débloqués", for: .normal)
+        groupButton.setTitle("Mes groupes en attentes", for: .normal)
+        likeButton.setTitle("Ma liste de favoris", for: .normal)
+        paramButton.setTitle("Paramètres", for: .normal)
+        supportButton.setTitle("Support", for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,26 +48,28 @@ class Tab1ViewController: UIViewController {
         
         self.profilImageView.round()
         
+        self.loadUserInfo()
+        
+        self.navigationController?.navigationBar.isHidden = true
+        self.initializeBackgroundColor(view: self.view)
+    }
+    
+    func reload() {
+        self.loadUserInfo()
+    }
+    
+    func loadUserInfo() {
         let profilImage = Auth.auth().currentUser?.photoURL
         if let url = profilImage {
             self.profilImageView.setImage(with: url, placeholder: #imageLiteral(resourceName: "ic_social_default_profil"), options: .progressiveLoad)
         } else {
             self.profilImageView.image = #imageLiteral(resourceName: "ic_social_default_profil")
         }
-        
-        self.navigationController?.navigationBar.isHidden = true
-        self.initializeBackgroundColor(view: self.view)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = false
-    }
-    
-    @IBAction func logOutAction(_ sender: Any) {
-        AuthenticationLogout()
-        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
-        
     }
     
     private func initializeBackgroundColor(view: UIView) {
@@ -80,6 +97,27 @@ class Tab1ViewController: UIViewController {
 
 
         view.layer.cornerRadius = 2.04
+    }
+    
+    
+    @IBAction func codeButtonAction(_ sender: Any) {
+        let vc = PromocodesViewController.instance(isForPromocode: true)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func groupButtonAction(_ sender: Any) {
+        let vc = PromocodesViewController.instance(isForPromocode: false)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func likeButtonAction(_ sender: Any) {
+        let vc = ProductsLikedViewController.instance()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func supportButtonAction(_ sender: Any) {
+        guard let url = URL(string: "http://platoun.com/mentions-legales/") else { return }
+        UIApplication.shared.open(url)
     }
     
 }

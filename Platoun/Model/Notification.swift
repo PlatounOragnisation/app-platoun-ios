@@ -40,6 +40,8 @@ struct StatusPlatounNotification: PlatounNotification {
     
     enum Status: String {
         case validated = "VALIDATED"
+        case pending = "PENDING"
+        case failed = "FAILED"
     }
     
     init(_ data: [String:Any], id: String) throws {

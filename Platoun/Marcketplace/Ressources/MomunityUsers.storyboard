@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0wh-B7-QeY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0wh-B7-QeY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +21,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59Y-O8-Bgu">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="294"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="QdW-W9-mvK"/>
+                                        </constraints>
                                         <items>
                                             <navigationItem title="Friends List" id="gOW-kF-rt0" customClass="UINavigationItemLocalized" customModule="Platoun" customModuleProvider="target">
                                                 <barButtonItem key="leftBarButtonItem" image="ic-back" id="fNX-Y4-Fgm">
@@ -35,15 +39,22 @@
                                         </items>
                                     </navigationBar>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5F-Aa-xPS">
-                                        <rect key="frame" x="0.0" y="294" width="414" height="3"/>
+                                        <rect key="frame" x="0.0" y="44" width="414" height="3"/>
                                         <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="3" id="Ydj-dt-VjY"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h6b-dW-58f">
-                                        <rect key="frame" x="0.0" y="297" width="414" height="471"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="foN-xX-Hzq">
+                                        <rect key="frame" x="0.0" y="47" width="414" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="VRT-U5-vWG"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="249" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h6b-dW-58f">
+                                        <rect key="frame" x="0.0" y="103" width="414" height="665"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="80" id="3GS-nY-fmV" customClass="UserCell" customModule="Platoun" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="80"/>
@@ -67,13 +78,13 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHm-Ai-ZYM">
-                                                            <rect key="frame" x="82" y="30" width="230" height="20.5"/>
+                                                            <rect key="frame" x="82" y="30" width="225" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7o-uz-e54" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
-                                                            <rect key="frame" x="328" y="22" width="70" height="36"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7o-uz-e54" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                            <rect key="frame" x="323" y="22" width="75" height="36"/>
                                                             <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="75" id="Mqm-5c-els"/>
@@ -124,7 +135,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aAj-90-lEm">
                                                 <rect key="frame" x="16" y="7.5" width="382" height="35"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ALv-RH-Ulg" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ALv-RH-Ulg" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="183" height="35"/>
                                                         <color key="backgroundColor" red="0.83921568627450982" green="0.83137254901960778" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
@@ -145,7 +156,7 @@
                                                             <action selector="actionDiscard:" destination="0wh-B7-QeY" eventType="touchUpInside" id="gON-DS-aoE"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW9-p8-DgA" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW9-p8-DgA" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                                         <rect key="frame" x="199" y="0.0" width="183" height="35"/>
                                                         <color key="backgroundColor" red="0.31023061280000003" green="0.64189451929999997" blue="0.69020837550000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -169,7 +180,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="aAj-90-lEm" firstAttribute="centerY" secondItem="E92-2k-0tC" secondAttribute="centerY" id="9TQ-L5-uWL"/>
                                             <constraint firstAttribute="trailing" secondItem="aAj-90-lEm" secondAttribute="trailing" constant="16" id="Gwk-tF-uPm"/>
@@ -180,16 +191,17 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9ZM-XC-pEJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RHa-iK-NIU" firstAttribute="bottom" secondItem="9ZM-XC-pEJ" secondAttribute="bottom" id="DcW-ih-YcM"/>
                             <constraint firstItem="RHa-iK-NIU" firstAttribute="top" secondItem="9ZM-XC-pEJ" secondAttribute="top" id="W74-gu-SXT"/>
                             <constraint firstItem="RHa-iK-NIU" firstAttribute="trailing" secondItem="9ZM-XC-pEJ" secondAttribute="trailing" id="lw0-nz-HUc"/>
                             <constraint firstItem="RHa-iK-NIU" firstAttribute="leading" secondItem="9ZM-XC-pEJ" secondAttribute="leading" id="sBb-SM-hAZ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="9ZM-XC-pEJ"/>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="foN-xX-Hzq" id="oye-fH-9vI"/>
                         <outlet property="tableView" destination="h6b-dW-58f" id="FSK-nA-BKY"/>
                     </connections>
                 </viewController>
@@ -198,7 +210,21 @@
             <point key="canvasLocation" x="2159" y="-211"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="ALv-RH-Ulg">
+            <size key="intrinsicContentSize" width="61" height="33"/>
+        </designable>
+        <designable name="pW9-p8-DgA">
+            <size key="intrinsicContentSize" width="46" height="33"/>
+        </designable>
+        <designable name="z7o-uz-e54">
+            <size key="intrinsicContentSize" width="37" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ic-back" width="29" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

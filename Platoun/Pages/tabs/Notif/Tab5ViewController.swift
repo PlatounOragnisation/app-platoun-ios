@@ -86,9 +86,15 @@ extension Tab5ViewController: UITableViewDelegate {
         
         if let statusNotification = notif as? StatusPlatounNotification {
             if statusNotification.status == .validated {
-                let vc = Platoun.getNotificationViewController(currentUserId: userId, notificationSendBy: statusNotification.senderUserId, groupId: statusNotification.groupId)
+                Interactor.shared.showNotif(userId: userId, sendUserId: statusNotification.senderUserId, groupId: statusNotification.groupId) { n in
+                    print(n)
+                }
                 
-                self.present(vc, animated: true)
+                
+//                let vc = SuccessViewController.instance(promocode: <#T##String#>, link: <#T##String#>)
+//                let vc = Platoun.getNotificationViewController(currentUserId: userId, notificationSendBy: statusNotification.senderUserId, groupId: statusNotification.groupId)
+                
+//                self.present(vc, animated: true)
             }
         } else {
             

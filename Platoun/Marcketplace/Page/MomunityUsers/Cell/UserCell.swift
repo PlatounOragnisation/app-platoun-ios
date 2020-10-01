@@ -9,20 +9,20 @@
 import UIKit
 
 protocol UserCellDelegate {
-    func onClicInvite(user: UserMomunity)
+    func onClicInvite(user: PlatounUser)
 }
 
 class UserCell: UITableViewCell {
-    var user: UserMomunity?
+    var user: PlatounUser?
     var delegate: UserCellDelegate?
     
     @IBOutlet weak var userImageView: RoundedImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var inviteButton: BorderedButton!
     
-    func setup(user: UserMomunity, delegate: UserCellDelegate, isSelected: Bool) {
+    func setup(user: PlatounUser, delegate: UserCellDelegate, isSelected: Bool) {
         self.user = user
-        self.titleLabel.text = user.firstName
+        self.titleLabel.text = user.displayName ?? "No name"
         self.delegate = delegate
         
         if isSelected {
@@ -37,11 +37,16 @@ class UserCell: UITableViewCell {
             inviteButton.setTitleColor(UIColor(hex: "#FFFFFF")!, for: .normal)
         }
         
-        
-        
-        self.userImageView.downloaded(from: user.picture)
+        if let value = user.photoUrl, let url = URL(string: value) {
+            self.userImageView.setImage(with: url, placeholder: #imageLiteral(resourceName: "ic_social_default_profil"), options: .progressiveLoad)
+        } else {
+            self.userImageView.image = #imageLiteral(resourceName: "ic_social_default_profil")
+        }
     }
     
+    func cancel() {
+        self.userImageView.sd_cancelCurrentImageLoad()
+    }
     
     @IBAction func onClic(_ sender: Any) {
         guard let user = self.user else { return }

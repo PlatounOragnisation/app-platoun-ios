@@ -24,7 +24,7 @@ fileprivate extension UIButton {
         let shadows = UIView()
         shadows.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
         shadows.clipsToBounds = false
-        self.addSubview(shadows)
+        self.insertSubview(shadows, at: 0)
         
         let emp = UIView()
         emp.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
@@ -32,7 +32,7 @@ fileprivate extension UIButton {
         emp.backgroundColor = ThemeColor.BackgroundPage
         emp.layer.cornerRadius = cornerRadius
         emp.layer.masksToBounds = true
-        self.addSubview(emp)
+        self.insertSubview(emp, at: 1)
 
 
         let shadowPath0 = UIBezierPath(roundedRect: shadows.bounds, cornerRadius: cornerRadius)
@@ -111,6 +111,9 @@ class ChangePasswordViewController: UIViewController {
         self.barIndicatorView.addGestureRecognizer(gesture)
         
         valideButton.customize()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(saveNewPasswordAction))
+        self.valideButton.addGestureRecognizer(tap)
     }
     
     @objc func barIndicatorSwiped() {
@@ -154,8 +157,14 @@ class ChangePasswordViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             case .failure(let error):
-                Crashlytics.crashlytics().record(error: error)
-                UIKitUtils.showAlert(in: self, message: "Une erreur est survenue : \(error.localizedDescription)") {}
+                if (error as NSError).code == AuthErrorCode.wrongPassword.rawValue {
+                    UIKitUtils.showAlert(in: self, message: "Votre mot de passe est incorrect") {}
+                } else if (error as NSError).code == AuthErrorCode.weakPassword.rawValue {
+                    UIKitUtils.showAlert(in: self, message: "Votre mot de passe doit faire 6 caractères minimum.") {}
+                } else {
+                    Crashlytics.crashlytics().record(error: error)
+                    UIKitUtils.showAlert(in: self, message: "Une erreur est survenue : \(error.localizedDescription)") {}
+                }
             }
         })
     }

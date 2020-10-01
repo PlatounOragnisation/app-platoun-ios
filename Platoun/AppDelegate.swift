@@ -17,7 +17,9 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
 import DropDown
+#if DEBUG
 import netfox
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        NFX.sharedInstance().start()
+        #if DEBUG
+            NFX.sharedInstance().start()
+        #endif
         
         FirebaseApp.configure()
         

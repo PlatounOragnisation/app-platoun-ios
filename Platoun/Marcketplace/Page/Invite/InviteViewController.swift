@@ -33,7 +33,7 @@ class InviteViewController: LightViewController {
     var groupId: String!
     
     
-    var text: String = "Hey, the Momunity app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!".localise()
+    var text: String = "Hey, the Platoun app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!".localise()
     
     let moreText = "\n" + "Just download the app for free here :".localise() + "\n" + "App Store".localise() + ": http://bit.ly/momunity \n" + "Google Play".localise() + ": https://play.google.com/store/apps/details?id=com.momunity"
     

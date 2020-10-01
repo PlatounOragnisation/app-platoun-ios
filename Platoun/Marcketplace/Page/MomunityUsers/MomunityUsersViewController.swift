@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseCrashlytics
 
 protocol MomunityUsersViewControllerDelegate {
     func onClose(viewController: MomunityUsersViewController)
@@ -25,28 +26,48 @@ class MomunityUsersViewController: LightViewController {
     
     var productId: String!
     var groupId: String!
-    var users: [UserMomunity] = []
+    var users: [PlatounUser] = []
     
-    var userSelectedIndex: [UserMomunity] = []
+    var userSelectedIndex: [PlatounUser] = []
     
     var delegate: MomunityUsersViewControllerDelegate?
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBAction func onBackPressed(_ sender: Any) {
         self.delegate?.onClose(viewController: self)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.searchBar.delegate = self
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.tableView.refreshControl = UIRefreshControl()
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        Interactor.shared.fetchMomunityUsers(userId: userId) {
-            self.users = $0
+    }
+    
+    func update(_ search: String) {
+        guard search.count >= 3 else {
+            self.users = []
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.tableView.refreshControl?.endRefreshing()
+            }
+            return }
+        self.tableView.refreshControl?.beginRefreshing()
+        FirestoreUtils.getUsers(search: search) { result in
+            switch result {
+            case .success(let listUsers):
+                self.users = listUsers
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
+                }
+            case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
             }
         }
     }
@@ -55,18 +76,18 @@ class MomunityUsersViewController: LightViewController {
         if self.userSelectedIndex.count > 0 {
             let alert = UIAlertController(title: "Be careful !".localise(), message:
                 "You must click on 'Apply' to invite".localise()
-                    + " \(self.userSelectedIndex.map { $0.firstName }.joined(separator: " & ")).", preferredStyle: .alert)
-            
+                    + " \(self.userSelectedIndex.map { $0.displayName ?? "No name" }.joined(separator: " & ")).", preferredStyle: .alert)
+
             let backAction =  UIAlertAction(title: "Keep leaving".localise(), style: .default) { _ in
                 self.delegate?.onClose(viewController: self)
             }
             backAction.setValue(UIColor(hex: "#222222")!, forKey: "titleTextColor")
             alert.addAction(backAction)
-            
+
             
             let action = UIAlertAction(title: "OK".localise(), style: .default, handler: nil)
             action.setValue(UIColor(hex: "#038091")!, forKey: "titleTextColor")
-            
+
             alert.addAction(action)
             self.present(alert, animated: true)
             return
@@ -90,14 +111,16 @@ class MomunityUsersViewController: LightViewController {
         return
     }
     
-    func sendInvitation(users: [UserMomunity], index: Int) {
+    func sendInvitation(users: [PlatounUser], index: Int) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
-        Interactor.shared.sendNotif(userId: userId, inviteUserId: users[index].id, groupId: self.groupId) {
+        Interactor.shared.sendNotif(userId: userId, inviteUserId: users[index].uid, groupId: self.groupId) {
+            guard $0 else {
+                UIKitUtils.showAlert(in: self, message: "Désolé. Une erreur est survenue lors de l'invitation.") {}
+                return
+            }
             if index == users.count - 1 {
-                if $0 {
-                    let vc = InviteSuccessViewController.instance(delegate: self)
-                    self.present(vc, animated: true)
-                }
+                let vc = InviteSuccessViewController.instance(delegate: self)
+                self.present(vc, animated: true)
             } else {
                 self.sendInvitation(users: users, index: index + 1)
             }
@@ -114,10 +137,16 @@ extension MomunityUsersViewController: InviteSuccessViewControllerDelegate {
     }
 }
 
+extension MomunityUsersViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.update(searchText)
+    }
+}
+
 // MARK: - UserCellDelegate
 extension MomunityUsersViewController: UserCellDelegate {
-    func onClicInvite(user: UserMomunity) {
-        if let index = self.userSelectedIndex.firstIndex(of: user) {
+    func onClicInvite(user: PlatounUser) {
+        if let index = self.userSelectedIndex.firstIndex(where: { $0.uid == user.uid }) {
             self.userSelectedIndex.remove(at: index)
         } else if userSelectedIndex.count >= 2 {
             let alert = UIAlertController(title: "Sorry !".localise(), message: "You can only invite one person at a time".localise(), preferredStyle: .alert)
@@ -143,7 +172,7 @@ extension MomunityUsersViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? UserCell else { return UITableViewCell() }
         
         let user = self.users[indexPath.row]
-        let isSelected = self.userSelectedIndex.contains(user)
+        let isSelected = self.userSelectedIndex.contains(where: { $0.uid == user.uid })
         
         cell.setup(user: user, delegate: self, isSelected: isSelected)
         
@@ -155,5 +184,9 @@ extension MomunityUsersViewController: UITableViewDataSource {
 extension MomunityUsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        (cell as? UserCell)?.cancel()
     }
 }

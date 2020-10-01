@@ -29,13 +29,17 @@ fileprivate extension UIView {
 
 class AddImageView: UIView {
     var originalImage: UIImage?
+    var delegate: AddImageViewDelegate?
+    var modified = false
+    
+    @IBInspectable
+    var text: String = "Ajouter une photo"
     
     var image: UIImage? {
         get { self.imageView.image }
         set {
             self.imageView.image = newValue
-            self.imageView.isHidden = self.imageView.image == nil
-            self.emptyImageView.isHidden = self.imageView.image != nil
+            self.checkVisibility()
         }
     }
     
@@ -55,13 +59,18 @@ class AddImageView: UIView {
         self.setup()
     }
     
+    func checkVisibility() {
+        self.imageView.isHidden = self.imageView.image == nil
+        self.emptyImageView.isHidden = self.imageView.image != nil
+    }
+    
     func setup() {
         Bundle.main.loadNibNamed("AddImageView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
-        titleLabel.text = "Ajouter une photo"
+        titleLabel.text = text
         
         self.emptyImageView.isUserInteractionEnabled = true
         self.emptyImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addImage)))
@@ -139,10 +148,16 @@ class AddImageView: UIView {
 
 }
 
+protocol AddImageViewDelegate {
+    func imageWasChanged()
+}
+
 extension AddImageView: CropViewControllerDelegate {
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         cropViewController.dismiss(animated: true)
         self.image = image
+        modified = true
+        self.delegate?.imageWasChanged()
     }
     
 //    func cropViewController(_ cropViewController: TOCropViewController?, didCropToCircularImage image: UIImage?, with cropRect: CGRect, angle: Int) {
