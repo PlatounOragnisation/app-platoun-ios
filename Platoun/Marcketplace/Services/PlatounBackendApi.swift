@@ -36,7 +36,7 @@ enum NewApi {
             switch self {
             case .getUser(let userId):
                 return "\(HttpServices.shared.baseURL)/momunity-users/\(userId)"
-            case .updateToken(let userId, let token):
+            case .updateToken:
                 return "\(HttpServices.shared.baseURL)/platoun-users/token"
 //            case .getUsers:
 //                return "\(HttpServices.shared.baseURL)/platoun-users"
@@ -231,7 +231,7 @@ enum NewApi {
             let headers: HTTPHeaders = HTTPHeaders(
                 ["Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwbGF0b3VuLWlvcyIsImV4cCI6MjIxNzM2MjQwMCwiaWF0IjoxNTg2MjgxMzU5fQ.VWCVZR6vVxh3W93yVDLCdly0GlxahzBe6xOb0jqllEw"])
             
-            var param:[String:Any] = parameters ?? [:]
+            let param:[String:Any] = parameters ?? [:]
 //            param["lgPrefix"] = "lgPrefix".localise()
                         
             var newUrl = url.contains("?") ? url + "&" : url + "?"

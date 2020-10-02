@@ -54,7 +54,6 @@ class JoinViewController: UIViewController {
     @IBAction func signUpAction(_ sender: Any) {
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        let pseudo = pseudoTextFIeld.text ?? ""
         self.signUp(with: .email(email: email, password: password))
     }
     

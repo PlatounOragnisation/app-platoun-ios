@@ -191,8 +191,8 @@ class Tab3ViewController: UIViewController {
 
 extension Tab3ViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        guard let string = textView.text, let textRange = Range(range, in: string) else { return false }
-        let updatedText = string.replacingCharacters(in: textRange, with: text)
+//        guard let string = textView.text, let textRange = Range(range, in: string) else { return false }
+//        let updatedText = string.replacingCharacters(in: textRange, with: text)
         return true
     }
         
