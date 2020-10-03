@@ -13,7 +13,7 @@
 		43978D92FC270A19E7D9BBE5 /* Pods_PlatounTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D3E7F3C28B9AE1B6E4CD15 /* Pods_PlatounTests.framework */; };
 		9A3BEAFCAA4F91297A2FABB9 /* Pods_Platoun_PlatounUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125708D26EA307293C3F011A /* Pods_Platoun_PlatounUITests.framework */; };
 		F018D6C024F977BE00DD0D45 /* Tab1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6BF24F977BE00DD0D45 /* Tab1ViewController.swift */; };
-		F018D6C924F9781C00DD0D45 /* Tab4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C224F9781C00DD0D45 /* Tab4ViewController.swift */; };
+		F018D6C924F9781C00DD0D45 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C224F9781C00DD0D45 /* SocialViewController.swift */; };
 		F018D6CA24F9781C00DD0D45 /* Tab3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C424F9781C00DD0D45 /* Tab3ViewController.swift */; };
 		F018D6CC24F9781C00DD0D45 /* Tab5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C824F9781C00DD0D45 /* Tab5ViewController.swift */; };
 		F018D6CE24F97C4300DD0D45 /* ParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6CD24F97C4300DD0D45 /* ParametersViewController.swift */; };
@@ -191,6 +191,8 @@
 		F0BD4A302516CBA5008092BA /* GradientUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BD4A2F2516CBA5008092BA /* GradientUtils.swift */; };
 		F0C252C0251D4C6100BCB677 /* CommentBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C252BF251D4C6100BCB677 /* CommentBackgroundView.swift */; };
 		F0C252C5251D612B00BCB677 /* CGContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C252C4251D612B00BCB677 /* CGContext+Extension.swift */; };
+		F0D26E3525288973005E1F23 /* RemoteConfigUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D26E3425288973005E1F23 /* RemoteConfigUtils.swift */; };
+		F0D26E3A25288A08005E1F23 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0D26E3925288A08005E1F23 /* RemoteConfigDefaults.plist */; };
 		F0DB421B25179CF600A8B4FA /* DropDownPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */; };
 		F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */; };
 		F0DB422B251828C400A8B4FA /* FilterGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB422A251828C400A8B4FA /* FilterGradientView.swift */; };
@@ -231,7 +233,7 @@
 		93D3E7F3C28B9AE1B6E4CD15 /* Pods_PlatounTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlatounTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7F13EF679DB5D0C2DCC63E /* Pods-Platoun-PlatounUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun-PlatounUITests.release.xcconfig"; path = "Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F018D6BF24F977BE00DD0D45 /* Tab1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab1ViewController.swift; sourceTree = "<group>"; };
-		F018D6C224F9781C00DD0D45 /* Tab4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab4ViewController.swift; sourceTree = "<group>"; };
+		F018D6C224F9781C00DD0D45 /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		F018D6C424F9781C00DD0D45 /* Tab3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab3ViewController.swift; sourceTree = "<group>"; };
 		F018D6C824F9781C00DD0D45 /* Tab5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab5ViewController.swift; sourceTree = "<group>"; };
 		F018D6CD24F97C4300DD0D45 /* ParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersViewController.swift; sourceTree = "<group>"; };
@@ -416,6 +418,8 @@
 		F0BD4A2F2516CBA5008092BA /* GradientUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientUtils.swift; sourceTree = "<group>"; };
 		F0C252BF251D4C6100BCB677 /* CommentBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentBackgroundView.swift; sourceTree = "<group>"; };
 		F0C252C4251D612B00BCB677 /* CGContext+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGContext+Extension.swift"; sourceTree = "<group>"; };
+		F0D26E3425288973005E1F23 /* RemoteConfigUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigUtils.swift; sourceTree = "<group>"; };
+		F0D26E3925288A08005E1F23 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPostView.swift; sourceTree = "<group>"; };
 		F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownPostView.xib; sourceTree = "<group>"; };
 		F0DB422A251828C400A8B4FA /* FilterGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGradientView.swift; sourceTree = "<group>"; };
@@ -509,6 +513,8 @@
 				F04A7DCC2514F90000F99143 /* Encodable+Extension.swift */,
 				F0BD4A2F2516CBA5008092BA /* GradientUtils.swift */,
 				F0C252C4251D612B00BCB677 /* CGContext+Extension.swift */,
+				F0D26E3425288973005E1F23 /* RemoteConfigUtils.swift */,
+				F0D26E3925288A08005E1F23 /* RemoteConfigDefaults.plist */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -530,7 +536,7 @@
 		F018D6C124F9781C00DD0D45 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				F018D6C224F9781C00DD0D45 /* Tab4ViewController.swift */,
+				F018D6C224F9781C00DD0D45 /* SocialViewController.swift */,
 				F0A11F1925054383007C29F3 /* PostTableViewCell.swift */,
 				F0BD49D425150547008092BA /* CommentsViewController.swift */,
 				F0DB422A251828C400A8B4FA /* FilterGradientView.swift */,
@@ -1272,6 +1278,7 @@
 				F0AA8D602514162B00EA2FBD /* CategoryFilter.storyboard in Resources */,
 				F0AA8D5B2514162B00EA2FBD /* Drawer.storyboard in Resources */,
 				F0AA8D682514162B00EA2FBD /* InviteSuccess.storyboard in Resources */,
+				F0D26E3A25288A08005E1F23 /* RemoteConfigDefaults.plist in Resources */,
 				F054D6A825252EB20053ABA7 /* GoogleService-Info.plist in Resources */,
 				F0AA8D662514162B00EA2FBD /* Invite.storyboard in Resources */,
 				F0AA8D6A2514162B00EA2FBD /* MarketplaceCategoryView.xib in Resources */,
@@ -1598,11 +1605,12 @@
 				F0AA8D6F2514162B00EA2FBD /* Interactor.swift in Sources */,
 				F0AA8D4B2514162B00EA2FBD /* RoundedImageView.swift in Sources */,
 				F0BD4A302516CBA5008092BA /* GradientUtils.swift in Sources */,
-				F018D6C924F9781C00DD0D45 /* Tab4ViewController.swift in Sources */,
+				F018D6C924F9781C00DD0D45 /* SocialViewController.swift in Sources */,
 				F0AA8D702514162B00EA2FBD /* HttpServices.swift in Sources */,
 				F07A1F8A2500811B002AAEDD /* Authentication.swift in Sources */,
 				F0AA8D412514162B00EA2FBD /* WebPromoStatus.swift in Sources */,
 				F038B7AF251E55CF00DA0719 /* ForgotPasswordViewController.swift in Sources */,
+				F0D26E3525288973005E1F23 /* RemoteConfigUtils.swift in Sources */,
 				F0AA8D232514162B00EA2FBD /* CongratulationViewController.swift in Sources */,
 				F0AA8D292514162B00EA2FBD /* UIColor+Extension.swift in Sources */,
 				F0AA8D322514162B00EA2FBD /* UITableView+Extension.swift in Sources */,
@@ -1814,7 +1822,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = H93HXZ7B6R;
+				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Platoun/Framework/Firebase/FirebaseAnalytics",
@@ -1841,7 +1849,7 @@
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = H93HXZ7B6R;
+				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Platoun/Framework/Firebase/FirebaseAnalytics",

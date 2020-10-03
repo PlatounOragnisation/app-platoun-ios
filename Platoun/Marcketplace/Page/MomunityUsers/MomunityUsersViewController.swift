@@ -53,7 +53,7 @@ class MomunityUsersViewController: LightViewController {
     }
     
     func update(_ search: String) {
-        guard search.count >= 3 else {
+        guard search.count >= 4 else {
             self.users = []
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -187,6 +187,10 @@ extension MomunityUsersViewController: InviteSuccessViewControllerDelegate {
 extension MomunityUsersViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.update(searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 

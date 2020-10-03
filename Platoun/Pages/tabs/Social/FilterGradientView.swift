@@ -8,27 +8,51 @@
 
 import UIKit
 
-class FilterGradientView: UIView, IDrawRoundView, IDrawShadowView {
+class FilterGradientView: UIView, IDrawRoundView, IDrawShadowView, IDrawGradientView {
+    var startColor: UIColor = .white
+    var endColor: UIColor = .white
+    var startPointX: CGFloat = -1
+    var startPointY: CGFloat = 0
+    var endPointX: CGFloat = 0
+    var endPointY: CGFloat = -1
+    
     var roundBackgroundColor: UIColor? = ThemeColor.White
-    @IBInspectable var cornerRadius: CGFloat = 0
+    var cornerRadius: CGFloat = 12
+    
+    var shadowColor: UIColor = ThemeColor.Black
+    var shadowColorAlpha: CGFloat = 10
+    var shadowBlur: CGFloat = 4
+    var shadowOffsetWidth: CGFloat = 0
+    var shadowOffsetHeight: CGFloat = 0
     
     
-    @IBInspectable var shadowColor: UIColor = ThemeColor.Black
-    @IBInspectable var shadowColorAlpha: CGFloat = 100
-    @IBInspectable var shadowBlur: CGFloat = 0
-    @IBInspectable var shadowOffsetWidth: CGFloat = 0
-    @IBInspectable var shadowOffsetHeight: CGFloat = 0
+    private(set) var isSelected: Bool = false
+    weak var labelConnected: UILabel?
     
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         let context = UIGraphicsGetCurrentContext()!
         self.drawRound(rect: rect, context: context)
+        self.drawGradient(context: context)
     }
     
     override func draw(_ layer: CALayer, in ctx: CGContext) {
         super.draw(layer, in: ctx)
-        self.drawShadow(layer)
+        if !isSelected {
+            self.drawShadow(layer)
+        }
+    }
+    
+    func set(isSelected: Bool) {
+        guard isSelected != self.isSelected else { return }
+        self.isSelected = isSelected
+        startColor = isSelected ? ThemeColor.BackgroundGradient2 : ThemeColor.White
+        endColor = isSelected ? ThemeColor.BackgroundGradient1 : ThemeColor.White
+        
+        self.labelConnected?.textColor = isSelected ? ThemeColor.White : ThemeColor.Black
+
+        self.setNeedsDisplay()
     }
     
 //    override func layoutSubviews() {

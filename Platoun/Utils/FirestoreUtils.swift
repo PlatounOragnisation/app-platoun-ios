@@ -307,24 +307,15 @@ class FirestoreUtils: NSObject {
                 errorPointer?.pointee = fetchError
                 return nil
             }
-            
-            guard let post = try? sfDocument.data(as: Post.self) else {
-                let error = NSError(
-                    domain: "AppErrorDomain",
-                    code: -1,
-                    userInfo: [
-                        NSLocalizedDescriptionKey: "Unable to parse post from snapshot \(sfDocument)"
-                    ]
-                )
-                errorPointer?.pointee = error
-                return nil
-            }
-            
-            let encoder = Firestore.Encoder()
-            if let index = post.votes.first(where: { $0.userId == userUid }), let obj = try? encoder.encode(index) {
-                transaction.updateData(["votes": FieldValue.arrayRemove([obj])], forDocument: sfReference)
-            } else if let obj = try? encoder.encode(Post.Vote(userId: userUid, votedAt: Date())){
-                transaction.updateData(["votes": FieldValue.arrayUnion([obj])], forDocument: sfReference)
+            let votes = sfDocument.data()?["votes"] as? [[String: Any]]
+            if let elem = votes?.first(where: { ($0["userId"] as? String) == userUid }) {
+                transaction.updateData(["votes": FieldValue.arrayRemove([elem])], forDocument: sfReference)
+            } else {
+                let vote: [String:Any] = [
+                    "userId": userUid,
+                    "votedAt": Timestamp(date: Date())
+                ]
+                transaction.updateData(["votes": FieldValue.arrayUnion([vote])], forDocument: sfReference)
             }
             return nil
         }) { (object, error) in
@@ -357,6 +348,17 @@ class FirestoreUtils: NSObject {
         return db.collection("users").document(userId).collection("notifications")
             .whereField("dateTimeCreation", isGreaterThan: end)
             .order(by: "dateTimeCreation", descending: true)
+    }
+    
+    static func getNotificationsUnReadQuery(userId: String) -> Query {
+        let db = Firestore.firestore()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: Date())
+        let start = calendar.date(from: components)!
+        let end = calendar.date(byAdding: .day, value: -3, to: start)!
+        return db.collection("users").document(userId).collection("notifications")
+            .whereField("dateTimeCreation", isGreaterThan: end)
+            .whereField("isRead", isEqualTo: false)
     }
     //    static func getCommentsQuery(postId: String) -> Query {
     //        let db = Firestore.firestore()

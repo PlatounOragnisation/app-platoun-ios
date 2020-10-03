@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseCrashlytics
 
 class TabViewController: UITabBarController {
     let loginSegue = "displayAuth"
@@ -20,6 +21,31 @@ class TabViewController: UITabBarController {
         vc.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_tab_marketplace"), selectedImage: UIImage(named: "ic_tab_marketplace_original"))
         vc.tabBarItem.titlePositionAdjustment = .zero
         self.viewControllers?[1] = vc
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard let user = user else { return }
+            
+            FirestoreUtils.getNotificationsUnReadQuery(userId: user.uid).addSnapshotListener { (snap, error) in
+                guard error == nil else { Crashlytics.crashlytics().record(error: error!); return }
+                
+                let count = snap?.count ?? 0
+                
+                if count > 0 {
+                    self.viewControllers?.last?.tabBarItem.image = #imageLiteral(resourceName: "ic_tab_notif_unselect_dot")
+                    self.viewControllers?.last?.tabBarItem.selectedImage = #imageLiteral(resourceName: "ic_tab_notif_selected_dot")
+                } else {
+                    self.viewControllers?.last?.tabBarItem.image = #imageLiteral(resourceName: "ic_tab_notif_unselect")
+                    self.viewControllers?.last?.tabBarItem.selectedImage = #imageLiteral(resourceName: "ic_tab_notif_selected")
+                }
+                
+            }
+
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

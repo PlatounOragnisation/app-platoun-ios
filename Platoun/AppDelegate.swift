@@ -11,6 +11,7 @@ import FirebaseCore
 import FirebaseInstanceID
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseCrashlytics
 import UserNotifications
 import FirebaseMessaging
 import FBSDKCoreKit
@@ -33,6 +34,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         FirebaseApp.configure()
+        
+        
+        RemoteConfigUtils.shared.fetch { (status, error) in
+            switch status {
+            case .success:
+                print("Config fetched!")
+                RemoteConfigUtils.shared.activate() { (changed, error) in
+                    if error != nil {
+                        Crashlytics.crashlytics().record(error: error!)
+                    }
+                }
+            default:
+                if error != nil {
+                    Crashlytics.crashlytics().record(error: error!)
+                }
+            }
+        }
         
         Messaging.messaging().delegate = self
         

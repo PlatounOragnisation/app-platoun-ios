@@ -228,8 +228,9 @@ enum NewApi {
                 return
             }
             
+            let token = RemoteConfigUtils.getBackendToken()
             let headers: HTTPHeaders = HTTPHeaders(
-                ["Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwbGF0b3VuLWlvcyIsImV4cCI6MjIxNzM2MjQwMCwiaWF0IjoxNTg2MjgxMzU5fQ.VWCVZR6vVxh3W93yVDLCdly0GlxahzBe6xOb0jqllEw"])
+                ["Authorization" : "Bearer \(token)"])
             
             let param:[String:Any] = parameters ?? [:]
 //            param["lgPrefix"] = "lgPrefix".localise()
