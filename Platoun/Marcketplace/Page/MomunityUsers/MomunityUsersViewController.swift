@@ -148,7 +148,7 @@ class MomunityUsersViewController: LightViewController {
         
         let notif = InvitPlatournNotification(
             id: UUID().uuidString,
-            title: "L’offre expire bientôt.",
+            title: "L'invitation expire bientôt.",
             message: message,
             senderUserId: user.uid,
             senderName: user.displayName,

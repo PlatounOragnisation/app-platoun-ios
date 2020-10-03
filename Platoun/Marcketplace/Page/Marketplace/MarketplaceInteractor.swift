@@ -15,7 +15,8 @@ class MarketplaceInteractor {
     }
     
     func fetchData(_ completion: @escaping ([ProductSummary])->Void) {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
+//        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let userId = Auth.auth().currentUser?.uid ?? "JohnDoe"
         Interactor.shared.fetchProducts(userId: userId, completion)
     }
 }

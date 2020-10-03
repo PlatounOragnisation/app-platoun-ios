@@ -339,30 +339,16 @@ class FirestoreUtils: NSObject {
         return query.order(by: "createAt", descending: true)
     }
     
-    static func getNotificationsQuery(userId: String) -> Query {
-        let db = Firestore.firestore()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: Date())
-        let start = calendar.date(from: components)!
-        let end = calendar.date(byAdding: .day, value: -3, to: start)!
-        return db.collection("users").document(userId).collection("notifications")
-            .whereField("dateTimeCreation", isGreaterThan: end)
+    static func getNotificationsOrderedQuery(userId: String) -> Query {
+        return Firestore.firestore()
+            .collection("users").document(userId)
+            .collection("notifications")
             .order(by: "dateTimeCreation", descending: true)
     }
     
-    static func getNotificationsUnReadQuery(userId: String) -> Query {
-        let db = Firestore.firestore()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: Date())
-        let start = calendar.date(from: components)!
-        let end = calendar.date(byAdding: .day, value: -3, to: start)!
-        return db.collection("users").document(userId).collection("notifications")
-            .whereField("dateTimeCreation", isGreaterThan: end)
-            .whereField("isRead", isEqualTo: false)
+    static func getNotificationsQuery(userId: String) -> Query {
+        return Firestore.firestore()
+            .collection("users").document(userId)
+            .collection("notifications")
     }
-    //    static func getCommentsQuery(postId: String) -> Query {
-    //        let db = Firestore.firestore()
-    //
-    //        return db.collection("posts").document(postId)..order(by: "createAt", descending: true)
-    //    }
 }

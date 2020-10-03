@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Gd-hU-g1P">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Gd-hU-g1P">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,7 +40,7 @@ Click on the code below :</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Your group has been validated !..n..Click on the code below :"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCc-mo-8jB" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCc-mo-8jB" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                 <rect key="frame" x="127" y="164.5" width="160" height="36"/>
                                 <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -72,7 +73,7 @@ Click on the code below :</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="or simply"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHQ-oc-fl0" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHQ-oc-fl0" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                 <rect key="frame" x="127" y="228.5" width="160" height="36"/>
                                 <color key="backgroundColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -80,7 +81,7 @@ Click on the code below :</string>
                                     <constraint firstAttribute="width" constant="160" id="gR6-4U-k8F"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
-                                <state key="normal" title="Continue shopping">
+                                <state key="normal" title="Back to App">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -91,14 +92,15 @@ Click on the code below :</string>
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Continue shopping"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Back to App"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backToShoppingTap:" destination="2Gd-hU-g1P" eventType="touchUpInside" id="5ol-IH-FXX"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6kX-xW-Biy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SoM-Dt-xG1" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="1E6-XG-q3x"/>
                             <constraint firstAttribute="bottom" secondItem="MLf-5M-tPy" secondAttribute="bottom" id="2mv-qv-Q4q"/>
@@ -115,7 +117,6 @@ Click on the code below :</string>
                             <constraint firstItem="SoM-Dt-xG1" firstAttribute="top" secondItem="obA-Xn-9b6" secondAttribute="top" constant="60" id="whb-kz-8vu"/>
                             <constraint firstItem="jCc-mo-8jB" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="zWR-qe-ZIP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6kX-xW-Biy"/>
                     </view>
                     <connections>
                         <outlet property="promocodeButton" destination="jCc-mo-8jB" id="8Mm-Aw-CyQ"/>
@@ -126,7 +127,18 @@ Click on the code below :</string>
             <point key="canvasLocation" x="1066" y="1236"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="iHQ-oc-fl0">
+            <size key="intrinsicContentSize" width="81" height="29"/>
+        </designable>
+        <designable name="jCc-mo-8jB">
+            <size key="intrinsicContentSize" width="101" height="29"/>
+        </designable>
+    </designables>
     <resources>
         <image name="img-success" width="375" height="812"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

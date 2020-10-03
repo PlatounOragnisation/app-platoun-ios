@@ -14,7 +14,7 @@
 		9A3BEAFCAA4F91297A2FABB9 /* Pods_Platoun_PlatounUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125708D26EA307293C3F011A /* Pods_Platoun_PlatounUITests.framework */; };
 		F018D6C024F977BE00DD0D45 /* Tab1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6BF24F977BE00DD0D45 /* Tab1ViewController.swift */; };
 		F018D6C924F9781C00DD0D45 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C224F9781C00DD0D45 /* SocialViewController.swift */; };
-		F018D6CA24F9781C00DD0D45 /* Tab3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C424F9781C00DD0D45 /* Tab3ViewController.swift */; };
+		F018D6CA24F9781C00DD0D45 /* ContributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C424F9781C00DD0D45 /* ContributeViewController.swift */; };
 		F018D6CC24F9781C00DD0D45 /* Tab5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6C824F9781C00DD0D45 /* Tab5ViewController.swift */; };
 		F018D6CE24F97C4300DD0D45 /* ParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6CD24F97C4300DD0D45 /* ParametersViewController.swift */; };
 		F018D6D024F98C9C00DD0D45 /* UserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018D6CF24F98C9C00DD0D45 /* UserDefaultsUtils.swift */; };
@@ -234,7 +234,7 @@
 		CC7F13EF679DB5D0C2DCC63E /* Pods-Platoun-PlatounUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun-PlatounUITests.release.xcconfig"; path = "Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F018D6BF24F977BE00DD0D45 /* Tab1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab1ViewController.swift; sourceTree = "<group>"; };
 		F018D6C224F9781C00DD0D45 /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
-		F018D6C424F9781C00DD0D45 /* Tab3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab3ViewController.swift; sourceTree = "<group>"; };
+		F018D6C424F9781C00DD0D45 /* ContributeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeViewController.swift; sourceTree = "<group>"; };
 		F018D6C824F9781C00DD0D45 /* Tab5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab5ViewController.swift; sourceTree = "<group>"; };
 		F018D6CD24F97C4300DD0D45 /* ParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersViewController.swift; sourceTree = "<group>"; };
 		F018D6CF24F98C9C00DD0D45 /* UserDefaultsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtils.swift; sourceTree = "<group>"; };
@@ -550,7 +550,7 @@
 		F018D6C324F9781C00DD0D45 /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				F018D6C424F9781C00DD0D45 /* Tab3ViewController.swift */,
+				F018D6C424F9781C00DD0D45 /* ContributeViewController.swift */,
 				F089C0F625177C5400C56984 /* AddImageView.xib */,
 				F089C0E9251768B100C56984 /* AddImageView.swift */,
 				F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */,
@@ -1538,7 +1538,7 @@
 				F0AA8D0D2514162A00EA2FBD /* CategoryViewController.swift in Sources */,
 				F01BFB70251D382200C6E0FB /* CommentTableViewCell.swift in Sources */,
 				F0AA8D352514162B00EA2FBD /* ProductSummary.swift in Sources */,
-				F018D6CA24F9781C00DD0D45 /* Tab3ViewController.swift in Sources */,
+				F018D6CA24F9781C00DD0D45 /* ContributeViewController.swift in Sources */,
 				F0AA8D3D2514162B00EA2FBD /* WebJoin.swift in Sources */,
 				F01C6CA824F31B140016ADE2 /* AppDelegate.swift in Sources */,
 				F0AA8D222514162B00EA2FBD /* InviteViewController.swift in Sources */,
@@ -1820,7 +1820,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1848,7 +1848,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

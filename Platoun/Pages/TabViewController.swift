@@ -9,6 +9,11 @@
 import UIKit
 import FirebaseAuth
 import FirebaseCrashlytics
+import FirebaseFirestore
+
+enum QueryError: Error {
+    case noSnapshot
+}
 
 class TabViewController: UITabBarController {
     let loginSegue = "displayAuth"
@@ -16,11 +21,11 @@ class TabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        self.selectedIndex = 0
         let vc = UINavigationController(rootViewController: MarketplaceViewController.instance())
         vc.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_tab_marketplace"), selectedImage: UIImage(named: "ic_tab_marketplace_original"))
         vc.tabBarItem.titlePositionAdjustment = .zero
         self.viewControllers?[1] = vc
+        self.selectedIndex = 1
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,12 +34,34 @@ class TabViewController: UITabBarController {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             guard let user = user else { return }
             
-            FirestoreUtils.getNotificationsUnReadQuery(userId: user.uid).addSnapshotListener { (snap, error) in
-                guard error == nil else { Crashlytics.crashlytics().record(error: error!); return }
+            FirestoreUtils.getNotificationsQuery(userId: user.uid).addSnapshotListener { (snaps, error) in
+                guard let snaps = snaps, error == nil else { Crashlytics.crashlytics().record(error: error ?? QueryError.noSnapshot); return }
                 
-                let count = snap?.count ?? 0
+                let calendar = Calendar.current
+                let components = calendar.dateComponents([.year, .month, .day], from: Date())
+                let start = calendar.date(from: components)!
+                let end = calendar.date(byAdding: .day, value: -3, to: start)!
+
                 
-                if count > 0 {
+                var pastNotif: [QueryDocumentSnapshot] = []
+                var unReadNotif: [QueryDocumentSnapshot] = []
+                
+                for doc in snaps.documents {
+                    guard let timestamp = doc.data()["dateTimeCreation"] as? Timestamp else { continue }
+                    
+                    if timestamp.dateValue() < end {
+                        pastNotif.append(doc)
+                    } else {
+                        let isRead = (doc.data()["isRead"] as? Bool) ?? false
+                        
+                        if !isRead {
+                            unReadNotif.append(doc)
+                        }
+                    }
+                }
+                self.removeNotif(snaps: pastNotif)
+                
+                if unReadNotif.count > 0 {
                     self.viewControllers?.last?.tabBarItem.image = #imageLiteral(resourceName: "ic_tab_notif_unselect_dot")
                     self.viewControllers?.last?.tabBarItem.selectedImage = #imageLiteral(resourceName: "ic_tab_notif_selected_dot")
                 } else {
@@ -46,6 +73,12 @@ class TabViewController: UITabBarController {
 
         }
         
+    }
+    
+    func removeNotif(snaps: [QueryDocumentSnapshot]) {
+        snaps.forEach { snap in
+            snap.reference.delete()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

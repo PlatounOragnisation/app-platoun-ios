@@ -55,22 +55,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "246976B0-9241-46D3-B159-4B45C39F413E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Platoun/Utils/FirestoreUtils.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
-            landmarkName = "FirestoreUtils"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "47D6C9F5-DED3-4AF8-93F2-0E1CF57DC709"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -142,8 +126,8 @@
             filePath = "Platoun/Pages/tabs/Notif/Tab5ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "deleteRow(indexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -162,54 +146,6 @@
             endingLineNumber = "368"
             landmarkName = "fetchGroupStatus(userId:_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "15AD56D1-EDF2-4AF3-BB46-5383705092A7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Platoun/Pages/tabs/Notif/Tab5ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "15AD56D1-EDF2-4AF3-BB46-5383705092A7 - 3013309cbccf6018"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;Platoun.PromocodeCell.Object&gt;) -&gt; () in Platoun.Tab5ViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Platoun"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/naivalf/Git/auto-entrepreneur/platoun/app-platoun-ios/Platoun/Pages/tabs/Notif/Tab5ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "244">
-               </Location>
-               <Location
-                  uuid = "15AD56D1-EDF2-4AF3-BB46-5383705092A7 - 6150813455345f62"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Platoun.PromocodeCell.Object) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;Platoun.PromocodeCell.Object&gt;) -&gt; () in Platoun.Tab5ViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Platoun"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/naivalf/Git/auto-entrepreneur/platoun/app-platoun-ios/Platoun/Pages/tabs/Notif/Tab5ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

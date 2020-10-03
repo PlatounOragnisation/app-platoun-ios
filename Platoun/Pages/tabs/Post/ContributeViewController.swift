@@ -1,5 +1,5 @@
 //
-//  Tab3ViewController.swift
+//  ContributeViewController.swift
 //  Platoun
 //
 //  Created by Flavian Mary on 28/08/2020.
@@ -10,10 +10,10 @@ import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 
-class Tab3ViewController: UIViewController {
+class ContributeViewController: UIViewController {
     
-    static func getInstance() -> Tab3ViewController {
-        return UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Tab3ViewController") as! Tab3ViewController
+    static func getInstance() -> ContributeViewController {
+        return UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ContributeViewController") as! ContributeViewController
     }
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -27,6 +27,7 @@ class Tab3ViewController: UIViewController {
     @IBOutlet weak var placeholderLabel: UILabel!
     
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var shareLoading: UIActivityIndicatorView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     
@@ -38,8 +39,9 @@ class Tab3ViewController: UIViewController {
             name: UIResponder.keyboardWillChangeFrameNotification,
             object: nil)
         
+        self.shareLoading.isHidden = true
         self.titleLabel.text = "Contribuer"
-        self.placeholderLabel.text = "Entrer votre text"
+        self.placeholderLabel.text = "Entrer votre texte"
         self.shareButton.setTitle("Partager", for: .normal)
         self.titleLabel.applyGradientWith(startColor: ThemeColor.BackgroundGradient1, endColor: ThemeColor.BackgroundGradient2)
         
@@ -108,7 +110,7 @@ class Tab3ViewController: UIViewController {
     @IBAction func shareButtonAction(_ sender: Any) {
         guard Auth.auth().currentUser != nil else { return }
         guard let text = textTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else {
-            UIKitUtils.showAlert(in: self, message: "Le Text ne peut pas être vide", completion: {}); return
+            UIKitUtils.showAlert(in: self, message: "Le Texte ne peut pas être vide", completion: {}); return
         }
         
         
@@ -120,6 +122,8 @@ class Tab3ViewController: UIViewController {
     }
     
     func publishPost(text: String) {
+        self.shareLoading.startAnimating()
+        self.shareButton.isHidden = true
         let user = Auth.auth().currentUser!
         let date = Date()
         let postId = "\(user.uid)-\(date.timeIntervalSince1970)"
@@ -145,13 +149,16 @@ class Tab3ViewController: UIViewController {
             FirestoreUtils.savePost(post: post) { result in
                 switch result {
                 case .success():
-                    UIKitUtils.showAlert(in: self, message: "Votre post à été publié") {
+                    UIKitUtils.showAlert(in: self, message: "Votre post a été publié") {
                         self.tabBarController?.selectedIndex = 3
-                        self.tabBarController?.viewControllers?[2] = Tab3ViewController.getInstance()
+                        self.tabBarController?.viewControllers?[2] = ContributeViewController.getInstance()
                     }
                 case .failure(let error):
                     StorageUtils.deleteImageFor(userId: user.uid, postId: postId, numberOfImages: urls.count)
-                    UIKitUtils.showAlert(in: self, message: "Une erreur est survenue: \(error.localizedDescription)"){}
+                    UIKitUtils.showAlert(in: self, message: "Une erreur est survenue: \(error.localizedDescription)"){
+                        self.shareLoading.stopAnimating()
+                        self.shareButton.isHidden = false
+                    }
                 }
             }
         }
@@ -189,10 +196,19 @@ class Tab3ViewController: UIViewController {
     }
 }
 
-extension Tab3ViewController: UITextViewDelegate {
+extension ContributeViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        guard let string = textView.text, let textRange = Range(range, in: string) else { return false }
-//        let updatedText = string.replacingCharacters(in: textRange, with: text)
+        guard let string = textView.text, let textRange = Range(range, in: string) else { return false }
+        let updatedText = string.replacingCharacters(in: textRange, with: text)
+        if updatedText.last == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        if updatedText.contains("\n") {
+            let te = updatedText.replacingOccurrences(of: "\n", with: "")
+            textView.text = te
+            return false
+        }
         return true
     }
         
@@ -210,7 +226,7 @@ extension Tab3ViewController: UITextViewDelegate {
     }
 }
 
-extension Tab3ViewController {
+extension ContributeViewController {
     @objc func keyboardNotification(notification: NSNotification) {
             if let userInfo = notification.userInfo {
                 let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue

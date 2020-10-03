@@ -27,7 +27,7 @@ func productLike(_ productId: String) -> LikeButton.State {
     }
 }
 
-class MarketplaceViewController: LightViewController, ContainerLikedProduct {
+class MarketplaceViewController: LightViewController, ContainerLikedProduct, ReloadedViewController {
     
     func updateLike() {
         self.setupStackView()

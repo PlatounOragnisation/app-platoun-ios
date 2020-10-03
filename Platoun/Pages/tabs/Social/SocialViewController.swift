@@ -18,10 +18,8 @@ class SocialViewController: UIViewController {
     @IBOutlet weak var filterAll: FilterGradientView!
     @IBOutlet weak var labelAll: UILabel!
     @IBOutlet weak var filterSugestion: FilterGradientView!
-    @IBOutlet weak var dotSugestion: UIView!
     @IBOutlet weak var labelSugestion: UILabel!
     @IBOutlet weak var filterQuestion: FilterGradientView!
-    @IBOutlet weak var dotQuestion: UIView!
     @IBOutlet weak var labelQuestion: UILabel!
     
     var dataSource: FUIFirestoreTableViewDataSource?
@@ -29,8 +27,8 @@ class SocialViewController: UIViewController {
     var posts: [Post] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        sentenceTitleLabel.text = "Help us find  the next Product/Brand you want on the app"
-        labelAll.text = "All"
+        sentenceTitleLabel.text = "Help us find the next Product/Brand you want on the app"
+        labelAll.text = "Tout voir"
         filterAll.labelConnected = labelAll
         labelSugestion.text = "Suggestions"
         filterSugestion.labelConnected = labelSugestion
@@ -64,19 +62,6 @@ class SocialViewController: UIViewController {
         self.filterAll.set(isSelected: true)
         self.filterQuestion.set(isSelected: false)
         self.filterSugestion.set(isSelected: false)
-        
-//        self.filterAll.applyGradient(colours: [ThemeColor.BackgroundGradient2, ThemeColor.BackgroundGradient1])
-//        self.filterAll.layer.cornerRadius = 12
-//        self.filterAll.layer.masksToBounds = true
-        
-        self.dotSugestion.applyGradient(colours: [ThemeColor.Suggestion2, ThemeColor.Suggestion1])
-        self.dotSugestion.layer.cornerRadius = 5
-        self.dotSugestion.layer.masksToBounds = true
-        
-        self.dotQuestion.applyGradient(colours: [ThemeColor.Question2, ThemeColor.Question1])
-        self.dotQuestion.layer.cornerRadius = 5
-        self.dotQuestion.layer.masksToBounds = true
-        
         
     }
     
@@ -175,7 +160,7 @@ extension SocialViewController: QuestionTableViewCellDelegate {
                 FirestoreUtils.saveReport(post: post, userUid: currentUser.uid) { result in
                     switch result {
                     case .success():
-                        UIKitUtils.showAlert(in: self, message: "Le signalement à été envoyé") {}
+                        UIKitUtils.showAlert(in: self, message: "Le signalement a été envoyé") {}
                     case .failure(_):
                         UIKitUtils.showAlert(in: self, message: "Une erreur est survenue merci de réessayer ultérieurement") {}
                     }

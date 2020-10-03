@@ -37,6 +37,8 @@
 	<string>309595306813712</string>
 	<key>FacebookDisplayName</key>
 	<string>Platoun</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -54,13 +56,11 @@
 		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
-        <string>fb-messenger</string>
-        <string>whatsapp</string>
+		<string>fb-messenger</string>
+		<string>whatsapp</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>ITSAppUsesNonExemptEncryption</key>
-    <false/>
 	<key>NSCameraUsageDescription</key>
 	<string>This app requires access to the camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

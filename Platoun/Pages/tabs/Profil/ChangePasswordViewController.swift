@@ -146,7 +146,7 @@ class ChangePasswordViewController: UIViewController {
             if newPassword.isEmpty {
                 UIKitUtils.showAlert(in: self, message: "Le nouveau mot de passe ne peut pas être vide.") {}
             } else {
-                UIKitUtils.showAlert(in: self, message: "Les deux nouveau mot de passe ne sont pas identique") {}
+                UIKitUtils.showAlert(in: self, message: "Les deux nouveaux mot de passe ne sont pas identiques") {}
             }
             return
         }

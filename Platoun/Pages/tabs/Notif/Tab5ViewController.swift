@@ -15,15 +15,17 @@ import FirebaseUI
 class Tab5ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var headerLabel: UILabel!
     
     var dataSource: EditableFirestoreTableViewDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerLabel.text = "Des notifications vous attendent !"
         guard let currentUser = Auth.auth().currentUser else { return }
         self.tableView.delegate = self
         
-        let query = FirestoreUtils.getNotificationsQuery(userId: currentUser.uid)
+        let query = FirestoreUtils.getNotificationsOrderedQuery(userId: currentUser.uid)
         
         dataSource = EditableFirestoreTableViewDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
             

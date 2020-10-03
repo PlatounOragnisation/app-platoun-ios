@@ -20,6 +20,7 @@ class GradientNavigationItem: UINavigationItem {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = self.title
+        label.frame.size.height = 30
         label.font = UIFont(name: "Roboto-Bold", size: 20)
         return label
     }()
