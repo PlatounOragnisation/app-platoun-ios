@@ -12,7 +12,6 @@ protocol CheckableItemViewAction {
     func toogle(view: CheckableItemView)
 }
 
-@IBDesignable
 class CheckableItemView: UIView {
     var delegate: CheckableItemViewAction?
     

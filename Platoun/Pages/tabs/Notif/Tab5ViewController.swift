@@ -79,29 +79,45 @@ extension Tab5ViewController: EditableFirestoreTableViewDataSourceDelegate {
 
 extension Tab5ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard
-            let userId = Auth.auth().currentUser?.uid,
-            let snap = self.dataSource?.snapshot(at: indexPath.row),
-            let data = snap.data(),
-            let notif = try? notificationParse(data, id: snap.documentID)
-            else { return }
-        
-        if let statusNotification = notif as? StatusPlatounNotification {
-            if statusNotification.status == .validated {
-                Interactor.shared.fetchPromocodes(userId: userId) { (list) in
-                    guard let promocode = list.first(where: { $0.groupId == statusNotification.groupId }) else {
-                        UIKitUtils.showAlert(in: self, message: "Le code promo a expiré.", completion: {})
-                        return }
-                    
-                    let vc = SuccessViewController.instance(promocode: promocode.promoCodeValue, link: promocode.link)
-                    self.present(vc, animated: true)
-                }
-            }
-        } else if let invitNotification = notif as? InvitPlatournNotification {
-            let vc = Platoun.getNotificationViewController(currentUserId: userId, notificationSendBy: invitNotification.senderUserId, groupId: invitNotification.groupId)
-            self.present(vc, animated: true)
-        } else {
-            
+        guard let snap = self.dataSource?.snapshot(at: indexPath.row) else { return }
+        actionNotifSnap(snap: snap, from: self)
+    }
+}
+
+func actionNotif(notifId: String, from viewController: UIViewController) {
+    guard let userId = Auth.auth().currentUser?.uid else { return }
+    FirestoreUtils.Notifications.getNotification(userId: userId, notifId: notifId) { result in
+        switch result {
+        case .success(let snap):
+            actionNotifSnap(snap: snap, from: viewController)
+        case .failure(let error):
+            Crashlytics.crashlytics().record(error: error)
         }
+    }
+}
+
+func actionNotifSnap(snap: DocumentSnapshot, from viewController: UIViewController) {
+    guard
+        let userId = Auth.auth().currentUser?.uid,
+        let data = snap.data(),
+        let notif = try? notificationParse(data, id: snap.documentID)
+        else { return }
+    
+    if let statusNotification = notif as? StatusPlatounNotification {
+        if statusNotification.status == .validated {
+            Interactor.shared.fetchPromocodes(userId: userId) { (list) in
+                guard let promocode = list.first(where: { $0.groupId == statusNotification.groupId }) else {
+                    UIKitUtils.showAlert(in: viewController, message: "Le code promo a expiré.", completion: {})
+                    return }
+                
+                let vc = SuccessViewController.instance(promocode: promocode.promoCodeValue, link: promocode.link)
+                viewController.present(vc, animated: true)
+            }
+        }
+    } else if let invitNotification = notif as? InvitPlatournNotification {
+        let vc = NotificationInvitationViewController.instance(notification: invitNotification)
+        viewController.present(vc, animated: true)
+    } else {
+        
     }
 }

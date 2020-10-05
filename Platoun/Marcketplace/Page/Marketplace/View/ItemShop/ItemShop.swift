@@ -14,7 +14,6 @@ protocol ItemShopDelegate {
     func getViewController() -> UIViewController?
 }
 
-@IBDesignable
 class ItemShop: UIView, ProductViewControllerDelegate {
     var view: UIView!
     var delegate: ItemShopDelegate?

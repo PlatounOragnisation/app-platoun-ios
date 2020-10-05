@@ -14,7 +14,6 @@ protocol MarketplaceCategoryViewAction {
     func getViewController() -> UIViewController?
 }
 
-@IBDesignable
 class MarketplaceCategoryView: UIView, ItemShopDelegate {
     
     var view: UIView!

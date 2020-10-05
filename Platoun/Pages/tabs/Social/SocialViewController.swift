@@ -152,12 +152,12 @@ extension SocialViewController: QuestionTableViewCellDelegate {
         
         if post.createBy == Auth.auth().currentUser?.uid {
             alert.addAction(UIAlertAction(title: "Supprimer", style: .destructive, handler: { _ in
-                FirestoreUtils.deletePost(postId: post.postId)
+                FirestoreUtils.Posts.deletePost(postId: post.postId)
             }))
         } else {
             alert.addAction(UIAlertAction(title: "Signaler", style: .destructive, handler: { _ in
                 guard let currentUser = Auth.auth().currentUser else { return }
-                FirestoreUtils.saveReport(post: post, userUid: currentUser.uid) { result in
+                FirestoreUtils.Reports.saveReport(post: post, userUid: currentUser.uid) { result in
                     switch result {
                     case .success():
                         UIKitUtils.showAlert(in: self, message: "Le signalement a été envoyé") {}

@@ -29,9 +29,9 @@ class MomunityUsersViewController: LightViewController {
     
     var productId: String!
     var groupId: String!
-    var users: [PlatounUser] = []
+    var users: [PlatounUserCompact] = []
     
-    var userSelectedIndex: [PlatounUser] = []
+    var userSelectedIndex: [PlatounUserCompact] = []
     
     var delegate: MomunityUsersViewControllerDelegate?
     
@@ -61,7 +61,7 @@ class MomunityUsersViewController: LightViewController {
             }
             return }
         self.tableView.refreshControl?.beginRefreshing()
-        FirestoreUtils.getUsers(search: search) { result in
+        FirestoreUtils.Users.getUsers(search: search) { result in
             switch result {
             case .success(let listUsers):
                 self.users = listUsers
@@ -138,7 +138,7 @@ class MomunityUsersViewController: LightViewController {
             }
     }
     
-    func sendInvitation(users: [PlatounUser], index: Int) {
+    func sendInvitation(users: [PlatounUserCompact], index: Int) {
         guard let user = Auth.auth().currentUser else { return }
         
         let message = (user.displayName ?? "").isEmpty
@@ -155,7 +155,7 @@ class MomunityUsersViewController: LightViewController {
             groupId: self.groupId)
         
         
-        FirestoreUtils.saveInvitNotification(userId: users[index].uid, notif: notif) { result in
+        FirestoreUtils.Notifications.saveInvitNotification(userId: users[index].uid, notif: notif) { result in
             switch result {
             case .success():
                 if let token = users[index].fcmToken {
@@ -196,7 +196,7 @@ extension MomunityUsersViewController: UISearchBarDelegate {
 
 // MARK: - UserCellDelegate
 extension MomunityUsersViewController: UserCellDelegate {
-    func onClicInvite(user: PlatounUser) {
+    func onClicInvite(user: PlatounUserCompact) {
         if let index = self.userSelectedIndex.firstIndex(where: { $0.uid == user.uid }) {
             self.userSelectedIndex.remove(at: index)
         } else if userSelectedIndex.count >= 2 {

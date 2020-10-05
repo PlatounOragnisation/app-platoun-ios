@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class BorderedView: UIView {    
     override init(frame: CGRect) {
         super.init(frame: frame)

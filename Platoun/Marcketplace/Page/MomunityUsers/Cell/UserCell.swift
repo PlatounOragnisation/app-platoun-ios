@@ -9,18 +9,18 @@
 import UIKit
 
 protocol UserCellDelegate {
-    func onClicInvite(user: PlatounUser)
+    func onClicInvite(user: PlatounUserCompact)
 }
 
 class UserCell: UITableViewCell {
-    var user: PlatounUser?
+    var user: PlatounUserCompact?
     var delegate: UserCellDelegate?
     
     @IBOutlet weak var userImageView: RoundedImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var inviteButton: BorderedButton!
     
-    func setup(user: PlatounUser, delegate: UserCellDelegate, isSelected: Bool) {
+    func setup(user: PlatounUserCompact, delegate: UserCellDelegate, isSelected: Bool) {
         self.user = user
         self.titleLabel.text = user.displayName ?? "No name"
         self.delegate = delegate

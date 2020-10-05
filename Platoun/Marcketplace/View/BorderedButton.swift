@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class BorderedButton: UIButtonLocalized {
     
     @IBInspectable

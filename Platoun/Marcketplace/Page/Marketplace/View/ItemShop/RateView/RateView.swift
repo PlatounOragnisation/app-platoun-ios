@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class RateView: UIView {
     var view: UIView!
     @IBOutlet weak var star1: UIImageView!

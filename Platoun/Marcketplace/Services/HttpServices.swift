@@ -24,10 +24,6 @@ public class Platoun {
 //        HttpServices.shared.userId = userId
     }
     
-    public static func getNotificationViewController(currentUserId: String, notificationSendBy: String, groupId: String) -> UIViewController {
-        return NotificationInvitationViewController.instance(sendUserId: notificationSendBy, currentUserId: currentUserId, groupId: groupId)
-    }
-    
     public static func getAllNotifications(userId: String, _ completion: @escaping ([WebSummaryNotification])->Void) {
         NewApi.v1.allNotif(userId: userId)
             .response { (result: Result<[WebSummaryNotification], CustomError>) in

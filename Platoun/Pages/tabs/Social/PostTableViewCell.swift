@@ -106,7 +106,7 @@ class PostTableViewCell: UITableViewCell {
     
     @objc func upVoteButtonAction() {
         guard let post = self.post, let currentUser = Auth.auth().currentUser else { return }
-        FirestoreUtils.toogleVote(postId: post.postId, userUid: currentUser.uid)
+        FirestoreUtils.Posts.toogleVote(postId: post.postId, userUid: currentUser.uid)
     }
     
     func writeCommentAction() {

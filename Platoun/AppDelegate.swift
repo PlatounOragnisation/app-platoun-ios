@@ -140,6 +140,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             print("Message ID: \(messageID)")
         }
         
+        (self.window?.rootViewController as? TabViewController)?.selectedIndex = 4
+        
+        if let notifId = userInfo["notifId"] as? String, let notifs = (self.window?.rootViewController as? TabViewController)?.viewControllers?.last {
+            actionNotif(notifId: notifId, from: notifs)
+        }
+        
         print(userInfo)
         
         completionHandler()
@@ -159,7 +165,7 @@ extension AppDelegate: MessagingDelegate {
         if needUpdate {
             UserDefaults.standard.FCMToken = fcmToken
             if let user = Auth.auth().currentUser {
-                FirestoreUtils.saveUser(uid: user.uid, fcmToken: fcmToken)
+                FirestoreUtils.Users.saveUser(uid: user.uid, fcmToken: fcmToken)
                 Interactor.shared.updateToken(userId: user.uid, token: fcmToken)
             }
         }

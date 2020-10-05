@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-success" translatesAutoresizingMaskIntoConstraints="NO" id="MLf-5M-tPy">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-success" translatesAutoresizingMaskIntoConstraints="NO" id="MLf-5M-tPy">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoM-Dt-xG1" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
@@ -42,7 +43,7 @@ Click on the code below :</string>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCc-mo-8jB" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                 <rect key="frame" x="127" y="164.5" width="160" height="36"/>
-                                <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="FF6876"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="K2n-go-HhL"/>
                                     <constraint firstAttribute="height" constant="36" id="xs0-PS-HW8"/>
@@ -53,29 +54,20 @@ Click on the code below :</string>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="promocodeTap:" destination="2Gd-hU-g1P" eventType="touchUpInside" id="nJh-zB-HUc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or simply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6C-GB-shI" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                <rect key="frame" x="186" y="208.5" width="42" height="12"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="or simply"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHQ-oc-fl0" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
-                                <rect key="frame" x="127" y="228.5" width="160" height="36"/>
-                                <color key="backgroundColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="127" y="801" width="160" height="36"/>
+                                <color key="backgroundColor" name="DrakGrey"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="FPE-x2-Pb7"/>
                                     <constraint firstAttribute="width" constant="160" id="gR6-4U-k8F"/>
@@ -86,12 +78,12 @@ Click on the code below :</string>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Back to App"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -104,15 +96,13 @@ Click on the code below :</string>
                         <constraints>
                             <constraint firstItem="SoM-Dt-xG1" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="1E6-XG-q3x"/>
                             <constraint firstAttribute="bottom" secondItem="MLf-5M-tPy" secondAttribute="bottom" id="2mv-qv-Q4q"/>
+                            <constraint firstItem="6kX-xW-Biy" firstAttribute="bottom" secondItem="iHQ-oc-fl0" secondAttribute="bottom" constant="25" id="972-dM-bod"/>
                             <constraint firstItem="iHQ-oc-fl0" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="B6z-ob-VNd"/>
-                            <constraint firstItem="iHQ-oc-fl0" firstAttribute="top" secondItem="j6C-GB-shI" secondAttribute="bottom" constant="8" id="DSo-6M-WFa"/>
                             <constraint firstItem="MLf-5M-tPy" firstAttribute="leading" secondItem="obA-Xn-9b6" secondAttribute="leading" id="Iq3-wO-TTG"/>
                             <constraint firstItem="MLf-5M-tPy" firstAttribute="top" secondItem="obA-Xn-9b6" secondAttribute="top" id="KnR-pK-Ofj"/>
                             <constraint firstItem="2hc-t5-2iq" firstAttribute="top" secondItem="SoM-Dt-xG1" secondAttribute="bottom" constant="10" id="NlS-pM-4JL"/>
                             <constraint firstAttribute="trailing" secondItem="MLf-5M-tPy" secondAttribute="trailing" id="TmC-fC-LqR"/>
-                            <constraint firstItem="j6C-GB-shI" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="UHp-ON-QMq"/>
                             <constraint firstItem="jCc-mo-8jB" firstAttribute="top" secondItem="2hc-t5-2iq" secondAttribute="bottom" constant="15" id="gbd-IT-Nyv"/>
-                            <constraint firstItem="j6C-GB-shI" firstAttribute="top" secondItem="jCc-mo-8jB" secondAttribute="bottom" constant="8" id="hde-dB-NLb"/>
                             <constraint firstItem="2hc-t5-2iq" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="nQ4-2k-LRN"/>
                             <constraint firstItem="SoM-Dt-xG1" firstAttribute="top" secondItem="obA-Xn-9b6" secondAttribute="top" constant="60" id="whb-kz-8vu"/>
                             <constraint firstItem="jCc-mo-8jB" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="zWR-qe-ZIP"/>
@@ -127,16 +117,14 @@ Click on the code below :</string>
             <point key="canvasLocation" x="1066" y="1236"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="iHQ-oc-fl0">
-            <size key="intrinsicContentSize" width="81" height="29"/>
-        </designable>
-        <designable name="jCc-mo-8jB">
-            <size key="intrinsicContentSize" width="101" height="29"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="img-success" width="375" height="812"/>
+        <image name="img-success" width="700" height="1475"/>
+        <namedColor name="DrakGrey">
+            <color red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FF6876">
+            <color red="1" green="0.40784313725490196" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

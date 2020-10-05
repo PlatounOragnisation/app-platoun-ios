@@ -12,7 +12,6 @@ protocol RoundedLabelAction {
     func onClicLabel(view: RoundedLabel, isSelected: Bool)
 }
 
-@IBDesignable
 class RoundedLabel: UILabel {
     
     var delegate: RoundedLabelAction?

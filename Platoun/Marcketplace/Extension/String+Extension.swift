@@ -14,3 +14,11 @@ extension Optional where Wrapped == String {
         get { (self?.isEmpty ?? true) ? nil : self }
     }
 }
+
+extension String {
+
+    subscript (i: Int) -> String? {
+        if self.count <= i { return nil }
+        return "\([Character](self)[i])"
+    }
+}

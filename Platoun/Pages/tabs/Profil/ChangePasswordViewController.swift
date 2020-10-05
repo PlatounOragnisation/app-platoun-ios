@@ -125,7 +125,9 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func forgotPassordAction(_ sender: Any) {
-        Auth.auth().currentUser?.authentication?.resetPassword(from: self, callBack: { result in
+        guard let auth = try? Auth.auth().currentUser?.getAuthentication() else { return }
+        
+        auth.resetPassword(from: self, callBack: { result in
             switch result {
             case .success():
                 UIKitUtils.showAlert(in: self, message: "Le mail de réinitialisation de mot de passe à bien été envoyé.") {}
@@ -150,7 +152,8 @@ class ChangePasswordViewController: UIViewController {
             }
             return
         }
-        Auth.auth().currentUser?.authentication?.changePassword(from: self, olPassword: olPassword, newPassord: newPassword, callBack: { result in
+        guard let auth = try? Auth.auth().currentUser?.getAuthentication() else { return }
+        auth.changePassword(from: self, olPassword: olPassword, newPassord: newPassword, callBack: { result in
             switch result {
             case .success():
                 UIKitUtils.showAlert(in: self, message: "Votre mot de passe à bien été changé.") {

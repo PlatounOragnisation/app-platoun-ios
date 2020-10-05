@@ -9,6 +9,7 @@
 import UIKit
 import TOCropViewController
 import CropViewController
+import FirebaseAuth
 
 protocol AddImageViewAction {
     
@@ -48,6 +49,18 @@ class AddImageView: UIView {
     @IBOutlet weak var emptyImageView: UIView!
     @IBOutlet weak var circle: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    
+    func updateWith(user: User)  {
+        self.originalImage = nil
+        self.modified = false
+        if let url = user.photoURL {
+            self.imageView.setImage(with: url, placeholder: nil, options: .progressiveLoad) { _ in
+                self.checkVisibility()
+            }
+        } else {
+            self.image = nil
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

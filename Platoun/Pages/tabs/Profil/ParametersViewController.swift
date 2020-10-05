@@ -62,6 +62,7 @@ class ParametersViewController: UIViewController {
     @IBOutlet weak var notifCategory3Label: UILabel!
     @IBOutlet weak var notifCategory3Switch: CustomSwitch!
     @IBOutlet weak var changeValuesNotifContainer: UIView!
+    @IBOutlet weak var changeValueLoader: UIActivityIndicatorView!
     @IBOutlet weak var changeValuesNotifButton: UIButton!
     @IBOutlet weak var removeAccountButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
@@ -80,6 +81,7 @@ class ParametersViewController: UIViewController {
         
         self.navigationItem.title = "Paramètres"
         self.profilImage.delegate = self
+        self.changeValueLoader.isHidden = true
         self.changeValuesButton.setTitle("Valider le changement", for: .normal)
         self.changeValuesNotifButton.setTitle("Valider le changement", for: .normal)
         self.changePasswordButton.setTitle("Modifier Mot de passe", for: .normal)
@@ -108,9 +110,9 @@ class ParametersViewController: UIViewController {
         self.nickNameTextField.delegate = self
         self.emailTextField.delegate = self
         
-        let user = Auth.auth().currentUser
+        guard let user = Auth.auth().currentUser else { return }
         
-        changePasswordContainer.isHidden = !(user?.isPassword ?? false)
+        changePasswordContainer.isHidden = !user.isPassword
         self.changePasswordButton.round(type: .password)
         self.logoutButton.round(type: .password)
         
@@ -120,15 +122,10 @@ class ParametersViewController: UIViewController {
         emailTextField.placeholder = "Adresse email"
         
         
-        nickNameTextField.text = user?.displayName ?? ""
-        emailTextField.text = user?.email ?? ""
+        nickNameTextField.text = user.displayName ?? ""
+        emailTextField.text = user.email ?? ""
         
-        let profilImage = Auth.auth().currentUser?.photoURL
-        if let url = profilImage {
-            self.profilImage.imageView.setImage(with: url, placeholder: nil, options: .progressiveLoad) { _ in
-                self.profilImage.checkVisibility()
-            }
-        }
+        self.profilImage.updateWith(user: user)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -138,7 +135,7 @@ class ParametersViewController: UIViewController {
     
     func reload() {
         guard let user = Auth.auth().currentUser else { self.logOut(); return }
-        FirestoreUtils.getUser(uid: user.uid) { result in
+        FirestoreUtils.Users.getUser(uid: user.uid) { result in
             switch result {
             case .success(let platounUser):
                 self.platounUser = platounUser
@@ -227,40 +224,72 @@ class ParametersViewController: UIViewController {
         let trendsNotif = self.notifCategory2Switch.isOn
         let newsNotif = self.notifCategory3Switch.isOn
         
-        FirestoreUtils.saveUser(uid: user.uid, groupNotification: groupNotif, trendsNotification: trendsNotif, newsNotification: newsNotif)
+        FirestoreUtils.Users.saveUser(uid: user.uid, groupNotification: groupNotif, trendsNotification: trendsNotif, newsNotification: newsNotif)
         self.reload()
     }
     
     @IBAction func changeValuesAction(_ sender: Any) {
-        self.updatePhoto { photoChanged in
-            self.updateName { nameChanged in
-                self.updateEmail { emailChanged in
-                    var message: String = ""
-                    if photoChanged == true && nameChanged == true && emailChanged == true {
-                        message = "Votre photo, votre nom et votre email ont bien été changé."
-                    } else if photoChanged == true && nameChanged == true {
-                        message = "Votre photo et votre nom ont bien été changé."
-                    } else if photoChanged == true && emailChanged == true {
-                        message = "Votre photo et votre email ont bien été changé.\n"
-                    } else if nameChanged == true && emailChanged == true {
-                        message = "Votre nom et votre email ont bien été changé.\n"
-                    } else if nameChanged == true {
-                        message = "Votre nom a bien été changé."
-                    } else if emailChanged == true {
-                        message = "Votre email a bien été changé.\n"
-                    } else if photoChanged == true {
-                        message = "Votre photo a bien été changé.\n"
-                    } else if nameChanged == false && emailChanged == false && photoChanged == false {
-                        message = "Votre photo, votre email et votre nom sont inchangé."
+        guard let user = Auth.auth().currentUser else { return }
+        guard let utils = UserUtils(user: user) else { return }
+        self.changeValuesButton.isHidden = true
+        self.changeValueLoader.startAnimating()
+        
+        var modifications: [UserUtils.ModificationType] = []
+        
+        if let image = self.profilImage.image, self.profilImage.modified {
+            modifications.append(.photo(image))
+        }
+        
+        if let displayName = self.nickNameTextField.text, user.displayName != displayName {
+            modifications.append(.name(displayName))
+        }
+        
+        if let email = self.emailTextField.text, user.email != email {
+            modifications.append(.email(email))
+            
+            utils.authentication.reAuth(from: self) { result in
+                switch result {
+                case .success:
+                    self.start(utils: utils, user: user, modifications: modifications)
+                case .failure(let error):
+                    Crashlytics.crashlytics().record(error: error)
+                    self.changeValuesButton.isHidden = false
+                    self.changeValueLoader.stopAnimating()
+                    UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors de votre reconnexion. Merci de vous reconnecter.") {
+                        self.logoutButtonAction("")
                     }
-                    if message.isEmpty { return }
+                }
+            }
+            return
+        }
+        
+        
+        self.start(utils: utils, user: user, modifications: modifications)
+    }
+    
+    private func start(utils: UserUtils, user: User, modifications: [UserUtils.ModificationType]) {
+        utils.start(modifications: modifications, from: self) { (success, message) in
+            DispatchQueue.main.async {
+                if success {
                     UIKitUtils.showAlert(in: self, message: message) {
-                        let user = Auth.auth().currentUser
-                        self.nickNameTextField.text = user?.displayName ?? ""
-                        self.emailTextField.text = user?.email ?? ""
+                        guard let user = Auth.auth().currentUser else { return }
+                        self.nickNameTextField.text = user.displayName ?? ""
+                        self.emailTextField.text = user.email ?? ""
+                        self.profilImage.updateWith(user: user)
                         self.changeValueContainer.isHidden = true
                         self.nickNameTextField.resignFirstResponder()
                         self.emailTextField.resignFirstResponder()
+                    }
+                } else {
+                    self.nickNameTextField.resignFirstResponder()
+                    self.emailTextField.resignFirstResponder()
+                    UIKitUtils.showAlert(in: self, message: message) {}
+                }
+                user.reload { (error) in
+                    self.changeValuesButton.isHidden = false
+                    self.changeValueLoader.stopAnimating()
+                    if let error = error {
+                        Crashlytics.crashlytics().record(error: error)
                     }
                 }
             }
@@ -273,7 +302,7 @@ class ParametersViewController: UIViewController {
     }
     
     @IBAction func removeAccountAction(_ sender: Any) {
-        guard let authentication = Auth.auth().currentUser?.authentication else { return }
+        guard let authentication = try? Auth.auth().currentUser?.getAuthentication() else { return }
         UIKitUtils.showAlert(in: self, message: "Êtes-vous sur de vouloir supprimer votre compte ?", action1Title: "Oui", completionOK: {
             
             
@@ -297,82 +326,6 @@ class ParametersViewController: UIViewController {
                 }
             }
         }, action2Title: "Non") {}
-    }
-    
-    private func updatePhoto(completion: @escaping (Bool?)->Void) {
-        guard let user = Auth.auth().currentUser,
-              let image = profilImage.image,
-              profilImage.modified else { completion(false); return }
-        
-        StorageUtils.uploadImageProfil(image: image, userId: user.uid) { result in
-            switch result {
-            case .success(let urlString):
-                let request = user.createProfileChangeRequest()
-                request.photoURL = URL(string: urlString)
-                request.commitChanges {
-                    if let error = $0 {
-                        Crashlytics.crashlytics().record(error: error)
-                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre photo : \(error.localizedDescription)") { completion(nil) }
-                    }
-                    FirestoreUtils.saveUser(uid: user.uid, photo: urlString)
-                    completion(true)
-                }
-            case .failure(let error):
-                Crashlytics.crashlytics().record(error: error)
-                completion(nil)
-            }
-        }
-    }
-    
-    private func updateName(completion: @escaping (Bool?)->Void) {
-        guard
-            let user = Auth.auth().currentUser,
-            let displayName = nickNameTextField.text,
-            user.displayName != displayName else { completion(false); return }
-        
-        let request = user.createProfileChangeRequest()
-        request.displayName = displayName
-        request.commitChanges {
-            if let error = $0 {
-                Crashlytics.crashlytics().record(error: error)
-                UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre nom : \(error.localizedDescription)") { completion(nil) }
-            }
-            FirestoreUtils.saveUser(uid: user.uid, name: displayName)
-            completion(true)
-        }
-    }
-    
-    private func updateEmail(completion: @escaping (Bool?)->Void) {
-        guard
-            let user = Auth.auth().currentUser,
-            let email = emailTextField.text,
-            user.email != email else { completion(false); return }
-        
-        guard let authentication: Authentication = user.authentication else {
-            return
-        }
-        
-        authentication.reAuth(from: self) { authResult in
-            switch authResult {
-            case .success:
-                user.updateEmail(to: email) {
-                    if let error = $0 {
-                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre email : \(error.localizedDescription)") { completion(nil) }
-                    }
-                    user.reload { e in
-                        if let error = e {
-                            UIKitUtils.showAlert(in: self, message: "Votre email a été changer mais une erreur est survenue après : \(error.localizedDescription)") { completion(nil) }
-                        }
-                        completion(true)
-                    }
-                }
-            case .failure(let error):
-                UIKitUtils.showAlert(in: self, message: "Un problème est survenue merci de vous reconnecter:\n\(error)") {
-                    AuthenticationLogout()
-                    (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
-                }
-            }
-        }
     }
 }
 

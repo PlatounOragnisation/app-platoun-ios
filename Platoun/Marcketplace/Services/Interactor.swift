@@ -23,7 +23,14 @@ class Interactor {
 //    var products = [String:[ProductSummary]]()
     var productLike: [String:[String:LikeState]] = [:]
     
-    func respondNotif(userId: String, userInviterId: String, groupId: String, accepted: Bool, _ completion: @escaping (Bool, Bool, String?, String?)->Void) {
+    struct RespondNotif {
+        let isSuccess: Bool
+        let isValidated: Bool
+        let promoCode: String?
+        let link: String?
+    }
+    
+    func respondNotif(userId: String, userInviterId: String, groupId: String, accepted: Bool, _ completion: @escaping (Result<RespondNotif, Error>)->Void) {
         
         struct WebNotifResult: Codable {
             let groupStatus: Status?
@@ -42,10 +49,14 @@ class Interactor {
             .response { (result: Result<WebNotifResult, CustomError>) in
                 switch result {
                 case .success(let web):
-                    completion(web.message.contains("successfully"), web.groupStatus == .validated, web.promoCode, web.buyLink)
+                    let respond = RespondNotif(
+                        isSuccess: web.message.contains("successfully"),
+                        isValidated: web.groupStatus == .validated,
+                        promoCode: web.promoCode,
+                        link: web.buyLink)
+                    completion(.success(respond))
                 case .failure(let error):
-                    print(error)
-                    completion(false, false, nil, nil)
+                    completion(.failure(error))
                 }
         }
     }

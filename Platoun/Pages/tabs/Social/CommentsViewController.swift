@@ -94,7 +94,7 @@ class CommentsViewController: UIViewController {
         }
     
     func reload() {
-        FirestoreUtils.getComments(postId: postId) { result in
+        FirestoreUtils.Comments.getComments(postId: postId) { result in
             switch result {
             case .success(let comments):
                 self.comments = comments.sorted(by: { (lhs, rhs) -> Bool in
@@ -176,7 +176,7 @@ class CommentsViewController: UIViewController {
             switch result {
             case .success(let listImage):
                 let comment = Comment(id: commentId, text: text, images: listImage, createdAt: Date(), createBy: currentUser.uid, authorName: currentUser.displayName, authorPhoto: currentUser.photoURL?.absoluteString)
-                FirestoreUtils.addComment(postId: self.postId, comment: comment) { success in
+                FirestoreUtils.Comments.addComment(postId: self.postId, comment: comment) { success in
                     if success {
                         self.reload()
                         self.textField.text = ""

@@ -74,7 +74,7 @@ class JoinGroupViewController: PUIViewController, UISearchBarDelegate {
             var userIds = [String]()
             userIds.appendIfDontExist(temp)
             
-            FirestoreUtils.getUsers(ids: userIds) { result in
+            FirestoreUtils.Users.getUsers(ids: userIds) { result in
                 switch result {
                 case .success(let users):
                     self.users = users

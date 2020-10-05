@@ -22,8 +22,6 @@ struct ThemeColor {
     static let BackgroundGradientCircle2 = UIColor(named: "BackgroundGradientCircle2")!
     static let Suggestion1 = UIColor(named: "Suggestion1")!
     static let Suggestion2 = UIColor(named: "Suggestion2")!
-    static let Question1 = UIColor(named: "Question1")!
-    static let Question2 = UIColor(named: "Question2")!
     static let DrakGrey = UIColor(named: "DrakGrey")!
     static let F7F6FB = UIColor(named: "F7F6FB")!
     static let c96A7AF = UIColor(named: "96A7AF")!

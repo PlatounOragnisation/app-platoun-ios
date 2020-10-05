@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class DropDownView: UIView {
     
     override init(frame: CGRect) {

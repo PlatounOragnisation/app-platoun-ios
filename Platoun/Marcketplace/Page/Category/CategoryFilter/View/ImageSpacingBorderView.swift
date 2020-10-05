@@ -12,7 +12,6 @@ protocol ImageSpacingBorderViewAction {
     func onClicImage(view: ImageSpacingBorderView, isSelected: Bool)
 }
 
-@IBDesignable
 class ImageSpacingBorderView: UIView {
     
     var delegate: ImageSpacingBorderViewAction?

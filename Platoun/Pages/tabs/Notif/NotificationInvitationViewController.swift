@@ -8,20 +8,17 @@
 
 import UIKit
 import FirebaseCrashlytics
+import FirebaseAuth
 
 class NotificationInvitationViewController: LightViewController {
-    static func instance(sendUserId: String, currentUserId: String, groupId: String) -> NotificationInvitationViewController {
-        let vc = NotificationInvitationViewController.instanceStoryboard()
-        vc.currentUserId = currentUserId
-        vc.sendUserId = sendUserId
-        vc.groupId = groupId
+    static func instance(notification: InvitPlatournNotification) -> NotificationInvitationViewController {
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "NotificationInvitationViewController") as! NotificationInvitationViewController
+        vc.notification = notification
         vc.modalPresentationStyle = .overFullScreen
         return vc
     }
     
-    var currentUserId: String!
-    var sendUserId: String!
-    var groupId: String!
+    var notification: InvitPlatournNotification!
     
     private var timer: Timer?
     
@@ -46,6 +43,9 @@ class NotificationInvitationViewController: LightViewController {
     @IBOutlet weak var user4ImageView: ImageShadow!
     @IBOutlet weak var user5ImageView: ImageShadow!
     
+    @IBOutlet weak var loaderButton: UIView!
+    @IBOutlet weak var yesButton: BorderedButton!
+    @IBOutlet weak var noButton: BorderedButton!
     
     
     var webNotification: WebNotification? {
@@ -60,21 +60,33 @@ class NotificationInvitationViewController: LightViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.loaderButton.isHidden = true
+        self.yesButton.isHidden = false
+        self.noButton.isHidden = false
+        self.loadingView.isHidden = false
+        self.contentView.isHidden = true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard let user = Auth.auth().currentUser else { return }
         
         offerJoinLabel.attributedText = NSMutableAttributedString()
             .normal("Do you want to".localise() + " ", fontSize: 14)
             .bold("join".localise(), fontSize: 14, color: UIColor(hex: "#038091"))
             .normal(" " + "the team ?".localise(), fontSize: 14)
         
-        Interactor.shared.showNotif(userId: currentUserId, sendUserId: sendUserId, groupId: groupId) { value in
+        Interactor.shared.showNotif(userId: user.uid, sendUserId: self.notification.senderUserId, groupId: self.notification.groupId) { value in
             guard let notif = value else {
-                self.dismiss(animated: true, completion: nil)
+                UIKitUtils.showAlert(in: self, message: "Mince, nous n'arrive pas à retrouver le groupe. Il doit être terminé.") {
+                    self.dismiss(animated: true, completion: nil)
+                }
                 return
             }
             
-            FirestoreUtils.getUsers(ids: notif.users.map { $0.userId }) { result in
+            FirestoreUtils.Users.getUsers(ids: notif.users.map { $0.userId }) { result in
                 switch result {
                 case .success(let res):
                     self.users = res
@@ -175,19 +187,25 @@ class NotificationInvitationViewController: LightViewController {
     }
     
     @IBAction func actionYes(_ sender: Any) {
-        Interactor.shared.respondNotif(userId: currentUserId, userInviterId: sendUserId, groupId: groupId, accepted: true) { (res, groupIsComplet, p, bl) in
-            if res {
+        guard let user = Auth.auth().currentUser else { return }
+        self.yesButton.isHidden = true
+        self.loaderButton.isHidden = false
+        Interactor.shared.respondNotif(userId: user.uid, userInviterId: self.notification.senderUserId, groupId: self.notification.groupId, accepted: true) { result in
+            
+            switch result {
+            case .success(let respond):
+                FirestoreUtils.Notifications.deleteNotification(userId: user.uid, notifId: self.notification.id)
                 
-                if groupIsComplet, let promocode = p, let buyLink = bl {
+                if respond.isValidated, let promocode = respond.promoCode, let link = respond.link {
                     let parent = self.presentingViewController
                     self.dismiss(animated: true) {
-                        let vc = SuccessViewController.instance(promocode: promocode, link: buyLink)
+                        let vc = SuccessViewController.instance(promocode: promocode, link: link)
                         parent?.present(vc, animated: true, completion: nil)
                     }
                 } else {
-                    let alert = UIAlertController(title: "You've been added to this group.".localise(), message: nil, preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Vous avez été ajouté à ce groupe.", message: nil, preferredStyle: .alert)
                     
-                    let action = UIAlertAction(title: "OK".localise(), style: .default, handler: { _ in
+                    let action = UIAlertAction(title: "OK", style: .default, handler: { _ in
                         self.dismiss(animated: true, completion: nil)
                     })
                     action.setValue(UIColor(hex: "#038091")!, forKey: "titleTextColor")
@@ -195,19 +213,43 @@ class NotificationInvitationViewController: LightViewController {
                     alert.addAction(action)
                     self.present(alert, animated: true)
                 }
-            } else {
+            case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
                 
+                var message = "Mince, un problème est survenue"
+                
+                if case .platounError(let webError) = (error as? CustomError) {
+                    message += " : \(webError.error)"
+                }
+                
+                UIKitUtils.showAlert(in: self, message: message) {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
+            self.yesButton.isHidden = false
+            self.loaderButton.isHidden = true
         }
     }
     
     @IBAction func actionNo(_ sender: Any) {
-        Interactor.shared.respondNotif(userId: currentUserId, userInviterId: sendUserId, groupId: groupId, accepted: false) { (res, groupIsComplet, _, _) in
-            if res {
+        guard let user = Auth.auth().currentUser else { return }
+        self.noButton.isHidden = true
+        self.loaderButton.isHidden = false
+        Interactor.shared.respondNotif(userId: user.uid, userInviterId: self.notification.senderUserId, groupId: self.notification.groupId, accepted: false) { result in
+            
+            switch result {
+            case .success(_):
+                FirestoreUtils.Notifications.deleteNotification(userId: user.uid, notifId: self.notification.id)
                 self.dismiss(animated: true, completion: nil)
-            } else {
+            case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
                 
+                UIKitUtils.showAlert(in: self, message: "Mince, un problème est survenue") {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
+            self.noButton.isHidden = false
+            self.loaderButton.isHidden = true
         }
     }
     

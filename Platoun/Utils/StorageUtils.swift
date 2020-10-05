@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseStorage
+import FirebaseCrashlytics
 
 enum StorageUtilsError: Error {
     case convertUIImageToData
@@ -51,7 +52,8 @@ class StorageUtils: NSObject {
         }
     }
     
-    static func uploadImageProfil(image: UIImage, userId: String, completion: @escaping (Result<String, Error>)->Void) {
+    
+    static func uploadImageProfil(image: UIImage, userId: String, completion: @escaping (Result<URL, Error>)->Void) {
         let imageRef = Storage.storage().reference()
             .child(userId).child("profil.jpg")
 
@@ -64,10 +66,10 @@ class StorageUtils: NSObject {
 
         
         let _ = imageRef.putData(dataImage, metadata: metadata) { (metaData, error) in
-            guard metaData != nil else {
+            guard let url = URL(string: "\(imageRef)"), metaData != nil else {
                 completion(Result.failure(error ?? StorageUtilsError.uploadErrorWithoutInfo)); return
             }
-            completion(Result.success("\(imageRef)"))
+            completion(Result.success(url))
         }
         
     }

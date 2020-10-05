@@ -9,7 +9,6 @@
 import UIKit
 
 
-@IBDesignable
 class PriceButton: UIView{
     var view: UIView!
     @IBOutlet weak var content: UIView!

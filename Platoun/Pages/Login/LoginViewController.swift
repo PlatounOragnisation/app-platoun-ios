@@ -124,13 +124,13 @@ class LoginViewController: UIViewController {
     }
     
     private func createUserIfNeeded(user: User, name: String, completion: @escaping ()->Void) {
-        FirestoreUtils.getUser(uid: user.uid) { result in
+        FirestoreUtils.Users.getUser(uid: user.uid) { result in
             switch result {
             case .success(let user):
                 if let fcmToken = UserDefaults.standard.FCMToken {
                     Interactor.shared.updateToken(userId: user.uid, token: fcmToken)
                     if fcmToken != user.fcmToken {
-                        FirestoreUtils.saveUser(uid: user.uid, fcmToken: fcmToken)
+                        FirestoreUtils.Users.saveUser(uid: user.uid, fcmToken: fcmToken)
                     }
                 }
                 completion()
@@ -150,10 +150,9 @@ class LoginViewController: UIViewController {
                         UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre nom : \(error.localizedDescription)") { }
                     }
                     
-                    let platounUser = PlatounUser(uid: user.uid, fcmToken: UserDefaults.standard.FCMToken, displayName: name, photoUrl: user.photoURL?.absoluteString, groupNotification: true, trendsNotification: true, newsNotification: true)
+                    let platounUser = PlatounUserComplet(uid: user.uid, fcmToken: UserDefaults.standard.FCMToken, displayName: name, photoUrl: user.photoURL?.absoluteString)
                     
-                    
-                    FirestoreUtils.createUser(user: platounUser) { r in
+                    FirestoreUtils.Users.createUser(user: platounUser) { r in
                         switch r {
                         case .success:
                             completion()

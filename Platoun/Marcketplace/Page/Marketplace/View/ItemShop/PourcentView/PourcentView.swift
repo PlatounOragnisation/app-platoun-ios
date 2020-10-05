@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class PourcentView: UIView {
     var view: UIView!
     

@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class LikeButton: UIView {
     var view: UIView!
     @IBOutlet weak var content: UIView!

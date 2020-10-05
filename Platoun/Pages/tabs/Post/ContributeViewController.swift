@@ -146,7 +146,7 @@ class ContributeViewController: UIViewController {
                 language: language,
                 createAt: date)
             
-            FirestoreUtils.savePost(post: post) { result in
+            FirestoreUtils.Posts.savePost(post: post) { result in
                 switch result {
                 case .success():
                     UIKitUtils.showAlert(in: self, message: "Votre post a été publié") {
