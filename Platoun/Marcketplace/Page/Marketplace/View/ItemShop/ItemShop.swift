@@ -66,7 +66,9 @@ class ItemShop: UIView, ProductViewControllerDelegate {
         
         self.title.text = product.name
         self.subTitle.text = product.brandName
-        self.image.downloaded(from: product.pictureLink, contentMode: .scaleAspectFill)
+        self.image.setImage(with: URL(string: product.pictureLink), placeholder: nil, options: .progressiveLoad)
+        self.image.contentMode = .scaleAspectFill
+//        self.image.downloaded(from: product.pictureLink, contentMode: .scaleAspectFill)
         self.rateView.rate = 0 //product.rate
         self.rateView.rateNumber = 0//product.nbRate
         self.likeButton.state = productLike(product.id)
@@ -89,7 +91,8 @@ class ItemShop: UIView, ProductViewControllerDelegate {
         
         self.title.text = product.title
         self.subTitle.text = product.brandName
-        self.image.downloaded(from: product.pictureLink)
+        self.image.setImage(with: URL(string: product.pictureLink), placeholder: nil, options: .progressiveLoad)
+//        self.image.downloaded(from: product.pictureLink)
         self.rateView.rate = 0 //product.rate
         self.rateView.rateNumber = 0//product.nbRate
         self.likeButton.state = .selected

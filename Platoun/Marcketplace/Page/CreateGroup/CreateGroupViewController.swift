@@ -137,8 +137,7 @@ class CreateGroupViewController: LightViewController {
         countChar.text = "\(textView.text.count) / 200"
         textView.delegate = self
         
-        
-        self.imageView.downloaded(from: self.product.pictureLink)
+        self.imageView.setImage(with: URL(string: self.product.pictureLink), placeholder: nil, options: .progressiveLoad)
         self.getPinCode("")
         let prct = self.product.percentage + (self.members3IsSelected ? 0 : 5)
         self.promoCodeLabel.text = "-\(prct)%"

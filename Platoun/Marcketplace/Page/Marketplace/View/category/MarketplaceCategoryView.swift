@@ -87,7 +87,7 @@ class MarketplaceCategoryView: UIView, ItemShopDelegate {
         
         if let cat = category {
             titleLabel.text = cat.name
-            iconImageView.downloaded(from: cat.icon)
+            iconImageView.setImage(with: URL(string: cat.icon), placeholder: nil, options: .progressiveLoad)
         }
         
         var count = 0

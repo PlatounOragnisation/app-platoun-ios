@@ -63,8 +63,7 @@ class PromocodeCell: UITableViewCell {
         self.object = object
         
         self.selectedBackgroundView = background
-        
-        productImage.downloaded(from: object.imageUrl)
+        productImage.setImage(with: URL(string: object.imageUrl), placeholder: nil, options: .progressiveLoad)
         promocodeLabel.text = "\(object.promocode)%"
         titleLabel.text = object.title
         subtitleLabel.text = object.subTitle

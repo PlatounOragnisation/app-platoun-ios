@@ -318,23 +318,6 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
         guard let product = self.product, let url = URL(string: product.link) else { return }
         UIApplication.shared.open(url)
     }
-    
-    func downloadImages(urls: [String], completion: @escaping ([UIImage])->Void) {
-        let grp = DispatchGroup()
-        var images = [UIImage]()
-        urls.enumerated().forEach { (index,url) in
-            grp.enter()
-            url.ddlImg { (u, image) in
-                if image != nil {
-                    images.append(image!)
-                }
-                grp.leave()
-            }
-        }
-        grp.notify(queue: DispatchQueue.global(qos: .background)) {
-            completion(images)
-        }
-    }
 }
 
 extension ProductViewController: MarketplaceCategoryViewAction {

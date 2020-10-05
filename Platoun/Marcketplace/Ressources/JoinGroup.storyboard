@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="973-me-NVi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="973-me-NVi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,14 +28,14 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3d-f1-bxA">
-                                                <rect key="frame" x="0.0" y="337" width="414" height="178"/>
+                                                <rect key="frame" x="0.0" y="367" width="414" height="178"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYZ-QM-1tW" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
                                                         <rect key="frame" x="159" y="0.0" width="96.5" height="48"/>
                                                         <string key="text">No groups
 found</string>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
-                                                        <color key="textColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="No groups..n..found"/>
@@ -68,15 +70,15 @@ found</string>
                                                             <constraint firstAttribute="height" constant="20" id="jEZ-lv-80d"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygT-3i-Dch" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygT-3i-Dch" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                                         <rect key="frame" x="92" y="128" width="230" height="50"/>
-                                                        <color key="backgroundColor" red="0.30857759709999999" green="0.5789659023" blue="0.63530653719999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="backgroundColor" name="DrakGrey"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="230" id="MGr-T7-Aq3"/>
                                                             <constraint firstAttribute="height" constant="50" id="e2r-8O-kYl"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                                        <state key="normal" title="Create a new group 😉">
+                                                        <state key="normal" title="Create a new group">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -84,10 +86,10 @@ found</string>
                                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                <real key="value" value="2"/>
+                                                                <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Create a new group 😉"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="NO"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Create a new group"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="actionCreateGroup:" destination="973-me-NVi" eventType="touchUpInside" id="oqL-G0-l3t"/>
@@ -108,7 +110,7 @@ found</string>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="e3d-f1-bxA" firstAttribute="centerY" secondItem="dvA-zF-Khe" secondAttribute="centerY" id="5SL-qf-XUT"/>
+                                            <constraint firstItem="e3d-f1-bxA" firstAttribute="centerY" secondItem="dvA-zF-Khe" secondAttribute="centerY" constant="30" id="5SL-qf-XUT"/>
                                             <constraint firstAttribute="trailing" secondItem="qVb-CM-AEZ" secondAttribute="trailing" id="Ov3-VG-8h3"/>
                                             <constraint firstAttribute="trailing" secondItem="e3d-f1-bxA" secondAttribute="trailing" id="Yy8-3a-gzV"/>
                                             <constraint firstItem="qVb-CM-AEZ" firstAttribute="top" secondItem="dvA-zF-Khe" secondAttribute="top" id="emt-TI-OI2"/>
@@ -118,10 +120,10 @@ found</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ea5-S1-CI4" userLabel="MainView">
-                                        <rect key="frame" x="0.0" y="70" width="414" height="782"/>
+                                        <rect key="frame" x="0.0" y="70" width="414" height="748"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WKf-tx-Tgw">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="652"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="618"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupCell" rowHeight="120" id="kcd-M1-iGQ" customClass="GroupCell" customModule="Platoun" customModuleProvider="target">
@@ -136,7 +138,7 @@ found</string>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWQ-iY-AvJ">
                                                                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="120"/>
-                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" id="dK7-Xc-cf4"/>
                                                                             </constraints>
@@ -158,7 +160,7 @@ found</string>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="pGZ-1z-33s" firstAttribute="centerX" secondItem="NYk-b6-92a" secondAttribute="centerX" id="1sE-sS-9ZW"/>
                                                                                 <constraint firstItem="ejr-fy-gWw" firstAttribute="top" secondItem="pGZ-1z-33s" secondAttribute="bottom" constant="10" id="hUs-E7-pQH"/>
@@ -239,7 +241,7 @@ found</string>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="3cg-pH-q6U" firstAttribute="top" secondItem="vg0-b5-xug" secondAttribute="bottom" constant="10" id="DHC-we-zCX"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="3cg-pH-q6U" secondAttribute="trailing" id="HEa-pn-A8J"/>
@@ -260,7 +262,7 @@ found</string>
                                                                                         <constraint firstAttribute="width" constant="30" id="ws0-WH-vMr"/>
                                                                                     </constraints>
                                                                                 </imageView>
-                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xa2-w4-JpV" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xa2-w4-JpV" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                                                                     <rect key="frame" x="0.0" y="40" width="70" height="40"/>
                                                                                     <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                     <constraints>
@@ -288,7 +290,7 @@ found</string>
                                                                                     <rect key="frame" x="16.5" y="41.5" width="37" height="37"/>
                                                                                 </activityIndicatorView>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="xa2-w4-JpV" firstAttribute="top" secondItem="tSz-GN-vgN" secondAttribute="bottom" constant="-2" id="4fd-Ot-7kc"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="xa2-w4-JpV" secondAttribute="trailing" id="69y-hA-Mrg"/>
@@ -301,7 +303,7 @@ found</string>
                                                                         </view>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xjl-AR-JG4">
                                                                             <rect key="frame" x="414" y="0.0" width="0.0" height="120"/>
-                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" id="wE0-Rh-Xwi"/>
                                                                             </constraints>
@@ -336,7 +338,7 @@ found</string>
                                                 </prototypes>
                                             </tableView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mhM-pq-YIx">
-                                                <rect key="frame" x="0.0" y="652" width="414" height="130"/>
+                                                <rect key="frame" x="0.0" y="618" width="414" height="130"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbV-dY-Znx">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
@@ -350,7 +352,7 @@ found</string>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="You can also..."/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yjb-5I-EBO" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yjb-5I-EBO" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
                                                                 <rect key="frame" x="16" y="57" width="382" height="48"/>
                                                                 <color key="backgroundColor" red="0.26111578940000002" green="0.59506559370000001" blue="0.64911043639999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
@@ -469,6 +471,7 @@ found</string>
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Un7-mu-eEp"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="F6B-fc-yjk" firstAttribute="leading" secondItem="Un7-mu-eEp" secondAttribute="leading" id="8y8-u3-bBW"/>
@@ -477,7 +480,6 @@ found</string>
                             <constraint firstItem="F6B-fc-yjk" firstAttribute="top" secondItem="Un7-mu-eEp" secondAttribute="top" id="eIx-ks-tkk"/>
                             <constraint firstItem="ea5-S1-CI4" firstAttribute="bottom" secondItem="Un7-mu-eEp" secondAttribute="bottom" id="iPj-Cg-KJe"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Un7-mu-eEp"/>
                     </view>
                     <connections>
                         <outlet property="bottomConstraint" destination="ABS-YY-LrV" id="cUe-Y8-7N9"/>
@@ -498,6 +500,12 @@ found</string>
         <image name="ic-group-private" width="30" height="30"/>
         <image name="ic-loupe" width="22" height="24"/>
         <image name="img-first" width="15" height="15"/>
-        <image name="img-results" width="456.5" height="812"/>
+        <image name="img-results" width="379" height="820"/>
+        <namedColor name="DrakGrey">
+            <color red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

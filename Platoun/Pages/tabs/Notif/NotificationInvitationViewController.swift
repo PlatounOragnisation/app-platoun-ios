@@ -136,7 +136,7 @@ class NotificationInvitationViewController: LightViewController {
         
         productNameLabel.text = webNotification.productName
         brandNameLabel.text = webNotification.productBrand
-        productImageView.downloaded(from: webNotification.productPicture)
+        productImageView.setImage(with: URL(string: webNotification.productPicture), placeholder: nil, options: .progressiveLoad)
         
         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(webNotification.soloPrice)€")
         attributeString.addAttribute(.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))

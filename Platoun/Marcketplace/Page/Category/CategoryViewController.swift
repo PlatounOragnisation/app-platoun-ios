@@ -127,7 +127,7 @@ class CategoryViewController: LightViewController {
 
         guard let category = self.category else { return }
         
-        titleIcon.downloaded(from: category.icon)
+        titleIcon.setImage(with: URL(string: category.icon), placeholder: nil, options: .progressiveLoad)
         titleText.text = category.name
         
         update()
