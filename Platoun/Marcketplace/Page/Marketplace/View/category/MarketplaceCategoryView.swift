@@ -26,6 +26,7 @@ class MarketplaceCategoryView: UIView, ItemShopDelegate {
         }
     }
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -70,6 +71,7 @@ class MarketplaceCategoryView: UIView, ItemShopDelegate {
         ]
         addSubview(view)
         self.view = view
+        self.scrollView.contentInsetAdjustmentBehavior = .never
     }
     
     func onClicLike(productId: String, isLiked: Bool) {

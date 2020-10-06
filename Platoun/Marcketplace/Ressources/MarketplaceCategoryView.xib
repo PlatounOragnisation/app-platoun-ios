@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,6 +13,7 @@
                 <outlet property="headerView" destination="sz8-XS-UZ5" id="tvz-Uf-u8C"/>
                 <outlet property="iconImageView" destination="jte-cL-0Ta" id="Q9o-6e-VTO"/>
                 <outlet property="productStackView" destination="NdU-K1-QLp" id="wqS-HO-A34"/>
+                <outlet property="scrollView" destination="QZX-UG-WFK" id="C5q-dZ-ONc"/>
                 <outlet property="titleLabel" destination="CAh-0m-iQA" id="96v-Ht-Ad9"/>
             </connections>
         </placeholder>
@@ -98,6 +99,7 @@
                     </subviews>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="wfi-8q-4g8"/>
             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="wfi-8q-4g8" firstAttribute="leading" secondItem="oio-A3-CaM" secondAttribute="leading" id="1al-Ex-8R9"/>
@@ -105,7 +107,6 @@
                 <constraint firstItem="wfi-8q-4g8" firstAttribute="trailing" secondItem="oio-A3-CaM" secondAttribute="trailing" id="i8a-6t-7Vc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="wfi-8q-4g8"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="endColor">
                     <color key="value" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
