@@ -141,15 +141,15 @@ class MomunityUsersViewController: LightViewController {
     func sendInvitation(users: [PlatounUserCompact], index: Int) {
         guard let user = Auth.auth().currentUser else { return }
         
-        let message = (user.displayName ?? "").isEmpty
+        let title = (user.displayName ?? "").isEmpty
             ? "Une personne t’invite à rejoindre son groupe"
             : "\(user.displayName!) t’invite à rejoindre son groupe"
         
         
         let notif = InvitPlatournNotification(
             id: UUID().uuidString,
-            title: "L'invitation expire bientôt.",
-            message: message,
+            title: title,
+            message: "L'invitation expire bientôt.",
             senderUserId: user.uid,
             senderName: user.displayName,
             groupId: self.groupId)

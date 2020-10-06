@@ -44,24 +44,24 @@ class TabViewController: UITabBarController {
 
                 
                 var pastNotif: [QueryDocumentSnapshot] = []
-                var unReadNotif: [QueryDocumentSnapshot] = []
+//                var unReadNotif: [QueryDocumentSnapshot] = []
                 
                 for doc in snaps.documents {
                     guard let timestamp = doc.data()["dateTimeCreation"] as? Timestamp else { continue }
                     
                     if timestamp.dateValue() < end {
                         pastNotif.append(doc)
-                    } else {
-                        let isRead = (doc.data()["isRead"] as? Bool) ?? false
-                        
-                        if !isRead {
-                            unReadNotif.append(doc)
-                        }
-                    }
+                    }// else {
+//                        let isRead = (doc.data()["isRead"] as? Bool) ?? false
+//
+//                        if !isRead {
+//                            unReadNotif.append(doc)
+//                        }
+//                    }
                 }
                 self.removeNotif(snaps: pastNotif)
                 
-                if unReadNotif.count > 0 {
+                if snaps.documents.count > 0 {
                     self.viewControllers?.last?.tabBarItem.image = #imageLiteral(resourceName: "ic_tab_notif_unselect_dot")
                     self.viewControllers?.last?.tabBarItem.selectedImage = #imageLiteral(resourceName: "ic_tab_notif_selected_dot")
                 } else {

@@ -58,15 +58,17 @@ class NotificationTableViewCell: UITableViewCell {
     private func setupInvitationNotif() -> Bool {
         guard let notif = self.notification as? InvitPlatournNotification else { return false }
         
-        self.notificationTitleLabel.text = "L'invitation expire bientôt."
         
-        let message: String
+        let title: String
         if let name = notif.senderName, !name.isEmpty {
-            message = "\(notif.senderName!) t’invite à rejoindre son groupe."
+            title = "\(notif.senderName!) t’invite à rejoindre son groupe."
         } else {
-            message = "Une personne t’invite à rejoindre son groupe."
+            title = "Une personne t’invite à rejoindre son groupe."
         }
-        self.descriptionLabel.text = message
+        
+        self.notificationTitleLabel.text = title
+        
+        self.descriptionLabel.text = "L'invitation expire bientôt."
         self.openLabel.isHidden = false
         
         return true

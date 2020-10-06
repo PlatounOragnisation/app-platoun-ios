@@ -84,6 +84,9 @@
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NdU-K1-QLp">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="275" id="12t-sb-BLI"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                             <constraints>

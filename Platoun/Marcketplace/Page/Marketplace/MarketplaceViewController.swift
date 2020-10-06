@@ -165,6 +165,7 @@ class MarketplaceViewController: LightViewController, ContainerLikedProduct, Rel
                 if view == nil {
                     self.categoriesStackView.addArrangedSubview(categoryView)
                     categoryView.translatesAutoresizingMaskIntoConstraints = false
+                    categoryView
                     let height: CGFloat = categoryView.getHeight()                    
                     categoryView.heightAnchor.constraint(equalToConstant: height).isActive = true
                 }
