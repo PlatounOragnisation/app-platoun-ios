@@ -19,7 +19,6 @@ class LoginViewController: UIViewController {
             nav.isModalInPresentation = true
         }
         nav.navigationBar.isHidden = true
-        nav.modalPresentationStyle = .popover
         viewController.present(nav, animated: true)
 
     }

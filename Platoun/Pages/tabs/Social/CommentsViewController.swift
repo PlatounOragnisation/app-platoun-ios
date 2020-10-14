@@ -21,7 +21,6 @@ class CommentsViewController: UIViewController {
         vc.postId = postId
         vc.postCreator = postCreator
         vc.focussed = focussed
-        vc.modalPresentationStyle = .popover
         return vc
     }
 

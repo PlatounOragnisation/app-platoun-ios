@@ -205,11 +205,6 @@ class ParametersViewController: UIViewController {
         let presentationController = CustomPresentationController(presentedViewController: vc, presenting: self)
         
         vc.transitioningDelegate = presentationController
-        //        if #available(iOS 13.0, *) {
-        //            vc.modalPresentationStyle = .automatic
-        //        } else {
-        //            vc.modalPresentationStyle = .popover
-        //        }
         self.present(vc, animated: true, completion: nil)
     }
     
