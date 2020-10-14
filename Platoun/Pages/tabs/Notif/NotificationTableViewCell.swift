@@ -28,11 +28,22 @@ class NotificationTableViewCell: UITableViewCell {
         
         if self.setupInvitationNotif() {}
         else if self.setupStatusNotif() {}
+        else if self.setupCommentNotif() {}
         else {
             self.notificationTitleLabel.text = notification.title
             self.descriptionLabel.text = notification.message
             self.openLabel.isHidden = true
         }
+    }
+    
+    private func setupCommentNotif() -> Bool {
+        guard let notif = self.notification as? CommentPlatounNotification else { return false }
+        
+        self.notificationTitleLabel.text = notif.title
+        self.descriptionLabel.text = notif.message
+
+        self.openLabel.isHidden = true
+        return true
     }
     
     private func setupStatusNotif() -> Bool {

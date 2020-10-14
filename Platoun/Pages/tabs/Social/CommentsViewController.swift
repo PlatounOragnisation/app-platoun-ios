@@ -13,18 +13,20 @@ import CropViewController
 
 class CommentsViewController: UIViewController {
     
-    static func instance(postId: String, postCreator: String?, focussed: Bool)-> UIViewController {
+    static func instance(postId: String, postCreatorId: String, postCreator: String?, focussed: Bool)-> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard
             .instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
 //        let vc = nav.viewControllers.first as! CommentsViewController
         vc.postId = postId
         vc.postCreator = postCreator
+        vc.postCreatorId = postCreatorId
         vc.focussed = focussed
         return vc
     }
 
     var postId: String!
+    var postCreatorId: String!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var currentUserImageView: UIImageView!
     @IBOutlet weak var backgroundTextFieldView: UIView!
@@ -184,6 +186,7 @@ class CommentsViewController: UIViewController {
                         self.secondImageView.image = nil
                         self.secondImageView.isHidden = true
                         self.addAttachment.isHidden = false
+                        self.sendNotifComment(at: self.postCreatorId)
                     } else {
                         StorageUtils.deleteImageFor(userId: currentUser.uid, commentId: commentId, numberOfImages: listImage.count)
                         UIKitUtils.showAlert(in: self, message: "Un problème est survenue lors de l'envoie du commentaire.") {}
@@ -191,6 +194,19 @@ class CommentsViewController: UIViewController {
                 }
             case .failure(_):
                 break
+            }
+        }
+    }
+    
+    func sendNotifComment(at userId: String) {
+        let notification = CommentPlatounNotification(postId: self.postId)
+        
+        FirestoreUtils.Users.getUserNotif(uid: userId) { token in
+            FirestoreUtils.Notifications.saveCommentNotification(userId: userId, notif: notification) {
+                if case .success = $0 {
+                    guard let token = token else { return }
+                    NotificationUtils.sendCommentNotif(fcmToken: token, notif: notification)
+                }
             }
         }
     }

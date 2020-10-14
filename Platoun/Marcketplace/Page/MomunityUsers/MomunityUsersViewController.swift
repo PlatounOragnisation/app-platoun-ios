@@ -11,7 +11,6 @@ import FirebaseAuth
 import FirebaseCrashlytics
 import FirebaseMessaging
 import FirebaseFirestore
-import Alamofire
 
 protocol MomunityUsersViewControllerDelegate {
     func onClose(viewController: MomunityUsersViewController)
@@ -114,30 +113,6 @@ class MomunityUsersViewController: LightViewController {
         return
     }
     
-    func sendNotif(fcmToken: String, notif: InvitPlatournNotification) {
-        AF.request(
-            "https://fcm.googleapis.com/fcm/send",
-            method: .post,
-            parameters: [
-                "notification": [
-                    "body": notif.message,
-                    "title": notif.title
-                ],
-                "data": [
-                    "notifId": notif.id
-                ],
-                "to": fcmToken
-            ],
-            encoding: JSONEncoding(),
-            headers: [
-                "Content-Type": "application/json",
-                "Authorization": "key=AAAAEv-sP9w:APA91bEswEMe3nFEpiMRrUZQJkYxgMqtZaMDvbHOZKNbVCIlhUEN91guSL663D5_IjWawiZQnCYwwMaIns7UsK4-8GX52UmwuMIbsLINjJUsAjpv2-VW0nkOEy8h4iGwsXEZM8NyLL4q"
-            ])
-            .response { response in
-                print(response)
-            }
-    }
-    
     func sendInvitation(users: [PlatounUserCompact], index: Int) {
         guard let user = Auth.auth().currentUser else { return }
         
@@ -159,7 +134,7 @@ class MomunityUsersViewController: LightViewController {
             switch result {
             case .success():
                 if let token = users[index].fcmToken {
-                    self.sendNotif(fcmToken: token, notif: notif)
+                    NotificationUtils.sendInvitationNotif(fcmToken: token, notif: notif)
                 }
                 if index == users.count - 1 {
                     let vc = InviteSuccessViewController.instance(delegate: self)

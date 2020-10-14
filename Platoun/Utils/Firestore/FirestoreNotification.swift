@@ -56,5 +56,19 @@ extension FirestoreUtils {
                     }
                 }
         }
+        
+        static func saveCommentNotification(userId: String, notif: CommentPlatounNotification, completion: @escaping (Result<Void, Error>)->Void) {
+            Firestore.firestore()
+                .collection(Users.collectionName).document(userId)
+                .collection(Notifications.collectionName).document(notif.id)
+                .setData(notif.getData(), merge: false) { error in
+                    if let error = error {
+                        Crashlytics.crashlytics().record(error: error)
+                        completion(Result.failure(error))
+                    } else {
+                        completion(Result.success(Void()))
+                    }
+                }
+        }
     }
 }

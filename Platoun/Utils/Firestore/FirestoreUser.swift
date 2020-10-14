@@ -151,6 +151,15 @@ extension FirestoreUtils {
                 }
         }
         
+        static func getUserNotif(uid: String, completion: @escaping (String?)->Void) {
+            getUser(uid: uid) { result in
+                switch result {
+                case .success(let user): completion(user.fcmToken); return
+                case .failure(_): completion(nil); return
+                }
+            }
+        }
+        
         static func getUserInfo(uid: String, completion: @escaping (Result<(name: String, photo:URL?), Error>)->Void) {
             Firestore
                 .firestore()

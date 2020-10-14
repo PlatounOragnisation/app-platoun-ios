@@ -26,7 +26,6 @@ import netfox
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    let gcmMessageIDKey = "gcm.message_id"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         #if DEBUG
@@ -79,23 +78,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return facebook || google
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        print(userInfo)
-    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {}
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        print(userInfo)
-        
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
@@ -120,35 +105,84 @@ extension AppDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
     
-    
+    //When received
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+        switch notification.getType() {
+        case .comment(let postId):
+            center.getDeliveredNotifications { notifs in
+                let commentsNotif = notifs
+                    .filter { $0.getType() == .comment(postId: postId) }
+                    .map { $0.request.identifier }
+                if commentsNotif.count > 0 {
+                    center.removeDeliveredNotifications(withIdentifiers: commentsNotif)
+                }
+                completionHandler([.alert, .sound, .badge])
+            }
+        case .like(let postId):
+            center.getDeliveredNotifications { notifs in
+                let commentsNotif = notifs
+                    .filter { $0.getType() == .like(postId: postId) }
+                if commentsNotif.count == 0 {
+                    completionHandler([.alert, .sound, .badge])
+                } else {
+                    completionHandler([])
+                }
+            }
+        case .invitation(_):
+            completionHandler([.alert, .sound, .badge])
+        case .other:
+            completionHandler([.alert, .sound, .badge])
         }
-        
-        // Print full message.
-        print(userInfo)
-        completionHandler([.alert, .sound, .badge])
     }
     
+    //When Clic
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
         
         (self.window?.rootViewController as? TabViewController)?.selectedIndex = 4
         
-        if let notifId = userInfo["notifId"] as? String, let notifs = (self.window?.rootViewController as? TabViewController)?.viewControllers?.last {
-            actionNotif(notifId: notifId, from: notifs)
+        switch response.notification.getType() {
+        case .comment: break
+        case .like: break
+        case .invitation(let notifId):
+            if let notifs = (self.window?.rootViewController as? TabViewController)?.viewControllers?.last {
+                actionNotif(notifId: notifId, from: notifs)
+            }
+        case .other: break
         }
         
-        print(userInfo)
-        
         completionHandler()
+    }
+}
+
+extension UNNotification {
+    enum NotifPlatoun: Equatable {
+        case comment(postId: String)
+        case like(postId: String)
+        case invitation(notifId: String)
+        case other
+    }
+    var messageId: String? {
+        get {
+            return self.request.content.userInfo["gcm.message_id"] as? String
+        }
+    }
+    
+    func getType() -> NotifPlatoun {
+        let userInfo = self.request.content.userInfo
+        
+        switch userInfo["type"] as? String {
+        case "comment":
+            guard let postId = userInfo["postId"] as? String else { return .other }
+            return .comment(postId: postId)
+        case "like":
+            guard let postId = userInfo["postId"] as? String else { return .other }
+            return .like(postId: postId)
+        case "invitation":
+            guard let notifId = userInfo["notifId"] as? String else { return .other }
+            return .invitation(notifId: notifId)
+        default:
+            return .other
+        }
     }
 }
 

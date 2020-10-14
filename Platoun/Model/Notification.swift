@@ -23,11 +23,64 @@ protocol PlatounNotification {
 enum NotifType: String, Codable {
     case status = "STATUS"
     case invit = "INVITATION"
+    case comment = "COMMENT"
 }
 
 enum NotificationError: Error {
     case parsingTypeError
     case parsingStatus
+}
+
+struct CommentPlatounNotification: PlatounNotification {
+    var id: String
+    var title: String
+    var message: String
+    var date: Date
+    var type: NotifType
+    var isRead: Bool
+    var postId: String
+    
+    init(postId: String) {
+        self.id = postId
+        self.title = "Ton poste a reçu un nouveau commentaire"
+        self.message = "N'hésite pas à aller répondre."
+        self.date = Date()
+        self.type = .comment
+        self.isRead = false
+        self.postId = postId
+    }
+    
+    
+    init(_ data: [String:Any], id: String) throws {
+        guard
+            let title = data["title"] as? String,
+            let message = data["message"] as? String,
+            let date = (data["dateTimeCreation"] as? Timestamp)?.dateValue() else {
+            throw NotificationError.parsingStatus
+        }
+        self.id = id
+        self.title = title
+        self.message = message
+        self.date = date
+        self.type = .comment
+        self.isRead = (data["isRead"] as? Bool) ?? false
+        self.postId = id
+    }
+    
+    func getData() -> [String : Any] {
+        return [
+            "title": title,
+            "message": message,
+            "dateTimeCreation": Timestamp(date: self.date),
+            "type": NotifType.comment.rawValue,
+            "data": [
+                "postId": id,
+            ],
+            "isRead": isRead
+        ]
+    }
+    
+    
 }
 
 struct InvitPlatournNotification: PlatounNotification {
@@ -67,7 +120,7 @@ struct InvitPlatournNotification: PlatounNotification {
         self.title = title
         self.message = message
         self.date = date
-        self.type = .status
+        self.type = .invit
         self.isRead = (data["isRead"] as? Bool) ?? false
         self.groupId = groupId
         self.senderUserId = senderId
@@ -157,6 +210,8 @@ func notificationParse(_ data: [String:Any], id: String) throws -> PlatounNotifi
         notification = try StatusPlatounNotification(data, id: id)
     case .invit:
         notification = try InvitPlatournNotification(data, id: id)
+    case .comment:
+        notification = try CommentPlatounNotification(data, id: id)
     }
     return notification
 }

@@ -142,8 +142,8 @@ class SocialViewController: UIViewController {
 }
 
 extension SocialViewController: QuestionTableViewCellDelegate {
-    func displayComments(postId: String, postCreator: String? ,focused: Bool) {
-        let vc = CommentsViewController.instance(postId: postId, postCreator: postCreator, focussed: focused)
+    func displayComments(postId: String, postCreatorId: String, postCreator: String? ,focused: Bool) {
+        let vc = CommentsViewController.instance(postId: postId, postCreatorId: postCreatorId, postCreator: postCreator, focussed: focused)
         self.present(vc, animated: true)
     }
     
