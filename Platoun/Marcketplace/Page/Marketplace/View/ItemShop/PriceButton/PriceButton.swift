@@ -35,7 +35,7 @@ class PriceButton: UIView{
             
             let backgroundColor = self.isSolo
             ? UIColor.rgb(red: 214, green: 212, blue: 220, alpha: 1)
-                : ThemeColor.BackgroundGradient2
+            : UIColor.rgb(red: 3, green: 128, blue: 145, alpha: 1)
             content.backgroundColor = backgroundColor
         }
     }

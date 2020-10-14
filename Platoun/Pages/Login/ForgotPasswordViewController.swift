@@ -33,7 +33,7 @@ class ForgotPasswordViewController: UIViewController {
                 Crashlytics.crashlytics().record(error: err)
                 UIKitUtils.showAlert(in: self, message: "Une erreur est survenu") {}
             } else {
-                UIKitUtils.showAlert(in: self, message: "Un email a été envoyer") {
+                UIKitUtils.showAlert(in: self, message: "Un email a été envoyé") {
                     self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
                 }
             }

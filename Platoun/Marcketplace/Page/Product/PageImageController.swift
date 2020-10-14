@@ -33,6 +33,7 @@ class PageImageController: UIPageViewController, UIPageViewControllerDataSource,
     }
     
     func updateImages(images: [URL]) {
+        self.urls = images
         self.orderedViewControllers.enumerated().forEach { (index, vc) in
             (vc as! ImageViewController).updateImage(url: images[index])
         }
@@ -45,6 +46,7 @@ class PageImageController: UIPageViewController, UIPageViewControllerDataSource,
         } else {
             setViewControllers(nil, direction: .forward, animated: false, completion: nil)
         }
+        self.countDelegate?.updateCount(current: self.current, total: images.count)
     }
     
     
@@ -162,16 +164,16 @@ class ImageViewController: LightViewController {
     func updateImage(url: URL) {
         self.url = url
 //        if isLoad {
-        self.imageView.load(url)
+        self.imageView.setImage(with: url, placeholder: nil, options: .progressiveLoad)
 //        self.imageView.downloaded(from: self.image!)
 //        }
     }
     
     private var url: URL!
     
-    lazy var imageView: ImageSourceView = {
-        let view = ImageSourceView()
-        view.isAnimationEnabled = true
+    lazy var imageView: UIImageView = {
+        let view = UIImageView()
+//        view.isAnimationEnabled = true
 //        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

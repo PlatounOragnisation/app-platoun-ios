@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1wS-j6-U1l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1wS-j6-U1l">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -80,7 +81,7 @@
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUn-v3-lgA" customClass="LikeButton" customModule="Platoun" customModuleProvider="target">
                                                         <rect key="frame" x="354" y="10" width="40" height="40"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="DUn-v3-lgA" secondAttribute="height" multiplier="1:1" id="Uoo-0J-uT2"/>
                                                             <constraint firstAttribute="height" constant="40" id="dra-bH-P2e"/>
@@ -107,7 +108,7 @@
                                                             <constraint firstAttribute="height" constant="216" id="cI6-5j-pWg"/>
                                                         </constraints>
                                                     </pickerView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="it0-DJ-9zP">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="it0-DJ-9zP">
                                                         <rect key="frame" x="334" y="92" width="60" height="32"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <state key="normal" title="Validate">
@@ -151,7 +152,7 @@
                                                     </stackView>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0y-xK-cwV" customClass="RateView" customModule="Platoun" customModuleProvider="target">
                                                         <rect key="frame" x="294" y="38" width="100" height="15"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="fld-DJ-yjS"/>
                                                             <constraint firstAttribute="height" constant="15" id="p2o-Ba-KrZ"/>
@@ -520,6 +521,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="dxr-8w-SqK"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ktV-0I-Z3B" firstAttribute="leading" secondItem="cuk-RF-zlU" secondAttribute="leading" id="47L-fe-tT5"/>
@@ -540,7 +542,6 @@
                             <constraint firstAttribute="bottom" secondItem="ktV-0I-Z3B" secondAttribute="bottom" constant="-20" id="p3c-5O-ShL"/>
                             <constraint firstItem="b7l-X3-LWm" firstAttribute="width" secondItem="dxr-8w-SqK" secondAttribute="width" id="tkA-B9-LR1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dxr-8w-SqK"/>
                     </view>
                     <navigationItem key="navigationItem" title="Evening Stroller" id="MKg-lh-qZn">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="ic-back" id="5iS-3W-LP9">
@@ -621,5 +622,8 @@
         <image name="ic-back" width="29" height="24"/>
         <image name="ic-group" width="43" height="31"/>
         <image name="ic-solo" width="22" height="29"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

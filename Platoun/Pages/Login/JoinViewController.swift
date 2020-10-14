@@ -22,7 +22,7 @@ class JoinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = "S'inscrire"
-        pseudoTextFIeld.placeholder = "Pseaudo"
+        pseudoTextFIeld.placeholder = "Pseudo"
         emailTextField.placeholder = "Email"
         passwordTextField.placeholder = "Mot de passe"
         signUpButtonLabel.text = "Créer →"
