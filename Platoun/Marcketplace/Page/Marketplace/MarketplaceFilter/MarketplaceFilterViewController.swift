@@ -19,6 +19,21 @@ struct MarketplaceFilters {
     enum GroupDeals {
         case gd5, gd10, gd15
     }
+    
+    
+    func filter(_ category: Category, _ products: [ProductSummary]) -> [ProductSummary] {
+        if categories[category] == false { return [] }
+        switch self.groupDeals {
+        case .gd5:
+            return products.filter { $0.percentage >= 5 }
+        case .gd10:
+            return products.filter { $0.percentage >= 10 }
+        case .gd15:
+                return products.filter { $0.percentage >= 15 }
+        case .none:
+            return products
+        }
+    }
 }
 
 class MarketplaceFilterViewController: LightViewController, CheckableItemViewAction {

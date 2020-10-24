@@ -133,22 +133,9 @@ extension FirestoreUtils {
             Firestore
                 .firestore()
                 .collection(Users.collectionName).document(uid)
-                .getDocument() { (doc, error) in
-                    do {
-                        guard let doc = doc, doc.exists, let user = try doc.data(as: PlatounUser.self) else {
-                            let error = error ?? FirestoreUtilsError.noErrorGetUser(uid: uid)
-                            if !forCreation {
-                                Crashlytics.crashlytics().record(error: error)
-                            }
-                            completion(Result.failure(error))
-                            return
-                        }
-                        completion(Result.success(user))
-                    } catch {
-                        Crashlytics.crashlytics().record(error: error)
-                        completion(Result.failure(error))
-                    }
-                }
+                .getDocumentCodable(
+                    unRecordError: forCreation ? [DocumentReferenceError.DocumentDoesntExist] : [],
+                    completion: completion)
         }
         
         static func getUserNotif(uid: String, completion: @escaping (String?)->Void) {
@@ -164,17 +151,17 @@ extension FirestoreUtils {
             Firestore
                 .firestore()
                 .collection(Users.collectionName).document(uid)
-                .getDocument() { (doc, error) in
-                    guard let doc = doc, doc.exists, let name = doc.data()?[Users.displayName] as? String else {
-                        let error = error ?? FirestoreUtilsError.noErrorGetUser(uid: uid)
-                        Crashlytics.crashlytics().record(error: error)
+                .getDocumentWithResult(completion: { result in
+                    switch result {
+                    case .success(let doc):
+                        let name = doc.data()?[Users.displayName] as? String ?? "No name"
+                        let photo = doc.data()?[Users.photoUrl] as? String
+                        let url = photo?.isEmpty ?? true ? nil : URL(string: photo!)
+                        completion(Result.success((name, url)))
+                    case .failure(let error):
                         completion(Result.failure(error))
-                        return
                     }
-                    let photo = doc.data()?[Users.photoUrl] as? String
-                    let url = photo?.isEmpty ?? true ? nil : URL(string: photo!)
-                    completion(Result.success((name, url)))
-                }
+                })
         }
         
         static func createUser(user: PlatounUserComplet, completion: @escaping (Result<Void, Error>)->Void) {
@@ -188,7 +175,7 @@ extension FirestoreUtils {
                         completion(Result.success(Void()))
                     }
                 }
-            } catch let error {
+            } catch {
                 Crashlytics.crashlytics().record(error: error)
                 completion(Result.failure(error))
             }

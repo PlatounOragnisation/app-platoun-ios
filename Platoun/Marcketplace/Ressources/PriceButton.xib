@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,8 +14,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PriceButton" customModule="Platoun" customModuleProvider="target">
             <connections>
-                <outlet property="content" destination="hDM-o4-FRI" id="DYJ-Jj-tmw"/>
-                <outlet property="icon" destination="vsW-mp-Vda" id="MeD-hI-JwV"/>
+                <outlet property="backgroundImage" destination="Waa-Dk-B6f" id="KCC-60-1Xt"/>
+                <outlet property="iconGroup" destination="Opk-RR-Ras" id="7BF-Yy-o5M"/>
+                <outlet property="iconSolo" destination="vsW-mp-Vda" id="4Ja-B0-dhq"/>
                 <outlet property="priceLabel" destination="7yd-eA-xIb" id="oYJ-db-hUy"/>
             </connections>
         </placeholder>
@@ -24,45 +25,49 @@
             <rect key="frame" x="0.0" y="0.0" width="70" height="25"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDM-o4-FRI">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-background-price-solo" translatesAutoresizingMaskIntoConstraints="NO" id="Waa-Dk-B6f">
                     <rect key="frame" x="0.0" y="0.0" width="70" height="25"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-solo" translatesAutoresizingMaskIntoConstraints="NO" id="vsW-mp-Vda">
-                            <rect key="frame" x="6" y="3" width="19" height="19"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="vsW-mp-Vda" secondAttribute="height" multiplier="1:1" id="s9s-GV-ra6"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yd-eA-xIb">
-                            <rect key="frame" x="24" y="3" width="40" height="19"/>
-                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
-                            <color key="textColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.83921568629999999" green="0.83137254900000002" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yd-eA-xIb">
+                    <rect key="frame" x="24" y="2" width="40" height="20"/>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                    <color key="textColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-solo" translatesAutoresizingMaskIntoConstraints="NO" id="vsW-mp-Vda">
+                    <rect key="frame" x="7" y="2" width="15" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="7yd-eA-xIb" secondAttribute="trailing" constant="6" id="FGb-rW-Axj"/>
-                        <constraint firstAttribute="bottom" secondItem="vsW-mp-Vda" secondAttribute="bottom" constant="3" id="Ifp-F9-f0D"/>
-                        <constraint firstItem="vsW-mp-Vda" firstAttribute="leading" secondItem="hDM-o4-FRI" secondAttribute="leading" constant="6" id="Tgw-kf-FIY"/>
-                        <constraint firstItem="7yd-eA-xIb" firstAttribute="top" secondItem="hDM-o4-FRI" secondAttribute="top" constant="3" id="lg5-bT-r1o"/>
-                        <constraint firstAttribute="bottom" secondItem="7yd-eA-xIb" secondAttribute="bottom" constant="3" id="pVE-C8-4w4"/>
-                        <constraint firstItem="vsW-mp-Vda" firstAttribute="top" secondItem="hDM-o4-FRI" secondAttribute="top" constant="3" id="tDO-2d-9cl"/>
+                        <constraint firstAttribute="width" secondItem="vsW-mp-Vda" secondAttribute="height" multiplier="13:18" id="d9f-8j-6Gz"/>
                     </constraints>
-                </view>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-group" translatesAutoresizingMaskIntoConstraints="NO" id="Opk-RR-Ras">
+                    <rect key="frame" x="5" y="3" width="27" height="19"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Opk-RR-Ras" secondAttribute="height" multiplier="24:17" id="5Ho-j4-dcj"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="hDM-o4-FRI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1qg-Rp-3BA"/>
-                <constraint firstAttribute="trailing" secondItem="hDM-o4-FRI" secondAttribute="trailing" id="X6L-hK-3GA"/>
-                <constraint firstAttribute="bottom" secondItem="hDM-o4-FRI" secondAttribute="bottom" id="YCM-EZ-4A2"/>
-                <constraint firstItem="hDM-o4-FRI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bHe-2K-1Vq"/>
+                <constraint firstAttribute="trailing" secondItem="Waa-Dk-B6f" secondAttribute="trailing" id="9Cl-SM-bhl"/>
+                <constraint firstItem="vsW-mp-Vda" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="Aj1-hH-538"/>
+                <constraint firstItem="vsW-mp-Vda" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="7" id="BW2-v2-4Gn"/>
+                <constraint firstItem="Opk-RR-Ras" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="Nen-5d-5Ke"/>
+                <constraint firstItem="Waa-Dk-B6f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VdY-IK-gFX"/>
+                <constraint firstAttribute="bottom" secondItem="Waa-Dk-B6f" secondAttribute="bottom" id="dTI-Gb-LUg"/>
+                <constraint firstItem="7yd-eA-xIb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="eur-WJ-hFD"/>
+                <constraint firstItem="Waa-Dk-B6f" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jdW-UL-UEc"/>
+                <constraint firstItem="Opk-RR-Ras" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="mb9-fd-WSD"/>
+                <constraint firstAttribute="bottom" secondItem="7yd-eA-xIb" secondAttribute="bottom" constant="3" id="meb-go-OKS"/>
+                <constraint firstAttribute="trailing" secondItem="7yd-eA-xIb" secondAttribute="trailing" constant="6" id="rwd-5Z-75a"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-6.5217391304347831" y="-115.51339285714285"/>
         </view>
     </objects>
     <resources>
+        <image name="ic-group" width="26" height="19"/>
         <image name="ic-solo" width="15" height="20"/>
+        <image name="img-background-price-solo" width="71" height="25"/>
     </resources>
 </document>

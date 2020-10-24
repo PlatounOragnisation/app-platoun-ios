@@ -98,18 +98,8 @@ class LoginViewController: UIViewController {
     private func procedAfterAuth(result: Result<AuthDataResult, Error>) {
         switch result {
         case .success:
-            if let user = Auth.auth().currentUser {
-                if (user.displayName ?? "").isEmpty {
-                    UIKitUtils.requestAlert(in: self, message: "Choissez un nom :") { name in
-                        self.createUserIfNeeded(user: user, name: name) {
-                            self.exit(creation: false)
-                        }
-                    }
-                } else {
-                    createUserIfNeeded(user: user, name: user.displayName!) {
-                        self.exit(creation: false)
-                    }
-                }
+            ManageUserUtils(in: self).afterConnexion() {
+                self.exit(creation: false)
             }
         case .failure(let error):
             if case .cancelByUser = (error as? SignInError) {
@@ -121,52 +111,6 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    private func createUserIfNeeded(user: User, name: String, completion: @escaping ()->Void) {
-        FirestoreUtils.Users.getUser(uid: user.uid) { result in
-            switch result {
-            case .success(let user):
-                if let fcmToken = UserDefaults.standard.FCMToken {
-                    Interactor.shared.updateToken(userId: user.uid, token: fcmToken)
-                    if fcmToken != user.fcmToken {
-                        FirestoreUtils.Users.saveUser(uid: user.uid, fcmToken: fcmToken)
-                    }
-                }
-                completion()
-            case .failure(let error):
-            
-                guard case .noErrorGetUser(let uid) = (error as? FirestoreUtilsError), uid == user.uid else {
-                    Auth.auth().currentUser?.delete()
-                    AuthenticationLogout()
-                    UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
-                    return
-                }
-                
-                let request = user.createProfileChangeRequest()
-                request.displayName = name
-                request.commitChanges {
-                    if let error = $0 {
-                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre nom : \(error.localizedDescription)") { }
-                    }
-                    
-                    let platounUser = PlatounUserComplet(uid: user.uid, fcmToken: UserDefaults.standard.FCMToken, displayName: name, photoUrl: user.photoURL?.absoluteString)
-                    
-                    FirestoreUtils.Users.createUser(user: platounUser) { r in
-                        switch r {
-                        case .success:
-                            completion()
-                        case .failure:
-                            Auth.auth().currentUser?.delete()
-                            AuthenticationLogout()
-                            UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
-                        }
-                    }
-                    Interactor.shared.updateToken(userId: user.uid, token: UserDefaults.standard.FCMToken ?? "")
-                }
-            }
-        }
-    }
-    
 }
 
 extension LoginViewController: UITextFieldDelegate {

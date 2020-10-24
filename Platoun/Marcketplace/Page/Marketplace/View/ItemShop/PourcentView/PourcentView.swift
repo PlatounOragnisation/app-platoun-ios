@@ -43,11 +43,4 @@ class PourcentView: UIView {
         addSubview(view)
         self.view = view
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.layer.cornerRadius = self.bounds.height / 2
-        self.layer.masksToBounds = true
-    }
 }

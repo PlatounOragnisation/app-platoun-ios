@@ -40,6 +40,7 @@ class JoinGroupViewController: PUIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var createGroupButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -138,6 +139,9 @@ class JoinGroupViewController: PUIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.createGroupButton.setTitle("Create a new group".localise(), for: .normal)
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.tableFooterView = UIView()

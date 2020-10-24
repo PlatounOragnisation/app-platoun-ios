@@ -106,9 +106,12 @@
                                                                     <constraint firstAttribute="width" constant="150" id="mNb-NL-qMB"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nd-1l-fvo" customClass="BorderedView" customModule="Platoun" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nd-1l-fvo">
                                                                 <rect key="frame" x="50" y="0.0" width="35" height="25"/>
                                                                 <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-background-pourcent" translatesAutoresizingMaskIntoConstraints="NO" id="AET-Bz-DTi">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="25"/>
+                                                                    </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-8%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYG-bd-Nps">
                                                                         <rect key="frame" x="0.0" y="0.0" width="35" height="25"/>
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
@@ -116,24 +119,19 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="35" id="5w8-bj-xjC"/>
+                                                                    <constraint firstItem="AET-Bz-DTi" firstAttribute="top" secondItem="6nd-1l-fvo" secondAttribute="top" id="KrA-2v-0mb"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="AET-Bz-DTi" secondAttribute="bottom" id="QlB-oj-l0a"/>
+                                                                    <constraint firstItem="AET-Bz-DTi" firstAttribute="leading" secondItem="6nd-1l-fvo" secondAttribute="leading" id="T21-mD-d8l"/>
                                                                     <constraint firstAttribute="height" constant="25" id="Zak-nN-1Om"/>
                                                                     <constraint firstItem="JYG-bd-Nps" firstAttribute="top" secondItem="6nd-1l-fvo" secondAttribute="top" id="eHu-B5-33i"/>
                                                                     <constraint firstAttribute="bottom" secondItem="JYG-bd-Nps" secondAttribute="bottom" id="eaD-lJ-jCd"/>
                                                                     <constraint firstItem="JYG-bd-Nps" firstAttribute="leading" secondItem="6nd-1l-fvo" secondAttribute="leading" id="rVG-b8-NFE"/>
                                                                     <constraint firstAttribute="trailing" secondItem="JYG-bd-Nps" secondAttribute="trailing" id="wP9-Ci-BAd"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="AET-Bz-DTi" secondAttribute="trailing" id="xEW-5H-N40"/>
                                                                 </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShadowed" value="NO"/>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                        <real key="value" value="0.0"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="12.5"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -222,7 +220,7 @@
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JQZ-yd-4lG">
                                                                 <rect key="frame" x="149.5" y="-5.5" width="51" height="31"/>
                                                                 <color key="onTintColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="0.57999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <color key="thumbTintColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="thumbTintColor" red="0.0039215686269999999" green="0.72549019609999998" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <connections>
                                                                     <action selector="actionPublicGroup:" destination="58y-C7-zbG" eventType="valueChanged" id="99X-GY-XBw"/>
                                                                 </connections>
@@ -364,26 +362,20 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKT-kA-bSa" userLabel="ValidateContainer">
-                                                <rect key="frame" x="0.0" y="524" width="414" height="90"/>
+                                                <rect key="frame" x="0.0" y="524" width="414" height="104"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QA1-0Z-WDR" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
-                                                        <rect key="frame" x="89.5" y="40" width="235" height="50"/>
-                                                        <color key="backgroundColor" red="0.01176470588" green="0.50196078430000002" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QA1-0Z-WDR">
+                                                        <rect key="frame" x="83.5" y="40" width="247" height="64"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="PH9-4C-nVe"/>
-                                                            <constraint firstAttribute="width" constant="235" id="bwC-oQ-7YH"/>
+                                                            <constraint firstAttribute="height" constant="64" id="PH9-4C-nVe"/>
+                                                            <constraint firstAttribute="width" constant="247" id="bwC-oQ-7YH"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
-                                                        <state key="normal" title="Validate">
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                                                        <state key="normal" title="Validate" backgroundImage="bg-validate-group">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Validate"/>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="actionValidate:" destination="58y-C7-zbG" eventType="touchUpInside" id="pHT-NR-hD1"/>
                                                         </connections>
@@ -397,7 +389,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tML-E7-8P5" userLabel="Empty">
-                                                <rect key="frame" x="0.0" y="614" width="414" height="50"/>
+                                                <rect key="frame" x="0.0" y="628" width="414" height="36"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -444,6 +436,7 @@
                         <outlet property="user3" destination="NRQ-mg-89A" id="ckd-NC-gRf"/>
                         <outlet property="user4" destination="qfr-qN-I11" id="BP4-8I-sCH"/>
                         <outlet property="user5" destination="uVK-is-gDn" id="6Wz-y4-Hq2"/>
+                        <outlet property="validateGroupButton" destination="QA1-0Z-WDR" id="kuZ-jp-k9Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xqw-5s-Dps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -451,14 +444,11 @@
             <point key="canvasLocation" x="1873" y="613"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="QA1-0Z-WDR">
-            <size key="intrinsicContentSize" width="66" height="34"/>
-        </designable>
-    </designables>
     <resources>
+        <image name="bg-validate-group" width="251" height="64"/>
         <image name="ic-check-off" width="16" height="14"/>
         <image name="ic-check-on" width="16" height="14"/>
         <image name="ic-invite" width="75" height="75"/>
+        <image name="img-background-pourcent" width="40" height="24"/>
     </resources>
 </document>

@@ -2,12 +2,20 @@
 //  MarketplaceViewController.swift
 //  Platoun
 //
-//  Created by Flavian Mary on 11/01/2020.
+//  Created by Flavian Mary on 22/10/2020.
 //  Copyright © 2020 Flavian Mary. All rights reserved.
 //
 
 import UIKit
 import FirebaseAuth
+
+extension Array where Element == MarketplaceViewController
+                    .Section {
+    func sorted() -> [MarketplaceViewController
+    .Section] {
+        return self.sorted(by: { $0.category.order < $1.category.order })
+    }
+}
 
 protocol ContainerLikedProduct {
     func updateLike()
@@ -29,56 +37,109 @@ func productLike(_ productId: String) -> LikeButton.State {
 
 class MarketplaceViewController: LightViewController, ContainerLikedProduct, ReloadedViewController {
     
+    private static let marketplaceItemHeight: CGFloat = 300
+    private static let marketplaceItemWidth: CGFloat = 160
+    private static let marketplaceHeaderHeight: CGFloat = 90
+    
+    struct Section {
+        let category: Category
+        var products: [ProductSummary]
+        
+        mutating func add(product: ProductSummary) {
+            self.products.append(product)
+        }
+    }
+    
+    enum MarketplaceLayout {
+        case normal([Section])
+        case search([ProductSummary])
+        case empty
+    }
+    
     func updateLike() {
-        self.setupStackView()
+        self.reload()
     }
     
-    static func instance() -> MarketplaceViewController {
-        let vc = MarketplaceViewController.instanceStoryboard()
-        return vc
-    }
-    
+    var marketPlaceLayout: MarketplaceLayout = .normal([])
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionContentView: UIView!
     @IBOutlet weak var filterByView: UIView!
-    @IBOutlet weak var categoriesStackView: UIStackView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var emptyScrollView: UIScrollView!
+    
+    func makeLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            switch self.marketPlaceLayout {
+            case .normal:
+                if section % 2 == 0 {
+                    return LayoutBuilder.buildTextSectionLayout(
+                        height: .absolute(Self.marketplaceHeaderHeight))
+                } else {
+                    return LayoutBuilder.buildGallerySectionLayout(
+                        size: NSCollectionLayoutSize(
+                            widthDimension: .absolute(Self.marketplaceItemWidth),
+                            heightDimension: .absolute(Self.marketplaceItemHeight)))
+                }
+            case .search:
+                return LayoutBuilder.buildTwoCollomLayout(height: .absolute(300))
+            case .empty:
+                return LayoutBuilder.buildTextSectionLayout(height: .absolute(self.collectionContentView.frame.height))
+            }
+        }
+        return layout
+        
+    }
     
     var searchBar: UISearchBar?
     
     var interactor = MarketplaceInteractor()
     
-    var categoriesFiltred: MarketplaceFilters = MarketplaceFilters(categories: [:], groupDeals: nil) {
-        didSet { setupStackView() }
+    var categoriesFiltred: MarketplaceFilters = MarketplaceFilters(categories: [:], groupDeals: nil)
+    
+    var productsByCategories: [Section] = []
+    
+    func filter(products: [ProductSummary], for search: String) -> [ProductSummary] {
+        return products.filter {
+            $0.brandName.lowercased().contains(search.lowercased()) ||
+                $0.name.lowercased().contains(search.lowercased()) ||
+                $0.description.lowercased().contains(search.lowercased())
+        }
     }
     
-    var categories: [Category] = []
-    
-    var products: [ProductSummary] = []
+    func updateLayout() {
+        let search = self.searchBar?.text ?? ""
+        
+        if self.navigationItem.titleView == nil || search.count == 0 {
+            var res:[Section] = []
+            
+            self.productsByCategories.forEach {
+                let products = self.categoriesFiltred.filter($0.category, $0.products)
+                if products.count > 0 {
+                    res.append(Section(category: $0.category, products: products))
+                }
+            }
+            self.marketPlaceLayout = res.isEmpty ? .empty : .normal(res.sorted())
+        } else {
+            let products:[ProductSummary] = self.productsByCategories.reduce([], { $0 + $1.products })
+            let productsFiltred = self.filter(products: products, for: search)
+            self.marketPlaceLayout = productsFiltred.isEmpty ? .empty : .search(productsFiltred)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.scrollView.refreshControl = UIRefreshControl()
-        self.scrollView.refreshControl?.addTarget(self, action: #selector(reload), for: .valueChanged)
-        
-        self.scrollView.isHidden = false
-        self.emptyScrollView.isHidden = true
-        
-        self.emptyScrollView.refreshControl = UIRefreshControl()
-        self.emptyScrollView.refreshControl?.addTarget(self, action: #selector(reload), for: .valueChanged)
-
-        
-        self.scrollView.refreshControl?.beginRefreshing()
-        self.reload()
-        
-//        (self.navigationController as? RootViewController)?.setMenu(delegate: self)
+        self.collectionView.collectionViewLayout = self.makeLayout()
+        self.collectionView.refreshControl = UIRefreshControl()
+        self.collectionView.refreshControl?.addTarget(self, action: #selector(self.reload), for: .valueChanged)
     }
     
+    var first = true
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard self.products.count > 0 else { return }
+        if first {
+            first = false
+            self.view.applyGradientHorizontal(colours: [UIColor(hex: "#F7F6FB")!, ThemeColor.White])
+        }
         self.updateLike()
     }
     
@@ -88,7 +149,8 @@ class MarketplaceViewController: LightViewController, ContainerLikedProduct, Rel
     
     @IBAction func onClicSearch(_ sender: Any) {
         self.showSearch(isVisible: self.navigationItem.titleView == nil)
-        self.setupStackView()
+        self.updateLayout()
+        self.collectionView.reloadData()
     }
     
     func showSearch(isVisible: Bool) {
@@ -105,23 +167,23 @@ class MarketplaceViewController: LightViewController, ContainerLikedProduct, Rel
     }
     
     @objc func reload() {
-        self.interactor.fetchCategories { categories in
-            self.interactor.fetchData { products in
-                self.products = products
-                self.scrollView.refreshControl?.endRefreshing()
-                self.emptyScrollView.refreshControl?.endRefreshing()
-                
-                self.categories = categories
-                var categoriesFiltred: [Category: Bool] = self.categoriesFiltred.categories
-                categories.forEach {
-                    if !categoriesFiltred.keys.contains($0) {
-                        categoriesFiltred[$0] = true
-                    }
+        let uid = Auth.auth().currentUser?.uid
+        
+        self.interactor.fetchDataByCategory(uid: uid) { productsByCategories in
+            self.productsByCategories = productsByCategories
+            self.productsByCategories.forEach { section in
+                if self.categoriesFiltred.categories[section.category] == nil {
+                    self.categoriesFiltred.categories[section.category] = true
                 }
-                self.categoriesFiltred.categories = categoriesFiltred
-                self.setupStackView()
             }
+            self.updateLayout()
+            self.collectionView.refreshControl?.endRefreshing()
+            self.collectionView.reloadData()
         }
+    }
+    
+    func showHeader() -> Bool {
+        return self.navigationItem.titleView == nil || (self.searchBar?.text ?? "").count == 0
     }
     
     @IBAction func actionFilterBy() {
@@ -129,95 +191,13 @@ class MarketplaceViewController: LightViewController, ContainerLikedProduct, Rel
         
         self.present(vc, animated: true)
     }
-    
-    @IBAction func actionOpenDrawer(_ sender: Any) {
-        (self.navigationController as? RootViewController)?.handleMenuButton()
-        self.showSearch(isVisible: false)
-    }
-    
-    
-    fileprivate func setupStackView() {
-        var dict: [Category: [ProductSummary]] = [:]
-        
-        categories
-            .filter { self.categoriesFiltred.categories[$0] ?? false }
-            .forEach { category in
-                let rangeProducts = self.getFiltredProducts()
-                    .filter { $0.categoryId == category.id }
-                let products = Array(rangeProducts[0..<min(12, rangeProducts.count)])
-                if products.count > 0 {
-                    dict[category] = products
-                }
-        }
-        
-        dict
-            .sorted(by: { $0.key.order < $1.key.order })
-            .enumerated()
-            .forEach { (arg0) in
-                let (index, (category, products)) = arg0
-                
-                let view = self.categoriesStackView.arrangedSubviews.getOrNil(index) as? MarketplaceCategoryView
-                
-                let categoryView = view ?? MarketplaceCategoryView()
-                categoryView.delegate = self
-                categoryView.setup(by: category, and: products, parent: self)
-                
-                if view == nil {
-                    self.categoriesStackView.addArrangedSubview(categoryView)
-                    categoryView.translatesAutoresizingMaskIntoConstraints = false
-                    categoryView
-                    let height: CGFloat = categoryView.getHeight()                    
-                    categoryView.heightAnchor.constraint(equalToConstant: height).isActive = true
-                }
-        }
-        
-        while dict.count < self.categoriesStackView.arrangedSubviews.count, let last = self.categoriesStackView.arrangedSubviews.last {
-            last.removeFromSuperview()
-        }
-        
-        
-        
-        let search = self.searchBar?.text ?? ""
-        self.scrollView.isHidden = dict.count == 0 || !search.isEmpty
-        self.collectionView.isHidden = self.getFiltredProducts().count == 0 || search.isEmpty
-        self.emptyScrollView.isHidden = !self.scrollView.isHidden || !self.collectionView.isHidden
-        
-        if !self.collectionView.isHidden {
-            DispatchQueue.main.async {
-                self.collectionView.reloadSections(IndexSet(integer: 0))
-            }
-        }
-    }
-    
-    func getFiltredProducts() -> [ProductSummary] {
-        let search = self.searchBar?.text ?? ""
-        
-        if self.navigationItem.titleView == nil || search.count == 0 {
-            return self.products.filter {
-                    switch self.categoriesFiltred.groupDeals {
-                    case .gd5:
-                        return $0.percentage >= 5
-                    case .gd10:
-                        return $0.percentage >= 10
-                    case .gd15:
-                        return $0.percentage >= 15
-                    case .none:
-                        return true
-                    }
-            }
-        } else {
-            return self.products.filter {
-                $0.brandName.lowercased().contains(search.lowercased()) ||
-                    $0.name.lowercased().contains(search.lowercased()) ||
-                    $0.description.lowercased().contains(search.lowercased())
-            }
-        }
-    }
+
 }
 
 extension MarketplaceViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.setupStackView()
+        self.updateLayout()
+        self.collectionView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -225,58 +205,74 @@ extension MarketplaceViewController: UISearchBarDelegate {
         if self.searchBar?.text?.isEmpty ?? true {
             showSearch(isVisible: false)
         }
+        self.updateLayout()
     }
-}
-
-extension MarketplaceViewController: MarketplaceCategoryViewAction {
-    func getViewController() -> UIViewController? {
-        return self
-    }
-    
-    func seeAll(category: Category) {
-        let vc = CategoryViewController.instance(
-            category: category,
-            products: self.products.filter { $0.categoryId == category.id })
-        
-        self.show(vc, sender: nil)
-    }
-        
-    func onClickLikeProduct(productId: String, isLiked: Bool) {}
 }
 
 extension MarketplaceViewController: FilterViewControllerDelegate {
     func update(filters: MarketplaceFilters) {
         self.categoriesFiltred = filters
+        self.updateLayout()
+        self.collectionView.reloadData()
     }
 }
 
 extension MarketplaceViewController: UICollectionViewDelegate {}
 
-extension MarketplaceViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let ratio: Double = 185 / 327
-        let witdh = self.collectionView.frame.width / 2
-        
-        return CGSize(width: witdh , height: witdh / CGFloat(ratio))
-    }
-}
-
 extension MarketplaceViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        switch self.marketPlaceLayout {
+        case .normal(let sections):
+            return sections.count * 2
+        case .search:
+            return 1
+        case .empty:
+            return 1
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return getFiltredProducts().count
+        
+        switch self.marketPlaceLayout {
+        case .normal(let sections):
+            if section % 2 == 0 {
+                return 1
+            } else {
+                return sections[(section - 1)/2].products.count
+            }
+        case .search(let products):
+            return products.count
+        case .empty:
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryViewCell.identifier, for: indexPath) as? CategoryViewCell else {
-            return UICollectionViewCell()
-        }
-        let products = getFiltredProducts()
-        cell.setup(product: products[indexPath.row], delegate: self, parent: self)
         
-        return cell
-    }
-}
+        switch self.marketPlaceLayout {
+        case .normal(let sections):
+            let indexSection = indexPath.section % 2 == 0 ? indexPath.section : indexPath.section - 1
+            let section = sections[indexSection/2]
+            let product: ProductSummary? = section.products.count > indexPath.row ? section.products[indexPath.row] : nil
+            if indexPath.section % 2 == 0 {
+                return CellBuilder.getCell(in: collectionView, at: indexPath, for: section.category, and: section.products, with: self)
+            } else if let product = product {
+                return CellBuilder.getCell(in: collectionView, at: indexPath, for: product, with: self)
+            } else {
+                return UICollectionViewCell()
+            }
 
-extension MarketplaceViewController: ItemShopDelegate {
-    func onClicLike(productId: String, isLiked: Bool) {}
+        case .search(let products):
+            let product: ProductSummary? = products.count > indexPath.row ? products[indexPath.row] : nil
+            if let product = product {
+                return CellBuilder.getCell(in: collectionView, at: indexPath, for: product, with: self)
+            } else {
+                return UICollectionViewCell()
+            }
+        case .empty:
+            return CellBuilder.getEmptyCell(in: collectionView, at: indexPath) {
+                self.actionFilterBy()
+            }
+        }
+    }
 }

@@ -21,7 +21,8 @@ class LightViewController: UIViewController {
 class CategoryViewController: LightViewController {
     
     static func instance(category: Category, products: [ProductSummary]) -> CategoryViewController {
-        let vc = CategoryViewController.instanceStoryboard()
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
         vc.category = category
         vc.products = products
         return vc
@@ -40,6 +41,19 @@ class CategoryViewController: LightViewController {
         ageRange: [],
         allBrands: true,
         brands: [])
+    
+    func makeLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            if self.getProductsFiltred().count == 0 {
+                return LayoutBuilder.buildTextSectionLayout(height: .absolute(self.collectionView.bounds.height))
+            } else {
+                return LayoutBuilder.buildTwoCollomLayout(height: .absolute(260))
+            }
+        }
+        return layout
+        
+    }
     
     var products: [ProductSummary] = []
     
@@ -124,7 +138,7 @@ class CategoryViewController: LightViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.collectionView.collectionViewLayout = self.makeLayout()
         guard let category = self.category else { return }
         
         titleIcon.setImage(with: URL(string: category.icon), placeholder: nil, options: .progressiveLoad)
@@ -148,28 +162,27 @@ extension CategoryViewController: CategoryFilterViewControllerDelegate {
 
 extension CategoryViewController: UICollectionViewDelegate {}
 
-extension CategoryViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let ratio: Double = 185 / 327
-        let witdh = self.collectionView.frame.width / 2
-        
-        return CGSize(width: witdh , height: witdh / CGFloat(ratio))
-    }
-}
-
 extension CategoryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return getProductsFiltred().count
+        let productsCount = self.getProductsFiltred().count
+        return productsCount == 0 ? 1 : productsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryViewCell.identifier, for: indexPath) as? CategoryViewCell else {
-            return UICollectionViewCell()
+        let products = self.getProductsFiltred()
+        let productsCount = products.count
+
+        if productsCount == 0 {
+            return CellBuilder.getEmptyCell(in: collectionView, at: indexPath) {
+                self.actionFilters("")
+            }
+        } else {
+            if products.count > indexPath.row {
+                return CellBuilder.getCell(in: collectionView, at: indexPath, for: products[indexPath.row], with: self)
+            } else {
+                return UICollectionViewCell()
+            }
         }
-        let products = getProductsFiltred()
-        cell.setup(product: products[indexPath.row], delegate: self, parent: self)
-        
-        return cell
     }
 }
 

@@ -76,9 +76,30 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var barIndicatorView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var oldPasswordTextField: UITextField!
+    @IBOutlet weak var oldButton: UIButton!
+    @IBAction func oldButtonAction(_ sender: Any) {
+        self.oldPasswordTextField.isSecureTextEntry = !self.oldPasswordTextField.isSecureTextEntry
+        
+        let image = self.oldPasswordTextField.isSecureTextEntry ? #imageLiteral(resourceName: "ic_eyes_close") : #imageLiteral(resourceName: "ic_eyes_open")
+        oldButton.setImage(image, for: .normal)
+    }
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var newPasswordTextField: UITextField!
+    @IBOutlet weak var newButton: UIButton!
+    @IBAction func newButtonAction(_ sender: Any) {
+        self.newPasswordTextField.isSecureTextEntry = !self.newPasswordTextField.isSecureTextEntry
+        
+        let image = self.newPasswordTextField.isSecureTextEntry ? #imageLiteral(resourceName: "ic_eyes_close") : #imageLiteral(resourceName: "ic_eyes_open")
+        newButton.setImage(image, for: .normal)
+    }
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var confirmButton: UIButton!
+    @IBAction func confirmButtonAction(_ sender: Any) {
+        self.confirmPasswordTextField.isSecureTextEntry = !self.confirmPasswordTextField.isSecureTextEntry
+        
+        let image = self.confirmPasswordTextField.isSecureTextEntry ? #imageLiteral(resourceName: "ic_eyes_close") : #imageLiteral(resourceName: "ic_eyes_open")
+        confirmButton.setImage(image, for: .normal)
+    }
     @IBOutlet weak var valideButton: UIButton!
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!

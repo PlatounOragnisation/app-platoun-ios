@@ -24,6 +24,7 @@ class CreateGroupViewController: LightViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var members3Button: UIButton!
     @IBOutlet weak var members5Button: UIButton!
+    @IBOutlet weak var validateGroupButton: UIButton!
     @IBOutlet weak var publicGroupSwitch: UISwitch!
     @IBOutlet weak var titlePinLabel: UILabel!
     @IBOutlet weak var pinCodeLabel: UILabel!
@@ -123,6 +124,8 @@ class CreateGroupViewController: LightViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        validateGroupButton.setTitle("Validate".localise(), for: .normal)
+        
         guard let user = Auth.auth().currentUser else { return }
         self.hideKeyboardWhenTappedAround()
         self.textView.addDoneButton(title: "Done".localise(), target: self, selector: #selector(okPressed))
@@ -134,7 +137,7 @@ class CreateGroupViewController: LightViewController {
         self.user5.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClicUser)))
         
         textView.text = "Hey, the Momunity app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!".localise()
-        countChar.text = "\(textView.text.count) / 200"
+        countChar.text = "\(textView.text.count) / 300"
         textView.delegate = self
         
         self.imageView.setImage(with: URL(string: self.product.pictureLink), placeholder: nil, options: .progressiveLoad)
@@ -195,19 +198,19 @@ class CreateGroupViewController: LightViewController {
 }
 extension CreateGroupViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        self.countChar.text = "\(textView.text.count) / 200"
+        self.countChar.text = "\(textView.text.count) / 300"
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        self.countChar.text = "\(textView.text.count) / 200"
+        self.countChar.text = "\(textView.text.count) / 300"
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if range.length > 0 {
-            guard textView.text.count + text.count > 200 else { return true }
+            guard textView.text.count + text.count > 300 else { return true }
             return range.length >= text.count
         }
-        return textView.text.count + text.count <= 200
+        return textView.text.count + text.count <= 300
     }
 }
 

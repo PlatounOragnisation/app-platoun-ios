@@ -42,7 +42,7 @@ class NotificationTableViewCell: UITableViewCell {
         self.notificationTitleLabel.text = notif.title
         self.descriptionLabel.text = notif.message
 
-        self.openLabel.isHidden = true
+        self.openLabel.isHidden = false
         return true
     }
     

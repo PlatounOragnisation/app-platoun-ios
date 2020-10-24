@@ -110,11 +110,6 @@ class Tab1ViewController: UIViewController, ReloadedViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func likeButtonAction(_ sender: Any) {
-        let vc = ProductsLikedViewController.instance()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     @IBAction func supportButtonAction(_ sender: Any) {
         guard let url = URL(string: "http://platoun.com/mentions-legales/") else { return }
         UIApplication.shared.open(url)

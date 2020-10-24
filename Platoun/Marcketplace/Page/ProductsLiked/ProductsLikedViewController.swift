@@ -29,9 +29,19 @@ class ProductsLikedViewController: LightViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.collectionViewLayout = makeLayout()
         self.collectionView.refreshControl = self.collectionView.refreshControl ?? UIRefreshControl()
         self.collectionView.refreshControl?.addTarget(self, action: #selector(reload), for: .valueChanged)
     }
+    
+    func makeLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            return LayoutBuilder.buildTwoCollomLayout(height: .absolute(240))
+        }
+        return layout
+        
+    }
+    
     @IBAction func onBackPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -48,18 +58,7 @@ class ProductsLikedViewController: LightViewController {
     }
 }
 
-extension ProductsLikedViewController: UICollectionViewDelegate {
-    
-}
-
-extension ProductsLikedViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let ratio: Double = 185 / 260
-        let witdh = self.collectionView.frame.width / 2
-        
-        return CGSize(width: witdh , height: witdh / CGFloat(ratio))
-    }
-}
+extension ProductsLikedViewController: UICollectionViewDelegate {}
 
 extension ProductsLikedViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,15 +66,16 @@ extension ProductsLikedViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryViewCell.identifier, for: indexPath) as? CategoryViewCell else { return UICollectionViewCell() }
-        
-        cell.setup(product: self.products[indexPath.row], delegate: self, parent: self)
-        return cell
+        if products.count > indexPath.row {
+            return CellBuilder.getCell(in: collectionView, at: indexPath, for: products[indexPath.row], with: self)
+        } else {
+            return UICollectionViewCell()
+        }
     }
 }
 
-extension ProductsLikedViewController: ItemShopDelegate {
-    func onClicLike(productId: String, isLiked: Bool) {
+extension ProductsLikedViewController: ProductLikeCollectionViewCellDelegate {
+    func afterLike(productId: String, isLiked: Bool) {
 //        self.reload()
         DispatchQueue.main.async {
             if isLiked == false, let index = self.products.firstIndex(where: { $0.id == productId }) {
@@ -83,9 +83,5 @@ extension ProductsLikedViewController: ItemShopDelegate {
                 self.collectionView.reloadSections(IndexSet(integer: 0))
             }
         }
-    }
-    
-    func getViewController() -> UIViewController? {
-        return self
     }
 }

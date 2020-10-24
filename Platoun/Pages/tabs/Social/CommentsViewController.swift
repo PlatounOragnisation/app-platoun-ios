@@ -199,6 +199,7 @@ class CommentsViewController: UIViewController {
     }
     
     func sendNotifComment(at userId: String) {
+        guard Auth.auth().currentUser?.uid != userId else { return }
         let notification = CommentPlatounNotification(postId: self.postId)
         
         FirestoreUtils.Users.getUserNotif(uid: userId) { token in

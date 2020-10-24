@@ -27,7 +27,7 @@ class SocialViewController: UIViewController {
     var posts: [Post] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        sentenceTitleLabel.text = "Help us find the next Product/Brand you want on the app"
+        sentenceTitleLabel.text = "Partageons ce qui se fait de mieux pour nos enfants!"
         labelAll.text = "Tout voir"
         filterAll.labelConnected = labelAll
         labelSugestion.text = "Suggestions"
@@ -54,9 +54,14 @@ class SocialViewController: UIViewController {
         }
     }
     
+    var firstWillAppear = true
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        if firstWillAppear {
+            firstWillAppear = false
+            self.view.applyGradient(colours: [ThemeColor.BackgroundGradientCircle1, ThemeColor.BackgroundGradientCircle2])
+        }
         self.view.applyGradient(colours: [ThemeColor.BackgroundGradientCircle1, ThemeColor.BackgroundGradientCircle2])
         
         self.filterAll.set(isSelected: true)

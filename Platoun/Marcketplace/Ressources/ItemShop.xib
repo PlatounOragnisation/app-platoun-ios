@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -42,7 +42,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGd-5b-FF4" customClass="PourcentView" customModule="Platoun" customModuleProvider="target">
-                    <rect key="frame" x="10" y="10" width="40" height="24"/>
+                    <rect key="frame" x="15" y="15" width="40" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="Pxd-3l-nXS"/>
                         <constraint firstAttribute="width" constant="40" id="S8P-Ms-cdU"/>
@@ -185,7 +185,7 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1VF-O8-NLt" customClass="PriceButton" customModule="Platoun" customModuleProvider="target">
                                             <rect key="frame" x="80" y="0.0" width="70" height="25"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSolo" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="price">
@@ -215,9 +215,9 @@
                 <constraint firstAttribute="trailing" secondItem="Xab-Ac-7Jo" secondAttribute="trailing" id="YeL-45-iqY"/>
                 <constraint firstItem="6LS-hB-gbQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="ajT-9I-TIl"/>
                 <constraint firstItem="Xab-Ac-7Jo" firstAttribute="bottom" secondItem="6LS-hB-gbQ" secondAttribute="bottom" constant="28" id="bTs-k4-bMw"/>
-                <constraint firstItem="UGd-5b-FF4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="fP3-HH-eHr"/>
+                <constraint firstItem="UGd-5b-FF4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="fP3-HH-eHr"/>
                 <constraint firstItem="6LS-hB-gbQ" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-10" id="lMR-5I-yAZ"/>
-                <constraint firstItem="UGd-5b-FF4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="p5a-3g-iZK"/>
+                <constraint firstItem="UGd-5b-FF4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="p5a-3g-iZK"/>
                 <constraint firstAttribute="bottom" secondItem="vXX-V2-okE" secondAttribute="bottom" id="p8f-h6-vd4"/>
                 <constraint firstItem="vXX-V2-okE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tt4-4G-Pzp"/>
                 <constraint firstItem="vXX-V2-okE" firstAttribute="top" secondItem="6LS-hB-gbQ" secondAttribute="bottom" id="vWv-pD-Guy"/>

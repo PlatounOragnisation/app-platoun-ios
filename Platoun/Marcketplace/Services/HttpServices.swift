@@ -13,16 +13,6 @@ public enum PlatounError: Error {
 }
 
 public class Platoun {
-        
-    public static func getViewController() -> UIViewController {
-        let rootController = RootViewController.instance()
-        let menuVC = DrawerViewController.instance()
-        return DrawerController(rootViewController: rootController, menuController: menuVC)
-    }
-    
-    public static func update(userId: String) {
-//        HttpServices.shared.userId = userId
-    }
     
     public static func getAllNotifications(userId: String, _ completion: @escaping ([WebSummaryNotification])->Void) {
         NewApi.v1.allNotif(userId: userId)

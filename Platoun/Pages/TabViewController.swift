@@ -21,10 +21,6 @@ class TabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        let vc = UINavigationController(rootViewController: MarketplaceViewController.instance())
-        vc.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_tab_marketplace"), selectedImage: UIImage(named: "ic_tab_marketplace_original"))
-        vc.tabBarItem.titlePositionAdjustment = .zero
-        self.viewControllers?[1] = vc
         self.selectedIndex = 1
     }
     
@@ -110,10 +106,6 @@ class TabViewController: UITabBarController {
 
 extension TabViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard let user = Auth.auth().currentUser else { return false }
-        if viewController is DrawerController {
-            Platoun.update(userId: user.uid)
-        }
-        return true
+        return Auth.auth().currentUser != nil
     }
 }

@@ -54,10 +54,16 @@ class JoinViewController: UIViewController {
     @IBAction func signUpAction(_ sender: Any) {
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        self.signUp(with: .email(email: email, password: password))
+        let pseudo = pseudoTextFIeld.text ?? ""
+        ManageUserUtils(in: self).nameIsOk(name: pseudo) { (nameValid, retry) in
+            if nameValid {
+                self.signUp(with: .email(email: email, password: password))
+            }
+        }
     }
     
     private func signIn(with auth: Authentication) {
+        pseudoTextFIeld.text = ""
         auth.signIn(from: self, callBack: procedAfterAuth)
     }
     
@@ -65,28 +71,14 @@ class JoinViewController: UIViewController {
         auth.signUp(from: self, callBack: procedAfterAuth)
     }
     
+    
+    
     private func procedAfterAuth(result: Result<AuthDataResult, Error>) {
         switch result {
         case .success:
-            if let user = Auth.auth().currentUser {
-                if user.isPassword {
-                    let pseudo = pseudoTextFIeld.text ?? ""
-                    self.createUserIfNeeded(user: user, name: pseudo) {
-                        self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
-                    }
-                } else {
-                    if (user.displayName ?? "").isEmpty {
-                        UIKitUtils.requestAlert(in: self, message: "Choissez un nom :") { name in
-                            self.createUserIfNeeded(user: user, name: name) {
-                                self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
-                            }
-                        }
-                    } else {
-                        createUserIfNeeded(user: user, name: user.displayName!) {
-                            self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
-                        }
-                    }
-                }
+            let pseudo = (pseudoTextFIeld.text ?? "").isEmpty ? nil : pseudoTextFIeld.text
+            ManageUserUtils(in: self).afterCreation(name: pseudo) {
+                self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
             }
         case .failure(let error):
             if case .cancelByUser = (error as? SignInError) {
@@ -99,50 +91,6 @@ class JoinViewController: UIViewController {
         }
     }
     
-    private func createUserIfNeeded(user: User, name: String, completion: @escaping ()->Void) {
-        FirestoreUtils.Users.getUser(uid: user.uid) { result in
-            switch result {
-            case .success(let user):
-                if let fcmToken = UserDefaults.standard.FCMToken {
-                    Interactor.shared.updateToken(userId: user.uid, token: fcmToken)
-                    if fcmToken != user.fcmToken {
-                        FirestoreUtils.Users.saveUser(uid: user.uid, fcmToken: fcmToken)
-                    }
-                }
-                completion()
-            case .failure(let error):
-            
-                guard case .noErrorGetUser(let uid) = (error as? FirestoreUtilsError), uid == user.uid else {
-                    Auth.auth().currentUser?.delete()
-                    AuthenticationLogout()
-                    UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
-                    return
-                }
-                
-                let request = user.createProfileChangeRequest()
-                request.displayName = name
-                request.commitChanges {
-                    if let error = $0 {
-                        UIKitUtils.showAlert(in: self, message: "Une erreur est survenue lors du changement de votre nom : \(error.localizedDescription)") { }
-                    }
-                    
-                    let platounUser = PlatounUserComplet(uid: user.uid, fcmToken: UserDefaults.standard.FCMToken, displayName: name, photoUrl: user.photoURL?.absoluteString)
-                    
-                    FirestoreUtils.Users.createUser(user: platounUser) { r in
-                        switch r {
-                        case .success:
-                            completion()
-                        case .failure:
-                            Auth.auth().currentUser?.delete()
-                            AuthenticationLogout()
-                            UIKitUtils.showAlert(in: self, message: "Une erreur est survenue durant la créeation de votre profil, merci de réessayer.") {}
-                        }
-                    }
-                    Interactor.shared.updateToken(userId: user.uid, token: UserDefaults.standard.FCMToken ?? "")
-                }
-            }
-        }
-    }
 }
 
 extension JoinViewController: UITextFieldDelegate {

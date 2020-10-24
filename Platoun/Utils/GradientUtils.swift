@@ -26,6 +26,26 @@ extension UIView {
         self.layer.insertSublayer(gradient, at: 0)
         return gradient
     }
+    
+    @discardableResult
+    func applyGradientHorizontal(colours: [UIColor]) -> CAGradientLayer {
+        return self.applyGradient(colours: colours, locations: nil)
+    }
+    
+    @discardableResult
+    func applyGradientHorizontal(colours: [UIColor], locations: [NSNumber]?) -> CAGradientLayer {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = colours.map { $0.cgColor }
+        gradient.locations = locations
+        gradient.startPoint = CGPoint(x: 0, y: self.bounds.height/2)
+        gradient.endPoint = CGPoint(x: self.bounds.width, y: self.bounds.height/2)
+        if self.layer.sublayers?.first is CAGradientLayer {
+            self.layer.sublayers?.first?.removeFromSuperlayer()
+        }
+        self.layer.insertSublayer(gradient, at: 0)
+        return gradient
+    }
 }
 
 extension UILabel {

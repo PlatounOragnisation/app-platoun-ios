@@ -11,6 +11,11 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseCrashlytics
 
+enum FirestoreUtilsPostError: Error {
+    case getPostWithoutError(postId: String)
+    case getPostParsingError(postId: String)
+}
+
 extension FirestoreUtils {
     struct Posts: FirestoreCollection {
         static let collectionName: String = "posts"
@@ -19,6 +24,28 @@ extension FirestoreUtils {
         fileprivate static let voteUserId = "userId"
         fileprivate static let createBy = "createBy"
         fileprivate static let votedAt = "votedAt"
+        
+        static func getPost(postId: String, completion: @escaping (Post)->Void) -> ListenerRegistration {
+            let db = Firestore.firestore()
+            return db.collection(Posts.collectionName).document(postId)
+                .addSnapshotListener { (snapshot, e) in
+                    guard let snap = snapshot, e == nil else {
+                        let err = e ?? FirestoreUtilsPostError.getPostWithoutError(postId: postId)
+                        Crashlytics.crashlytics().record(error: err)
+                        return
+                    }
+                    
+                    do {
+                        guard let post = try snap.data(as: Post.self) else {
+                            Crashlytics.crashlytics().record(error: FirestoreUtilsPostError.getPostParsingError(postId: postId))
+                            return
+                        }
+                        completion(post)
+                    } catch {
+                        Crashlytics.crashlytics().record(error: error)
+                    }
+                }
+        }
         
         static func updatePosts(uid: String, name: String, photo: String, sema: DispatchSemaphore) throws {
             let db = Firestore.firestore()

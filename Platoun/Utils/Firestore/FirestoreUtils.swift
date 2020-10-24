@@ -15,6 +15,8 @@ import FirebaseAuth
 enum FirestoreUtilsError: Error {
     case noErrorGetUser(uid: String)
     case noErrorGetUsers
+    case userDoesntExist
+    case noErrorNames(name: String)
     case parseUserError
     case noErrorGetPost(postId: String)
     case noErrorGetNotifications(userId: String)
@@ -25,6 +27,29 @@ protocol FirestoreCollection {
 }
 
 enum FirestoreUtils {
+    
+    static func search(name: String, completion: @escaping (Bool?)->Void) {
+        Firestore.firestore()
+            .collection("names")
+            .document(name)
+            .getDocument { (snap, error) in
+                if snap == nil {
+                    Crashlytics.crashlytics().record(error: error ?? FirestoreUtilsError.noErrorNames(name: name))
+                }
+                completion(snap?.exists)
+            }
+    }
+    
+    static func saveName(name: String) {
+        Firestore.firestore()
+            .collection("names")
+            .document(name)
+            .setData([:]) { error in
+                if let error = error {
+                    Crashlytics.crashlytics().record(error: error)
+                }
+            }
+    }
     
     static func getPostQuery(filter: Post.PostType? = nil) -> Query {
         let db = Firestore.firestore()

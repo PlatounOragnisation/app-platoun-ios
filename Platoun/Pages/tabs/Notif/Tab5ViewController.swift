@@ -117,6 +117,9 @@ func actionNotifSnap(snap: DocumentSnapshot, from viewController: UIViewControll
     } else if let invitNotification = notif as? InvitPlatournNotification {
         let vc = NotificationInvitationViewController.instance(notification: invitNotification)
         viewController.present(vc, animated: true)
+    } else if let commentNotification = notif as? CommentPlatounNotification {
+        let vc = PostViewController.getInstance(notification: commentNotification)
+        viewController.present(vc, animated: true)
     } else {
         
     }

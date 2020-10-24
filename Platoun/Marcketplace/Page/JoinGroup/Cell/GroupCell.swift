@@ -21,17 +21,18 @@ protocol GroupCellDelegate {
 class GroupCell: UITableViewCell {
     static let identifier = "GroupCell"
     
+    @IBOutlet weak var bgImageView: UIImageView!
     var delegate: GroupCellDelegate?
     
     @IBOutlet weak var creatorImage: RoundedImageView!
     @IBOutlet weak var creatorLabel: UILabel!
-    @IBOutlet weak var userContainer: BorderedView!
+    @IBOutlet weak var userContainer: UIView!
     @IBOutlet weak var user1Image: RoundedImageView!
     @IBOutlet weak var user2Image: RoundedImageView!
     @IBOutlet weak var user3Image: RoundedImageView!
     @IBOutlet weak var user4Image: RoundedImageView!
     @IBOutlet weak var user5Image: RoundedImageView!
-    @IBOutlet weak var joinButton: BorderedButton!
+    @IBOutlet weak var joinButton: UIButton!
     @IBOutlet weak var lockImage: UIImageView!
     @IBOutlet weak var dealLabel: UILabel!
     @IBOutlet weak var loader: UIActivityIndicatorView!
@@ -60,6 +61,11 @@ class GroupCell: UITableViewCell {
         definedUserImage(self.user2Image, index: 1)
         definedUserImage(self.user3Image, index: 2)
         
+        let selectName = group.haveJoin ? "unselect" : "select"
+        let indexName = group.maxUsers == 3 ? 3 : 5
+        self.bgImageView.image = UIImage(named: "img-bg-join-\(selectName)-\(indexName)")
+
+        
         if group.maxUsers == 3 {
             self.user4Image.isHidden = true
             self.user5Image.isHidden = true
@@ -70,23 +76,16 @@ class GroupCell: UITableViewCell {
             definedUserImage(self.user5Image, index: 4)
         }
         
+        
 
         if group.haveJoin {
-            joinButton.borderColor = UIColor(hex: "#00D5CA")!
+            joinButton.setBackgroundImage(UIImage(named: "bg-quit-button"), for: .normal)
             joinButton.setTitle("Quit".localise(), for: .normal)
-            joinButton.backgroundColor = UIColor(hex: "#E9E9E9")
             joinButton.setTitleColor(UIColor(hex: "#222222"), for: .normal)
-            joinButton.borderWidth = 2
-            userContainer.backgroundColor = UIColor(hex: "#E9E9E9")
-            userContainer.tintColor = UIColor(hex: "#00D5CA")
         } else {
-            joinButton.borderColor = UIColor(hex: "#FFFFFF")!
+            joinButton.setBackgroundImage(UIImage(named: "bg-join-button"), for: .normal)
             joinButton.setTitle("Join".localise(), for: .normal)
-            joinButton.backgroundColor = UIColor(hex: "#038091")
             joinButton.setTitleColor(UIColor(hex: "#FFFFFF"), for: .normal)
-            joinButton.borderWidth = 2
-            userContainer.backgroundColor = UIColor(hex: "#038091")
-            userContainer.tintColor = UIColor(hex: "#FFFFFF")
         }
         
         userContainer.setNeedsLayout()
