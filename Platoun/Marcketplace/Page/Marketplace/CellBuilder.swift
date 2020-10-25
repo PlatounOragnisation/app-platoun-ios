@@ -27,6 +27,15 @@ class CellBuilder {
         }
     }
     
+    static func getCellProposed(in collectionView: UICollectionView,at indexPath: IndexPath,for product: ProductSummary, with vc: UIViewController) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductProposedCollectionViewCell.identifier, for: indexPath) as? ProductProposedCollectionViewCell {
+            cell.setup(product: product, parent: vc)
+            return cell
+        } else {
+            return UICollectionViewCell()
+        }
+    }
+    
     static func getCell(in collectionView: UICollectionView, at indexPath: IndexPath, for product: ProductLiked, with vc: ProductLikeCollectionViewCellDelegate) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductLikeCollectionViewCell.identifier, for: indexPath) as? ProductLikeCollectionViewCell {
             cell.setup(product: product, parent: vc)

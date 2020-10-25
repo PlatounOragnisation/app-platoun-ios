@@ -20,9 +20,13 @@ extension CGFloat {
 }
 
 class ProductViewController: LightViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIScrollViewDelegate, PageImageControllerDelegate {
+    private static let marketplaceItemHeight: CGFloat = 240
+    private static let marketplaceItemWidth: CGFloat = 160
+
     
     static func instance(productId: String) -> ProductViewController {
-        let vc = ProductViewController.instanceStoryboard()
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ProductViewController") as! ProductViewController
         vc.productId = productId
         return vc
     }
@@ -54,8 +58,9 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var pickerViewContainer: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var alsoItemCountLabel: UILabel!
-    @IBOutlet weak var marketplaceAlsoLike: MarketplaceCategoryView!
-        
+    @IBOutlet weak var marketplaceAlsoLike: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var shippingInfoIsVisible = false {
         didSet {
             UIView.animate(withDuration: 0.3) {
@@ -118,7 +123,7 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
         }
         
         self.alsoItemCountLabel.text = itemText.localise(product.alsoLike.count)
-        self.marketplaceAlsoLike.setup(by: nil, and: product.alsoLike, parent: self, priceIsHidden: true)
+        self.collectionView.reloadData()
     }
     
     func updateCount(current: Int, total: Int) {
@@ -156,7 +161,7 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.marketplaceAlsoLike.delegate = self
+        self.collectionView.collectionViewLayout = makeLayout()
         
         self.likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.likeCurrentProduct)))
         pickerView.delegate = self
@@ -170,6 +175,19 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
         self.emptyView.isHidden = false
         self.title = ""
     }
+    
+    func makeLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            return LayoutBuilder.buildGallerySectionLayout(
+                size: NSCollectionLayoutSize(
+                    widthDimension: .absolute(Self.marketplaceItemWidth),
+                    heightDimension: .absolute(Self.marketplaceItemHeight)))
+        }
+        return layout
+        
+    }
+    
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
@@ -317,6 +335,21 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
     @IBAction func buyItNowAction(_ sender: Any) {
         guard let product = self.product, let url = URL(string: product.link) else { return }
         UIApplication.shared.open(url)
+    }
+}
+
+extension ProductViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.product?.alsoLike.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let products = self.product?.alsoLike ?? []
+        if products.count > indexPath.row {
+            return CellBuilder.getCellProposed(in: collectionView, at: indexPath, for: products[indexPath.row], with: self)
+        } else {
+            return UICollectionViewCell()
+        }
     }
 }
 

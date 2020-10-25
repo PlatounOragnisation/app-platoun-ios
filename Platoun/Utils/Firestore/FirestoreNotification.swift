@@ -30,6 +30,13 @@ extension FirestoreUtils {
                 }
         }
         
+        static func readNotification(userId: String, notifId: String) {
+            Firestore.firestore()
+                .collection(Users.collectionName).document(userId)
+                .collection(Notifications.collectionName).document(notifId)
+                .setData(["isRead":true], merge: true)
+        }
+        
         static func getNotification(userId: String, notifId: String, completion: @escaping (Result<DocumentSnapshot, Error>)->Void) {
             Firestore.firestore()
                 .collection(Users.collectionName).document(userId)

@@ -38,9 +38,6 @@ class Tab5ViewController: UIViewController {
             
             do {
                 let notif = try notificationParse(data, id: doc.documentID)
-                if !notif.isRead {
-                    doc.reference.setData(["isRead":true], merge: true)
-                }
                 cell.setup(notification: notif)
                 return cell
             } catch {
@@ -105,6 +102,7 @@ func actionNotifSnap(snap: DocumentSnapshot, from viewController: UIViewControll
     
     if let statusNotification = notif as? StatusPlatounNotification {
         if statusNotification.status == .validated {
+            FirestoreUtils.Notifications.readNotification(userId: userId, notifId: statusNotification.id)
             Interactor.shared.fetchPromocodes(userId: userId) { (list) in
                 guard let promocode = list.first(where: { $0.groupId == statusNotification.groupId }) else {
                     UIKitUtils.showAlert(in: viewController, message: "Le code promo a expiré.", completion: {})
@@ -118,6 +116,7 @@ func actionNotifSnap(snap: DocumentSnapshot, from viewController: UIViewControll
         let vc = NotificationInvitationViewController.instance(notification: invitNotification)
         viewController.present(vc, animated: true)
     } else if let commentNotification = notif as? CommentPlatounNotification {
+        FirestoreUtils.Notifications.readNotification(userId: userId, notifId: commentNotification.id)
         let vc = PostViewController.getInstance(notification: commentNotification)
         viewController.present(vc, animated: true)
     } else {
