@@ -18,21 +18,34 @@ class PromocodesViewController: LightViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var resultLabel: UILabel!
     
     var isForPromocode = true
     
     var objs: [Any] = [] {
         didSet {
+            
             DispatchQueue.main.async {
+                self.updateResultLabel()
                 self.tableView.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
             }
         }
     }
     
+    func updateResultLabel() {
+        let text: String
+        if self.objs.count > 1 {
+            text = "Results: %d items"
+        } else {
+            text = "Results: %d item"
+        }
+        self.resultLabel.text = text.localise(self.objs.count)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.updateResultLabel()
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.beginRefreshing()
         self.tableView.refreshControl?.addTarget(self, action: #selector(reload), for: .valueChanged)
@@ -67,23 +80,17 @@ class PromocodesViewController: LightViewController {
 
 extension PromocodesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 + objs.count
+        return self.objs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: FilterCell.identifier, for: indexPath) as? FilterCell else { return UITableViewCell() }
-            cell.setup(count: objs.count)
-            return cell
-        }
-        
-        
+
         if isForPromocode {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PromocodeCell.identifier, for: indexPath) as? PromocodeCell else { return UITableViewCell() }
                     
             let objs:[PromocodeCell.Object] = (self.objs as! [PromocodeCell.Object])
             
-            let obj = objs[indexPath.row - 1]
+            let obj = objs[indexPath.row]
             cell.setup(obj)
             cell.startTimer()
             return cell
@@ -93,7 +100,7 @@ extension PromocodesViewController: UITableViewDataSource {
                     
             let objs:[GroupStatusCell.Object] = (self.objs as! [GroupStatusCell.Object])
             
-            let obj = objs[indexPath.row - 1]
+            let obj = objs[indexPath.row]
             cell.setup(obj)
             cell.startTimer()
             return cell
@@ -103,7 +110,7 @@ extension PromocodesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isForPromocode {
-            let obj = (self.objs as! [PromocodeCell.Object])[indexPath.row - 1]
+            let obj = (self.objs as! [PromocodeCell.Object])[indexPath.row]
             UIPasteboard.general.string = obj.promoCodeValue
             guard let url = URL(string: obj.link) else { return }
             
@@ -115,7 +122,7 @@ extension PromocodesViewController: UITableViewDataSource {
             
             self.present(alert, animated: true)
         } else {
-            let obj = (self.objs as! [GroupStatusCell.Object])[indexPath.row - 1]
+            let obj = (self.objs as! [GroupStatusCell.Object])[indexPath.row]
             if obj.state == .success {
                 let promocode = obj.promoCodeValue
                 let link = obj.link
@@ -137,6 +144,6 @@ extension PromocodesViewController: UITableViewDataSource {
 
 extension PromocodesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.row == 0 ? 50 : 125
+        return 125
     }
 }

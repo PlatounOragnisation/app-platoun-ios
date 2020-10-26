@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oXY-gA-tDw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oXY-gA-tDw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,36 +28,28 @@
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Gd-Hr-4uX">
                                         <rect key="frame" x="0.0" y="3" width="414" height="815"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterCell" rowHeight="50" id="G8M-CY-XxX" customClass="FilterCell" customModule="Platoun" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="50"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G8M-CY-XxX" id="OxV-eT-UGb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Résults : 3 items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rha-2O-xai">
-                                                            <rect key="frame" x="22" y="15" width="107" height="20"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="gbG-49-9Nc"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <view key="tableHeaderView" contentMode="scaleToFill" id="Cmu-Pp-MBS">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Résults : 3 items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rha-2O-xai">
+                                                    <rect key="frame" x="22" y="15" width="107" height="20"/>
                                                     <constraints>
-                                                        <constraint firstItem="Rha-2O-xai" firstAttribute="leading" secondItem="OxV-eT-UGb" secondAttribute="leading" constant="22" id="GZY-n3-8x4"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Rha-2O-xai" secondAttribute="bottom" constant="15" id="Rnz-1t-JEU"/>
-                                                        <constraint firstItem="Rha-2O-xai" firstAttribute="top" secondItem="OxV-eT-UGb" secondAttribute="top" constant="15" id="WKD-8g-d34"/>
+                                                        <constraint firstAttribute="height" constant="20" id="gbG-49-9Nc"/>
                                                     </constraints>
-                                                </tableViewCellContentView>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <outlet property="resultLabel" destination="Rha-2O-xai" id="jsz-3X-jfB"/>
-                                                </connections>
-                                            </tableViewCell>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="Rha-2O-xai" firstAttribute="top" secondItem="Cmu-Pp-MBS" secondAttribute="top" constant="15" id="9cE-Yd-N7i"/>
+                                                <constraint firstItem="Rha-2O-xai" firstAttribute="leading" secondItem="Cmu-Pp-MBS" secondAttribute="leading" constant="22" id="KJ2-Zj-bV0"/>
+                                                <constraint firstAttribute="bottom" secondItem="Rha-2O-xai" secondAttribute="bottom" constant="15" id="LGh-vT-eQr"/>
+                                            </constraints>
+                                        </view>
+                                        <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupStatusCell" rowHeight="125" id="C43-LO-RvB" customClass="GroupStatusCell" customModule="Platoun" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="78" width="414" height="125"/>
                                                 <autoresizingMask key="autoresizingMask"/>
@@ -106,7 +98,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGJ-DJ-Pej" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                                    <rect key="frame" x="318" y="14" width="30" height="13"/>
+                                                                    <rect key="frame" x="313" y="14" width="35" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="35" id="rLG-aj-xyn"/>
                                                                     </constraints>
@@ -118,7 +110,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Soft-Glow Soother" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLU-7N-ReG">
-                                                                    <rect key="frame" x="115" y="10" width="203" height="20"/>
+                                                                    <rect key="frame" x="115" y="10" width="198" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="kY4-ec-1ql"/>
                                                                     </constraints>
@@ -274,7 +266,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWJ-0B-LO0" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                                                    <rect key="frame" x="318" y="14" width="30" height="13"/>
+                                                                    <rect key="frame" x="313" y="14" width="35" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="35" id="QNI-lH-ivF"/>
                                                                     </constraints>
@@ -286,7 +278,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Soft-Glow Soother" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhz-9l-oF8">
-                                                                    <rect key="frame" x="115" y="10" width="203" height="20"/>
+                                                                    <rect key="frame" x="115" y="10" width="198" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="nyA-FQ-pE4"/>
                                                                     </constraints>
@@ -412,6 +404,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="zEh-Sf-HDo"/>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="EmO-WB-fQI" firstAttribute="bottom" secondItem="zEh-Sf-HDo" secondAttribute="bottom" id="B4N-co-ZN4"/>
@@ -419,7 +412,6 @@
                             <constraint firstItem="EmO-WB-fQI" firstAttribute="trailing" secondItem="zEh-Sf-HDo" secondAttribute="trailing" id="iEP-2o-zJo"/>
                             <constraint firstItem="EmO-WB-fQI" firstAttribute="leading" secondItem="zEh-Sf-HDo" secondAttribute="leading" id="wIu-Nw-Bo9"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="zEh-Sf-HDo"/>
                     </view>
                     <navigationItem key="navigationItem" title="Promocodes" id="Ofq-pK-xaa">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="ic-back" id="Hzc-hZ-WPV">
@@ -429,6 +421,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="resultLabel" destination="Rha-2O-xai" id="jOc-Ou-NQj"/>
                         <outlet property="tableView" destination="5Gd-Hr-4uX" id="Bct-Zg-tb6"/>
                     </connections>
                 </viewController>

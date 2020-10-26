@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,11 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-success" translatesAutoresizingMaskIntoConstraints="NO" id="MLf-5M-tPy">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-success-top" translatesAutoresizingMaskIntoConstraints="NO" id="cii-1C-B6N">
+                                <rect key="frame" x="-9.5" y="0.0" width="433" height="263.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cii-1C-B6N" secondAttribute="height" multiplier="392:239" id="LBb-CS-ELO"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-success-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="MLf-5M-tPy">
+                                <rect key="frame" x="-9.5" y="263.5" width="433" height="632.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MLf-5M-tPy" secondAttribute="height" multiplier="392:573" id="3yA-y9-j1u"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoM-Dt-xG1" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                <rect key="frame" x="133.5" y="135" width="147" height="41"/>
+                                <rect key="frame" x="133.5" y="118" width="147" height="41"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -30,8 +39,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Success!"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hc-t5-2iq" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
-                                <rect key="frame" x="88" y="191" width="238.5" height="38.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hc-t5-2iq" userLabel="Your group has been validated !  Click on the code below :" customClass="UILabelLocalized" customModule="Platoun" customModuleProvider="target">
+                                <rect key="frame" x="88" y="174" width="238.5" height="38.5"/>
                                 <string key="text">Your group has been validated ! 
 Click on the code below :</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
@@ -42,7 +51,7 @@ Click on the code below :</string>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCc-mo-8jB" customClass="BorderedButton" customModule="Platoun" customModuleProvider="target">
-                                <rect key="frame" x="127" y="244.5" width="160" height="36"/>
+                                <rect key="frame" x="127" y="227.5" width="160" height="36"/>
                                 <color key="backgroundColor" name="FF6876"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="K2n-go-HhL"/>
@@ -95,16 +104,18 @@ Click on the code below :</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SoM-Dt-xG1" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="1E6-XG-q3x"/>
+                            <constraint firstItem="MLf-5M-tPy" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="2f1-hd-SZy"/>
                             <constraint firstAttribute="bottom" secondItem="MLf-5M-tPy" secondAttribute="bottom" id="2mv-qv-Q4q"/>
                             <constraint firstItem="6kX-xW-Biy" firstAttribute="bottom" secondItem="iHQ-oc-fl0" secondAttribute="bottom" constant="25" id="972-dM-bod"/>
                             <constraint firstItem="iHQ-oc-fl0" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="B6z-ob-VNd"/>
-                            <constraint firstItem="MLf-5M-tPy" firstAttribute="leading" secondItem="obA-Xn-9b6" secondAttribute="leading" id="Iq3-wO-TTG"/>
-                            <constraint firstItem="MLf-5M-tPy" firstAttribute="top" secondItem="obA-Xn-9b6" secondAttribute="top" id="KnR-pK-Ofj"/>
+                            <constraint firstItem="jCc-mo-8jB" firstAttribute="bottom" secondItem="MLf-5M-tPy" secondAttribute="top" id="Lgl-hr-yti"/>
                             <constraint firstItem="2hc-t5-2iq" firstAttribute="top" secondItem="SoM-Dt-xG1" secondAttribute="bottom" constant="15" id="NlS-pM-4JL"/>
-                            <constraint firstAttribute="trailing" secondItem="MLf-5M-tPy" secondAttribute="trailing" id="TmC-fC-LqR"/>
+                            <constraint firstItem="cii-1C-B6N" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="eWm-EY-RF2"/>
                             <constraint firstItem="jCc-mo-8jB" firstAttribute="top" secondItem="2hc-t5-2iq" secondAttribute="bottom" constant="15" id="gbd-IT-Nyv"/>
+                            <constraint firstItem="MLf-5M-tPy" firstAttribute="top" secondItem="cii-1C-B6N" secondAttribute="bottom" id="jXM-fB-XHK"/>
+                            <constraint firstItem="MLf-5M-tPy" firstAttribute="width" secondItem="cii-1C-B6N" secondAttribute="width" id="jbL-fr-4yR"/>
+                            <constraint firstItem="cii-1C-B6N" firstAttribute="top" secondItem="obA-Xn-9b6" secondAttribute="top" id="kaI-SF-QXy"/>
                             <constraint firstItem="2hc-t5-2iq" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="nQ4-2k-LRN"/>
-                            <constraint firstItem="SoM-Dt-xG1" firstAttribute="top" secondItem="obA-Xn-9b6" secondAttribute="top" constant="135" id="whb-kz-8vu"/>
                             <constraint firstItem="jCc-mo-8jB" firstAttribute="centerX" secondItem="obA-Xn-9b6" secondAttribute="centerX" id="zWR-qe-ZIP"/>
                         </constraints>
                     </view>
@@ -118,7 +129,8 @@ Click on the code below :</string>
         </scene>
     </scenes>
     <resources>
-        <image name="img-success" width="700" height="1475"/>
+        <image name="img-success-bottom" width="392" height="573"/>
+        <image name="img-success-top" width="392" height="239"/>
         <namedColor name="DrakGrey">
             <color red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

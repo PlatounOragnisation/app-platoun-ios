@@ -11,7 +11,6 @@ import FirebaseUI
 import FirebaseStorage
 import FirebaseCrashlytics
 
-
 extension UIImageView {
     func setImage(with url: URL? , placeholder: UIImage?, options: SDWebImageOptions, completion: ((Error?)->Void)? = nil) {
         if url?.scheme == "gs", let urlString = url?.absoluteString {

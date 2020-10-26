@@ -36,6 +36,7 @@ class MomunityUsersViewController: LightViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBAction func onBackPressed(_ sender: Any) {
         self.delegate?.onClose(viewController: self)
@@ -44,11 +45,42 @@ class MomunityUsersViewController: LightViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchBar.delegate = self
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardNotification(notification:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        self.tableView.refreshControl = UIRefreshControl()
+    }
+    
+    @objc func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
+            
+            let height: CGFloat
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                height = 0.0
+            } else {
+                height = (endFrame?.size.height ?? 0.0) - ( self.tabBarController?.tabBar.frame.size.height ?? self.view.safeAreaInsets.bottom)
+            }
+            self.bottomConstraint.constant = -height
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil
+            )
+        }
     }
     
     func update(_ search: String) {

@@ -73,7 +73,12 @@ class PostTableViewCell: UITableViewCell {
         self.commentsButton.setTitle(titleButton, for: .normal)
         
         let votesCount = post.votes.count
-        self.upVoteLabel.text = votesCount == 0 ? "Upvote" : "\(votesCount) Upvote"
+        
+        if let userId = Auth.auth().currentUser?.uid, post.votes.contains(where: {$0.userId == userId}){
+            self.upVoteLabel.text = "\(votesCount) vote\(votesCount > 1 ? "s" : "")"
+        } else {
+            self.upVoteLabel.text = "Je vote"
+        }
         
         self.upVoteView.isUserInteractionEnabled = true
         self.upVoteView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.upVoteButtonAction)))
