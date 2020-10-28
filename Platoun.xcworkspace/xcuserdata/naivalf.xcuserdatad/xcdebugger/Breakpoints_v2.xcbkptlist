@@ -3,4 +3,86 @@
    uuid = "B50FBEF6-722D-4A74-B468-8A04F49AFAD5"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "691EC5DB-3CF4-4D4C-A89A-841B0B0DB81E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Platoun/Pages/tabs/Notif/NotificationInvitationViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "actionYes(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D6FC3695-EF8B-4941-A740-1413D1C77ECC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Platoun/Pages/tabs/Notif/NotificationInvitationViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A0D2E9EE-11A7-4511-9C24-587D960C183E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Platoun/Pages/tabs/Notif/NotificationInvitationViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A0D2E9EE-11A7-4511-9C24-587D960C183E - f53759086a3bb56b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Platoun.WebNotification&gt;) -&gt; () in Platoun.NotificationInvitationViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "Platoun"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/naivalf/Git/auto-entrepreneur/platoun/app-platoun-ios/Platoun/Pages/tabs/Notif/NotificationInvitationViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  uuid = "A0D2E9EE-11A7-4511-9C24-587D960C183E - 58e3b85fb23234be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Platoun.WebNotification&gt;) -&gt; () in Platoun.NotificationInvitationViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "Platoun"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/naivalf/Git/auto-entrepreneur/platoun/app-platoun-ios/Platoun/Pages/tabs/Notif/NotificationInvitationViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "152">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

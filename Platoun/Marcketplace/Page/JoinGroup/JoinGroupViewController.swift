@@ -101,9 +101,14 @@ class JoinGroupViewController: PUIViewController, UISearchBarDelegate {
     }
     
     func showOrHideTableView() {
-        let emptyViewIsHidden = self.getVisibleGroups().count > 0
-        self.emptyView.isHidden = emptyViewIsHidden
-        self.mainView.isHidden = !emptyViewIsHidden
+        if self.searchBarIsVisible && !(self.searchBar.text?.isEmpty ?? true) {
+            self.emptyView.isHidden = true
+            self.mainView.isHidden = false
+        } else {
+            let emptyViewIsHidden = self.getVisibleGroups().count > 0
+            self.emptyView.isHidden = emptyViewIsHidden
+            self.mainView.isHidden = !emptyViewIsHidden
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

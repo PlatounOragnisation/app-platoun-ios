@@ -81,11 +81,20 @@ class NotificationInvitationViewController: LightViewController {
         Interactor.shared.showNotif(userId: user.uid, sendUserId: self.notification.senderUserId, groupId: self.notification.groupId) { value in
             guard let notif = value else {
                 UIKitUtils.showAlert(in: self, message: "Mince, nous n'arrive pas à retrouver le groupe. Il doit être terminé.") {
+                    FirestoreUtils.Notifications.deleteNotification(userId: user.uid, notifId: self.notification.id)
                     self.dismiss(animated: true, completion: nil)
                 }
                 return
             }
             
+            guard notif.users.count < notif.maxUsers else {
+                UIKitUtils.showAlert(in: self, message: "Mince. Ce groupe est déjà complet.") {
+                    FirestoreUtils.Notifications.deleteNotification(userId: user.uid, notifId: self.notification.id)
+                    self.dismiss(animated: true, completion: nil)
+                }
+                return
+            }
+                        
             FirestoreUtils.Users.getUsers(ids: notif.users.map { $0.userId }) { result in
                 switch result {
                 case .success(let res):

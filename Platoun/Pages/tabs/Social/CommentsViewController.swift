@@ -40,6 +40,7 @@ class CommentsViewController: UIViewController {
     @IBOutlet weak var addAttachment: UIButton!
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sendButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -59,6 +60,7 @@ class CommentsViewController: UIViewController {
         super.viewDidLoad()
         firstImageView.isHidden = true
         secondImageView.isHidden = true
+        self.textField.enablesReturnKeyAutomatically = true
         
         self.titleLabel.text = "Réponses\(postCreator != nil ? " @\(postCreator!)" : "")"
         
@@ -69,6 +71,44 @@ class CommentsViewController: UIViewController {
             object: nil)
         
         self.textField.delegate = self
+        
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(doubleTappedFirstImageView))
+        tap1.numberOfTapsRequired = 2
+        self.firstImageView.isUserInteractionEnabled = true
+        self.firstImageView.addGestureRecognizer(tap1)
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(doubleTappedSecondImageView))
+        tap2.numberOfTapsRequired = 2
+        self.secondImageView.isUserInteractionEnabled = true
+        self.secondImageView.addGestureRecognizer(tap2)
+    }
+    
+    @objc func doubleTappedFirstImageView() {
+        
+        if self.secondImageView.image != nil {
+            self.firstImageView.image = self.secondImageView.image
+            self.secondImageView.image = nil
+            self.secondImageView.isHidden = true
+        } else {
+            self.firstImageView.isHidden = true
+            self.firstImageView.image = nil
+        }
+        
+        self.updateAddAttachment()
+        self.updateSendButtonVisibility(text: self.textField.text)
+    }
+    
+    @objc func doubleTappedSecondImageView() {
+        
+        self.secondImageView.isHidden = true
+        self.secondImageView.image = nil
+
+        
+        self.updateAddAttachment()
+        self.updateSendButtonVisibility(text: self.textField.text)
+    }
+    
+    func updateAddAttachment() {
+        self.addAttachment.isHidden = self.firstImageView.image != nil && self.secondImageView.image != nil
     }
     
     @objc func keyboardNotification(notification: NSNotification) {
@@ -164,10 +204,33 @@ class CommentsViewController: UIViewController {
         
     }
     
+    @IBAction func sendButtonAction(_ sender: Any) {
+        self.textField.resignFirstResponder()
+        self.sendAction()
+    }
+    
+    func updateSendButtonVisibility(text: String?) {
+        let text = (text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        let sendButtonIsHidden = self.firstImageView.image == nil && self.secondImageView.image == nil && text.isEmpty
+        
+        guard self.sendButton.isHidden != sendButtonIsHidden else { return }
+        
+        self.sendButton.alpha = self.sendButton.isHidden ? 0.0 : 1.0
+        self.sendButton.isHidden = sendButtonIsHidden
+        UIView.animate(withDuration: 0.2) {
+            self.sendButton.alpha = self.sendButton.isHidden ? 0.0 : 1.0
+        }
+    }
+    
+    
     func sendAction() {
         guard let currentUser = Auth.auth().currentUser else { return }
         let commentId = "\(currentUser.uid)-\(UUID().uuidString)"
-        guard let text = self.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else {
+        
+        let text = (self.textField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard !text.isEmpty || self.firstImageView.image != nil || self.secondImageView.image != nil else {
             UIKitUtils.showAlert(in: self, message: "Le commentaire ne peut pas être vide") {}
             return
         }
@@ -185,7 +248,8 @@ class CommentsViewController: UIViewController {
                         self.firstImageView.isHidden = true
                         self.secondImageView.image = nil
                         self.secondImageView.isHidden = true
-                        self.addAttachment.isHidden = false
+                        self.updateAddAttachment()
+                        self.updateSendButtonVisibility(text: nil)
                         self.sendNotifComment(at: self.postCreatorId)
                     } else {
                         StorageUtils.deleteImageFor(userId: currentUser.uid, commentId: commentId, numberOfImages: listImage.count)
@@ -215,8 +279,20 @@ class CommentsViewController: UIViewController {
 
 extension CommentsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if (self.textField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return false
+        }
+        
         self.textField.resignFirstResponder()
         self.sendAction()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
+        let updatedText = text.replacingCharacters(in: textRange, with: string)
+
+        self.updateSendButtonVisibility(text: updatedText)
         return true
     }
 }
@@ -238,7 +314,6 @@ extension CommentsViewController: UITableViewDataSource {
 extension CommentsViewController: CropViewControllerDelegate {
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         cropViewController.dismiss(animated: true, completion: nil)
-
         if self.firstImageView.image == nil {
             self.firstImageView.isHidden = false
             self.firstImageView.image = image
@@ -246,7 +321,8 @@ extension CommentsViewController: CropViewControllerDelegate {
             self.secondImageView.isHidden = false
             self.secondImageView.image = image
         }
-        self.addAttachment.isHidden = self.firstImageView.image != nil && self.secondImageView.image != nil
+        self.updateSendButtonVisibility(text: self.textField.text)
+        self.updateAddAttachment()
     }
 }
 
