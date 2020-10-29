@@ -9,24 +9,24 @@
 import UIKit
 import FirebaseUI
 
-protocol EditableFirestoreTableViewDataSourceDelegate {
-    func deleteRow(indexPath: IndexPath)
-}
-
-class EditableFirestoreTableViewDataSource: FUIFirestoreTableViewDataSource {
-    var delegate: EditableFirestoreTableViewDataSourceDelegate?
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        switch editingStyle {
-        case .delete:
-            self.delegate?.deleteRow(indexPath: indexPath)
-        case .insert: break
-        case .none: break
-        @unknown default: break
-        }
-    }
-}
+//protocol EditableFirestoreTableViewDataSourceDelegate {
+//    func deleteRow(indexPath: IndexPath)
+//}
+//
+//class EditableFirestoreTableViewDataSource: FUIFirestoreTableViewDataSource {
+//    var delegate: EditableFirestoreTableViewDataSourceDelegate?
+//    
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        switch editingStyle {
+//        case .delete:
+//            self.delegate?.deleteRow(indexPath: indexPath)
+//        case .insert: break
+//        case .none: break
+//        @unknown default: break
+//        }
+//    }
+//}

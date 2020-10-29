@@ -37,6 +37,7 @@ class CommentsViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var firstImageView: UIImageView!
     @IBOutlet weak var secondImageView: UIImageView!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var addAttachment: UIButton!
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -206,7 +207,11 @@ class CommentsViewController: UIViewController {
     
     @IBAction func sendButtonAction(_ sender: Any) {
         self.textField.resignFirstResponder()
-        self.sendAction()
+        self.sendAction() {
+            self.updateAddAttachment()
+            self.updateSendButtonVisibility(text: nil)
+            self.loader.stopAnimating()
+        }
     }
     
     func updateSendButtonVisibility(text: String?) {
@@ -224,14 +229,19 @@ class CommentsViewController: UIViewController {
     }
     
     
-    func sendAction() {
+    func sendAction(completion: @escaping ()->Void) {
+        self.loader.isHidden = false
+        self.sendButton.isHidden = true
+        self.loader.startAnimating()
         guard let currentUser = Auth.auth().currentUser else { return }
         let commentId = "\(currentUser.uid)-\(UUID().uuidString)"
         
         let text = (self.textField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard !text.isEmpty || self.firstImageView.image != nil || self.secondImageView.image != nil else {
-            UIKitUtils.showAlert(in: self, message: "Le commentaire ne peut pas être vide") {}
+            UIKitUtils.showAlert(in: self, message: "Le commentaire ne peut pas être vide") {
+                completion()
+            }
             return
         }
         
@@ -248,15 +258,15 @@ class CommentsViewController: UIViewController {
                         self.firstImageView.isHidden = true
                         self.secondImageView.image = nil
                         self.secondImageView.isHidden = true
-                        self.updateAddAttachment()
-                        self.updateSendButtonVisibility(text: nil)
                         self.sendNotifComment(at: self.postCreatorId)
+                        completion()
                     } else {
                         StorageUtils.deleteImageFor(userId: currentUser.uid, commentId: commentId, numberOfImages: listImage.count)
-                        UIKitUtils.showAlert(in: self, message: "Un problème est survenue lors de l'envoie du commentaire.") {}
+                        UIKitUtils.showAlert(in: self, message: "Un problème est survenue lors de l'envoie du commentaire.") {completion()}
                     }
                 }
             case .failure(_):
+                completion()
                 break
             }
         }
@@ -284,7 +294,11 @@ extension CommentsViewController: UITextFieldDelegate {
         }
         
         self.textField.resignFirstResponder()
-        self.sendAction()
+        self.sendAction() {
+            self.updateAddAttachment()
+            self.updateSendButtonVisibility(text: nil)
+            self.loader.stopAnimating()
+        }
         return true
     }
     

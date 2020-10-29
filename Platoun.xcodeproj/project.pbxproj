@@ -213,6 +213,8 @@
 		F0DB42D1251BC7A700A8B4FA /* DrawRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB42D0251BC7A700A8B4FA /* DrawRoundView.swift */; };
 		F0DB42D6251BC91500A8B4FA /* DrawShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB42D5251BC91500A8B4FA /* DrawShadowView.swift */; };
 		F0DB42DC251BDDB000A8B4FA /* DrawBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB42DB251BDDB000A8B4FA /* DrawBackgroundView.swift */; };
+		F0EF8B72254A2A01003DD5C6 /* RealTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF8B71254A2A01003DD5C6 /* RealTimeViewController.swift */; };
+		F0EF8B77254A2F90003DD5C6 /* PlatounTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF8B76254A2F90003DD5C6 /* PlatounTableViewDataSource.swift */; };
 		F0F0C878253462F700325C73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0F0C877253462F700325C73 /* LaunchScreen.storyboard */; };
 		F0F0C88F253792DB00325C73 /* NotificationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C88E253792DA00325C73 /* NotificationUtils.swift */; };
 /* End PBXBuildFile section */
@@ -450,6 +452,8 @@
 		F0DB42D0251BC7A700A8B4FA /* DrawRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawRoundView.swift; sourceTree = "<group>"; };
 		F0DB42D5251BC91500A8B4FA /* DrawShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawShadowView.swift; sourceTree = "<group>"; };
 		F0DB42DB251BDDB000A8B4FA /* DrawBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawBackgroundView.swift; sourceTree = "<group>"; };
+		F0EF8B71254A2A01003DD5C6 /* RealTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeViewController.swift; sourceTree = "<group>"; };
+		F0EF8B76254A2F90003DD5C6 /* PlatounTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatounTableViewDataSource.swift; sourceTree = "<group>"; };
 		F0F0C877253462F700325C73 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0F0C88E253792DA00325C73 /* NotificationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtils.swift; sourceTree = "<group>"; };
 		F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.release.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -535,6 +539,8 @@
 				F018D6C324F9781C00DD0D45 /* Post */,
 				F018D6C124F9781C00DD0D45 /* Social */,
 				F018D6C724F9781C00DD0D45 /* Notif */,
+				F0EF8B71254A2A01003DD5C6 /* RealTimeViewController.swift */,
+				F0EF8B76254A2F90003DD5C6 /* PlatounTableViewDataSource.swift */,
 			);
 			path = tabs;
 			sourceTree = "<group>";
@@ -1537,6 +1543,7 @@
 				F0BD49DA2515EEF3008092BA /* Report.swift in Sources */,
 				F018D6CE24F97C4300DD0D45 /* ParametersViewController.swift in Sources */,
 				F0BD49DF251617D2008092BA /* NotificationTableViewCell.swift in Sources */,
+				F0EF8B72254A2A01003DD5C6 /* RealTimeViewController.swift in Sources */,
 				F0AA8D1C2514162B00EA2FBD /* PourcentView.swift in Sources */,
 				F06424D62542195F005EE2E7 /* ProductCollectionViewCell.swift in Sources */,
 				F0AA8D1D2514162B00EA2FBD /* ItemShop.swift in Sources */,
@@ -1583,6 +1590,7 @@
 				F018D6CA24F9781C00DD0D45 /* ContributeViewController.swift in Sources */,
 				F0AA8D3D2514162B00EA2FBD /* WebJoin.swift in Sources */,
 				F0D26E59252A3A67005E1F23 /* FirestoreNotification.swift in Sources */,
+				F0EF8B77254A2F90003DD5C6 /* PlatounTableViewDataSource.swift in Sources */,
 				F01C6CA824F31B140016ADE2 /* AppDelegate.swift in Sources */,
 				F0AA8D222514162B00EA2FBD /* InviteViewController.swift in Sources */,
 				F0AA8D252514162B00EA2FBD /* InviteSuccessViewController.swift in Sources */,
@@ -1872,7 +1880,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1900,7 +1908,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

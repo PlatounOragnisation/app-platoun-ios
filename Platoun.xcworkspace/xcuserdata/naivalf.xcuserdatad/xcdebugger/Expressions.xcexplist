@@ -3,18 +3,41 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "PostTableViewCell.initializeBackground():PostTableViewCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.contentView.frame.width-32">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "TabViewController.viewDidAppear(_:):TabViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "Auth.auth().currentUser">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PlatounTableViewDataSource.batchedArray(_:willUpdateWith:):PlatounTableViewDataSource.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PlatounTableViewDataSource.batchedArray(_:didUpdateWith:):PlatounTableViewDataSource.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "diff.insertedIndexes.count">
+            </PersistentString>
+            <PersistentString
+               value = "diff.movedInitialIndexes.count">
+            </PersistentString>
+            <PersistentString
+               value = "diff.deletedIndexes.count">
+            </PersistentString>
+            <PersistentString
+               value = "diff.changedIndexes.count">
+            </PersistentString>
+            <PersistentString
+               value = "diff.movedResultIndexes.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PostTableViewCell.initializeBackground():PostTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.contentView.frame.width-32">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

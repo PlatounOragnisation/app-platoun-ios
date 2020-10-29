@@ -11,9 +11,8 @@ import FirebaseAuth
 import FirebaseUI
 import FirebaseCrashlytics
 
-class SocialViewController: UIViewController {
+class SocialViewController: RealTimeViewController {
     
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sentenceTitleLabel: UILabel!
     @IBOutlet weak var filterAll: FilterGradientView!
     @IBOutlet weak var labelAll: UILabel!
@@ -22,7 +21,6 @@ class SocialViewController: UIViewController {
     @IBOutlet weak var filterQuestion: FilterGradientView!
     @IBOutlet weak var labelQuestion: UILabel!
     
-    var dataSource: FUIFirestoreTableViewDataSource?
     var received: Date = Date()
     var posts: [Post] = []
     override func viewDidLoad() {
@@ -37,8 +35,15 @@ class SocialViewController: UIViewController {
         self.tableView.delegate = self
         // Do any additional setup after loading the view.
         
+        
+        self.filterAll.set(isSelected: true)
+        self.filterQuestion.set(isSelected: false)
+        self.filterSugestion.set(isSelected: false)
+    }
+    
+    override func generateDataSource() {
         let query = FirestoreUtils.getPostQuery()
-        self.dataSource = FUIFirestoreTableViewDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
+        self.dataSource = PlatounTableViewDataSource(with: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
             guard
                 let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell,
                 let post = try? doc.data(as: Post.self) else {
@@ -48,10 +53,6 @@ class SocialViewController: UIViewController {
             cell.delegate = self
             return cell
         })
-        self.dataSource?.queryErrorHandler = { error in
-            print(error)
-            Crashlytics.crashlytics().record(error: error)
-        }
     }
     
     var firstWillAppear = true
@@ -61,13 +62,7 @@ class SocialViewController: UIViewController {
         if firstWillAppear {
             firstWillAppear = false
             self.view.applyGradient(colours: [ThemeColor.BackgroundGradientCircle1, ThemeColor.BackgroundGradientCircle2])
-        }
-        self.view.applyGradient(colours: [ThemeColor.BackgroundGradientCircle1, ThemeColor.BackgroundGradientCircle2])
-        
-        self.filterAll.set(isSelected: true)
-        self.filterQuestion.set(isSelected: false)
-        self.filterSugestion.set(isSelected: false)
-        
+        }        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,14 +70,25 @@ class SocialViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
     }
     
-    var first = true
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if first {
-            self.dataSource?.bind(to: self.tableView)
-            first = false
-        }
-    }
+//    var first = true
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        self.dataSource?.bind(to: self.tableView)
+////        if first {
+////            self.dataSource?.bind(to: self.tableView)
+////            first = false
+////        } else {
+////            self.tableView.dataSource = nil
+////            self.tableView.reloadData()
+////        }
+//    }
+//
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        self.dataSource?.unbind()
+//        self.tableView.dataSource = nil
+//        self.tableView.reloadData()
+//    }
     
     func selectAll() {
         if !filterAll.isSelected {

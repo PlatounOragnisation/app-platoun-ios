@@ -209,8 +209,7 @@ class ParametersViewController: UIViewController {
     }
     
     @IBAction func logoutButtonAction(_ sender: Any) {
-        AuthenticationLogout()
-        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+        self.logOut()
     }
     
     @IBAction func changeValuesNotifAction(_ sender: Any) {
@@ -292,8 +291,12 @@ class ParametersViewController: UIViewController {
     }
     
     func logOut() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+//        let tab = appDelegate?.window?.rootViewController as? TabViewController
+//        tab?.stopBind()
+        
         AuthenticationLogout()
-        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+        appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
     }
     
     @IBAction func removeAccountAction(_ sender: Any) {
@@ -315,8 +318,7 @@ class ParametersViewController: UIViewController {
                     }
                 case .failure(let error):
                     UIKitUtils.showAlert(in: self, message: "Un problème est survenue merci de vous reconnecter:\n\(error)") {
-                        AuthenticationLogout()
-                        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+                        self.logOut()
                     }
                 }
             }

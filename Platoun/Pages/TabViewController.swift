@@ -71,6 +71,10 @@ class TabViewController: UITabBarController {
         
     }
     
+    func stopBind() {
+        self.viewControllers?.getOrNil(4)
+    }
+    
     func removeNotif(snaps: [QueryDocumentSnapshot]) {
         snaps.forEach { snap in
             snap.reference.delete()

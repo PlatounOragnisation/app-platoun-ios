@@ -12,22 +12,21 @@ import FirebaseCrashlytics
 import FirebaseUI
 
 
-class Tab5ViewController: UIViewController {
+class Tab5ViewController: RealTimeViewController {
     
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerLabel: UILabel!
-    
-    var dataSource: EditableFirestoreTableViewDataSource?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         headerLabel.text = "Des notifications vous attendent !"
-        guard let currentUser = Auth.auth().currentUser else { return }
         self.tableView.delegate = self
-        
+    }
+    
+    override func generateDataSource() {
+        guard let currentUser = Auth.auth().currentUser else { return }
         let query = FirestoreUtils.getNotificationsOrderedQuery(userId: currentUser.uid)
         
-        dataSource = EditableFirestoreTableViewDataSource(query: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
+        dataSource = PlatounTableViewDataSource(with: query, populateCell: { (tableView, indexPath, doc) -> UITableViewCell in
             
             guard
                 let cell = tableView.dequeueReusableCell(withIdentifier: NotificationTableViewCell.identifier, for: indexPath) as? NotificationTableViewCell,
@@ -45,25 +44,36 @@ class Tab5ViewController: UIViewController {
                 return UITableViewCell()
             }
         })
-        self.dataSource?.delegate = self
-        
-        self.dataSource?.queryErrorHandler = { error in
-            Crashlytics.crashlytics().record(error: error)
-        }
+        self.dataSource?.editableDelegate = self
     }
     
-    var first = true
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if first {
-            self.dataSource?.bind(to: self.tableView)
-            first = false
-        }
-    }
+//    var first = true
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        self.dataSource?.bind(to: self.tableView)
+////        if first {
+////            self.dataSource?.bind(to: self.tableView)
+////            first = false
+////        } else {
+////            self.tableView.dataSource = nil
+////            self.tableView.reloadData()
+////        }
+//    }
+    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        self.dataSource?.unbind()
+//        self.tableView.dataSource = nil
+//        self.tableView.reloadData()
+//    }
 }
 
-extension Tab5ViewController: EditableFirestoreTableViewDataSourceDelegate {
-    func deleteRow(indexPath: IndexPath) {
+extension Tab5ViewController: EditablePlatounTableViewDelegate {
+    func canEditRowAt(at indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func deleteRow(at indexPath: IndexPath) {
         guard let snap = self.dataSource?.snapshot(at: indexPath.row) else { return }
         snap.reference.delete { (error) in
             if let error = error {
