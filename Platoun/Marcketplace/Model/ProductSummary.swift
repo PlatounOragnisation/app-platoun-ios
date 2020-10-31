@@ -21,6 +21,7 @@ struct ProductSummary {
     let productAges: [String]
     let link: String
     var isLike: Bool
+    let withReduc: Bool
         
     var groupPrice: Int {
         get { self.price.apply(percentage: self.percentage) }
@@ -40,6 +41,8 @@ struct ProductSummary {
             categoryId: product.categoryId,
             productAges: product.productAges.isEmpty ? ["∞"] : product.productAges,
             link: product.buyLink ?? "",
-            isLike: product.liked)
+            isLike: product.liked,
+            withReduc: product.withReduc
+            )
     }
 }

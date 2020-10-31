@@ -45,7 +45,6 @@
 		F04A7DBF2514EC5B00F99143 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DBE2514EC5B00F99143 /* CustomError.swift */; };
 		F04A7DCD2514F90000F99143 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DCC2514F90000F99143 /* Encodable+Extension.swift */; };
 		F0504A182516E260007B9277 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0504A172516E260007B9277 /* GradientButton.swift */; };
-		F054D6A825252EB20053ABA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F054D6A725252EB20053ABA7 /* GoogleService-Info.plist */; };
 		F06424B72542115D005EE2E7 /* IBPCollectionViewCompositionalLayout in Frameworks */ = {isa = PBXBuildFile; productRef = F06424B62542115D005EE2E7 /* IBPCollectionViewCompositionalLayout */; };
 		F06424BC254211D0005EE2E7 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06424BB254211D0005EE2E7 /* Collection.swift */; };
 		F06424C125421317005EE2E7 /* LayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06424C025421317005EE2E7 /* LayoutBuilder.swift */; };
@@ -59,6 +58,7 @@
 		F07A1F8E25040402002AAEDD /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F8D25040402002AAEDD /* ImagePickerManager.swift */; };
 		F07A1F9025041270002AAEDD /* StorageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F8F25041270002AAEDD /* StorageUtils.swift */; };
 		F07A1F932504179D002AAEDD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A1F922504179D002AAEDD /* Post.swift */; };
+		F07ECAB7254DF21C00868D40 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F054D6A725252EB20053ABA7 /* GoogleService-Info.plist */; };
 		F0867336253CB15900C47148 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0867335253CB15900C47148 /* PostViewController.swift */; };
 		F086733E253F631400C47148 /* ManageUserUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F086733D253F631400C47148 /* ManageUserUtils.swift */; };
 		F089C0EA251768B100C56984 /* AddImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F089C0E9251768B100C56984 /* AddImageView.swift */; };
@@ -196,6 +196,7 @@
 		F0BD4A302516CBA5008092BA /* GradientUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BD4A2F2516CBA5008092BA /* GradientUtils.swift */; };
 		F0C252C0251D4C6100BCB677 /* CommentBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C252BF251D4C6100BCB677 /* CommentBackgroundView.swift */; };
 		F0C252C5251D612B00BCB677 /* CGContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C252C4251D612B00BCB677 /* CGContext+Extension.swift */; };
+		F0CB35EE254DBBA000368E44 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CB35ED254DBBA000368E44 /* Alert.swift */; };
 		F0D26E3525288973005E1F23 /* RemoteConfigUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D26E3425288973005E1F23 /* RemoteConfigUtils.swift */; };
 		F0D26E3A25288A08005E1F23 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0D26E3925288A08005E1F23 /* RemoteConfigDefaults.plist */; };
 		F0D26E4B252A16A5005E1F23 /* UserUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D26E4A252A16A5005E1F23 /* UserUtils.swift */; };
@@ -241,8 +242,11 @@
 		0B95D0D62524AD5300A90938 /* NotificationBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBackgroundView.swift; sourceTree = "<group>"; };
 		0B95D0DE2524C44C00A90938 /* EditableFirestoreTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableFirestoreTableViewDataSource.swift; sourceTree = "<group>"; };
 		125708D26EA307293C3F011A /* Pods_Platoun_PlatounUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Platoun_PlatounUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1669D26E9ED177F36EA0BF78 /* Pods-PlatounTests.prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.prod.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.prod.xcconfig"; sourceTree = "<group>"; };
+		1EC4C27E2A624E49A703235A /* Pods-Platoun-PlatounUITests.prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun-PlatounUITests.prod.xcconfig"; path = "Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests.prod.xcconfig"; sourceTree = "<group>"; };
 		6DDC87C3ACE923BFEF07336F /* Pods-Platoun-PlatounUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun-PlatounUITests.debug.xcconfig"; path = "Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		78738F41EED7966EA2CA3723 /* Pods-PlatounTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounTests.debug.xcconfig"; path = "Target Support Files/Pods-PlatounTests/Pods-PlatounTests.debug.xcconfig"; sourceTree = "<group>"; };
+		787A17B0942E98C099A7BB53 /* Pods-Platoun.prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun.prod.xcconfig"; path = "Target Support Files/Pods-Platoun/Pods-Platoun.prod.xcconfig"; sourceTree = "<group>"; };
 		800E9816F838EEAEB4640F58 /* Pods_Platoun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Platoun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6D3D26DF816B3B983A8F6F /* Pods-Platoun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun.debug.xcconfig"; path = "Target Support Files/Pods-Platoun/Pods-Platoun.debug.xcconfig"; sourceTree = "<group>"; };
 		93D3E7F3C28B9AE1B6E4CD15 /* Pods_PlatounTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlatounTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -437,6 +441,7 @@
 		F0BD4A2F2516CBA5008092BA /* GradientUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientUtils.swift; sourceTree = "<group>"; };
 		F0C252BF251D4C6100BCB677 /* CommentBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentBackgroundView.swift; sourceTree = "<group>"; };
 		F0C252C4251D612B00BCB677 /* CGContext+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGContext+Extension.swift"; sourceTree = "<group>"; };
+		F0CB35ED254DBBA000368E44 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		F0D26E3425288973005E1F23 /* RemoteConfigUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigUtils.swift; sourceTree = "<group>"; };
 		F0D26E3925288A08005E1F23 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		F0D26E4A252A16A5005E1F23 /* UserUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUtils.swift; sourceTree = "<group>"; };
@@ -501,6 +506,9 @@
 				CC7F13EF679DB5D0C2DCC63E /* Pods-Platoun-PlatounUITests.release.xcconfig */,
 				78738F41EED7966EA2CA3723 /* Pods-PlatounTests.debug.xcconfig */,
 				F93C3EB0ABC50C0859180B51 /* Pods-PlatounTests.release.xcconfig */,
+				787A17B0942E98C099A7BB53 /* Pods-Platoun.prod.xcconfig */,
+				1EC4C27E2A624E49A703235A /* Pods-Platoun-PlatounUITests.prod.xcconfig */,
+				1669D26E9ED177F36EA0BF78 /* Pods-PlatounTests.prod.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -567,6 +575,7 @@
 				F0D26E3925288A08005E1F23 /* RemoteConfigDefaults.plist */,
 				F049B581252A63F400CB7F49 /* Dictionary+Extension.swift */,
 				F086733D253F631400C47148 /* ManageUserUtils.swift */,
+				F0CB35ED254DBBA000368E44 /* Alert.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1323,7 +1332,6 @@
 				F0AA8D5B2514162B00EA2FBD /* Drawer.storyboard in Resources */,
 				F0AA8D682514162B00EA2FBD /* InviteSuccess.storyboard in Resources */,
 				F0D26E3A25288A08005E1F23 /* RemoteConfigDefaults.plist in Resources */,
-				F054D6A825252EB20053ABA7 /* GoogleService-Info.plist in Resources */,
 				F0AA8D662514162B00EA2FBD /* Invite.storyboard in Resources */,
 				F0AA8D6A2514162B00EA2FBD /* MarketplaceCategoryView.xib in Resources */,
 				F0BD4A0325166C51008092BA /* Roboto-Bold.ttf in Resources */,
@@ -1341,6 +1349,7 @@
 				F0AA8D5A2514162B00EA2FBD /* MomunityUsers.storyboard in Resources */,
 				F0AA8D562514162B00EA2FBD /* PourcentView.xib in Resources */,
 				F0BD49FF25166C51008092BA /* Roboto-Light.ttf in Resources */,
+				F07ECAB7254DF21C00868D40 /* GoogleService-Info.plist in Resources */,
 				F089C0F725177C5400C56984 /* AddImageView.xib in Resources */,
 				F0BD49FC25166C51008092BA /* Roboto-Italic.ttf in Resources */,
 				F0AA8D672514162B00EA2FBD /* PriceButton.xib in Resources */,
@@ -1678,6 +1687,7 @@
 				F01634E12540A47E009A426D /* FIRDocumentReference+Extension.swift in Sources */,
 				F0AA8D272514162B00EA2FBD /* UIImageView+ExtensionMarketplace.swift in Sources */,
 				F0AA8D152514162B00EA2FBD /* MarketplaceInteractor.swift in Sources */,
+				F0CB35EE254DBBA000368E44 /* Alert.swift in Sources */,
 				F0A11F1A25054383007C29F3 /* PostTableViewCell.swift in Sources */,
 				F0AA8D332514162B00EA2FBD /* Array+Extension.swift in Sources */,
 				F0AA8D3F2514162B00EA2FBD /* WebCategoryProducts.swift in Sources */,
@@ -1880,7 +1890,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 25;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1908,7 +1918,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

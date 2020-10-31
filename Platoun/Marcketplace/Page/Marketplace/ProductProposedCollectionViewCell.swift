@@ -18,6 +18,7 @@ class ProductProposedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var borderLessContainer: UIView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeLoading: UIActivityIndicatorView!
+    @IBOutlet weak var productView: UIView!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var pourcentLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -41,10 +42,19 @@ class ProductProposedCollectionViewCell: UICollectionViewCell {
         subtitleLabel.text = product.brandName
         productImageView.setImage(with: URL(string: product.pictureLink), placeholder: nil, options: .progressiveLoad)
         self.pourcentLabel.text = "- \(product.percentage)%"
-        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(product.price)€")
-        attributeString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
-        soloPriceLabel.attributedText = attributeString
-        groupPriceLabel.text = "\(product.groupPrice)€"
+        
+        
+        productView.isHidden = !product.withReduc
+        groupPriceLabel.isHidden = !product.withReduc
+        if !product.withReduc {
+            soloPriceLabel.text = "\(product.price)€"
+        } else {
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(product.price)€")
+            attributeString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+            soloPriceLabel.attributedText = attributeString
+            groupPriceLabel.text = "\(product.groupPrice)€"
+        }
+        
         currentState = LikeState.convert(state: productLike(product.id))
         self.updateBackgroundLikeButton()
     }

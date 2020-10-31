@@ -19,6 +19,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeLoading: UIActivityIndicatorView!
     @IBOutlet weak var productImageView: UIImageView!
+    @IBOutlet weak var pourcentView: UIView!
     @IBOutlet weak var pourcentLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -47,6 +48,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
         self.pourcentLabel.text = "- \(product.percentage)%"
         soloPriceLabel.text = "\(product.price)€"
         groupPriceLabel.text = "\(product.groupPrice)€"
+        groupPriceButton.isHidden = !product.withReduc
+        pourcentView.isHidden = !product.withReduc
         currentState = LikeState.convert(state: productLike(product.id))
         self.updateBackgroundLikeButton()
     }
@@ -91,6 +94,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         let isLike = self.currentState == .like
         self.currentState = .processing
+
         updateBackgroundLikeButton()
         Interactor.shared.postLike(userId: userId, liked: !isLike, productId: productId) { value in
             let isLiked = value ?? isLike

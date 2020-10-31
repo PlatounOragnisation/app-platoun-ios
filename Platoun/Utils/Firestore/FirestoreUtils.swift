@@ -28,6 +28,19 @@ protocol FirestoreCollection {
 
 enum FirestoreUtils {
     
+    static func requestColab(uid: String, productId: String) {
+        Firestore.firestore()
+            .collection("CollaborationRequest")
+            .document(productId)
+            .collection("users")
+            .document(uid)
+            .getDocument { (snap, error) in
+                if snap?.exists == false {
+                    snap?.reference.setData(["lastDate":Date()], merge: true)
+                }
+            }
+    }
+    
     static func search(name: String, completion: @escaping (Bool?)->Void) {
         Firestore.firestore()
             .collection("names")

@@ -24,6 +24,7 @@ struct Product {
     let colors: [Color]
     var isLike: Bool
     var link: String
+    let withReduc: Bool
     var alsoLike: [ProductSummary]
     
     struct Color: Equatable {
@@ -52,6 +53,7 @@ struct Product {
             colors: product.productPictures.map { Color(images: $0.pictureLinks, name: $0.productColor.capitalized) },
             isLike: product.liked,
             link: product.buyLink,
+            withReduc: product.withReduc,
             alsoLike: product.likeAlso.map { ProductSummary.setup($0) })
     }
     
@@ -68,6 +70,8 @@ struct Product {
             categoryId: self.categoryId,
             productAges: self.productAges,
             link: self.link,
-            isLike: self.isLike)
+            isLike: self.isLike,
+            withReduc: self.withReduc
+            )
     }
 }

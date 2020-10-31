@@ -19,5 +19,6 @@ struct WebSummaryProduct: Codable {
     let productAges: [String]
     let categoryId: String
     let buyLink: String?
+    let withReduc: Bool
     let liked: Bool
 }

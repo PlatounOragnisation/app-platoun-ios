@@ -45,7 +45,10 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var emptyView: UIView!
     
     @IBOutlet weak var soloPriceButton: UILabel!
+    @IBOutlet weak var containerGroupButton: UIView!
+    @IBOutlet weak var containerSoloButton: UIView!
     @IBOutlet weak var groupPriceButton: UILabel!
+    @IBOutlet weak var containerNoGroupButton: UIView!
     @IBOutlet weak var productRate: RateView!
     @IBOutlet weak var containerImages: UIView!
     @IBOutlet weak var productName: UILabel!
@@ -108,6 +111,8 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
         self.productDesc.text = product.description
         self.soloPriceButton.text = "Buy it now".localise() + "\n\(product.price)€"
         self.groupPriceButton.text = "Buy in group".localise() + "\n\(product.groupPrice)€"
+        self.containerGroupButton.isHidden = !product.withReduc
+        self.containerNoGroupButton.isHidden = !self.containerGroupButton.isHidden
         self.productRate.rate = 0//product.rate
         self.colorSelect = product.colors.first
         self.optionsSelect = product.productAges.first!
@@ -223,7 +228,6 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
         Interactor.shared.postLike(userId: userId, liked: !product.isLike, productId: productId) {
             self.product?.isLike = $0 ?? product.isLike
             self.updateLike()
-//            self.delegate?.haveClickLike(productId: product.id, isLike: $0 ?? product.isLike)
         }
     }
     @IBOutlet weak var optionsButton: DropDownView!
@@ -261,8 +265,9 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
         didSet {
             colorButton.text = colorSelect?.name ?? "Colors".localise()
             guard let product = self.product else { return }
-            self.pageImageController?.initialiseViewControllers(count: self.colorSelect?.images.count ?? 1)
             let urls = (self.colorSelect?.images ?? [product.iconName]).map { URL(string: $0)! }
+            
+            self.pageImageController?.initialiseViewControllers(count: urls.count)
             self.pageImageController?.updateImages(images: urls)
         }
     }
@@ -335,6 +340,25 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
     @IBAction func buyItNowAction(_ sender: Any) {
         guard let product = self.product, let url = URL(string: product.link) else { return }
         UIApplication.shared.open(url)
+    }
+    
+    
+    @IBAction func containerNoGroupAction(_ sender: Any) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let message = "Nous ne sommes pas encore en mesure de permettre des réductions pour ce produit. Afin de nous aider à convaincre la marque, tu peux voter pour ce produit !"
+        
+        let alert = Alert(
+            show: message,
+            actions: [
+                Alert.action(title: "Je vote !", color: ThemeColor.BackgroundGradient2) {
+                    FirestoreUtils.requestColab(uid: userId, productId: self.productId)
+                    
+                    Alert(show: "Merci !\nVotre vote a bien été pris en compte.").show(in: self)
+                },
+                Alert.action(title: "Retour", color: ThemeColor.DrakGrey)
+            ])
+        
+        alert.show(in: self)
     }
 }
 

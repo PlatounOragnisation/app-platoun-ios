@@ -37,6 +37,8 @@ class PageImageController: UIPageViewController, UIPageViewControllerDataSource,
         self.orderedViewControllers.enumerated().forEach { (index, vc) in
             (vc as! ImageViewController).updateImage(url: images[index])
         }
+        self.current = 0
+        
         if let firstViewController = self.orderedViewControllers.getOrNil(self.current) {
             setViewControllers(
                 [firstViewController],
@@ -48,67 +50,6 @@ class PageImageController: UIPageViewController, UIPageViewControllerDataSource,
         }
         self.countDelegate?.updateCount(current: self.current, total: images.count)
     }
-    
-    
-//    func updateImagesDownloaded(urls: [URL]) {
-//        self.urls = urls
-//
-//        let displayVC: UIViewController?
-//        if orderedViewControllers.count > self.current && urls.count > self.current {
-//            let url = urls[self.current]
-//            (orderedViewControllers.first as! ImageViewController).updateImage(url: url)
-//            displayVC = orderedViewControllers.first
-//        } else if urls.count > self.current {
-//            let url = urls[self.current]
-//            displayVC = ImageViewController.newInstance(url: url)
-//            orderedViewControllers.append(displayVC!)
-//        } else {
-//            displayVC = nil
-//        }
-//
-//        if let firstViewController = displayVC {
-//            setViewControllers(
-//                [firstViewController],
-//                direction: .forward,
-//                animated: false,
-//                completion: nil)
-//        } else {
-//            setViewControllers(nil, direction: .forward, animated: false, completion: nil)
-//        }
-//
-//        countDelegate?.updateCount(current: self.current, total: images.count)
-//
-//        if orderedViewControllers.count > images.count {
-//            self.orderedViewControllers.removeLast(orderedViewControllers.count - images.count)
-//        }
-//
-//        for (index, vc) in self.orderedViewControllers.enumerated() {
-//            let url = images[index]
-//            (vc as! ImageViewController).updateImg(img: imgs[url] ?? nil, url: url)
-//        }
-//
-//        if orderedViewControllers.count < images.count {
-//            for i in orderedViewControllers.count ..< images.count {
-//                let url = images[i]
-//                orderedViewControllers.append(ImageViewController.newInstance(url: url, img: imgs[url] ?? nil))
-//            }
-//        }
-//    }
-    
-//    private func updateImages(images: [String]) {
-//        self.images = images
-//        self.orderedViewControllers = self.images.map { ImageViewController.newInstance(image: $0) }
-//        if let firstViewController = orderedViewControllers.first {
-//            setViewControllers(
-//                [firstViewController],
-//                direction: .forward,
-//                animated: false,
-//                completion: nil)
-//        } else {
-//            setViewControllers(nil, direction: .forward, animated: false, completion: nil)
-//        }
-//        countDelegate?.updateCount(current: 0, total: images.count)
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,32 +104,17 @@ class ImageViewController: LightViewController {
     
     func updateImage(url: URL) {
         self.url = url
-//        if isLoad {
         self.imageView.setImage(with: url, placeholder: nil, options: .progressiveLoad)
-//        self.imageView.downloaded(from: self.image!)
-//        }
     }
     
     private var url: URL!
     
     lazy var imageView: UIImageView = {
         let view = UIImageView()
-//        view.isAnimationEnabled = true
-//        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-//    var isLoad: Bool = false
-    
-    override func loadView() {
-//        self.view.addSubview(imageView)
         
+    override func loadView() {
         self.view = imageView
-//        self.isLoad = true
-//        if
-//        self.imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-//        self.imageView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-//        self.imageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//        self.imageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 }

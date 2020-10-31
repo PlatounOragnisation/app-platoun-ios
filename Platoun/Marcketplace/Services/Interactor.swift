@@ -20,7 +20,6 @@ class Interactor {
         }
     }
     
-//    var products = [String:[ProductSummary]]()
     var productLike: [String:[String:LikeState]] = [:]
     
     struct RespondNotif {
@@ -85,42 +84,7 @@ class Interactor {
                 }
         }
     }
-    
-//    func fetchUsers(_ completion: @escaping ([String])-> Void) {
-//        struct UserIds: Codable {
-//            let id: String
-//        }
-//
-//        NewApi.v1.getUsers
-//            .response { (result: Result<[UserIds], CustomError>) in
-//                switch result {
-//                case .success(let web):
-//                    completion(web.map { $0.id })
-//                case .failure(let customError):
-//                    completion([])
-//                }
-//        }
-//    }
-    
-    func fetchMomunityUsers(userId: String, _ completion: @escaping ([UserMomunity])->Void) {
-        //TODO get users
-        completion([])
-//        NewApi.v1.getFriends(userId: userId)
-//            .response { (result: Result<[WebUser], CustomError>) in
-//                switch result {
-//                case .success(let web):
-//                    completion(web.map { UserMomunity.setup(from: $0) })
-//                case .failure(let customError):
-//                    switch customError {
-//                    case .parsingError: break
-//                    case .platounError: break
-//                    case .http(_, _, _): break
-//                    case .unknown: break
-//                    }
-//                }
-//        }
-    }
-    
+        
     func fetchCategories(_ completion: @escaping ([Category])->Void) {
         NewApi.v1.getProductCategories
             .response { (result: Result<[WebCategory], CustomError>) in
@@ -265,23 +229,6 @@ class Interactor {
                 }
         }
     }
-    
-//    func fetchUser(userId: String, _ completion: @escaping (UserMomunity)->Void) {
-//        NewApi.v1.getUser(userId: userId)
-//            .response { (result: Result<WebUser, CustomError>) in
-//                switch result {
-//                case .success(let web):
-//                    completion(UserMomunity.setup(from: web))
-//                case .failure(let customError):
-//                    switch customError {
-//                    case .parsingError: break
-//                    case .platounError: break
-//                    case .http(_, _, _): break
-//                    case .unknown: break
-//                    }
-//                }
-//        }
-//    }
     
     func fetchProduct(forceUpdate: Bool, userId: String, productId: String, _ completion: @escaping (Product)->Void) {
         NewApi.v1.getProduct(userId: userId, productId: productId)

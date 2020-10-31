@@ -35,7 +35,7 @@ func productLike(_ productId: String) -> LikeButton.State {
     }
 }
 
-class MarketplaceViewController: LightViewController, ContainerLikedProduct, ReloadedViewController {
+class MarketplaceViewController: LightViewController, ReloadedViewController {
     
     private static let marketplaceItemHeight: CGFloat = 300
     private static let marketplaceItemWidth: CGFloat = 160
@@ -54,10 +54,6 @@ class MarketplaceViewController: LightViewController, ContainerLikedProduct, Rel
         case normal([Section])
         case search([ProductSummary])
         case empty
-    }
-    
-    func updateLike() {
-        self.reload()
     }
     
     var marketPlaceLayout: MarketplaceLayout = .normal([])
@@ -140,7 +136,7 @@ class MarketplaceViewController: LightViewController, ContainerLikedProduct, Rel
             first = false
             self.view.applyGradientHorizontal(colours: [UIColor(hex: "#F7F6FB")!, ThemeColor.White])
         }
-        self.updateLike()
+        self.reload()
     }
     
     @IBAction func actionReload(_ sender: Any) {
@@ -274,5 +270,11 @@ extension MarketplaceViewController: UICollectionViewDataSource {
                 self.actionFilterBy()
             }
         }
+    }
+}
+
+extension MarketplaceViewController: ContainerLikedProduct {
+    func updateLike() {
+//        self.reload()
     }
 }

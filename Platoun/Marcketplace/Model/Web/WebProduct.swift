@@ -23,6 +23,7 @@ struct WebProduct: Codable {
     let buyLink: String
     let productPictures: [ProductPicture]
     let liked: Bool
+    let withReduc: Bool
     let likeAlso: [WebSummaryProduct]
     
     struct ProductPicture: Codable {
