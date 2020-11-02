@@ -40,7 +40,7 @@ class ManageUserUtils {
         }
     }
         
-    func nameIsOk(name: String, completion: @escaping ((nameValid:Bool, retry: Bool))->Void){
+    func nameIsOk(name: String, attribuateName: Bool = true, completion: @escaping ((nameValid:Bool, retry: Bool))->Void){
         var errorMessage: String?
         if name.contains(" ") {
             errorMessage = "Votre nom ne doit pas contenir d'espace"
@@ -57,13 +57,13 @@ class ManageUserUtils {
                 completion((nameValid:false, retry: true))
             }
         } else {
-            self.checkNameDoesntExist(name: name, completion: completion)
+            self.checkNameDoesntExist(name: name, attribuateName: attribuateName, completion: completion)
         }
         
     }
     
     
-    private func checkNameDoesntExist(name: String, completion: @escaping ((nameValid:Bool, retry: Bool))->Void) {
+    private func checkNameDoesntExist(name: String, attribuateName: Bool = true, completion: @escaping ((nameValid:Bool, retry: Bool))->Void) {
         FirestoreUtils.search(name: name) { nameExist in
             
             var messageError: String?
@@ -75,7 +75,11 @@ class ManageUserUtils {
             case false:
                 result = (nameValid: true, retry: false)
             default:
-                messageError = "Un problème est survenue lors de la vérification de la disponibilité de votre nom. Un nom aléatoire vous sera attribué et vous pourrez le changer plus tard"
+                if attribuateName {
+                    messageError = "Un problème est survenue lors de la vérification de la disponibilité de votre nom. Un nom aléatoire vous sera attribué et vous pourrez le changer plus tard"
+                } else {
+                    messageError = "Un problème est survenue lors de la vérification de la disponibilité de votre nom. Merci de réessayer plus tard."
+                }
                 result = (nameValid: false, retry: false)
             }
             
@@ -259,6 +263,7 @@ class ManageUserUtils {
     private func changeName(user: User, name: String, completion: @escaping (_ hasError: Bool)->Void) {
         let request = user.createProfileChangeRequest()
         request.displayName = name
+        let previousName = user.displayName
         
         request.commitChanges { error in
             if let err = error {
@@ -266,6 +271,10 @@ class ManageUserUtils {
                 completion(true)
                 return
             }
+            if let previousName = previousName {
+                FirestoreUtils.removeName(name: previousName)
+            }
+            FirestoreUtils.saveName(name: name)
             FirestoreUtils.Users.saveUser(uid: user.uid, name: name)
             completion(false)
         }

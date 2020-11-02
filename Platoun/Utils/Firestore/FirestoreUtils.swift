@@ -53,6 +53,13 @@ enum FirestoreUtils {
             }
     }
     
+    static func removeName(name: String) {
+        Firestore.firestore()
+            .collection("names")
+            .document(name)
+            .delete()
+    }
+    
     static func saveName(name: String) {
         Firestore.firestore()
             .collection("names")

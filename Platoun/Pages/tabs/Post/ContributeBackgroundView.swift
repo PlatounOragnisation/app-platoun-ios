@@ -1,14 +1,14 @@
 //
-//  LoginBackgroundView.swift
+//  ContributeBackgroundView.swift
 //  Platoun
 //
-//  Created by Flavian Mary on 25/09/2020.
+//  Created by Flavian Mary on 02/11/2020.
 //  Copyright © 2020 Flavian Mary. All rights reserved.
 //
 
 import UIKit
 
-class LoginBackgroundView: UIView {
+class ContributeBackgroundView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -33,5 +33,10 @@ class LoginBackgroundView: UIView {
         
         ThemeColor.White.setFill()
         bezier.fill()
+        bezier.addClip()
+        context.drawGradient(
+            colors: [ThemeColor.BackgroundGradientCircle1, ThemeColor.BackgroundGradientCircle2],
+            startPoint: CGPoint(x: self.bounds.width/2, y: 0),
+            endPoint: CGPoint(x: self.bounds.width/2, y: self.bounds.height))
     }
 }

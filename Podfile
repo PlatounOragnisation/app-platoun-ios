@@ -4,7 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 # Uncomment the next line to define a global platform for your project
 platform :ios, '11.0'
 
-target 'Platoun' do
+abstract_target 'PlatounAbs' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
@@ -19,6 +19,7 @@ target 'Platoun' do
   pod 'Firebase/Firestore'
   pod 'FirebaseUI/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/DynamicLinks'
 
 
   # For Marketplace
@@ -30,14 +31,18 @@ target 'Platoun' do
   
   # For View
   pod 'DropDown'
+  
+  target 'Platoun' do
+    target 'PlatounTests' do
+      inherit! :search_paths
+      # Pods for testing
+    end
 
-  target 'PlatounTests' do
-    inherit! :search_paths
-    # Pods for testing
+    target 'PlatounUITests' do
+      # Pods for testing
+    end
   end
-
-  target 'PlatounUITests' do
-    # Pods for testing
+  target 'PlatounDev' do
+    
   end
-
 end

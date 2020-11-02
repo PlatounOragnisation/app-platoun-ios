@@ -55,7 +55,6 @@ class ContributeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.isHidden = true
-        self.initializeBackgroundColor(view: self.view)
         
         self.shareButton.applyGradient(colours: [ThemeColor.BackgroundGradient2, ThemeColor.BackgroundGradient1])
         self.shareButton.layer.cornerRadius = self.shareButton.frame.size.height/2
@@ -66,47 +65,7 @@ class ContributeViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = false
     }
-    
-    func initializeBackgroundColor(view: UIView) {
-        let layer0 = CAGradientLayer()
-
-        layer0.colors = [
-            ThemeColor.BackgroundGradient1.cgColor,
-            ThemeColor.BackgroundGradient2.cgColor
-        ]
-        layer0.locations = [0, 1]
-        layer0.startPoint = CGPoint(x: 0.25, y: 0.5)
-        layer0.endPoint = CGPoint(x: 0.75, y: 0.5)
-        layer0.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0.94, b: -0.91, c: 0.91, d: 1, tx: -0.45, ty: 0.46))
-        layer0.bounds = view.bounds.insetBy(dx: -0.5*view.bounds.size.width, dy: -0.5*view.bounds.size.height)
-        layer0.position = view.center
-        view.layer.insertSublayer(layer0, at: 0)
         
-        let layer1 = CAGradientLayer()
-        layer1.backgroundColor = ThemeColor.BackgroundPage.cgColor
-        
-        layer1.colors = [
-            ThemeColor.BackgroundGradientCircle1.cgColor,
-            ThemeColor.BackgroundGradientCircle2.cgColor
-        ]
-        layer1.startPoint = CGPoint(x: 0.5, y: 0)
-        layer1.endPoint = CGPoint(x: 0.5, y: 1)
-                
-        let isIPhoneX = (UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0) > 20
-        
-        let barHeight: CGFloat = isIPhoneX ? 83 : 49
-        
-        let pageHeight = view.bounds.height - barHeight
-        let diameterCircle: CGFloat = pageHeight * 1.12
-        let radiusCircle = diameterCircle / 2
-        let bounds = CGRect(x: 0, y: 0, width: diameterCircle, height: diameterCircle)
-        layer1.bounds = bounds
-        layer1.position = CGPoint(x: 0, y: pageHeight-radiusCircle)
-        layer1.cornerRadius = radiusCircle
-        view.layer.insertSublayer(layer1, at: 1)
-    }
-    
-    
     @IBAction func shareButtonAction(_ sender: Any) {
         guard Auth.auth().currentUser != nil else { return }
         guard let text = textTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else {

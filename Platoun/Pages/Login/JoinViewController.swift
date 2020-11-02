@@ -55,7 +55,7 @@ class JoinViewController: UIViewController {
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         let pseudo = pseudoTextFIeld.text ?? ""
-        ManageUserUtils(in: self).nameIsOk(name: pseudo) { (nameValid, retry) in
+        ManageUserUtils(in: self).nameIsOk(name: pseudo, attribuateName: false) { (nameValid, retry) in
             if nameValid {
                 self.signUp(with: .email(email: email, password: password))
             }

@@ -21,7 +21,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb309595306813712</string>
+				<string>fb392636128761684</string>
 			</array>
 		</dict>
 		<dict>
@@ -30,13 +30,21 @@
 				<string>com.googleusercontent.apps.81598889948-c04kqo7cg49kr7th0gnv74bqdsd56c9l</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>platoun.page.link</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
-	<string>309595306813712</string>
+	<string>392636128761684</string>
 	<key>FacebookDisplayName</key>
-	<string>Platoun</string>
+	<string>Platoun prod</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>

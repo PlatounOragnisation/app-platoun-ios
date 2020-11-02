@@ -105,7 +105,6 @@ class PlatounTableViewDataSource: NSObject, UITableViewDataSource, FUIBatchedArr
     }
     
     func batchedArray(_ array: FUIBatchedArray, willUpdateWith diff: FUISnapshotArrayDiff<DocumentSnapshot>) {
-        print("update")
     }
     
     func batchedArray(_ array: FUIBatchedArray, queryDidFailWithError error: Error) {

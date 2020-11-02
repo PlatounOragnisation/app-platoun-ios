@@ -10,6 +10,7 @@ import UIKit
 import FirebaseCore
 import FirebaseInstanceID
 import FirebaseAuth
+import FirebaseDynamicLinks
 import FirebaseFirestore
 import FirebaseCrashlytics
 import UserNotifications
@@ -75,8 +76,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let facebook = ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )
         let google = GIDSignIn.sharedInstance().handle(url)
+        
+//        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+//            // Handle the deep link. For example, show the deep-linked content or
+//            // apply a promotional offer to the user's account.
+//            // ...
+//            guard let vc = self.window?.rootViewController else { return true }
+//            Alert.init(show: "link open url : \(url.absoluteString)").show(in: vc)
+//            return true
+//          }
         return facebook || google
     }
+    
+//    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+//        let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+//            guard let vc = self.window?.rootViewController else { return }
+//            Alert.init(show: "link continue userActivity : \(userActivity.webpageURL?.absoluteString)").show(in: vc)
+//          }
+//
+//        return handled
+//    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {}
     
