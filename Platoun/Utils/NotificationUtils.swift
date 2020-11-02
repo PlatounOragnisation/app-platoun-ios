@@ -45,7 +45,7 @@ class NotificationUtils {
             encoding: JSONEncoding(),
             headers: [
                 "Content-Type": "application/json",
-                "Authorization": "key=AAAAEv-sP9w:APA91bEswEMe3nFEpiMRrUZQJkYxgMqtZaMDvbHOZKNbVCIlhUEN91guSL663D5_IjWawiZQnCYwwMaIns7UsK4-8GX52UmwuMIbsLINjJUsAjpv2-VW0nkOEy8h4iGwsXEZM8NyLL4q"
+                "Authorization": "key=\(Config.env.notificationAuthorization)"
             ])
             .response { response in
                 print(response)

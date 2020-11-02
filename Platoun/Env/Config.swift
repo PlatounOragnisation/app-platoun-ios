@@ -13,6 +13,8 @@ class Config {
     static let playStoreURL = URL(string: "https://play.google.com/store/apps/details?id=com.momunity")!
     static let communStoreURL = URL(string: "https://apps.apple.com/us/app/platoun/id1534422969")!
     
+    static let env = ConfigEnv.shared
+    
     class DefaultRemoteConfig {
         static let tokenAuthBackend = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpb3MiLCJleHAiOjIyMzI3NDE2MDAsImlhdCI6MTYwMTYzNzczNX0.Yf9HIa-XTLOsD_vCEFOiwEKrk86QhRUHR88osvA7pCw"
         
