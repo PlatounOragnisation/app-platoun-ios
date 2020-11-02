@@ -83,9 +83,8 @@ found";
 "You can't be part of more than 1 public group per product" = "You can't be part of more than 1 public group per product";
 "You can't be part of more than 1 public and 1 private group per product" = "You can't be part of more than 1 public and 1 private group per product";
 "An error has occurred. Please try again later." = "An error has occurred. Please try again later.";
-"Hey, the Momunity app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!" = "Hey, the Momunity app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!";
-"Just download the app for free here :" = "Just download the app for free here :";
 "App Store" = "App Store";
+"Store" = "Store";
 "Google Play" = "Google Play";
 "The entered pin is incorrect. Do you want to try again ?" = "The entered pin is incorrect. Do you want to try again ?";
 
@@ -137,3 +136,5 @@ found";
 "Back to App" = "Back to App";
 "Invite friends to your group via :" = "Invite friends to\nyour group via :";
 "Invite friends to join Platoun via :" = "Invite friends to join\nPlatoun via :";
+//Correct identifier =>
+"invitation_text" = "Hey, the Platoun app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together !";

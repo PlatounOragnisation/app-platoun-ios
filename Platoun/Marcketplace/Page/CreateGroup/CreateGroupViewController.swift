@@ -136,7 +136,7 @@ class CreateGroupViewController: LightViewController {
         self.user4.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClicUser)))
         self.user5.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClicUser)))
         
-        textView.text = "Hey, the Momunity app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!".localise()
+        textView.text = "invitation_text".localise()
         countChar.text = "\(textView.text.count) / 300"
         textView.delegate = self
         

@@ -36,22 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         
-        RemoteConfigUtils.shared.fetch { (status, error) in
-            switch status {
-            case .success:
-                print("Config fetched!")
-                RemoteConfigUtils.shared.activate() { (changed, error) in
-                    if error != nil {
-                        Crashlytics.crashlytics().record(error: error!)
-                    }
-                }
-            default:
-                if error != nil {
-                    Crashlytics.crashlytics().record(error: error!)
-                }
-            }
-        }
-        
         Messaging.messaging().delegate = self
         
         UNUserNotificationCenter.current().delegate = self
@@ -72,6 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let facebook = ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )

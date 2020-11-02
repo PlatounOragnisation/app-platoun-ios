@@ -84,6 +84,7 @@ class Invitation: NSObject {
         // Configure the fields of the interface.
         composeVC.recipients = []
         composeVC.body = text
+        
                 
         vc.presentedViewController?.dismiss(animated: false)
         vc.present(composeVC, animated: true, completion: nil)

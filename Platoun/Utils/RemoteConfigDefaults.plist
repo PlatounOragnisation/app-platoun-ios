@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>tokenAuthBackend</key>
-	<string>eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpb3MiLCJleHAiOjIyMzI3NDE2MDAsImlhdCI6MTYwMTYzNzczNX0.Yf9HIa-XTLOsD_vCEFOiwEKrk86QhRUHR88osvA7pCw</string>
-</dict>
-</plist>

@@ -22,7 +22,7 @@ class InviteViewController: LightViewController {
         vc.groupId = groupId
         vc.delegate = delegate
         if text != nil {
-            vc.text = text!
+            vc.customText = text!
         }
         vc.modalPresentationStyle = .overFullScreen
         return vc
@@ -32,16 +32,7 @@ class InviteViewController: LightViewController {
     var productId: String!
     var groupId: String!
     
-    
-    var text: String = "Hey, the Platoun app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!".localise()
-    
-    let moreText = "\n" + "Just download the app for free here :".localise() + "\n" + "App Store".localise() + ": http://bit.ly/momunity \n" + "Google Play".localise() + ": https://play.google.com/store/apps/details?id=com.momunity"
-    
-    var finalText: String {
-        get {
-            return text+moreText
-        }
-    }
+    var customText: String?
     
     @IBAction func actionClose(_ sender: Any) {
         self.delegate.invitationClose(self, animated: true)
@@ -52,23 +43,28 @@ class InviteViewController: LightViewController {
     }
     
     @IBAction func actionWhatsapp(_ sender: Any) {
-        self.delegate.showInvitation(.whatsapp(text: finalText))
+        self.delegate.showInvitation(
+            .whatsapp(
+                text: customText == nil ? InvitationConfig.whatsapp : "\(customText!)\n\(InvitationConfig.customText)"
+            ))
     }
     
     @IBAction func actionMessenger(_ sender: Any) {
-        self.delegate.showInvitation(.messenger(url: "http://bit.ly/momunity"))
+        self.delegate.showInvitation(.messenger(url: InvitationConfig.messenger))
     }
     
     @IBAction func actionEmail(_ sender: Any) {
-        let replacing = text.replacingOccurrences(of: "\n", with: "</p><\\br><p>")
-        
-        let htmlText = "<p>\(replacing)</p><p>" + "Just download the app for free here :".localise() + "</p><p><a href=\"http://bit.ly/momunity\">" + "App Store".localise() + "</a></p><p><a href=\"https://play.google.com/store/apps/details?id=com.momunity\">" + "Google Play".localise() + "</a></p>"
-        
-        self.delegate?.showInvitation(.email(text: htmlText))
+        self.delegate?.showInvitation(
+            .email(
+                text: customText == nil ? InvitationConfig.email : "<p>\(customText!.replacingOccurrences(of: "\n", with: "</p><\\br><p>"))</p>\(InvitationConfig.customTextForEmail)"
+            ))
     }
     
     @IBAction func actionSms(_ sender: Any) {
-        self.delegate?.showInvitation(.sms(text: finalText))
+        self.delegate?.showInvitation(
+            .sms(
+                text: customText == nil ? InvitationConfig.sms : "\(customText!)\n\(InvitationConfig.customText)"
+            ))
     }
     
 }

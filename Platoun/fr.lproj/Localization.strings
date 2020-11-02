@@ -83,9 +83,8 @@ trouvé";
 "You can't be part of more than 1 public group per product" = "Tu ne peux pas faire partie de plus de 1 groupe public par produit";
 "You can't be part of more than 1 public and 1 private group per product" = "Tu ne peux pas faire partie de plus de 1 groupe public et 1 groupe privé par produit";
 "An error has occurred. Please try again later." = "Une erreur s'est produite. Veuillez réessayer plus tard.";
-"Hey, the Momunity app, a super app for moms like us, has a great new concept store! If we team up, we'll get special deals on the best mom & baby products. Sign up here and let's shop together!" = "Hello, l'application Platoun, une super application pour les parents comme nous, a un nouveau concept store génial ! Si nous faisons équipe, nous obtiendrons des offres spéciales sur une large gamme de produits pour bébés. Inscris-toi ici et faisons équipe ensemble !";
-"Just download the app for free here :" = "Télécharge l'application gratuitement ici :";
 "App Store" = "App Store";
+"Store" = "Store";
 "Google Play" = "Google Play";
 "The entered pin is incorrect. Do you want to try again ?" = "Le pin saisi est incorrect. Souhaites-tu réessayer ?";
 
@@ -137,3 +136,5 @@ trouvé";
 "Back to App" = "Retour à l'app";
 "Invite friends to your group via :" = "Invite des amis\ndans ton groupe via :";
 "Invite friends to join Platoun via :" = "Invite des amis\ndans Platoun via :";
+//Correct identifier =>
+"invitation_text" = "Hello, l'application Platoun, une super application pour les parents comme nous, a un nouveau concept store génial ! Si nous faisons équipe, nous obtiendrons des offres spéciales sur une large gamme de produits pour bébés. Inscris-toi ici et faisons équipe ensemble !";
