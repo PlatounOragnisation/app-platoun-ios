@@ -121,9 +121,9 @@ class CommentsViewController: UIViewController {
                 let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
                 let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
                 if endFrameY >= UIScreen.main.bounds.size.height {
-                    self.bottomConstraint.constant = 0.0
+                    self.bottomConstraint.constant = 8
                 } else {
-                    self.bottomConstraint.constant = -((endFrame?.size.height ?? 0.0) - self.view.safeAreaInsets.bottom + 8)
+                    self.bottomConstraint.constant = (endFrame?.size.height ?? 0.0) - self.view.safeAreaInsets.bottom + 8
                 }
 //                self.theTableView.scrollToBottomRow()
                 UIView.animate(withDuration: duration,
