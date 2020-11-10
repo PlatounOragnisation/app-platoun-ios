@@ -24,13 +24,15 @@ class TabViewController: UITabBarController {
         self.selectedIndex = 1
     }
     
+    var previousNotificationListener: ListenerRegistration?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         Auth.auth().addStateDidChangeListener { (auth, user) in
+            self.previousNotificationListener?.remove()
             guard let user = user else { return }
             
-            FirestoreUtils.getNotificationsQuery(userId: user.uid).addSnapshotListener { (snaps, error) in
+            self.previousNotificationListener = FirestoreUtils.getNotificationsQuery(userId: user.uid).addSnapshotListener { (snaps, error) in
                 guard let snaps = snaps, error == nil else { Crashlytics.crashlytics().record(error: error ?? QueryError.noSnapshot); return }
                 
                 let calendar = Calendar.current

@@ -41,6 +41,12 @@ class Tab1ViewController: UIViewController, ReloadedViewController {
         likeButton.setTitle("Ma liste de favoris", for: .normal)
         paramButton.setTitle("Paramètres", for: .normal)
         supportButton.setTitle("Support", for: .normal)
+        profilImageView.isUserInteractionEnabled = true
+        profilImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.imgOnClic)))
+    }
+    
+    @objc func imgOnClic() {
+        self.performSegue(withIdentifier: "goToParams", sender: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

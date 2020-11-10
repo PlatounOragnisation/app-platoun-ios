@@ -75,7 +75,7 @@ class ContributeViewController: UIViewController {
         
         UIKitUtils.showAlert(
             in: self,
-            message: "Êtes vous sur de vouloir publié ce post ?",
+            message: "Êtes vous sur de vouloir publier ce post ?",
             action1Title: "Oui", completionOK: { self.publishPost(text: text) },
             action2Title: "Non", completionCancel: {})
     }

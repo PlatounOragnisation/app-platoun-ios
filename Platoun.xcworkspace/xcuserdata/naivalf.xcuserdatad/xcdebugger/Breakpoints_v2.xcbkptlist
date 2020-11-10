@@ -36,34 +36,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "A0D2E9EE-11A7-4511-9C24-587D960C183E - f53759086a3bb56b"
+                  uuid = "A0D2E9EE-11A7-4511-9C24-587D960C183E - 38465afb515f2685"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Platoun.WebNotification&gt;) -&gt; () in Platoun.NotificationInvitationViewController.viewWillAppear(Swift.Bool) -&gt; ()"
-                  moduleName = "Platoun"
+                  symbolName = "closure #1 (Swift.Optional&lt;PlatounDev.WebNotification&gt;) -&gt; () in PlatounDev.NotificationInvitationViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "PlatounDev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/naivalf/Git/auto-entrepreneur/platoun/app-platoun-ios/Platoun/Pages/tabs/Notif/NotificationInvitationViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "83"
                   endingLineNumber = "83"
-                  offsetFromSymbolStart = "344">
+                  offsetFromSymbolStart = "303">
                </Location>
                <Location
-                  uuid = "A0D2E9EE-11A7-4511-9C24-587D960C183E - 58e3b85fb23234be"
+                  uuid = "A0D2E9EE-11A7-4511-9C24-587D960C183E - 7c004037a82a7897"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Platoun.WebNotification&gt;) -&gt; () in Platoun.NotificationInvitationViewController.viewWillAppear(Swift.Bool) -&gt; ()"
-                  moduleName = "Platoun"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;PlatounDev.WebNotification&gt;) -&gt; () in PlatounDev.NotificationInvitationViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "PlatounDev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/naivalf/Git/auto-entrepreneur/platoun/app-platoun-ios/Platoun/Pages/tabs/Notif/NotificationInvitationViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
                   endingLineNumber = "84"
-                  offsetFromSymbolStart = "152">
+                  offsetFromSymbolStart = "90">
                </Location>
             </Locations>
          </BreakpointContent>
