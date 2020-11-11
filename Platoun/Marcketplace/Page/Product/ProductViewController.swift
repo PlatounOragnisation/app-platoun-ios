@@ -55,6 +55,12 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var productMark: UILabel!
     @IBOutlet weak var productDesc: UILabel!
     @IBOutlet weak var likeButton: LikeButton!
+    
+    @IBOutlet weak var editorialOpinionContent: UIView!
+    @IBOutlet weak var editorialOpinionArrow: UIImageView!
+    @IBOutlet weak var editorialOpinionTextContainer: UIView!
+    
+    
     @IBOutlet weak var shippingInfoContent: UIView!
     @IBOutlet weak var shippingInfoArrow: UIImageView!
     @IBOutlet weak var shippingInfoLabel: UILabel!
@@ -72,6 +78,18 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
                 UIView.setAnimationCurve(.linear)
                 let rotations: CGFloat = !self.shippingInfoIsVisible ? 0 : 90
                 self.shippingInfoArrow.transform = CGAffineTransform(rotationAngle: rotations.radian)
+            }
+        }
+    }
+    
+    var editorialOpinionIsVisible = false {
+        didSet {
+            UIView.animate(withDuration: 0.3) {
+                self.editorialOpinionTextContainer.isHidden = !self.editorialOpinionIsVisible
+                UIView.setAnimationCurve(.linear)
+                let rotations: CGFloat = !self.editorialOpinionIsVisible ? 0 : 90
+                self.editorialOpinionArrow.transform = CGAffineTransform(rotationAngle: rotations.radian)
+
             }
         }
     }
@@ -324,6 +342,11 @@ class ProductViewController: LightViewController, UIPickerViewDataSource, UIPick
     @IBAction func actionshippingInfo(_ sender: Any) {
         shippingInfoIsVisible = !shippingInfoIsVisible
     }
+    
+    @IBAction func actionEditorialOpinion(_ sender: Any) {
+        editorialOpinionIsVisible = !editorialOpinionIsVisible
+    }
+    
     @IBAction func actionMoreInformation(_ sender: Any) {
         guard let moreInfo = self.product?.moreInfo, let url = URL(string: moreInfo) else {
             let alert = UIAlertController(title: "Oups !".localise(), message: "We do not have any more information for you at this time.".localise(), preferredStyle: .alert)
