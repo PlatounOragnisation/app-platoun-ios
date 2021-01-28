@@ -62,9 +62,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app requires access to the camera.</string>
+	<string>Ceci vous permet de partager des photos prisent avec votre caméra. Ces photos permettront de montrer à la communauté de parents un premier visuel du produit que vous recommandez.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires access to the photo library.</string>
+	<string>Ceci vous permet de partager des photos directement depuis votre bibliothèque d'image. Ces photos permettront de montrer à la communauté de parents un premier visuel du produit que vous souhaitez recommander.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Black.ttf</string>
@@ -79,6 +79,7 @@
 		<string>Roboto-Regular.ttf</string>
 		<string>Roboto-Thin.ttf</string>
 		<string>Roboto-ThinItalic.ttf</string>
+        <string>Baloo-Regular.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

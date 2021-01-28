@@ -20,6 +20,33 @@
         }
       },
       {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble",
+        "state": {
+          "branch": null,
+          "revision": "7a46a5fc86cb917f69e3daf79fcb045283d8f008",
+          "version": "8.1.2"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick",
+        "state": {
+          "branch": null,
+          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
+          "version": "2.2.1"
+        }
+      },
+      {
+        "package": "Shuffle",
+        "repositoryURL": "https://github.com/mac-gallagher/Shuffle.git",
+        "state": {
+          "branch": null,
+          "revision": "950249483cc3f50a6b3a858ae4c074ebe85736eb",
+          "version": "0.4.0"
+        }
+      },
+      {
         "package": "TOCropViewController",
         "repositoryURL": "https://github.com/TimOliver/TOCropViewController",
         "state": {

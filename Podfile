@@ -31,6 +31,7 @@ abstract_target 'PlatounAbs' do
   
   # For View
   pod 'DropDown'
+  pod 'PopBounceButton'
   
   target 'Platoun' do
     target 'PlatounTests' do

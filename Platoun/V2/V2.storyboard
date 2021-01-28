@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oKg-TK-HCP">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="9B8-5r-6uX">
+            <objects>
+                <navigationController id="oKg-TK-HCP" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vjo-NI-RRQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Z3b-Ej-D42" kind="relationship" relationship="rootViewController" id="pLK-x3-oPC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebK-24-AA4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-594" y="121"/>
+        </scene>
+        <!--Swipe View Controller-->
+        <scene sceneID="b51-te-oDU">
+            <objects>
+                <viewController id="Z3b-Ej-D42" customClass="SwipeViewController" customModule="Platoun" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M12-Tg-lFd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-swipe-page" translatesAutoresizingMaskIntoConstraints="NO" id="Zeg-8N-2Xe">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="260.5"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4jg-Vg-K1V"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Zeg-8N-2Xe" firstAttribute="top" secondItem="M12-Tg-lFd" secondAttribute="top" id="imI-2X-seP"/>
+                            <constraint firstAttribute="trailing" secondItem="Zeg-8N-2Xe" secondAttribute="trailing" id="pHh-TP-uvb"/>
+                            <constraint firstItem="Zeg-8N-2Xe" firstAttribute="leading" secondItem="M12-Tg-lFd" secondAttribute="leading" id="xRD-xi-k7W"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="uXJ-2T-6eW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5JW-bu-Mbx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="303" y="121"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img-swipe-page" width="375" height="260.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

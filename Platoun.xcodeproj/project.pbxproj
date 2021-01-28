@@ -32,13 +32,20 @@
 		F01C6CA824F31B140016ADE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CA724F31B140016ADE2 /* AppDelegate.swift */; };
 		F01C6CAC24F31B140016ADE2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CAB24F31B140016ADE2 /* LoginViewController.swift */; };
 		F01C6CAF24F31B140016ADE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CAD24F31B140016ADE2 /* Main.storyboard */; };
-		F01C6CB124F31B160016ADE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB024F31B160016ADE2 /* Assets.xcassets */; };
 		F01C6CBF24F31B160016ADE2 /* PlatounTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CBE24F31B160016ADE2 /* PlatounTests.swift */; };
 		F01C6CCA24F31B160016ADE2 /* PlatounUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CC924F31B160016ADE2 /* PlatounUITests.swift */; };
 		F01C6CFE24F32CE80016ADE2 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C6CFD24F32CE80016ADE2 /* TabViewController.swift */; };
 		F033D561251E773200E02F10 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F033D560251E773200E02F10 /* LoginBackgroundView.swift */; };
 		F038B7AF251E55CF00DA0719 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038B7AE251E55CF00DA0719 /* ForgotPasswordViewController.swift */; };
 		F038B7B4251E564400DA0719 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038B7B3251E564400DA0719 /* JoinViewController.swift */; };
+		F039B0D925C09917005B7B44 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F039B0D825C09917005B7B44 /* SwipeViewController.swift */; };
+		F039B0DA25C09917005B7B44 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F039B0D825C09917005B7B44 /* SwipeViewController.swift */; };
+		F039B0E025C099AD005B7B44 /* PlatounNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F039B0DF25C099AD005B7B44 /* PlatounNavigationBar.swift */; };
+		F039B0E125C099AD005B7B44 /* PlatounNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F039B0DF25C099AD005B7B44 /* PlatounNavigationBar.swift */; };
+		F039B0E525C099EB005B7B44 /* V2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F039B0E425C099EB005B7B44 /* V2.storyboard */; };
+		F039B0E625C099EB005B7B44 /* V2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F039B0E425C099EB005B7B44 /* V2.storyboard */; };
+		F039B0EA25C0A279005B7B44 /* Baloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F039B0E925C0A279005B7B44 /* Baloo-Regular.ttf */; };
+		F039B0EB25C0A279005B7B44 /* Baloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F039B0E925C0A279005B7B44 /* Baloo-Regular.ttf */; };
 		F0461A55254339A400B75724 /* EmptyProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0461A54254339A400B75724 /* EmptyProductsCollectionViewCell.swift */; };
 		F049B582252A63F400CB7F49 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F049B581252A63F400CB7F49 /* Dictionary+Extension.swift */; };
 		F04A7DB52514EB3400F99143 /* PlatounUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DB42514EB3400F99143 /* PlatounUser.swift */; };
@@ -46,6 +53,8 @@
 		F04A7DBF2514EC5B00F99143 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DBE2514EC5B00F99143 /* CustomError.swift */; };
 		F04A7DCD2514F90000F99143 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DCC2514F90000F99143 /* Encodable+Extension.swift */; };
 		F0504A182516E260007B9277 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0504A172516E260007B9277 /* GradientButton.swift */; };
+		F057D99D258A9A04006F9936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB024F31B160016ADE2 /* Assets.xcassets */; };
+		F057D9A0258A9A0B006F9936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB024F31B160016ADE2 /* Assets.xcassets */; };
 		F06424B72542115D005EE2E7 /* IBPCollectionViewCompositionalLayout in Frameworks */ = {isa = PBXBuildFile; productRef = F06424B62542115D005EE2E7 /* IBPCollectionViewCompositionalLayout */; };
 		F06424BC254211D0005EE2E7 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06424BB254211D0005EE2E7 /* Collection.swift */; };
 		F06424C125421317005EE2E7 /* LayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06424C025421317005EE2E7 /* LayoutBuilder.swift */; };
@@ -255,7 +264,6 @@
 		F07ECBD6254DF83000868D40 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0BD49F025166C50008092BA /* Roboto-Italic.ttf */; };
 		F07ECBD7254DF83000868D40 /* PriceButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0AA8CF52514162A00EA2FBD /* PriceButton.xib */; };
 		F07ECBD8254DF83000868D40 /* JoinGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AA8CF02514162A00EA2FBD /* JoinGroup.storyboard */; };
-		F07ECBD9254DF83000868D40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB024F31B160016ADE2 /* Assets.xcassets */; };
 		F07ECBDA254DF83000868D40 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0AA8D85251416F000EA2FBD /* Localization.strings */; };
 		F07ECBDB254DF83000868D40 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0BD49EF25166C50008092BA /* Roboto-BlackItalic.ttf */; };
 		F07ECBDC254DF83000868D40 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0BD49EE25166C50008092BA /* Roboto-ThinItalic.ttf */; };
@@ -422,6 +430,22 @@
 		F0D26E5E252A3AB1005E1F23 /* FirestorePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D26E5D252A3AB1005E1F23 /* FirestorePost.swift */; };
 		F0D26E63252A3ABD005E1F23 /* FirestoreComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D26E62252A3ABD005E1F23 /* FirestoreComment.swift */; };
 		F0D26E68252A3B5D005E1F23 /* FirestoreReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D26E67252A3B5D005E1F23 /* FirestoreReport.swift */; };
+		F0DAE62F25C3542B00D076BD /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = F0DAE62E25C3542B00D076BD /* Shuffle */; };
+		F0DAE63325C3545B00D076BD /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = F0DAE63225C3545B00D076BD /* Shuffle */; };
+		F0DAE63725C3572D00D076BD /* ProductCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63625C3572D00D076BD /* ProductCardModel.swift */; };
+		F0DAE63825C3572D00D076BD /* ProductCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63625C3572D00D076BD /* ProductCardModel.swift */; };
+		F0DAE63C25C357DE00D076BD /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63B25C357DE00D076BD /* ButtonStackView.swift */; };
+		F0DAE63D25C357DE00D076BD /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63B25C357DE00D076BD /* ButtonStackView.swift */; };
+		F0DAE64125C3583800D076BD /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE64025C3583800D076BD /* BottomButton.swift */; };
+		F0DAE64225C3583800D076BD /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE64025C3583800D076BD /* BottomButton.swift */; };
+		F0DAE64625C358A800D076BD /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE64525C358A800D076BD /* UIView+Ext.swift */; };
+		F0DAE64725C358A800D076BD /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE64525C358A800D076BD /* UIView+Ext.swift */; };
+		F0DAE6BF25C35B7900D076BD /* ProductCardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE6BE25C35B7900D076BD /* ProductCardContentView.swift */; };
+		F0DAE6C025C35B7900D076BD /* ProductCardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE6BE25C35B7900D076BD /* ProductCardContentView.swift */; };
+		F0DAE6CA25C35BE200D076BD /* ProductCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE6C925C35BE200D076BD /* ProductCardFooterView.swift */; };
+		F0DAE6CB25C35BE200D076BD /* ProductCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE6C925C35BE200D076BD /* ProductCardFooterView.swift */; };
+		F0DAE6CF25C35C1C00D076BD /* ProductCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE6CE25C35C1C00D076BD /* ProductCardOverlay.swift */; };
+		F0DAE6D025C35C1C00D076BD /* ProductCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE6CE25C35C1C00D076BD /* ProductCardOverlay.swift */; };
 		F0DB421B25179CF600A8B4FA /* DropDownPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */; };
 		F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */; };
 		F0DB422B251828C400A8B4FA /* FilterGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB422A251828C400A8B4FA /* FilterGradientView.swift */; };
@@ -531,6 +555,10 @@
 		F033D560251E773200E02F10 /* LoginBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackgroundView.swift; sourceTree = "<group>"; };
 		F038B7AE251E55CF00DA0719 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		F038B7B3251E564400DA0719 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
+		F039B0D825C09917005B7B44 /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
+		F039B0DF25C099AD005B7B44 /* PlatounNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatounNavigationBar.swift; sourceTree = "<group>"; };
+		F039B0E425C099EB005B7B44 /* V2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = V2.storyboard; sourceTree = "<group>"; };
+		F039B0E925C0A279005B7B44 /* Baloo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo-Regular.ttf"; sourceTree = "<group>"; };
 		F0461A54254339A400B75724 /* EmptyProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyProductsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F049B581252A63F400CB7F49 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		F04A7DB42514EB3400F99143 /* PlatounUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatounUser.swift; sourceTree = "<group>"; };
@@ -706,6 +734,13 @@
 		F0D26E5D252A3AB1005E1F23 /* FirestorePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePost.swift; sourceTree = "<group>"; };
 		F0D26E62252A3ABD005E1F23 /* FirestoreComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreComment.swift; sourceTree = "<group>"; };
 		F0D26E67252A3B5D005E1F23 /* FirestoreReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreReport.swift; sourceTree = "<group>"; };
+		F0DAE63625C3572D00D076BD /* ProductCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardModel.swift; sourceTree = "<group>"; };
+		F0DAE63B25C357DE00D076BD /* ButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStackView.swift; sourceTree = "<group>"; };
+		F0DAE64025C3583800D076BD /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
+		F0DAE64525C358A800D076BD /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		F0DAE6BE25C35B7900D076BD /* ProductCardContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardContentView.swift; sourceTree = "<group>"; };
+		F0DAE6C925C35BE200D076BD /* ProductCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardFooterView.swift; sourceTree = "<group>"; };
+		F0DAE6CE25C35C1C00D076BD /* ProductCardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardOverlay.swift; sourceTree = "<group>"; };
 		F0DB421A25179CF600A8B4FA /* DropDownPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPostView.swift; sourceTree = "<group>"; };
 		F0DB421F25179D0400A8B4FA /* DropDownPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownPostView.xib; sourceTree = "<group>"; };
 		F0DB422A251828C400A8B4FA /* FilterGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGradientView.swift; sourceTree = "<group>"; };
@@ -728,6 +763,7 @@
 				F0DB42C9251AAABD00A8B4FA /* FacebookLogin in Frameworks */,
 				F06424B72542115D005EE2E7 /* IBPCollectionViewCompositionalLayout in Frameworks */,
 				F089C0F225176B6A00C56984 /* TOCropViewController in Frameworks */,
+				F0DAE62F25C3542B00D076BD /* Shuffle in Frameworks */,
 				F089C0F025176B6A00C56984 /* CropViewController in Frameworks */,
 				F0DB42C7251AAABD00A8B4FA /* FacebookCore in Frameworks */,
 				52CC2443FE477D6F32559ADB /* Pods_PlatounAbs_Platoun.framework in Frameworks */,
@@ -757,6 +793,7 @@
 				F07ECBB4254DF83000868D40 /* FacebookLogin in Frameworks */,
 				F07ECBB5254DF83000868D40 /* IBPCollectionViewCompositionalLayout in Frameworks */,
 				F07ECBB7254DF83000868D40 /* TOCropViewController in Frameworks */,
+				F0DAE63325C3545B00D076BD /* Shuffle in Frameworks */,
 				F07ECBB8254DF83000868D40 /* CropViewController in Frameworks */,
 				F07ECBB9254DF83000868D40 /* FacebookCore in Frameworks */,
 				6801D9B0518A79EAA37FB8D3 /* Pods_PlatounAbs_PlatounDev.framework in Frameworks */,
@@ -935,6 +972,8 @@
 		F01C6CA624F31B140016ADE2 /* Platoun */ = {
 			isa = PBXGroup;
 			children = (
+				F039B0D725C098A0005B7B44 /* V2 */,
+				F039B0D225C09877005B7B44 /* V1 */,
 				F07ECBFE254DFCB400868D40 /* Env */,
 				F0BD4A1E25169598008092BA /* ThemeColor.swift */,
 				F02802F224F347C000775C9E /* Platoun.entitlements */,
@@ -944,12 +983,6 @@
 				F0F0C877253462F700325C73 /* LaunchScreen.storyboard */,
 				F07ECC982550894F00868D40 /* LaunchViewController.swift */,
 				F01C6CB024F31B160016ADE2 /* Assets.xcassets */,
-				F0AA8C682514162A00EA2FBD /* Marcketplace */,
-				F01634DE2540A455009A426D /* Extension */,
-				F018D6B824F9770C00DD0D45 /* Utils */,
-				F07A1F912504178F002AAEDD /* Model */,
-				F0DB42DA251BDD8C00A8B4FA /* DrawView */,
-				F018D6B624F976F300DD0D45 /* Pages */,
 				F0AA8D85251416F000EA2FBD /* Localization.strings */,
 				F0BD49EB25166C2A008092BA /* fonts */,
 			);
@@ -984,6 +1017,33 @@
 				F07ECC7F25505CA800868D40 /* UpgradeViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F039B0D225C09877005B7B44 /* V1 */ = {
+			isa = PBXGroup;
+			children = (
+				F0AA8C682514162A00EA2FBD /* Marcketplace */,
+				F01634DE2540A455009A426D /* Extension */,
+				F018D6B824F9770C00DD0D45 /* Utils */,
+				F07A1F912504178F002AAEDD /* Model */,
+				F0DB42DA251BDD8C00A8B4FA /* DrawView */,
+				F018D6B624F976F300DD0D45 /* Pages */,
+			);
+			path = V1;
+			sourceTree = "<group>";
+		};
+		F039B0D725C098A0005B7B44 /* V2 */ = {
+			isa = PBXGroup;
+			children = (
+				F0DAE6C425C35B8B00D076BD /* Extension */,
+				F0DAE6C325C35B7D00D076BD /* ProductCard */,
+				F039B0D825C09917005B7B44 /* SwipeViewController.swift */,
+				F039B0DF25C099AD005B7B44 /* PlatounNavigationBar.swift */,
+				F039B0E425C099EB005B7B44 /* V2.storyboard */,
+				F0DAE63B25C357DE00D076BD /* ButtonStackView.swift */,
+				F0DAE64025C3583800D076BD /* BottomButton.swift */,
+			);
+			path = V2;
 			sourceTree = "<group>";
 		};
 		F07A1F912504178F002AAEDD /* Model */ = {
@@ -1456,6 +1516,7 @@
 		F0BD49EB25166C2A008092BA /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F039B0E925C0A279005B7B44 /* Baloo-Regular.ttf */,
 				F0BD49F525166C51008092BA /* Roboto-Black.ttf */,
 				F0BD49EF25166C50008092BA /* Roboto-BlackItalic.ttf */,
 				F0BD49F725166C51008092BA /* Roboto-Bold.ttf */,
@@ -1483,6 +1544,25 @@
 				F0D26E67252A3B5D005E1F23 /* FirestoreReport.swift */,
 			);
 			path = Firestore;
+			sourceTree = "<group>";
+		};
+		F0DAE6C325C35B7D00D076BD /* ProductCard */ = {
+			isa = PBXGroup;
+			children = (
+				F0DAE63625C3572D00D076BD /* ProductCardModel.swift */,
+				F0DAE6BE25C35B7900D076BD /* ProductCardContentView.swift */,
+				F0DAE6C925C35BE200D076BD /* ProductCardFooterView.swift */,
+				F0DAE6CE25C35C1C00D076BD /* ProductCardOverlay.swift */,
+			);
+			path = ProductCard;
+			sourceTree = "<group>";
+		};
+		F0DAE6C425C35B8B00D076BD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F0DAE64525C358A800D076BD /* UIView+Ext.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		F0DB42DA251BDD8C00A8B4FA /* DrawView */ = {
@@ -1533,6 +1613,7 @@
 				F0DB42C6251AAABD00A8B4FA /* FacebookCore */,
 				F0DB42C8251AAABD00A8B4FA /* FacebookLogin */,
 				F06424B62542115D005EE2E7 /* IBPCollectionViewCompositionalLayout */,
+				F0DAE62E25C3542B00D076BD /* Shuffle */,
 			);
 			productName = Platoun;
 			productReference = F01C6CA424F31B140016ADE2 /* Platoun.app */;
@@ -1602,6 +1683,7 @@
 				F07ECB0A254DF83000868D40 /* FacebookCore */,
 				F07ECB0C254DF83000868D40 /* FacebookLogin */,
 				F07ECB0D254DF83000868D40 /* IBPCollectionViewCompositionalLayout */,
+				F0DAE63225C3545B00D076BD /* Shuffle */,
 			);
 			productName = Platoun;
 			productReference = F07ECBE8254DF83000868D40 /* PlatounDev.app */;
@@ -1645,6 +1727,7 @@
 				F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 				F0DB42C5251AAABD00A8B4FA /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				F06424B52542115D005EE2E7 /* XCRemoteSwiftPackageReference "IBPCollectionViewCompositionalLayout" */,
+				F0DAE62D25C3542B00D076BD /* XCRemoteSwiftPackageReference "Shuffle" */,
 			);
 			productRefGroup = F01C6CA524F31B140016ADE2 /* Products */;
 			projectDirPath = "";
@@ -1675,6 +1758,7 @@
 				F0AA8D6A2514162B00EA2FBD /* MarketplaceCategoryView.xib in Resources */,
 				F0BD4A0325166C51008092BA /* Roboto-Bold.ttf in Resources */,
 				F0AA8D6B2514162B00EA2FBD /* ItemShop.xib in Resources */,
+				F039B0E525C099EB005B7B44 /* V2.storyboard in Resources */,
 				F0AA8D582514162B00EA2FBD /* Congratulation.storyboard in Resources */,
 				F0BD49F825166C51008092BA /* Roboto-Regular.ttf in Resources */,
 				F0AA8D532514162B00EA2FBD /* MarketplaceFilter.storyboard in Resources */,
@@ -1682,8 +1766,10 @@
 				F0AA8D612514162B00EA2FBD /* CreateGroup.storyboard in Resources */,
 				F0AA8D5C2514162B00EA2FBD /* Success.storyboard in Resources */,
 				F0BD49FE25166C51008092BA /* Roboto-BoldItalic.ttf in Resources */,
+				F057D9A0258A9A0B006F9936 /* Assets.xcassets in Resources */,
 				F0AA8D5E2514162B00EA2FBD /* Root.storyboard in Resources */,
 				F0BD49F925166C51008092BA /* Roboto-Thin.ttf in Resources */,
+				F039B0EA25C0A279005B7B44 /* Baloo-Regular.ttf in Resources */,
 				F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */,
 				F0AA8D5A2514162B00EA2FBD /* MomunityUsers.storyboard in Resources */,
 				F0AA8D562514162B00EA2FBD /* PourcentView.xib in Resources */,
@@ -1694,7 +1780,6 @@
 				F0AA8D672514162B00EA2FBD /* PriceButton.xib in Resources */,
 				F07ECCA225508F9A00868D40 /* Start.storyboard in Resources */,
 				F0AA8D622514162B00EA2FBD /* JoinGroup.storyboard in Resources */,
-				F01C6CB124F31B160016ADE2 /* Assets.xcassets in Resources */,
 				F0AA8D87251416F000EA2FBD /* Localization.strings in Resources */,
 				F0BD49FB25166C51008092BA /* Roboto-BlackItalic.ttf in Resources */,
 				F0BD49FA25166C51008092BA /* Roboto-ThinItalic.ttf in Resources */,
@@ -1735,6 +1820,7 @@
 				F07ECBC5254DF83000868D40 /* MarketplaceCategoryView.xib in Resources */,
 				F07ECBC6254DF83000868D40 /* Roboto-Bold.ttf in Resources */,
 				F07ECBC7254DF83000868D40 /* ItemShop.xib in Resources */,
+				F039B0E625C099EB005B7B44 /* V2.storyboard in Resources */,
 				F07ECBC8254DF83000868D40 /* Congratulation.storyboard in Resources */,
 				F07ECBC9254DF83000868D40 /* Roboto-Regular.ttf in Resources */,
 				F07ECBCA254DF83000868D40 /* MarketplaceFilter.storyboard in Resources */,
@@ -1742,8 +1828,10 @@
 				F07ECBCC254DF83000868D40 /* CreateGroup.storyboard in Resources */,
 				F07ECBCD254DF83000868D40 /* Success.storyboard in Resources */,
 				F07ECC05254DFDF100868D40 /* GoogleService-Info.plist in Resources */,
+				F057D99D258A9A04006F9936 /* Assets.xcassets in Resources */,
 				F07ECBCE254DF83000868D40 /* Roboto-BoldItalic.ttf in Resources */,
 				F07ECBCF254DF83000868D40 /* Root.storyboard in Resources */,
+				F039B0EB25C0A279005B7B44 /* Baloo-Regular.ttf in Resources */,
 				F07ECBD0254DF83000868D40 /* Roboto-Thin.ttf in Resources */,
 				F07ECBD1254DF83000868D40 /* DropDownPostView.xib in Resources */,
 				F07ECBD2254DF83000868D40 /* MomunityUsers.storyboard in Resources */,
@@ -1754,7 +1842,6 @@
 				F07ECBD7254DF83000868D40 /* PriceButton.xib in Resources */,
 				F07ECCA325508F9A00868D40 /* Start.storyboard in Resources */,
 				F07ECBD8254DF83000868D40 /* JoinGroup.storyboard in Resources */,
-				F07ECBD9254DF83000868D40 /* Assets.xcassets in Resources */,
 				F07ECBDA254DF83000868D40 /* Localization.strings in Resources */,
 				F07ECBDB254DF83000868D40 /* Roboto-BlackItalic.ttf in Resources */,
 				F07ECBDC254DF83000868D40 /* Roboto-ThinItalic.ttf in Resources */,
@@ -1986,7 +2073,6 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = Crashlytics;
@@ -2011,6 +2097,7 @@
 				F0AA8D042514162A00EA2FBD /* CreateGroupInteractor.swift in Sources */,
 				F018D6D624FDA3B700DD0D45 /* CustomPresentationController.swift in Sources */,
 				F0461A55254339A400B75724 /* EmptyProductsCollectionViewCell.swift in Sources */,
+				F0DAE63C25C357DE00D076BD /* ButtonStackView.swift in Sources */,
 				F0AA8D122514162B00EA2FBD /* NotificationInvitationViewController.swift in Sources */,
 				F0BD49DA2515EEF3008092BA /* Report.swift in Sources */,
 				F018D6CE24F97C4300DD0D45 /* ParametersViewController.swift in Sources */,
@@ -2036,6 +2123,7 @@
 				F0AA8D382514162B00EA2FBD /* WebGroupStatus.swift in Sources */,
 				F01634E62540AB5D009A426D /* Error+Extension.swift in Sources */,
 				F0AA8D0B2514162A00EA2FBD /* ImageSpacingBorderView.swift in Sources */,
+				F0DAE6CF25C35C1C00D076BD /* ProductCardOverlay.swift in Sources */,
 				F0AA8D3B2514162B00EA2FBD /* WebCategory.swift in Sources */,
 				F01634EE25420127009A426D /* MarketplaceViewController.swift in Sources */,
 				0B95D0DF2524C44C00A90938 /* EditableFirestoreTableViewDataSource.swift in Sources */,
@@ -2063,6 +2151,7 @@
 				F0AA8D352514162B00EA2FBD /* ProductSummary.swift in Sources */,
 				F018D6CA24F9781C00DD0D45 /* ContributeViewController.swift in Sources */,
 				F0AA8D3D2514162B00EA2FBD /* WebJoin.swift in Sources */,
+				F0DAE6CA25C35BE200D076BD /* ProductCardFooterView.swift in Sources */,
 				F0D26E59252A3A67005E1F23 /* FirestoreNotification.swift in Sources */,
 				F0EF8B77254A2F90003DD5C6 /* PlatounTableViewDataSource.swift in Sources */,
 				F01C6CA824F31B140016ADE2 /* AppDelegate.swift in Sources */,
@@ -2081,6 +2170,7 @@
 				F0AA8D4E2514162B00EA2FBD /* GradientView.swift in Sources */,
 				F06424BC254211D0005EE2E7 /* Collection.swift in Sources */,
 				F0AA8D432514162B00EA2FBD /* WebUser.swift in Sources */,
+				F039B0E025C099AD005B7B44 /* PlatounNavigationBar.swift in Sources */,
 				F038B7B4251E564400DA0719 /* JoinViewController.swift in Sources */,
 				F0DB42DC251BDDB000A8B4FA /* DrawBackgroundView.swift in Sources */,
 				F0DB42D6251BC91500A8B4FA /* DrawShadowView.swift in Sources */,
@@ -2093,6 +2183,7 @@
 				F0AA8D392514162B00EA2FBD /* WebPlatounError.swift in Sources */,
 				F0AA8D172514162B00EA2FBD /* CheckableItemView.swift in Sources */,
 				F0AA8D4D2514162B00EA2FBD /* BorderedView.swift in Sources */,
+				F0DAE63725C3572D00D076BD /* ProductCardModel.swift in Sources */,
 				F049B582252A63F400CB7F49 /* Dictionary+Extension.swift in Sources */,
 				F0AA8D2B2514162B00EA2FBD /* Double+Extension.swift in Sources */,
 				F018D6D8250040E700DD0D45 /* FIRUser+Extension.swift in Sources */,
@@ -2136,11 +2227,13 @@
 				F07ECC992550894F00868D40 /* LaunchViewController.swift in Sources */,
 				F0AA8D6F2514162B00EA2FBD /* Interactor.swift in Sources */,
 				F07ECC7C25504AC400868D40 /* ContributeBackgroundView.swift in Sources */,
+				F039B0D925C09917005B7B44 /* SwipeViewController.swift in Sources */,
 				F0AA8D4B2514162B00EA2FBD /* RoundedImageView.swift in Sources */,
 				F0BD4A302516CBA5008092BA /* GradientUtils.swift in Sources */,
 				F018D6C924F9781C00DD0D45 /* SocialViewController.swift in Sources */,
 				F0AA8D702514162B00EA2FBD /* PlatounEnv.swift in Sources */,
 				F07A1F8A2500811B002AAEDD /* Authentication.swift in Sources */,
+				F0DAE6BF25C35B7900D076BD /* ProductCardContentView.swift in Sources */,
 				F0AA8D412514162B00EA2FBD /* WebPromoStatus.swift in Sources */,
 				F038B7AF251E55CF00DA0719 /* ForgotPasswordViewController.swift in Sources */,
 				F06424CC2542192B005EE2E7 /* CategoryCollectionViewCell.swift in Sources */,
@@ -2169,8 +2262,10 @@
 				F0AA8D302514162B00EA2FBD /* UITextView+Extension.swift in Sources */,
 				F0BD49E425161B1F008092BA /* Notification.swift in Sources */,
 				F0DB421B25179CF600A8B4FA /* DropDownPostView.swift in Sources */,
+				F0DAE64625C358A800D076BD /* UIView+Ext.swift in Sources */,
 				F0AA8D132514162B00EA2FBD /* JoinGroupViewController.swift in Sources */,
 				F0AA8D0C2514162A00EA2FBD /* CategoryViewCell.swift in Sources */,
+				F0DAE64125C3583800D076BD /* BottomButton.swift in Sources */,
 				F0AA8D3A2514162B00EA2FBD /* WebSummaryNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2201,6 +2296,7 @@
 				F07ECB13254DF83000868D40 /* CreateGroupInteractor.swift in Sources */,
 				F07ECB14254DF83000868D40 /* CustomPresentationController.swift in Sources */,
 				F07ECC85255063BB00868D40 /* Config.swift in Sources */,
+				F0DAE63D25C357DE00D076BD /* ButtonStackView.swift in Sources */,
 				F07ECB15254DF83000868D40 /* EmptyProductsCollectionViewCell.swift in Sources */,
 				F07ECB16254DF83000868D40 /* NotificationInvitationViewController.swift in Sources */,
 				F07ECB17254DF83000868D40 /* Report.swift in Sources */,
@@ -2226,6 +2322,7 @@
 				F07ECB2A254DF83000868D40 /* User.swift in Sources */,
 				F07ECB2B254DF83000868D40 /* WebGroupStatus.swift in Sources */,
 				F07ECB2C254DF83000868D40 /* Error+Extension.swift in Sources */,
+				F0DAE6D025C35C1C00D076BD /* ProductCardOverlay.swift in Sources */,
 				F07ECB2D254DF83000868D40 /* ImageSpacingBorderView.swift in Sources */,
 				F07ECB2E254DF83000868D40 /* WebCategory.swift in Sources */,
 				F07ECB2F254DF83000868D40 /* MarketplaceViewController.swift in Sources */,
@@ -2253,6 +2350,7 @@
 				F07ECB45254DF83000868D40 /* ProductSummary.swift in Sources */,
 				F07ECB46254DF83000868D40 /* ContributeViewController.swift in Sources */,
 				F07ECB47254DF83000868D40 /* WebJoin.swift in Sources */,
+				F0DAE6CB25C35BE200D076BD /* ProductCardFooterView.swift in Sources */,
 				F07ECB48254DF83000868D40 /* FirestoreNotification.swift in Sources */,
 				F07ECB49254DF83000868D40 /* PlatounTableViewDataSource.swift in Sources */,
 				F07ECB4A254DF83000868D40 /* AppDelegate.swift in Sources */,
@@ -2271,6 +2369,7 @@
 				F07ECB57254DF83000868D40 /* GradientView.swift in Sources */,
 				F07ECB58254DF83000868D40 /* Collection.swift in Sources */,
 				F07ECB59254DF83000868D40 /* WebUser.swift in Sources */,
+				F039B0E125C099AD005B7B44 /* PlatounNavigationBar.swift in Sources */,
 				F07ECB5A254DF83000868D40 /* JoinViewController.swift in Sources */,
 				F07ECB5B254DF83000868D40 /* DrawBackgroundView.swift in Sources */,
 				F07ECB5C254DF83000868D40 /* DrawShadowView.swift in Sources */,
@@ -2283,6 +2382,7 @@
 				F07ECB63254DF83000868D40 /* WebPlatounError.swift in Sources */,
 				F07ECB64254DF83000868D40 /* CheckableItemView.swift in Sources */,
 				F07ECB65254DF83000868D40 /* BorderedView.swift in Sources */,
+				F0DAE63825C3572D00D076BD /* ProductCardModel.swift in Sources */,
 				F07ECB66254DF83000868D40 /* Dictionary+Extension.swift in Sources */,
 				F07ECB67254DF83000868D40 /* Double+Extension.swift in Sources */,
 				F07ECB68254DF83000868D40 /* FIRUser+Extension.swift in Sources */,
@@ -2326,11 +2426,13 @@
 				F07ECC9A2550894F00868D40 /* LaunchViewController.swift in Sources */,
 				F07ECB8D254DF83000868D40 /* UIImage+Extension.swift in Sources */,
 				F07ECB8E254DF83000868D40 /* Interactor.swift in Sources */,
+				F039B0DA25C09917005B7B44 /* SwipeViewController.swift in Sources */,
 				F07ECB8F254DF83000868D40 /* RoundedImageView.swift in Sources */,
 				F07ECB90254DF83000868D40 /* GradientUtils.swift in Sources */,
 				F07ECB91254DF83000868D40 /* SocialViewController.swift in Sources */,
 				F07ECB92254DF83000868D40 /* PlatounEnv.swift in Sources */,
 				F07ECB93254DF83000868D40 /* Authentication.swift in Sources */,
+				F0DAE6C025C35B7900D076BD /* ProductCardContentView.swift in Sources */,
 				F07ECB94254DF83000868D40 /* WebPromoStatus.swift in Sources */,
 				F07ECB95254DF83000868D40 /* ForgotPasswordViewController.swift in Sources */,
 				F07ECB96254DF83000868D40 /* CategoryCollectionViewCell.swift in Sources */,
@@ -2359,8 +2461,10 @@
 				F07ECBAD254DF83000868D40 /* UITextView+Extension.swift in Sources */,
 				F07ECBAE254DF83000868D40 /* Notification.swift in Sources */,
 				F07ECBAF254DF83000868D40 /* DropDownPostView.swift in Sources */,
+				F0DAE64725C358A800D076BD /* UIView+Ext.swift in Sources */,
 				F07ECBB0254DF83000868D40 /* JoinGroupViewController.swift in Sources */,
 				F07ECBB1254DF83000868D40 /* CategoryViewCell.swift in Sources */,
+				F0DAE64225C3583800D076BD /* BottomButton.swift in Sources */,
 				F07ECBB2254DF83000868D40 /* WebSummaryNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2531,7 +2635,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2544,7 +2648,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2560,7 +2664,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2572,7 +2676,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2672,10 +2776,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B0622C92ABE6856981372DED /* Pods-PlatounAbs-PlatounDev.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2688,7 +2792,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.ios.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2701,10 +2805,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E8A72DE66BF0E6283F9672 /* Pods-PlatounAbs-PlatounDev.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2716,7 +2820,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.ios.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2815,6 +2919,14 @@
 				minimumVersion = 2.5.4;
 			};
 		};
+		F0DAE62D25C3542B00D076BD /* XCRemoteSwiftPackageReference "Shuffle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-gallagher/Shuffle.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 		F0DB42C5251AAABD00A8B4FA /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
@@ -2865,6 +2977,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F089C0EE25176B6A00C56984 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
 			productName = TOCropViewController;
+		};
+		F0DAE62E25C3542B00D076BD /* Shuffle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0DAE62D25C3542B00D076BD /* XCRemoteSwiftPackageReference "Shuffle" */;
+			productName = Shuffle;
+		};
+		F0DAE63225C3545B00D076BD /* Shuffle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0DAE62D25C3542B00D076BD /* XCRemoteSwiftPackageReference "Shuffle" */;
+			productName = Shuffle;
 		};
 		F0DB42C6251AAABD00A8B4FA /* FacebookCore */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -57,7 +57,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func displayV1() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let viewController = storyboard.instantiateInitialViewController()
+        self.window?.rootViewController = viewController
+
+    }
     
+    func displayV2() {
+        let storyboard = UIStoryboard(name: "V2", bundle: Bundle.main)
+        let viewController = storyboard.instantiateInitialViewController()
+        self.window?.rootViewController = viewController
+    }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let facebook = ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )

@@ -10,10 +10,12 @@ import Foundation
 
 class Config {
     static let appStoreURL = URL(string: "https://apps.apple.com/us/app/platoun/id1534422969")!
-    static let playStoreURL = URL(string: "https://play.google.com/store/apps/details?id=com.momunity")!
-    static let communStoreURL = URL(string: "https://apps.apple.com/us/app/platoun/id1534422969")!
+//    static let playStoreURL = URL(string: "https://play.google.com/store/apps/details?id=com.momunity")!
+    static let communStoreURL = URL(string: "https://platoun.page.link/app")!
     
     static let env = ConfigEnv.shared
+    static let remoteConfigMinimumFetchInterval: TimeInterval = ConfigEnv.remoteConfigMinimumFetchInterval
+
     
     class DefaultRemoteConfig {
         static let tokenAuthBackend = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpb3MiLCJleHAiOjIyMzI3NDE2MDAsImlhdCI6MTYwMTYzNzczNX0.Yf9HIa-XTLOsD_vCEFOiwEKrk86QhRUHR88osvA7pCw"
@@ -21,6 +23,8 @@ class Config {
         static let ios_minimalVersion = MinimalVersion(
             minimalVersion: "1.0.0",
             unauthorizedVersions: [])
+        
+        static let compressionQuality = CompressionQuality(post: 0.8, comment: 0.8, profilPicture: 0.7)
     }
 }
 

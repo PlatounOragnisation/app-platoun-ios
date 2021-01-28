@@ -427,6 +427,9 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - netfox (1.19.0)
+  - pop (1.0.12)
+  - PopBounceButton (1.2.2):
+    - pop (~> 1.0)
   - PromisesObjC (1.2.10)
   - Protobuf (3.13.0)
   - SDWebImage (5.9.0):
@@ -452,6 +455,7 @@ DEPENDENCIES:
   - ImageIOUIKit
   - MultiSlider (~> 1.10.8)
   - netfox
+  - PopBounceButton
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -493,6 +497,8 @@ SPEC REPOS:
     - MultiSlider
     - nanopb
     - netfox
+    - pop
+    - PopBounceButton
     - PromisesObjC
     - Protobuf
     - SDWebImage
@@ -537,11 +543,13 @@ SPEC CHECKSUMS:
   MultiSlider: 606824c5e1c25091eb64fac673b193276fc46f7a
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   netfox: efeec1d23406df6cd605212f09a40957bb5654eb
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  PopBounceButton: 34105a012678222f058f8d2621672724a3d5c9fb
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SweeterSwift: d909211f6833405628c8c7c6bf9f8f2e8a0e9df9
 
-PODFILE CHECKSUM: 6717c204c1950cf9369cfa54c12ace114446ceaa
+PODFILE CHECKSUM: c9c0acd0ef889d915001a77cdb0941b6978f2dd3
 
 COCOAPODS: 1.9.3

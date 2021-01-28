@@ -14,27 +14,13 @@ class LaunchViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        RemoteConfigUtils.shared.fetch { (status, error) in
-            switch status {
-            case .success:
-                print("Config fetched!")
-                RemoteConfigUtils.shared.activate() { (changed, error) in
-                    if error != nil {
-                        Crashlytics.crashlytics().record(error: error!)
-                    }
-                    self.checkVersion()
-                }
-            default:
-                if error != nil {
-                    Crashlytics.crashlytics().record(error: error!)
-                }
-                self.checkVersion()
-            }
+        RemoteConfigUtils.shared.initialize {
+            self.checkVersion()
         }
     }
     
     func checkVersion() {
-        let minimalVersion = RemoteConfigUtils.getMinimalVersion()
+        let minimalVersion = RemoteConfigUtils.shared.getMinimalVersion()
         guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { self.showApp(); return }
         let compare = minimalVersion.minimalVersion.compare(appVersion, options: .numeric)
         if minimalVersion.unauthorizedVersions.contains(appVersion) {
@@ -60,9 +46,7 @@ class LaunchViewController: UIViewController {
     
     func showApp() {
         DispatchQueue.main.async {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let viewController = storyboard.instantiateInitialViewController()
-            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = viewController
+            (UIApplication.shared.delegate as! AppDelegate).displayV2()
         }
     }
 }
