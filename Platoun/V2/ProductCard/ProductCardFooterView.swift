@@ -15,7 +15,7 @@ class ProductCardFooterView: UIView {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = ThemeColor.White
         image.clipsToBounds = true
-        image.layer.cornerRadius = 24
+        image.layer.cornerRadius = 25
         return image
         
     }()
@@ -88,27 +88,27 @@ class ProductCardFooterView: UIView {
         
         
         let constraints = [
-            userProfileImageView.heightAnchor.constraint(equalToConstant: 48),
+            userProfileImageView.heightAnchor.constraint(equalToConstant: 50),
             userProfileImageView.widthAnchor.constraint(equalTo: userProfileImageView.heightAnchor),
             userProfileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             userProfileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 20),
             
-            productNameLabel.leftAnchor.constraint(equalTo: userProfileImageView.rightAnchor, constant: 9),
-            productNameLabel.bottomAnchor.constraint(equalTo: userProfileImageView.bottomAnchor),
+            productNameLabel.leftAnchor.constraint(equalTo: userProfileImageView.rightAnchor, constant: 15),
+            productNameLabel.bottomAnchor.constraint(equalTo: userProfileImageView.bottomAnchor, constant: -6),
             
-            postedByLabel.bottomAnchor.constraint(equalTo: productNameLabel.topAnchor),
+            postedByLabel.bottomAnchor.constraint(equalTo: productNameLabel.topAnchor, constant: -5),
             postedByLabel.leftAnchor.constraint(equalTo: productNameLabel.leftAnchor),
             
             userNameLabel.leftAnchor.constraint(equalTo: postedByLabel.rightAnchor),
             userNameLabel.bottomAnchor.constraint(equalTo: postedByLabel.bottomAnchor),
             
             commentLabel.leftAnchor.constraint(equalTo: userProfileImageView.leftAnchor),
-            commentLabel.topAnchor.constraint(equalTo: userProfileImageView.bottomAnchor, constant: 5),
+            commentLabel.topAnchor.constraint(equalTo: userProfileImageView.bottomAnchor, constant: 8),
             commentLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -14),
             
             seeMoreLabel.leftAnchor.constraint(equalTo: userProfileImageView.leftAnchor),
-            seeMoreLabel.topAnchor.constraint(equalTo: commentLabel.bottomAnchor, constant: -2),
-            seeMoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7)
+            seeMoreLabel.topAnchor.constraint(equalTo: commentLabel.bottomAnchor, constant: 8),
+            seeMoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ]
         
         NSLayoutConstraint.activate(constraints)

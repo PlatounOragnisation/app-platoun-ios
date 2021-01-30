@@ -14,10 +14,16 @@ class SwipeViewController: UIViewController {
     private let cardStack = SwipeCardStack()
     private let buttonStackView = ButtonStackView()
     
+    private let bottomTab: BottomTab = {
+        let view = BottomTab()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     
     private let cardModels: [ProductCardModel] = [
-        ProductCardModel(userName: "UserName1", productName: "ProductName1", comment: "Comment1 très long pour voir si c'est bien sur une seule ligne", productImageUrl: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph", userImageUrl: "https://www.nicesnippets.com/demo/profile-1.jpg"),
-        ProductCardModel(userName: "UserName2", productName: "ProductName2", comment: "Comment2", productImageUrl: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg", userImageUrl: "https://www.nicesnippets.com/demo/profile-3.jpg"),
+        ProductCardModel(userName: "UserName1", productName: "ProductName1", comment: "Comment1 très long pour voir si c'est bien sur une seule ligne", productImageUrl: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg", userImageUrl: "https://www.nicesnippets.com/demo/profile-1.jpg"),
+        ProductCardModel(userName: "UserName2", productName: "ProductName2", comment: "Comment2", productImageUrl: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph", userImageUrl: "https://www.nicesnippets.com/demo/profile-3.jpg"),
         ProductCardModel(userName: "UserName1", productName: "ProductName1", comment: "Comment1", productImageUrl: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph", userImageUrl: "https://www.nicesnippets.com/demo/profile-1.jpg"),
         ProductCardModel(userName: "UserName2", productName: "ProductName2", comment: "Comment2", productImageUrl: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg", userImageUrl: "https://www.nicesnippets.com/demo/profile-3.jpg"),
         ProductCardModel(userName: "UserName1", productName: "ProductName1", comment: "Comment1", productImageUrl: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph", userImageUrl: "https://www.nicesnippets.com/demo/profile-1.jpg"),
@@ -27,6 +33,7 @@ class SwipeViewController: UIViewController {
     ]
     
     override func viewWillAppear(_ animated: Bool) {
+        self.setGradientBackground()
         super.viewWillAppear(animated)
         self.navigationController?.initPlatounTheme(isTransparent: true)
         
@@ -41,15 +48,29 @@ class SwipeViewController: UIViewController {
         
     }
     
+    func setGradientBackground() {
+        let colorTop =  ThemeColor.cFEFEFE.cgColor
+        let colorBottom = ThemeColor.cF7F6FB.cgColor
+                    
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cardStack.delegate = self
         cardStack.dataSource = self
         buttonStackView.delegate = self
         
-        layoutButtonStackView()
-        layoutCardStackView()
         
+        
+        layoutCardStackView()
+        layoutBottomTab()
+        layoutButtonStackView()
     }
     
     func card(fromImage image: UIImage) -> SwipeCard {
@@ -68,14 +89,21 @@ class SwipeViewController: UIViewController {
         return card
     }
     
+    private func layoutBottomTab() {
+        view.addSubview(bottomTab)
+        bottomTab.anchor(left: view.leftAnchor,
+                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                         right: view.rightAnchor)
+    }
+    
     private func layoutButtonStackView() {
         view.addSubview(buttonStackView)
         buttonStackView.anchor(left: view.safeAreaLayoutGuide.leftAnchor,
-                               bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                               bottom: bottomTab.topAnchor,
                                right: view.safeAreaLayoutGuide.rightAnchor,
-                               paddingLeft: 24,
-                               paddingBottom: 12,
-                               paddingRight: 24)
+                               paddingLeft: 0,
+                               paddingBottom: 14,
+                               paddingRight: 0)
     }
     
     private func layoutCardStackView() {
@@ -83,12 +111,12 @@ class SwipeViewController: UIViewController {
         cardStack.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
-            cardStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
+            cardStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             cardStack.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            cardStack.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
-            cardStack.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1, constant: -70 - 58 - 16 - 50)
+            cardStack.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.96),
+            cardStack.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1, constant: -145)
         ]
-
+        
         NSLayoutConstraint.activate(constraints)
     }
 }
@@ -105,7 +133,7 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
         let model = cardModels[index]
         card.content = ProductCardContentView()
         (card.content as! ProductCardContentView).update(with: model)
-//        card.footer = ProductCardFooterView(withTitle: "\(model.productName)", subtitle: model.userName)
+        //        card.footer = ProductCardFooterView(withTitle: "\(model.productName)", subtitle: model.userName)
         
         return card
     }
@@ -132,18 +160,18 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
     
     func didTapButton(button: BottomButton) {
         switch button.tag {
-        case 1:
-          cardStack.undoLastSwipe(animated: true)
+        case 1: break
+//            cardStack.undoLastSwipe(animated: true)
         case 2:
-          cardStack.swipe(.left, animated: true)
+            cardStack.swipe(.left, animated: true)
         case 3:
-          cardStack.swipe(.up, animated: true)
+            cardStack.swipe(.up, animated: true)
         case 4:
-          cardStack.swipe(.right, animated: true)
-        case 5:
-          cardStack.reloadData()
+            cardStack.swipe(.right, animated: true)
+        case 5: break
+//            cardStack.reloadData()
         default:
-          break
+            break
         }
-      }
+    }
 }

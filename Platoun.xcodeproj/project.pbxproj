@@ -455,6 +455,8 @@
 		F0DB42D1251BC7A700A8B4FA /* DrawRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB42D0251BC7A700A8B4FA /* DrawRoundView.swift */; };
 		F0DB42D6251BC91500A8B4FA /* DrawShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB42D5251BC91500A8B4FA /* DrawShadowView.swift */; };
 		F0DB42DC251BDDB000A8B4FA /* DrawBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB42DB251BDDB000A8B4FA /* DrawBackgroundView.swift */; };
+		F0EB492325C4B7FC00E89497 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EB492225C4B7FC00E89497 /* BottomTab.swift */; };
+		F0EB492425C4B7FC00E89497 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EB492225C4B7FC00E89497 /* BottomTab.swift */; };
 		F0EF8B72254A2A01003DD5C6 /* RealTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF8B71254A2A01003DD5C6 /* RealTimeViewController.swift */; };
 		F0EF8B77254A2F90003DD5C6 /* PlatounTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF8B76254A2F90003DD5C6 /* PlatounTableViewDataSource.swift */; };
 		F0F0C878253462F700325C73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0F0C877253462F700325C73 /* LaunchScreen.storyboard */; };
@@ -748,6 +750,7 @@
 		F0DB42D0251BC7A700A8B4FA /* DrawRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawRoundView.swift; sourceTree = "<group>"; };
 		F0DB42D5251BC91500A8B4FA /* DrawShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawShadowView.swift; sourceTree = "<group>"; };
 		F0DB42DB251BDDB000A8B4FA /* DrawBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawBackgroundView.swift; sourceTree = "<group>"; };
+		F0EB492225C4B7FC00E89497 /* BottomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTab.swift; sourceTree = "<group>"; };
 		F0EF8B71254A2A01003DD5C6 /* RealTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeViewController.swift; sourceTree = "<group>"; };
 		F0EF8B76254A2F90003DD5C6 /* PlatounTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatounTableViewDataSource.swift; sourceTree = "<group>"; };
 		F0F0C877253462F700325C73 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1042,6 +1045,7 @@
 				F039B0E425C099EB005B7B44 /* V2.storyboard */,
 				F0DAE63B25C357DE00D076BD /* ButtonStackView.swift */,
 				F0DAE64025C3583800D076BD /* BottomButton.swift */,
+				F0EB492225C4B7FC00E89497 /* BottomTab.swift */,
 			);
 			path = V2;
 			sourceTree = "<group>";
@@ -2141,6 +2145,7 @@
 				F018D6DA2500640500DD0D45 /* AppleSignIn.swift in Sources */,
 				F0AA8D2C2514162B00EA2FBD /* UIViewController+Extension.swift in Sources */,
 				F018D6D424FD9BE500DD0D45 /* ChangePasswordViewController.swift in Sources */,
+				F0EB492325C4B7FC00E89497 /* BottomTab.swift in Sources */,
 				F0DB422B251828C400A8B4FA /* FilterGradientView.swift in Sources */,
 				F018D6D224FC6A4A00DD0D45 /* UIKitUtils.swift in Sources */,
 				F018D6C024F977BE00DD0D45 /* Tab1ViewController.swift in Sources */,
@@ -2340,6 +2345,7 @@
 				F07ECB3B254DF83000868D40 /* AppleSignIn.swift in Sources */,
 				F07ECB3C254DF83000868D40 /* UIViewController+Extension.swift in Sources */,
 				F07ECB3D254DF83000868D40 /* ChangePasswordViewController.swift in Sources */,
+				F0EB492425C4B7FC00E89497 /* BottomTab.swift in Sources */,
 				F07ECB3E254DF83000868D40 /* FilterGradientView.swift in Sources */,
 				F07ECB3F254DF83000868D40 /* UIKitUtils.swift in Sources */,
 				F07ECB40254DF83000868D40 /* Tab1ViewController.swift in Sources */,

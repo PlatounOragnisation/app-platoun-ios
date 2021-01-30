@@ -66,16 +66,16 @@ class ProductCardContentView: UIView {
             backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             backgroundView.leftAnchor.constraint(equalTo: leftAnchor),
             
+            productCardFooter.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            productCardFooter.rightAnchor.constraint(equalTo: backgroundView.rightAnchor),
+            productCardFooter.leftAnchor.constraint(equalTo: backgroundView.leftAnchor),
+            
+            productCardFooter.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+            
+            
             imageView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
             imageView.rightAnchor.constraint(equalTo: backgroundView.rightAnchor),
             imageView.leftAnchor.constraint(equalTo: backgroundView.leftAnchor),
-            imageView.widthAnchor.constraint(equalTo: backgroundView.widthAnchor),
-
-            productCardFooter.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-
-            productCardFooter.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
-            productCardFooter.rightAnchor.constraint(equalTo: backgroundView.rightAnchor),
-            productCardFooter.leftAnchor.constraint(equalTo: backgroundView.leftAnchor),            
         ]
         
         NSLayoutConstraint.activate(constraints)        

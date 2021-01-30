@@ -9,20 +9,23 @@
 import PopBounceButton
 
 class BottomButton: PopBounceButton {
+    
+    override init() {
+        super.init()
+        adjustsImageWhenHighlighted = false
+        backgroundColor = .white
+        layer.masksToBounds = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        return nil
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        layer.cornerRadius = frame.width / 2
+        layer.borderWidth = 0.5
+        layer.borderColor = ThemeColor.Black.withAlphaComponent(0.08).cgColor
 
-  override init() {
-    super.init()
-    adjustsImageWhenHighlighted = false
-    backgroundColor = .white
-    layer.masksToBounds = true
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    return nil
-  }
-
-  override func draw(_ rect: CGRect) {
-    super.draw(rect)
-    layer.cornerRadius = frame.width / 2
-  }
+    }
 }
