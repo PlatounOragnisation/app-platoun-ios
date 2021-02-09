@@ -30,7 +30,7 @@ class ProductCardOverlay: UIView {
   }
 
   private func createLeftOverlay() {
-    let leftTextView = ProductCardOverlayLabelView(withTitle: "JE PASSE",
+    let leftTextView = ProductCardOverlayLabelView(withTitle: "💩",
                                                   color: .sampleRed,
                                                   rotation: CGFloat.pi / 10)
     addSubview(leftTextView)
@@ -41,7 +41,7 @@ class ProductCardOverlay: UIView {
   }
 
   private func createUpOverlay() {
-    let upTextView = ProductCardOverlayLabelView(withTitle: "JE SURKIFF",
+    let upTextView = ProductCardOverlayLabelView(withTitle: "🤩",
                                                 color: .sampleBlue,
                                                 rotation: -CGFloat.pi / 20)
     addSubview(upTextView)
@@ -50,7 +50,7 @@ class ProductCardOverlay: UIView {
   }
 
   private func createRightOverlay() {
-    let rightTextView = ProductCardOverlayLabelView(withTitle: "J'AIME",
+    let rightTextView = ProductCardOverlayLabelView(withTitle: "🥰",
                                                    color: .sampleGreen,
                                                    rotation: -CGFloat.pi / 10)
     addSubview(rightTextView)
@@ -71,9 +71,9 @@ private class ProductCardOverlayLabelView: UIView {
 
   init(withTitle title: String, color: UIColor, rotation: CGFloat) {
     super.init(frame: CGRect.zero)
-    layer.borderColor = color.cgColor
-    layer.borderWidth = 4
-    layer.cornerRadius = 4
+//    layer.borderColor = color.cgColor
+//    layer.borderWidth = 4
+//    layer.cornerRadius = 4
     transform = CGAffineTransform(rotationAngle: rotation)
 
     addSubview(titleLabel)
@@ -97,7 +97,7 @@ extension NSAttributedString.Key {
 
   static var overlayAttributes: [NSAttributedString.Key: Any] = [
     // swiftlint:disable:next force_unwrapping
-    NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 42)!,
+    NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 200)!,
     NSAttributedString.Key.kern: 5.0
   ]
 }

@@ -14,12 +14,7 @@ class SwipeViewController: UIViewController {
     private let cardStack = SwipeCardStack()
     private let buttonStackView = ButtonStackView()
     
-    private let bottomTab: BottomTab = {
-        let view = BottomTab()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
+    @IBOutlet weak var bottomTab: UIView!
     
     private let cardModels: [ProductCardModel] = [
         ProductCardModel(userName: "UserName1", productName: "ProductName1", comment: "Comment1 très long pour voir si c'est bien sur une seule ligne", productImageUrl: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg", userImageUrl: "https://www.nicesnippets.com/demo/profile-1.jpg"),
@@ -33,7 +28,7 @@ class SwipeViewController: UIViewController {
     ]
     
     override func viewWillAppear(_ animated: Bool) {
-        self.setGradientBackground()
+        self.setGradientBackground(self.view)
         super.viewWillAppear(animated)
         self.navigationController?.initPlatounTheme(isTransparent: true)
         
@@ -48,7 +43,7 @@ class SwipeViewController: UIViewController {
         
     }
     
-    func setGradientBackground() {
+    func setGradientBackground(_ view: UIView) {
         let colorTop =  ThemeColor.cFEFEFE.cgColor
         let colorBottom = ThemeColor.cF7F6FB.cgColor
                     
@@ -66,11 +61,8 @@ class SwipeViewController: UIViewController {
         cardStack.dataSource = self
         buttonStackView.delegate = self
         
-        
-        
-        layoutCardStackView()
-        layoutBottomTab()
         layoutButtonStackView()
+        layoutCardStackView()
     }
     
     func card(fromImage image: UIImage) -> SwipeCard {
@@ -89,13 +81,6 @@ class SwipeViewController: UIViewController {
         return card
     }
     
-    private func layoutBottomTab() {
-        view.addSubview(bottomTab)
-        bottomTab.anchor(left: view.leftAnchor,
-                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                         right: view.rightAnchor)
-    }
-    
     private func layoutButtonStackView() {
         view.addSubview(buttonStackView)
         buttonStackView.anchor(left: view.safeAreaLayoutGuide.leftAnchor,
@@ -106,22 +91,42 @@ class SwipeViewController: UIViewController {
                                paddingRight: 0)
     }
     
+    var bottomConstraint: NSLayoutConstraint?
     private func layoutCardStackView() {
         view.addSubview(cardStack)
         cardStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        bottomConstraint = self.cardStack.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1, constant: -145)
         
         let constraints = [
             cardStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             cardStack.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             cardStack.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.96),
-            cardStack.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1, constant: -145)
+            bottomConstraint!
         ]
         
         NSLayoutConstraint.activate(constraints)
     }
 }
 
-extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardStackDelegate {
+extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardStackDelegate, ActionCardDelegate {
+    
+    func userNameTapAction() {
+        self.performSegue(withIdentifier: "showProfil", sender: nil)
+    }
+    
+    func shareImage(image: UIImage) {
+        let imageToShare:[Any] = [ image ]
+        
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        // exclude some activity types from the list (optional)
+//        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop ]
+
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+
+    }
+    
     func cardStack(_ cardStack: SwipeCardStack, cardForIndexAt index: Int) -> SwipeCard {
         let card = SwipeCard()
         card.footerHeight = 0
@@ -132,6 +137,7 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
         
         let model = cardModels[index]
         card.content = ProductCardContentView()
+        (card.content as! ProductCardContentView).delegate = self
         (card.content as! ProductCardContentView).update(with: model)
         //        card.footer = ProductCardFooterView(withTitle: "\(model.productName)", subtitle: model.userName)
         
@@ -156,6 +162,40 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
     
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
         print("Card tapped")
+        guard
+            let card = cardStack.card(forIndexAt: index),
+            let old = card.content as? ProductCardContentView,
+            let parentFrame = card.content?.frame
+            else { return }
+        
+        if old.isIncrease {
+            card.swipeDirections = [.left, .up, .right]
+        } else {
+            card.swipeDirections = []
+        }
+        
+//        let model = cardModels[index]
+//        let content = ProductCardContentView()
+//        content.update(with: model)
+//        content.frame = card.convert(parentFrame, to: self.view)
+//        self.view.addSubview(content)
+//        content.layoutIfNeeded()
+        let (before, animate, complet) = old.toogleIncrease()
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            if old.isIncrease { self.bottomConstraint?.constant = -80 }
+            else { self.bottomConstraint?.constant = -145 }
+            before()
+            animate()
+            card.layoutIfNeeded()
+            self.cardStack.superview?.layoutIfNeeded()
+        }) { _ in
+            complet()
+//            content.increase()
+//            UIView.animate(withDuration: 1) {
+//                content.layoutIfNeeded()
+//            }
+        }
     }
     
     func didTapButton(button: BottomButton) {
@@ -173,5 +213,10 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
         default:
             break
         }
+    }
+    
+    
+    @IBAction func takePictureActionTap(_ sender: Any) {
+        takePictureForPost(in: self)
     }
 }

@@ -13,6 +13,10 @@ extension UIFont {
         case regular = "Regular"
     }
     
+    enum ArchivoBlackType: String {
+        case regular = "Regular"
+    }
+    
     enum RobotoType: String {
         case black = "Black"
         case blackItalic = "BlackItalic"
@@ -47,5 +51,9 @@ extension UIFont {
     
     static func roboto(type: RobotoType, fontSize: CGFloat) -> UIFont {
         return UIFont(name: "Roboto-\(type.rawValue)", size: fontSize)!
+    }
+    
+    static func archivoBlack(type: ArchivoBlackType, fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "ArchivoBlack-\(type.rawValue)", size: fontSize)!
     }
 }

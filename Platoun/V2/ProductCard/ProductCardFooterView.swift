@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol FooterDelegate {
+    func userNameTapAction()
+}
+
 class ProductCardFooterView: UIView {
+    
+    var delegate: FooterDelegate?
     
     private let userProfileImageView: UIImageView = {
         let image = UIImageView()
@@ -64,6 +70,24 @@ class ProductCardFooterView: UIView {
         return label
     }()
     
+    private let askQuestionButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("  Poser une question", for: .normal)
+        button.titleLabel?.font = UIFont.roboto(type: .regular, fontSize: 14)
+        button.setTitleColor(ThemeColor.c37474F, for: .normal)
+        button.setImage(UIImage(named:"ic-ask"), for: .normal)
+        button.isHidden = true
+        button.alpha = 0
+        return button
+    }()
+    
+    private let lineButton: UIImageView = {
+        let image = UIImageView(image: UIImage(named: "img-bottom-ligne-select"))
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.isHidden = true
+        return image
+    }()
     
     init() {
         super.init(frame: CGRect.zero)
@@ -74,17 +98,65 @@ class ProductCardFooterView: UIView {
         isOpaque = false
     }
     
+    func increase() -> (()->Void, ()->Void, ()->Void) {
+        return (
+            {
+                self.commentLabel.numberOfLines = 0
+            },
+            {
+                self.lignInvisible?.isActive = false
+                self.lignVisible?.isActive = true
+                
+                self.lineButton.isHidden = false
+                self.askQuestionButton.isHidden = false
+                self.askQuestionButton.alpha = 1
+                self.seeMoreLabel.alpha = 0
+            },
+            {
+                self.seeMoreLabel.isHidden = true
+            }
+        )
+    }
+    
+    func decrease() -> (()->Void, ()->Void, ()->Void) {
+        
+        return (
+            {
+                self.commentLabel.numberOfLines = 1
+            },
+            {
+                self.lignInvisible?.isActive = true
+                self.lignVisible?.isActive = false
+                
+                self.askQuestionButton.alpha = 0
+                self.seeMoreLabel.isHidden = false
+                self.seeMoreLabel.alpha = 1
+            }, {
+                self.lineButton.isHidden = true
+                self.askQuestionButton.isHidden = true
+            }
+        )
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         return nil
     }
     
+    var lignVisible: NSLayoutConstraint?
+    var lignInvisible: NSLayoutConstraint?
+    
     func initialize() {
+        lignVisible = lineButton.widthAnchor.constraint(equalTo: askQuestionButton.widthAnchor, constant: -15)
+        lignInvisible = lineButton.widthAnchor.constraint(equalToConstant: 0)
+        
         addSubview(userProfileImageView)
         addSubview(postedByLabel)
         addSubview(userNameLabel)
         addSubview(productNameLabel)
         addSubview(commentLabel)
         addSubview(seeMoreLabel)
+        addSubview(askQuestionButton)
+        addSubview(lineButton)
         
         
         let constraints = [
@@ -108,10 +180,27 @@ class ProductCardFooterView: UIView {
             
             seeMoreLabel.leftAnchor.constraint(equalTo: userProfileImageView.leftAnchor),
             seeMoreLabel.topAnchor.constraint(equalTo: commentLabel.bottomAnchor, constant: 8),
-            seeMoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+            seeMoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            
+            askQuestionButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            askQuestionButton.heightAnchor.constraint(equalToConstant: 25),
+            askQuestionButton.topAnchor.constraint(equalTo: commentLabel.bottomAnchor, constant: 13),
+            askQuestionButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
+            
+            lineButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 11),
+            lineButton.topAnchor.constraint(equalTo: askQuestionButton.bottomAnchor, constant: 0),
+            lineButton.heightAnchor.constraint(equalToConstant: 11),
+            lignInvisible!
         ]
         
         NSLayoutConstraint.activate(constraints)
+        
+        userNameLabel.isUserInteractionEnabled = true
+        userNameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userNameDidTap)))
+    }
+    
+    @objc func userNameDidTap() {
+        self.delegate?.userNameTapAction()
     }
     
     func update(with productCard: ProductCardModel) {
