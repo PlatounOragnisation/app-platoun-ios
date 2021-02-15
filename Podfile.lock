@@ -417,6 +417,7 @@ PODS:
   - ImageIOSwift (1.1.1)
   - ImageIOUIKit (1.1.1):
     - ImageIOSwift (~> 1.1.0)
+  - ImagePicker (3.2.0)
   - leveldb-library (1.22)
   - MultiSlider (1.10.11):
     - AvailableHapticFeedback
@@ -453,6 +454,7 @@ DEPENDENCIES:
   - FirebaseUI/Storage
   - GoogleSignIn
   - ImageIOUIKit
+  - ImagePicker
   - MultiSlider (~> 1.10.8)
   - netfox
   - PopBounceButton
@@ -493,6 +495,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - ImageIOSwift
     - ImageIOUIKit
+    - ImagePicker
     - leveldb-library
     - MultiSlider
     - nanopb
@@ -539,6 +542,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   ImageIOSwift: 46d78a07963e96840fd18bde0ba75035ecae6e94
   ImageIOUIKit: 2cad0673a2377e94444d2ea7ef1703f73e3cea4b
+  ImagePicker: 1d950bbb2422548ed58791b4ec7f42fe42920511
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MultiSlider: 606824c5e1c25091eb64fac673b193276fc46f7a
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
@@ -550,6 +554,6 @@ SPEC CHECKSUMS:
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SweeterSwift: d909211f6833405628c8c7c6bf9f8f2e8a0e9df9
 
-PODFILE CHECKSUM: c9c0acd0ef889d915001a77cdb0941b6978f2dd3
+PODFILE CHECKSUM: cb9dcb8d7979cade332d1c93759bef42810b5d6e
 
 COCOAPODS: 1.9.3

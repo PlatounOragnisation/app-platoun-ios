@@ -34,6 +34,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SwipeViewController.numberOfCards(in:):SwipeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "PostTableViewCell.initializeBackground():PostTableViewCell.swift">
          <PersistentStrings>
             <PersistentString

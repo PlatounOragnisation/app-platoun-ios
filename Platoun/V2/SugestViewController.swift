@@ -10,7 +10,8 @@ import UIKit
 
 class SugestViewController: UIViewController {
         
-    var image: UIImage?
+    var image: UIImage!
+    var user: UserV2!
     
     @IBOutlet weak var titleLabel: StyleLabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -64,9 +65,32 @@ class SugestViewController: UIViewController {
 
     }
     
+    @IBAction func categoryActionTap(_ sender: Any) {
+        let vc = UIAlertController.getFeatureAvailableSoon()
+        self.present(vc, animated: true)
+    }
     
     @IBAction func shareActionTap(_ sender: Any) {
-        self.dismiss(animated: true)
+        let productName = productNameTextField.text ?? ""
+        let productComment = productCommentTextView.text ?? ""
+        
+        if productName.isEmpty {
+            showAlertError(isForName: true)
+            return
+        } else if productComment.isEmpty {
+            showAlertError(isForName: false)
+            return
+        }
+        
+        PostService.shared.uploadImage(user: self.user, image: self.image, name: productName, comment: productComment) {
+            self.dismiss(animated: true)
+        }
+    }
+    
+    func showAlertError(isForName: Bool) {
+        let vc = UIAlertController(title: "Oups", message: "Vous devez mettre un \(isForName ? "nom" : "commentaire") pour publier ce produit.", preferredStyle: .alert)
+        vc.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(vc, animated: true)
     }
 }
 

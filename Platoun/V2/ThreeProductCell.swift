@@ -16,13 +16,13 @@ class ThreeProductCell: UITableViewCell {
     @IBOutlet weak var product2ImageView: UIImageView!
     @IBOutlet weak var product3ImageView: UIImageView!
     
-    var productClosure: ((ProductV2)->Void)?
+    var productClosure: ((ProductVote)->Void)?
     
-    var product1: ProductV2?
-    var product2: ProductV2?
-    var product3: ProductV2?
+    var product1: ProductVote?
+    var product2: ProductVote?
+    var product3: ProductVote?
     
-    func setup(product1: ProductV2?, product2: ProductV2?, product3: ProductV2?, index: Int) {
+    func setup(product1: ProductVote?, product2: ProductVote?, product3: ProductVote?, index: Int) {
         self.product1 = product1
         self.product2 = product2
         self.product3 = product3
@@ -35,35 +35,23 @@ class ThreeProductCell: UITableViewCell {
             self.product2ImageView.layer.mask = nil
         }
         
-        
-        if let p = self.product1 {
-            self.product1ImageView.isHidden = false
-            self.product1ImageView.setImage(with: URL(string: p.productImage)!, placeholder: nil, options: .progressiveLoad)
-            self.product1ImageView.isUserInteractionEnabled = true
-            self.product1ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(product1Click)))
-        } else {
-            self.product1ImageView.isHidden = true
-        }
-        
-        if let p = self.product2 {
-            self.product2ImageView.isHidden = false
-            self.product2ImageView.setImage(with: URL(string: p.productImage)!, placeholder: nil, options: .progressiveLoad)
-            self.product2ImageView.isUserInteractionEnabled = true
-            self.product2ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(product2Click)))
-        } else {
-            self.product2ImageView.isHidden = true
-        }
-        
-        if let p = self.product3 {
-            self.product3ImageView.isHidden = false
-            self.product3ImageView.setImage(with: URL(string: p.productImage)!, placeholder: nil, options: .progressiveLoad)
-            self.product3ImageView.isUserInteractionEnabled = true
-            self.product3ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(product3Click)))
+        attribut(self.product1, in: self.product1ImageView, action: #selector(product1Click))
+        attribut(self.product2, in: self.product2ImageView, action: #selector(product2Click))
+        attribut(self.product3, in: self.product3ImageView, action: #selector(product3Click))
+    }
+    
+    func attribut(_ product: ProductVote?, in imageView: UIImageView, action: Selector) {
+        if let p = product {
+            imageView.isHidden = false
+            imageView.setImage(with: URL(string: p.image)!, placeholder: nil, options: .progressiveLoad)
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: action))
 
         } else {
-            self.product3ImageView.isHidden = true
+            imageView.isHidden = true
         }
     }
+    
     
     @objc func product1Click() {
         guard let p = self.product1 else { return }
@@ -76,16 +64,5 @@ class ThreeProductCell: UITableViewCell {
     @objc func product3Click() {
         guard let p = self.product3 else { return }
         self.productClosure?(p)
-    }
-    
-    
-}
-
-extension UIView {
-    fileprivate func roundCorners(corners: UIRectCorner, radius: CGFloat) {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfilV2ViewController: UIViewController {
     
@@ -38,35 +39,40 @@ class ProfilV2ViewController: UIViewController {
         
         votesCountLabel.update(colors: [ThemeColor.cFFE600, ThemeColor.cFFC7C7])
         votesTitleLabel.update(colors: [ThemeColor.cFFE600, ThemeColor.cFFC7C7])
+        
+        UserService.shared.getUser(userId: self.userId) { user in
+            guard let user = user else { return }
+            self.user = user
+            self.initializeUser()
+        }
+        
+        self.sugestionActionTap("")
     }
     
-    var user: UserV2!
-    var products: [ProductV2] = []
+    private var user: UserV2!
+    private var posts: [ProductVote] = []
+    
+    var userId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        collectionView.roundCorners(corners: [ .topLeft, .topRight], radius: 16.0)
         tableView.delegate = self
         tableView.dataSource = self
-        
-        seed(self)
-        initializeUser()
-        initializeCollectionView()
     }
     
     
     func initializeUser() {
-        userNameLabel.text = "@\(user.name)"
+        userNameLabel.text = "@\(user.name ?? "Anonyme")"
         suggestionCountLabel.text = user.suggestionCount.concat()
         suggestionTitleLabel.text = user.suggestionCount > 1 ? "suggestions" : "suggestion"
-        votesCountLabel.text = user.votesCount.concat()
-        votesTitleLabel.text = user.votesCount > 1 ? "votes" : "vote"
-        profilImageView.setImage(with: URL(string: user.profilPictureUrl)!, placeholder: nil, options: .progressiveLoad)
-    }
-    
-    func initializeCollectionView() {
-        self.tableView.reloadData()
+        votesCountLabel.text = user.point.concat()
+        votesTitleLabel.text = user.point > 1 ? "votes" : "vote"
+        
+        if let profilPicture = user.imageProfilURL {
+            profilImageView.setImage(with: URL(string: profilPicture)!, placeholder: nil, options: .progressiveLoad)
+        } else {
+            profilImageView.image = #imageLiteral(resourceName: "ic_social_default_profil")
+        }
     }
     
     @IBAction func sugestionActionTap(_ sender: Any) {
@@ -77,7 +83,10 @@ class ProfilV2ViewController: UIViewController {
         votesLabel.textColor = ThemeColor.cB8B8B8
         votesLine.image = UIImage(named: "img-bottom-ligne-unselect")
         
-        
+        UserService.shared.getMyPost(userId: self.userId) { posts in
+            self.posts = posts
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func swipeStarActionTap(_ sender: Any) {
@@ -88,6 +97,10 @@ class ProfilV2ViewController: UIViewController {
         votesLabel.textColor = ThemeColor.cB8B8B8
         votesLine.image = UIImage(named: "img-bottom-ligne-unselect")
         
+        UserService.shared.getSurkiffPost(userId: self.userId) { posts in
+            self.posts = posts
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func votesActionTap(_ sender: Any) {
@@ -98,13 +111,17 @@ class ProfilV2ViewController: UIViewController {
         votesLabel.textColor = ThemeColor.c01C7AD
         votesLine.image = UIImage(named: "img-bottom-ligne-select")
         
+        UserService.shared.getLikePost(userId: self.userId) { posts in
+            self.posts = posts
+            self.tableView.reloadData()
+        }
     }
     
 }
 
 extension ProfilV2ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        (self.products.count / 3) + (self.products.count % 3)
+        (self.posts.count / 3) + (self.posts.count % 3)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,9 +129,9 @@ extension ProfilV2ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? ThreeProductCell else { return UITableViewCell() }
 
         cell.setup(
-            product1: self.products.getOrNil(indexPath.row*3),
-            product2: self.products.getOrNil(indexPath.row*3+1),
-            product3: self.products.getOrNil(indexPath.row*3+2),
+            product1: self.posts.getOrNil(indexPath.row*3),
+            product2: self.posts.getOrNil(indexPath.row*3+1),
+            product3: self.posts.getOrNil(indexPath.row*3+2),
             index: indexPath.row)
         
         cell.productClosure = { product in
@@ -125,68 +142,14 @@ extension ProfilV2ViewController: UITableViewDataSource {
     }
     
     @IBAction func takePictureActionTap(_ sender: Any) {
-        takePictureForPost(in: self)
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        UserService.shared.getUser(userId: userId) { user in
+            guard let user = user else { return }
+            takePictureForPost(in: self, for: user)
+        }
     }
 }
 
 extension ProfilV2ViewController: UITableViewDelegate {
     
-}
-
-extension Int {
-    func concat() -> String {
-        if self >= 1000000 {
-            let result = Double(self)/1000000.0
-            return String(format: "%.1f", result)+"M"
-        } else if self >= 1000 {
-            let result = Double(self)/1000.0
-            return String(format: "%.1f", result)+"K"
-        } else {
-            return "\(self)"
-        }
-    }
-}
-
-
-func seed(_ vc: ProfilV2ViewController) {
-    vc.user = UserV2(
-        name: "Gustave45",
-        profilPictureUrl: "https://www.nicesnippets.com/demo/profile-3.jpg",
-        suggestionCount: 821,
-        votesCount: 10200
-    )
-    
-    vc.products =
-    [
-        ProductV2(id: "", productName: "",
-                  productImage: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg",
-                  productComment: "", userName: "", userImage: "", userId: ""),
-        ProductV2(id: "", productName: "",
-                  productImage: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg",
-                  productComment: "", userName: "", userImage: "", userId: ""),
-        ProductV2(id: "", productName: "",
-                  productImage: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg",
-                  productComment: "", userName: "", userImage: "", userId: ""),
-        ProductV2(id: "", productName: "",
-                  productImage: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph",
-                  productComment: "", userName: "", userImage: "", userId: ""),
-        ProductV2(id: "", productName: "",
-                  productImage: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg",
-                  productComment: "", userName: "", userImage: "", userId: ""),
-        ProductV2(id: "", productName: "",
-                  productImage: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph",
-                  productComment: "", userName: "", userImage: "", userId: ""),
-        ProductV2(id: "", productName: "",
-                  productImage: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg",
-                  productComment: "", userName: "", userImage: "", userId: ""),
-        ProductV2(id: "", productName: "",
-                  productImage: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph",
-                  productComment: "", userName: "", userImage: "", userId: ""),
-        ProductV2(id: "", productName: "",
-                  productImage: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg",
-                  productComment: "", userName: "", userImage: "", userId: ""),
-        ProductV2(id: "", productName: "",
-                  productImage: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg",
-                  productComment: "", userName: "", userImage: "", userId: "")
-    ]
 }

@@ -9,8 +9,9 @@
 import UIKit
 
 protocol ActionCardDelegate {
-    func userNameTapAction()
-    func shareImage(image: UIImage)
+    func userNameTapAction(productCard: PostV2)
+    func moreTapAction(productCard: PostV2)
+    func shareImage(image: UIImage, productCard: PostV2)
 }
 
 extension UIView {
@@ -89,7 +90,7 @@ class ProductCardContentView: UIView {
             self.backgroundView.drawHierarchy(in: rect, afterScreenUpdates: true)
         }
         
-        self.delegate?.shareImage(image: image)
+        self.delegate?.shareImage(image: image, productCard: self.productCard)
     }
     
     init() {
@@ -102,52 +103,47 @@ class ProductCardContentView: UIView {
     
     var isIncrease = false
     
-    func toogleIncrease() -> (()->Void, ()->Void, ()->Void){
+    func toogleIncrease() -> (()->Void, ()->Void){
         if isIncrease {
             return self.decrease()
         } else {
             return self.increase()
         }
     }
-    func increase() -> (()->Void, ()->Void, ()->Void) {
+    func increase() -> (()->Void, ()->Void) {
         isIncrease = true
         
-        let (b,a,c) = self.productCardFooter.increase()
+        let (animate,complet) = self.productCardFooter.increase()
         
         return (
             {
-                b()
-                
-            },{
-                a()
+                animate()
                 self.shareImage.isHidden = false
                 self.shareImage.alpha = 1
             },{
-                c()
-                
+                complet()
             }
         )
     }
-    func decrease() -> (()->Void, ()->Void, ()->Void) {
+    func decrease() -> (()->Void, ()->Void) {
         isIncrease = false
-        let (b,a,c) = self.productCardFooter.decrease()
+        let (animate,complet) = self.productCardFooter.decrease()
         
         return (
             {
-                b()
-                
-            },{
-                a()
+                animate()
                 self.shareImage.alpha = 0
             },{
-                c()
+                complet()
                 self.shareImage.isHidden = true
             }
         )
     }
     
-    func update(with productCard: ProductCardModel) {
-        imageView.setImage(with: URL(string: productCard.productImageUrl)!, placeholder: nil, options: .progressiveLoad)
+    var productCard: PostV2!
+    func update(with productCard: PostV2) {
+        self.productCard = productCard
+        imageView.setImage(with: URL(string: productCard.imageFileURL)!, placeholder: nil, options: .progressiveLoad)
         productCardFooter.update(with: productCard)
     }
     
@@ -193,6 +189,10 @@ class ProductCardContentView: UIView {
 
 extension ProductCardContentView: FooterDelegate {
     func userNameTapAction() {
-        self.delegate?.userNameTapAction()
+        self.delegate?.userNameTapAction(productCard: self.productCard)
+    }
+    
+    func moreTapAction() {
+        self.delegate?.moreTapAction(productCard: self.productCard)
     }
 }

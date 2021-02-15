@@ -46,6 +46,12 @@
 		F039B0E625C099EB005B7B44 /* V2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F039B0E425C099EB005B7B44 /* V2.storyboard */; };
 		F039B0EA25C0A279005B7B44 /* Baloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F039B0E925C0A279005B7B44 /* Baloo-Regular.ttf */; };
 		F039B0EB25C0A279005B7B44 /* Baloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F039B0E925C0A279005B7B44 /* Baloo-Regular.ttf */; };
+		F03E685D25D5B457002DCA77 /* CatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E685C25D5B457002DCA77 /* CatViewController.swift */; };
+		F03E685E25D5B457002DCA77 /* CatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E685C25D5B457002DCA77 /* CatViewController.swift */; };
+		F03E686225D5DA71002DCA77 /* UIAlertViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E686125D5DA71002DCA77 /* UIAlertViewController+Extension.swift */; };
+		F03E686325D5DA71002DCA77 /* UIAlertViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E686125D5DA71002DCA77 /* UIAlertViewController+Extension.swift */; };
+		F03E689F25D94630002DCA77 /* Zoomy in Frameworks */ = {isa = PBXBuildFile; productRef = F03E689E25D94630002DCA77 /* Zoomy */; };
+		F03E68A325D947F9002DCA77 /* UserDefaultsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E68A225D947F9002DCA77 /* UserDefaultsServices.swift */; };
 		F0461A55254339A400B75724 /* EmptyProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0461A54254339A400B75724 /* EmptyProductsCollectionViewCell.swift */; };
 		F049B582252A63F400CB7F49 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F049B581252A63F400CB7F49 /* Dictionary+Extension.swift */; };
 		F04A7DB52514EB3400F99143 /* PlatounUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DB42514EB3400F99143 /* PlatounUser.swift */; };
@@ -55,8 +61,6 @@
 		F0504A182516E260007B9277 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0504A172516E260007B9277 /* GradientButton.swift */; };
 		F057D99D258A9A04006F9936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB024F31B160016ADE2 /* Assets.xcassets */; };
 		F057D9A0258A9A0B006F9936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01C6CB024F31B160016ADE2 /* Assets.xcassets */; };
-		F0619FCE25D1EEE1002B82EC /* ProductV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0619FCD25D1EEE1002B82EC /* ProductV2.swift */; };
-		F0619FCF25D1EEE1002B82EC /* ProductV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0619FCD25D1EEE1002B82EC /* ProductV2.swift */; };
 		F06424B72542115D005EE2E7 /* IBPCollectionViewCompositionalLayout in Frameworks */ = {isa = PBXBuildFile; productRef = F06424B62542115D005EE2E7 /* IBPCollectionViewCompositionalLayout */; };
 		F06424BC254211D0005EE2E7 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06424BB254211D0005EE2E7 /* Collection.swift */; };
 		F06424C125421317005EE2E7 /* LayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06424C025421317005EE2E7 /* LayoutBuilder.swift */; };
@@ -409,6 +413,20 @@
 		F0AA8D802514168B00EA2FBD /* PUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AA8D7E2514168B00EA2FBD /* PUIViewController.swift */; };
 		F0AA8D812514168B00EA2FBD /* Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AA8D7F2514168B00EA2FBD /* Invitation.swift */; };
 		F0AA8D87251416F000EA2FBD /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0AA8D85251416F000EA2FBD /* Localization.strings */; };
+		F0B33C2425D491F200D04B68 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C2325D491F200D04B68 /* Int+Extension.swift */; };
+		F0B33C2525D491F200D04B68 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C2325D491F200D04B68 /* Int+Extension.swift */; };
+		F0B33C2A25D49FDB00D04B68 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C2925D49FDB00D04B68 /* PostService.swift */; };
+		F0B33C2B25D49FDB00D04B68 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C2925D49FDB00D04B68 /* PostService.swift */; };
+		F0B33C2F25D4A3C000D04B68 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C2E25D4A3C000D04B68 /* UIImage+Ext.swift */; };
+		F0B33C3025D4A3C000D04B68 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C2E25D4A3C000D04B68 /* UIImage+Ext.swift */; };
+		F0B33C8125D4BF5F00D04B68 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C8025D4BF5F00D04B68 /* UserService.swift */; };
+		F0B33C8225D4BF5F00D04B68 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C8025D4BF5F00D04B68 /* UserService.swift */; };
+		F0B33C8625D4C6D700D04B68 /* UserVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C8525D4C6D700D04B68 /* UserVote.swift */; };
+		F0B33C8725D4C6D700D04B68 /* UserVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C8525D4C6D700D04B68 /* UserVote.swift */; };
+		F0B33C8B25D4C73E00D04B68 /* VotesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C8A25D4C73E00D04B68 /* VotesService.swift */; };
+		F0B33C8C25D4C73E00D04B68 /* VotesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C8A25D4C73E00D04B68 /* VotesService.swift */; };
+		F0B33C9025D4CF3300D04B68 /* ProductVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C8F25D4CF3300D04B68 /* ProductVote.swift */; };
+		F0B33C9125D4CF3300D04B68 /* ProductVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B33C8F25D4CF3300D04B68 /* ProductVote.swift */; };
 		F0BCB96C25D1FE090041D29C /* CreatePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BCB96B25D1FE090041D29C /* CreatePost.swift */; };
 		F0BCB96D25D1FE090041D29C /* CreatePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BCB96B25D1FE090041D29C /* CreatePost.swift */; };
 		F0BD49D525150547008092BA /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BD49D425150547008092BA /* CommentsViewController.swift */; };
@@ -444,8 +462,8 @@
 		F0D26E68252A3B5D005E1F23 /* FirestoreReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D26E67252A3B5D005E1F23 /* FirestoreReport.swift */; };
 		F0DAE62F25C3542B00D076BD /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = F0DAE62E25C3542B00D076BD /* Shuffle */; };
 		F0DAE63325C3545B00D076BD /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = F0DAE63225C3545B00D076BD /* Shuffle */; };
-		F0DAE63725C3572D00D076BD /* ProductCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63625C3572D00D076BD /* ProductCardModel.swift */; };
-		F0DAE63825C3572D00D076BD /* ProductCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63625C3572D00D076BD /* ProductCardModel.swift */; };
+		F0DAE63725C3572D00D076BD /* PostV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63625C3572D00D076BD /* PostV2.swift */; };
+		F0DAE63825C3572D00D076BD /* PostV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63625C3572D00D076BD /* PostV2.swift */; };
 		F0DAE63C25C357DE00D076BD /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63B25C357DE00D076BD /* ButtonStackView.swift */; };
 		F0DAE63D25C357DE00D076BD /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE63B25C357DE00D076BD /* ButtonStackView.swift */; };
 		F0DAE64125C3583800D076BD /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE64025C3583800D076BD /* BottomButton.swift */; };
@@ -581,6 +599,9 @@
 		F039B0DF25C099AD005B7B44 /* PlatounNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatounNavigationBar.swift; sourceTree = "<group>"; };
 		F039B0E425C099EB005B7B44 /* V2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = V2.storyboard; sourceTree = "<group>"; };
 		F039B0E925C0A279005B7B44 /* Baloo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo-Regular.ttf"; sourceTree = "<group>"; };
+		F03E685C25D5B457002DCA77 /* CatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatViewController.swift; sourceTree = "<group>"; };
+		F03E686125D5DA71002DCA77 /* UIAlertViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+Extension.swift"; sourceTree = "<group>"; };
+		F03E68A225D947F9002DCA77 /* UserDefaultsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsServices.swift; sourceTree = "<group>"; };
 		F0461A54254339A400B75724 /* EmptyProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyProductsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F049B581252A63F400CB7F49 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		F04A7DB42514EB3400F99143 /* PlatounUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatounUser.swift; sourceTree = "<group>"; };
@@ -589,7 +610,6 @@
 		F04A7DCC2514F90000F99143 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		F0504A172516E260007B9277 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		F054D6A725252EB20053ABA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F0619FCD25D1EEE1002B82EC /* ProductV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductV2.swift; sourceTree = "<group>"; };
 		F06424BB254211D0005EE2E7 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		F06424C025421317005EE2E7 /* LayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilder.swift; sourceTree = "<group>"; };
 		F06424C5254215B4005EE2E7 /* CellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBuilder.swift; sourceTree = "<group>"; };
@@ -730,6 +750,13 @@
 		F0AA8D86251416F000EA2FBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
 		F0AA8D8B2514172A00EA2FBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localization.strings; sourceTree = "<group>"; };
 		F0AA8D8C2514175500EA2FBD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localization.strings; sourceTree = "<group>"; };
+		F0B33C2325D491F200D04B68 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		F0B33C2925D49FDB00D04B68 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		F0B33C2E25D4A3C000D04B68 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		F0B33C8025D4BF5F00D04B68 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F0B33C8525D4C6D700D04B68 /* UserVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVote.swift; sourceTree = "<group>"; };
+		F0B33C8A25D4C73E00D04B68 /* VotesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotesService.swift; sourceTree = "<group>"; };
+		F0B33C8F25D4CF3300D04B68 /* ProductVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVote.swift; sourceTree = "<group>"; };
 		F0BCB96B25D1FE090041D29C /* CreatePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePost.swift; sourceTree = "<group>"; };
 		F0BD49D425150547008092BA /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		F0BD49D92515EEF3008092BA /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
@@ -762,7 +789,7 @@
 		F0D26E5D252A3AB1005E1F23 /* FirestorePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePost.swift; sourceTree = "<group>"; };
 		F0D26E62252A3ABD005E1F23 /* FirestoreComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreComment.swift; sourceTree = "<group>"; };
 		F0D26E67252A3B5D005E1F23 /* FirestoreReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreReport.swift; sourceTree = "<group>"; };
-		F0DAE63625C3572D00D076BD /* ProductCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardModel.swift; sourceTree = "<group>"; };
+		F0DAE63625C3572D00D076BD /* PostV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostV2.swift; sourceTree = "<group>"; };
 		F0DAE63B25C357DE00D076BD /* ButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStackView.swift; sourceTree = "<group>"; };
 		F0DAE64025C3583800D076BD /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 		F0DAE64525C358A800D076BD /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -792,6 +819,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F03E689F25D94630002DCA77 /* Zoomy in Frameworks */,
 				F0DB42C9251AAABD00A8B4FA /* FacebookLogin in Frameworks */,
 				F06424B72542115D005EE2E7 /* IBPCollectionViewCompositionalLayout in Frameworks */,
 				F089C0F225176B6A00C56984 /* TOCropViewController in Frameworks */,
@@ -1069,12 +1097,14 @@
 		F039B0D725C098A0005B7B44 /* V2 */ = {
 			isa = PBXGroup;
 			children = (
+				F0B33C2825D49FC500D04B68 /* Services */,
 				F0980C7025CF1F30003490E0 /* Model */,
 				F0DAE6C425C35B8B00D076BD /* Extension */,
 				F0DAE6C325C35B7D00D076BD /* ProductCard */,
 				F039B0D825C09917005B7B44 /* SwipeViewController.swift */,
 				F0EB492725C88BD700E89497 /* SugestViewController.swift */,
 				F039B0DF25C099AD005B7B44 /* PlatounNavigationBar.swift */,
+				F03E685C25D5B457002DCA77 /* CatViewController.swift */,
 				F039B0E425C099EB005B7B44 /* V2.storyboard */,
 				F0DAE63B25C357DE00D076BD /* ButtonStackView.swift */,
 				F0DAE64025C3583800D076BD /* BottomButton.swift */,
@@ -1133,7 +1163,9 @@
 			isa = PBXGroup;
 			children = (
 				F0980C7125CF1F3F003490E0 /* UserV2.swift */,
-				F0619FCD25D1EEE1002B82EC /* ProductV2.swift */,
+				F0DAE63625C3572D00D076BD /* PostV2.swift */,
+				F0B33C8525D4C6D700D04B68 /* UserVote.swift */,
+				F0B33C8F25D4CF3300D04B68 /* ProductVote.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1563,6 +1595,17 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		F0B33C2825D49FC500D04B68 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F0B33C2925D49FDB00D04B68 /* PostService.swift */,
+				F0B33C8025D4BF5F00D04B68 /* UserService.swift */,
+				F0B33C8A25D4C73E00D04B68 /* VotesService.swift */,
+				F03E68A225D947F9002DCA77 /* UserDefaultsServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F0BD49EB25166C2A008092BA /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1600,7 +1643,6 @@
 		F0DAE6C325C35B7D00D076BD /* ProductCard */ = {
 			isa = PBXGroup;
 			children = (
-				F0DAE63625C3572D00D076BD /* ProductCardModel.swift */,
 				F0DAE6BE25C35B7900D076BD /* ProductCardContentView.swift */,
 				F0DAE6C925C35BE200D076BD /* ProductCardFooterView.swift */,
 				F0DAE6CE25C35C1C00D076BD /* ProductCardOverlay.swift */,
@@ -1613,6 +1655,9 @@
 			children = (
 				F0DAE64525C358A800D076BD /* UIView+Ext.swift */,
 				F0EB493525C8B0F000E89497 /* UIColor+Ext.swift */,
+				F0B33C2325D491F200D04B68 /* Int+Extension.swift */,
+				F0B33C2E25D4A3C000D04B68 /* UIImage+Ext.swift */,
+				F03E686125D5DA71002DCA77 /* UIAlertViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1667,6 +1712,7 @@
 				F06424B62542115D005EE2E7 /* IBPCollectionViewCompositionalLayout */,
 				F0DAE62E25C3542B00D076BD /* Shuffle */,
 				F0EB493D25C99A2100E89497 /* YPImagePicker */,
+				F03E689E25D94630002DCA77 /* Zoomy */,
 			);
 			productName = Platoun;
 			productReference = F01C6CA424F31B140016ADE2 /* Platoun.app */;
@@ -1783,6 +1829,7 @@
 				F06424B52542115D005EE2E7 /* XCRemoteSwiftPackageReference "IBPCollectionViewCompositionalLayout" */,
 				F0DAE62D25C3542B00D076BD /* XCRemoteSwiftPackageReference "Shuffle" */,
 				F0EB493C25C99A2100E89497 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
+				F03E689D25D94630002DCA77 /* XCRemoteSwiftPackageReference "Zoomy" */,
 			);
 			productRefGroup = F01C6CA524F31B140016ADE2 /* Products */;
 			projectDirPath = "";
@@ -2165,6 +2212,7 @@
 				F0980C6C25CF1BD1003490E0 /* ProfilV2ViewController.swift in Sources */,
 				F0AA8D1D2514162B00EA2FBD /* ItemShop.swift in Sources */,
 				F0AA8D422514162B00EA2FBD /* WebFavoritProducts.swift in Sources */,
+				F0B33C9025D4CF3300D04B68 /* ProductVote.swift in Sources */,
 				F0D26E68252A3B5D005E1F23 /* FirestoreReport.swift in Sources */,
 				F0F0C88F253792DB00325C73 /* NotificationUtils.swift in Sources */,
 				F0AA8D142514162B00EA2FBD /* GroupCell.swift in Sources */,
@@ -2179,10 +2227,12 @@
 				F0AA8D502514162B00EA2FBD /* ImageShadow.swift in Sources */,
 				F0AA8D442514162B00EA2FBD /* User.swift in Sources */,
 				F0AA8D382514162B00EA2FBD /* WebGroupStatus.swift in Sources */,
+				F0B33C2A25D49FDB00D04B68 /* PostService.swift in Sources */,
 				F01634E62540AB5D009A426D /* Error+Extension.swift in Sources */,
 				F0AA8D0B2514162A00EA2FBD /* ImageSpacingBorderView.swift in Sources */,
 				F0DAE6CF25C35C1C00D076BD /* ProductCardOverlay.swift in Sources */,
 				F0AA8D3B2514162B00EA2FBD /* WebCategory.swift in Sources */,
+				F0B33C8625D4C6D700D04B68 /* UserVote.swift in Sources */,
 				F01634EE25420127009A426D /* MarketplaceViewController.swift in Sources */,
 				0B95D0DF2524C44C00A90938 /* EditableFirestoreTableViewDataSource.swift in Sources */,
 				F0BD4A0D251683C9008092BA /* CustomSwitch.swift in Sources */,
@@ -2191,6 +2241,7 @@
 				F0EB493625C8B0F000E89497 /* UIColor+Ext.swift in Sources */,
 				0B95D0D72524AD5300A90938 /* NotificationBackgroundView.swift in Sources */,
 				F0AA8D2E2514162B00EA2FBD /* NSMutableAttributedString+Extension.swift in Sources */,
+				F03E68A325D947F9002DCA77 /* UserDefaultsServices.swift in Sources */,
 				F0980C7925D1C936003490E0 /* ThreeProductCell.swift in Sources */,
 				F0C252C5251D612B00BCB677 /* CGContext+Extension.swift in Sources */,
 				F0AA8D262514162B00EA2FBD /* ProductsLikedViewController.swift in Sources */,
@@ -2238,14 +2289,16 @@
 				F0DB42D6251BC91500A8B4FA /* DrawShadowView.swift in Sources */,
 				F0D26E51252A392D005E1F23 /* FirestoreUser.swift in Sources */,
 				F07A1F8C25008684002AAEDD /* GoogleSignIn.swift in Sources */,
+				F03E686225D5DA71002DCA77 /* UIAlertViewController+Extension.swift in Sources */,
 				F018D6D024F98C9C00DD0D45 /* UserDefaultsUtils.swift in Sources */,
 				F0AA8D452514162B00EA2FBD /* ProductLiked.swift in Sources */,
 				F04A7DBA2514EC2000F99143 /* PlatounBackendApi.swift in Sources */,
 				F0BD49D525150547008092BA /* CommentsViewController.swift in Sources */,
 				F0AA8D392514162B00EA2FBD /* WebPlatounError.swift in Sources */,
 				F0AA8D172514162B00EA2FBD /* CheckableItemView.swift in Sources */,
+				F0B33C2F25D4A3C000D04B68 /* UIImage+Ext.swift in Sources */,
 				F0AA8D4D2514162B00EA2FBD /* BorderedView.swift in Sources */,
-				F0DAE63725C3572D00D076BD /* ProductCardModel.swift in Sources */,
+				F0DAE63725C3572D00D076BD /* PostV2.swift in Sources */,
 				F049B582252A63F400CB7F49 /* Dictionary+Extension.swift in Sources */,
 				F0AA8D2B2514162B00EA2FBD /* Double+Extension.swift in Sources */,
 				F018D6D8250040E700DD0D45 /* FIRUser+Extension.swift in Sources */,
@@ -2281,6 +2334,7 @@
 				F0AA8D052514162A00EA2FBD /* CreateGroupViewController.swift in Sources */,
 				F06424C6254215B4005EE2E7 /* CellBuilder.swift in Sources */,
 				F0AA8D812514168B00EA2FBD /* Invitation.swift in Sources */,
+				F03E685D25D5B457002DCA77 /* CatViewController.swift in Sources */,
 				F0AA8D182514162B00EA2FBD /* MarketplaceCategoryView.swift in Sources */,
 				F0AA8D212514162B00EA2FBD /* DropDownView.swift in Sources */,
 				F04A7DCD2514F90000F99143 /* Encodable+Extension.swift in Sources */,
@@ -2297,19 +2351,21 @@
 				F0AA8D702514162B00EA2FBD /* PlatounEnv.swift in Sources */,
 				F07A1F8A2500811B002AAEDD /* Authentication.swift in Sources */,
 				F0DAE6BF25C35B7900D076BD /* ProductCardContentView.swift in Sources */,
+				F0B33C8B25D4C73E00D04B68 /* VotesService.swift in Sources */,
 				F0AA8D412514162B00EA2FBD /* WebPromoStatus.swift in Sources */,
 				F038B7AF251E55CF00DA0719 /* ForgotPasswordViewController.swift in Sources */,
 				F06424CC2542192B005EE2E7 /* CategoryCollectionViewCell.swift in Sources */,
 				F0D26E3525288973005E1F23 /* RemoteConfigUtils.swift in Sources */,
 				F0AA8D232514162B00EA2FBD /* CongratulationViewController.swift in Sources */,
 				F0AA8D292514162B00EA2FBD /* UIColor+Extension.swift in Sources */,
-				F0619FCE25D1EEE1002B82EC /* ProductV2.swift in Sources */,
+				F0B33C2425D491F200D04B68 /* Int+Extension.swift in Sources */,
 				F0655B232544E0870056C180 /* ProductProposedCollectionViewCell.swift in Sources */,
 				F0AA8D322514162B00EA2FBD /* UITableView+Extension.swift in Sources */,
 				F0AA8D4C2514162B00EA2FBD /* BorderedButton.swift in Sources */,
 				F0AA8D4F2514162B00EA2FBD /* RoundedLabel.swift in Sources */,
 				F01634E12540A47E009A426D /* FIRDocumentReference+Extension.swift in Sources */,
 				F0AA8D272514162B00EA2FBD /* UIImageView+ExtensionMarketplace.swift in Sources */,
+				F0B33C8125D4BF5F00D04B68 /* UserService.swift in Sources */,
 				F0AA8D152514162B00EA2FBD /* MarketplaceInteractor.swift in Sources */,
 				F0CB35EE254DBBA000368E44 /* Alert.swift in Sources */,
 				F0A11F1A25054383007C29F3 /* PostTableViewCell.swift in Sources */,
@@ -2374,6 +2430,7 @@
 				F07ECB1C254DF83000868D40 /* ProductCollectionViewCell.swift in Sources */,
 				F07ECB1D254DF83000868D40 /* ItemShop.swift in Sources */,
 				F07ECB1E254DF83000868D40 /* WebFavoritProducts.swift in Sources */,
+				F0B33C3025D4A3C000D04B68 /* UIImage+Ext.swift in Sources */,
 				F07ECB1F254DF83000868D40 /* FirestoreReport.swift in Sources */,
 				F07ECB20254DF83000868D40 /* NotificationUtils.swift in Sources */,
 				F07ECB21254DF83000868D40 /* GroupCell.swift in Sources */,
@@ -2410,6 +2467,7 @@
 				F07ECB3B254DF83000868D40 /* AppleSignIn.swift in Sources */,
 				F07ECB3C254DF83000868D40 /* UIViewController+Extension.swift in Sources */,
 				F07ECB3D254DF83000868D40 /* ChangePasswordViewController.swift in Sources */,
+				F0B33C8225D4BF5F00D04B68 /* UserService.swift in Sources */,
 				F0EB492425C4B7FC00E89497 /* BottomTab.swift in Sources */,
 				F07ECB3E254DF83000868D40 /* FilterGradientView.swift in Sources */,
 				F07ECB3F254DF83000868D40 /* UIKitUtils.swift in Sources */,
@@ -2424,6 +2482,7 @@
 				F0DAE6CB25C35BE200D076BD /* ProductCardFooterView.swift in Sources */,
 				F07ECB48254DF83000868D40 /* FirestoreNotification.swift in Sources */,
 				F07ECB49254DF83000868D40 /* PlatounTableViewDataSource.swift in Sources */,
+				F0B33C2525D491F200D04B68 /* Int+Extension.swift in Sources */,
 				F07ECB4A254DF83000868D40 /* AppDelegate.swift in Sources */,
 				F07ECB4B254DF83000868D40 /* InviteViewController.swift in Sources */,
 				F07ECB4C254DF83000868D40 /* InviteSuccessViewController.swift in Sources */,
@@ -2446,14 +2505,17 @@
 				F07ECB5C254DF83000868D40 /* DrawShadowView.swift in Sources */,
 				F07ECB5D254DF83000868D40 /* FirestoreUser.swift in Sources */,
 				F07ECB5E254DF83000868D40 /* GoogleSignIn.swift in Sources */,
+				F03E686325D5DA71002DCA77 /* UIAlertViewController+Extension.swift in Sources */,
 				F07ECB5F254DF83000868D40 /* UserDefaultsUtils.swift in Sources */,
+				F0B33C2B25D49FDB00D04B68 /* PostService.swift in Sources */,
 				F07ECB60254DF83000868D40 /* ProductLiked.swift in Sources */,
 				F07ECB61254DF83000868D40 /* PlatounBackendApi.swift in Sources */,
 				F07ECB62254DF83000868D40 /* CommentsViewController.swift in Sources */,
 				F07ECB63254DF83000868D40 /* WebPlatounError.swift in Sources */,
 				F07ECB64254DF83000868D40 /* CheckableItemView.swift in Sources */,
 				F07ECB65254DF83000868D40 /* BorderedView.swift in Sources */,
-				F0DAE63825C3572D00D076BD /* ProductCardModel.swift in Sources */,
+				F0DAE63825C3572D00D076BD /* PostV2.swift in Sources */,
+				F0B33C8C25D4C73E00D04B68 /* VotesService.swift in Sources */,
 				F07ECB66254DF83000868D40 /* Dictionary+Extension.swift in Sources */,
 				F07ECB67254DF83000868D40 /* Double+Extension.swift in Sources */,
 				F07ECB68254DF83000868D40 /* FIRUser+Extension.swift in Sources */,
@@ -2488,6 +2550,7 @@
 				F07ECB83254DF83000868D40 /* ProductLikeCollectionViewCell.swift in Sources */,
 				F07ECB84254DF83000868D40 /* MarketplaceFilterViewController.swift in Sources */,
 				F07ECB85254DF83000868D40 /* CreateGroupViewController.swift in Sources */,
+				F03E685E25D5B457002DCA77 /* CatViewController.swift in Sources */,
 				F07ECB86254DF83000868D40 /* CellBuilder.swift in Sources */,
 				F07ECB87254DF83000868D40 /* Invitation.swift in Sources */,
 				F07ECB88254DF83000868D40 /* MarketplaceCategoryView.swift in Sources */,
@@ -2503,6 +2566,7 @@
 				F07ECB90254DF83000868D40 /* GradientUtils.swift in Sources */,
 				F07ECB91254DF83000868D40 /* SocialViewController.swift in Sources */,
 				F07ECB92254DF83000868D40 /* PlatounEnv.swift in Sources */,
+				F0B33C8725D4C6D700D04B68 /* UserVote.swift in Sources */,
 				F07ECB93254DF83000868D40 /* Authentication.swift in Sources */,
 				F0DAE6C025C35B7900D076BD /* ProductCardContentView.swift in Sources */,
 				F07ECB94254DF83000868D40 /* WebPromoStatus.swift in Sources */,
@@ -2511,7 +2575,6 @@
 				F07ECB97254DF83000868D40 /* RemoteConfigUtils.swift in Sources */,
 				F07ECB98254DF83000868D40 /* CongratulationViewController.swift in Sources */,
 				F07ECB99254DF83000868D40 /* UIColor+Extension.swift in Sources */,
-				F0619FCF25D1EEE1002B82EC /* ProductV2.swift in Sources */,
 				F07ECB9A254DF83000868D40 /* ProductProposedCollectionViewCell.swift in Sources */,
 				F07ECB9B254DF83000868D40 /* UITableView+Extension.swift in Sources */,
 				F07ECB9C254DF83000868D40 /* BorderedButton.swift in Sources */,
@@ -2521,6 +2584,7 @@
 				F07ECBA0254DF83000868D40 /* MarketplaceInteractor.swift in Sources */,
 				F07ECBA1254DF83000868D40 /* Alert.swift in Sources */,
 				F07ECBA2254DF83000868D40 /* PostTableViewCell.swift in Sources */,
+				F0B33C9125D4CF3300D04B68 /* ProductVote.swift in Sources */,
 				F07ECBA3254DF83000868D40 /* Array+Extension.swift in Sources */,
 				F07ECBA4254DF83000868D40 /* WebCategoryProducts.swift in Sources */,
 				F07ECBA5254DF83000868D40 /* WebNotification.swift in Sources */,
@@ -2854,7 +2918,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2867,7 +2931,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.ios.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2883,7 +2947,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2895,7 +2959,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.platoun.ios.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2954,6 +3018,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F03E689D25D94630002DCA77 /* XCRemoteSwiftPackageReference "Zoomy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lvnkmn/Zoomy";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		F06424B52542115D005EE2E7 /* XCRemoteSwiftPackageReference "IBPCollectionViewCompositionalLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/IBPCollectionViewCompositionalLayout";
@@ -3021,6 +3093,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F03E689E25D94630002DCA77 /* Zoomy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F03E689D25D94630002DCA77 /* XCRemoteSwiftPackageReference "Zoomy" */;
+			productName = Zoomy;
+		};
 		F06424B62542115D005EE2E7 /* IBPCollectionViewCompositionalLayout */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F06424B52542115D005EE2E7 /* XCRemoteSwiftPackageReference "IBPCollectionViewCompositionalLayout" */;

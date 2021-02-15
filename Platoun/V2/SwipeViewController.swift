@@ -8,6 +8,9 @@
 
 import UIKit
 import Shuffle
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseAnalytics
 
 class SwipeViewController: UIViewController {
     
@@ -16,16 +19,12 @@ class SwipeViewController: UIViewController {
     
     @IBOutlet weak var bottomTab: UIView!
     
-    private let cardModels: [ProductCardModel] = [
-        ProductCardModel(userName: "UserName1", productName: "ProductName1", comment: "Comment1 très long pour voir si c'est bien sur une seule ligne", productImageUrl: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg", userImageUrl: "https://www.nicesnippets.com/demo/profile-1.jpg"),
-        ProductCardModel(userName: "UserName2", productName: "ProductName2", comment: "Comment2", productImageUrl: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph", userImageUrl: "https://www.nicesnippets.com/demo/profile-3.jpg"),
-        ProductCardModel(userName: "UserName1", productName: "ProductName1", comment: "Comment1", productImageUrl: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph", userImageUrl: "https://www.nicesnippets.com/demo/profile-1.jpg"),
-        ProductCardModel(userName: "UserName2", productName: "ProductName2", comment: "Comment2", productImageUrl: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg", userImageUrl: "https://www.nicesnippets.com/demo/profile-3.jpg"),
-        ProductCardModel(userName: "UserName1", productName: "ProductName1", comment: "Comment1", productImageUrl: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph", userImageUrl: "https://www.nicesnippets.com/demo/profile-1.jpg"),
-        ProductCardModel(userName: "UserName2", productName: "ProductName2", comment: "Comment2", productImageUrl: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg", userImageUrl: "https://www.nicesnippets.com/demo/profile-3.jpg"),
-        ProductCardModel(userName: "UserName1", productName: "ProductName1", comment: "Comment1", productImageUrl: "https://offautan-uc1.azureedge.net/-/media/images/off/ph/products-en/products-landing/landing/off_overtime_product_collections_large_2x.jpg?la=en-ph", userImageUrl: "https://www.nicesnippets.com/demo/profile-1.jpg"),
-        ProductCardModel(userName: "UserName2", productName: "ProductName2", comment: "Comment2", productImageUrl: "https://cdn.pixabay.com/photo/2020/05/26/09/32/product-5222398_960_720.jpg", userImageUrl: "https://www.nicesnippets.com/demo/profile-3.jpg")
-    ]
+    
+    private var posts: [PostV2] = []
+    private var user: UserV2?
+    private var lastSnapshot: DocumentSnapshot?
+    @IBOutlet weak var votesCenterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var continueCenterConstraint: NSLayoutConstraint!
     
     override func viewWillAppear(_ animated: Bool) {
         self.setGradientBackground(self.view)
@@ -35,9 +34,64 @@ class SwipeViewController: UIViewController {
         self.navigationItem.initTitleItem()
         self.navigationItem.initLeftItem(target: self, actionTap: #selector(actionTapProfil))
         self.navigationItem.initRightItem(target: self, actionTap: #selector(actionTapRing))
-    }
-    @objc private func actionTapProfil() {
         
+        if let userId = Auth.auth().currentUser?.uid {
+            UserService.shared.getUser(userId: userId) { (user: UserV2?) in
+                guard let user = user else { return }
+                self.user = user
+                self.loadData()
+            }
+        } else {
+            self.loadData()
+        }
+        
+        let userIdBis = Auth.auth().currentUser?.uid
+        let key = "love_swipe_feature_voted_\(userIdBis ?? "")"
+        
+        let displayVote = userIdBis != nil && !UserDefaults.standard.bool(forKey: key)
+        
+        votesCenterConstraint.isActive = displayVote
+        continueCenterConstraint.isActive = !displayVote
+        
+//        voteTitle.isHidden = !displayVote
+//        voteButtonContainer.isHidden = !displayVote
+    }
+    
+    func hideStackSwipe() {
+        self.cardStack.isUserInteractionEnabled = false
+    }
+    
+    func showStackSwipe() {
+        self.cardStack.isUserInteractionEnabled = true
+    }
+    
+    func loadData() {
+        PostService.shared.getRecentPost(user: self.user, limit: 50, lastSnapshot: self.lastSnapshot) { (posts, snapshot) in
+            let postsWithoutTwin = posts//.filter { new in !self.posts.contains(where: { $0.postId == new.postId }) }
+            let oldModelsCount = self.posts.count
+            let newModelsCount = oldModelsCount + postsWithoutTwin.count
+            self.posts += postsWithoutTwin
+            if postsWithoutTwin.count > 0 {
+                self.showStackSwipe()
+            } else if self.posts.count == 0 {
+                self.hideStackSwipe()
+            }
+            self.lastSnapshot = snapshot
+            let newIndices = Array(oldModelsCount..<newModelsCount)
+            self.cardStack.appendCards(atIndices: newIndices)
+        }
+    }
+    
+    func showConnection() {
+        let vc = UIAlertController(title: "Oups", message: "Vous devez pour le moment être connecté.", preferredStyle: .alert)
+        vc.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(vc, animated: true)
+    }
+    
+    @objc private func actionTapProfil() {
+        guard let user = Auth.auth().currentUser?.uid else { return }
+        self.performSegue(withIdentifier: "showProfil", sender: user)
     }
     @objc private func actionTapRing() {
         
@@ -64,7 +118,7 @@ class SwipeViewController: UIViewController {
         layoutButtonStackView()
         layoutCardStackView()
     }
-    
+        
     func card(fromImage image: UIImage) -> SwipeCard {
         let card = SwipeCard()
         card.swipeDirections = [.left, .right]
@@ -107,15 +161,42 @@ class SwipeViewController: UIViewController {
         
         NSLayoutConstraint.activate(constraints)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showProfil":
+            guard
+                let destination = segue.destination as? ProfilV2ViewController,
+                let userId = sender as? String else { return }
+            destination.userId = userId
+        default:
+            break
+        }
+    }
+    
 }
 
 extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardStackDelegate, ActionCardDelegate {
-    
-    func userNameTapAction() {
-        self.performSegue(withIdentifier: "showProfil", sender: nil)
+    func moreTapAction(productCard: PostV2) {
+        let alert = UIAlertController(title: nil, message: "Que souhaitez-vous faire ?", preferredStyle: .alert)
+        
+        if productCard.user.id == self.user?.id {
+            alert.addAction(UIAlertAction(title: "Supprime le", style: .cancel, handler: { _ in
+                
+            }))
+        } else {
+            alert.addAction(UIAlertAction(title: "Signale le", style: .cancel, handler: { _ in
+                
+            }))
+        }
+        self.present(alert, animated: true)
     }
     
-    func shareImage(image: UIImage) {
+    func userNameTapAction(productCard: PostV2) {
+        self.performSegue(withIdentifier: "showProfil", sender: productCard.user.id)
+    }
+    
+    func shareImage(image: UIImage, productCard: PostV2) {
         let imageToShare:[Any] = [ image ]
         
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
@@ -128,6 +209,11 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
     }
     
     func cardStack(_ cardStack: SwipeCardStack, cardForIndexAt index: Int) -> SwipeCard {
+        print("PostService => load card n°\(index)")
+        if index >= (self.posts.count - 4) && self.lastSnapshot != nil {
+            self.loadData()
+        }
+        
         let card = SwipeCard()
         card.footerHeight = 0
         card.swipeDirections = [.left, .up, .right]
@@ -135,7 +221,7 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
             card.setOverlay(ProductCardOverlay(direction: direction), forDirection: direction)
         }
         
-        let model = cardModels[index]
+        let model = self.posts[index]
         card.content = ProductCardContentView()
         (card.content as! ProductCardContentView).delegate = self
         (card.content as! ProductCardContentView).update(with: model)
@@ -145,78 +231,121 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
     }
     
     func numberOfCards(in cardStack: SwipeCardStack) -> Int {
-        return cardModels.count
+        return posts.count
     }
     
     func didSwipeAllCards(_ cardStack: SwipeCardStack) {
         print("Swiped all cards!")
+        self.hideStackSwipe()
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didUndoCardAt index: Int, from direction: SwipeDirection) {
-        print("Undo \(direction) swipe on \(cardModels[index].productName)")
+        print("Undo \(direction) swipe on \(self.posts[index].name)")
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
-        print("Swiped \(direction) on \(cardModels[index].productName)")
+        guard let user = self.user,let post = self.posts.getOrNil(index) else { return }
+        print("Swiped \(direction) on \(post.name)")
+        
+        switch direction {
+        case .left:
+            VotesService.shared.seePost(user: user, post: post){}
+        case .right:
+            VotesService.shared.likePost(user: user, post: post, surkiff: false) {}
+        case .up:
+            VotesService.shared.likePost(user: user, post: post, surkiff: true) {}
+        case .down:
+            break
+        }
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
         print("Card tapped")
         guard
             let card = cardStack.card(forIndexAt: index),
-            let old = card.content as? ProductCardContentView,
-            let parentFrame = card.content?.frame
+            let content = card.content as? ProductCardContentView
             else { return }
         
-        if old.isIncrease {
+        if content.isIncrease {
             card.swipeDirections = [.left, .up, .right]
         } else {
             card.swipeDirections = []
         }
-        
-//        let model = cardModels[index]
-//        let content = ProductCardContentView()
-//        content.update(with: model)
-//        content.frame = card.convert(parentFrame, to: self.view)
-//        self.view.addSubview(content)
-//        content.layoutIfNeeded()
-        let (before, animate, complet) = old.toogleIncrease()
+        let (animate, complet) = content.toogleIncrease()
         
         UIView.animate(withDuration: 0.3, animations: {
-            if old.isIncrease { self.bottomConstraint?.constant = -80 }
+            if content.isIncrease { self.bottomConstraint?.constant = -80 }
             else { self.bottomConstraint?.constant = -145 }
-            before()
             animate()
             card.layoutIfNeeded()
             self.cardStack.superview?.layoutIfNeeded()
         }) { _ in
             complet()
-//            content.increase()
-//            UIView.animate(withDuration: 1) {
-//                content.layoutIfNeeded()
-//            }
         }
     }
     
-    func didTapButton(button: BottomButton) {
-        switch button.tag {
-        case 1: break
-//            cardStack.undoLastSwipe(animated: true)
-        case 2:
+    func didTapButton(buttonType: ButtonStackView.ButtonType) {
+        switch buttonType {
+        case .category:
+            let vc = UIAlertController.getFeatureAvailableSoon()
+            self.present(vc, animated: true)
+        case .pass:
             cardStack.swipe(.left, animated: true)
-        case 3:
+        case .star:
             cardStack.swipe(.up, animated: true)
-        case 4:
+        case .like:
             cardStack.swipe(.right, animated: true)
-        case 5: break
-//            cardStack.reloadData()
-        default:
-            break
+        case .messages:
+            let vc = UIAlertController.getFeatureAvailableSoon()
+            self.present(vc, animated: true)
         }
     }
     
     
     @IBAction func takePictureActionTap(_ sender: Any) {
-        takePictureForPost(in: self)
+        guard let user = self.user else { return }
+        takePictureForPost2(in: self, for: user)
+    }
+    
+    @IBAction func yesActionTap() {
+        guard
+            let userId = Auth.auth().currentUser?.uid,
+            !UserDefaults.standard.bool(forKey: "love_swipe_feature_voted_\(userId)") else { return }
+        Analytics.logEvent("love_swipe_feature_yes", parameters: [
+            AnalyticsParameterItemID: "love_swipe_feature",
+            AnalyticsParameterItemName: "yes"
+        ])
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "love_swipe_feature",
+            AnalyticsParameterItemName: "yes"
+        ])
+        UserDefaults.standard.set(true, forKey: "love_swipe_feature_voted_\(userId)")
+        
+        UIView.animate(withDuration: 0.3) {
+            self.votesCenterConstraint.isActive = false
+            self.continueCenterConstraint.isActive = true
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func noActionTap() {
+        guard
+            let userId = Auth.auth().currentUser?.uid,
+            !UserDefaults.standard.bool(forKey: "love_swipe_feature_voted_\(userId)") else { return }
+        Analytics.logEvent("love_swipe_feature_no", parameters: [
+            AnalyticsParameterItemID: "love_swipe_feature",
+            AnalyticsParameterItemName: "no"
+        ])
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "love_swipe_feature",
+            AnalyticsParameterItemName: "no"
+        ])
+        UserDefaults.standard.set(true, forKey: "love_swipe_feature_voted_\(userId)")
+                
+        UIView.animate(withDuration: 0.3) {
+            self.votesCenterConstraint.isActive = false
+            self.continueCenterConstraint.isActive = true
+            self.view.layoutIfNeeded()
+        }
     }
 }

@@ -9,10 +9,14 @@
 import PopBounceButton
 
 protocol ButtonStackViewDelegate: AnyObject {
-    func didTapButton(button: BottomButton)
+    func didTapButton(buttonType: ButtonStackView.ButtonType)
 }
 
 class ButtonStackView: UIStackView {
+    
+    enum ButtonType {
+        case category, pass, star, like, messages
+    }
     
     weak var delegate: ButtonStackViewDelegate?
     
@@ -48,9 +52,9 @@ class ButtonStackView: UIStackView {
         return button
     }()
     
-    private let shareButton: BottomButton = {
+    private let messagesButton: BottomButton = {
         let button = BottomButton()
-        button.setImage(UIImage(named: "ic-share-v2"), for: .normal)
+        button.setImage(UIImage(named: "ic-messages"), for: .normal)
         button.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
         button.tag = 5
         return button
@@ -73,7 +77,7 @@ class ButtonStackView: UIStackView {
         addArrangedSubview(from: passButton, size: 56)
         addArrangedSubview(from: superLikeButton, size: 60)
         addArrangedSubview(from: likeButton, size: 56)
-        addArrangedSubview(from: shareButton, size: 42)
+        addArrangedSubview(from: messagesButton, size: 42)
         addEnmptySubview()
     }
     
@@ -97,7 +101,23 @@ class ButtonStackView: UIStackView {
         
     @objc
     private func handleTap(_ button: BottomButton) {
-        delegate?.didTapButton(button: button)
+        
+        let type: ButtonType
+        switch button {
+        case categoryButton:
+            type = .category
+        case passButton:
+            type = .pass
+        case superLikeButton:
+            type = .star
+        case likeButton:
+            type = .like
+        case messagesButton:
+            type = .messages
+        default: return
+        }
+        
+        delegate?.didTapButton(buttonType: type)
     }
 }
 

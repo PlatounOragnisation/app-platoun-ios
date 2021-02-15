@@ -10,6 +10,7 @@ import UIKit
 
 protocol FooterDelegate {
     func userNameTapAction()
+    func moreTapAction()
 }
 
 class ProductCardFooterView: UIView {
@@ -40,6 +41,7 @@ class ProductCardFooterView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = ThemeColor.c01BDAE
         label.font = UIFont.roboto(type: .medium, fontSize: 16)
+        label.isUserInteractionEnabled = true
         return label
     }()
     
@@ -89,21 +91,33 @@ class ProductCardFooterView: UIView {
         return image
     }()
     
+    private let moreImage: UIImageView = {
+        let image = UIImageView(image: UIImage(named: "ic-dot-more"))
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.isHidden = true
+        image.alpha = 0
+        image.isUserInteractionEnabled = true
+        return image
+    }()
+    
+    
+    
     init() {
         super.init(frame: CGRect.zero)
-        backgroundColor = .clear
-        layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        layer.cornerRadius = 25
-        clipsToBounds = true
-        isOpaque = false
+//        backgroundColor = .clear
+//        layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//        layer.cornerRadius = 25
+//        clipsToBounds = true
+        backgroundColor = ThemeColor.White
+        
+        moreImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(moreActionTap)))
+        userNameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userNameDidTap)))
     }
     
-    func increase() -> (()->Void, ()->Void, ()->Void) {
+    func increase() -> (()->Void, ()->Void) {
         return (
             {
                 self.commentLabel.numberOfLines = 0
-            },
-            {
                 self.lignInvisible?.isActive = false
                 self.lignVisible?.isActive = true
                 
@@ -111,6 +125,8 @@ class ProductCardFooterView: UIView {
                 self.askQuestionButton.isHidden = false
                 self.askQuestionButton.alpha = 1
                 self.seeMoreLabel.alpha = 0
+                self.moreImage.isHidden = false
+                self.moreImage.alpha = 1
             },
             {
                 self.seeMoreLabel.isHidden = true
@@ -118,22 +134,22 @@ class ProductCardFooterView: UIView {
         )
     }
     
-    func decrease() -> (()->Void, ()->Void, ()->Void) {
+    func decrease() -> (()->Void, ()->Void) {
         
         return (
-            {
+           {
                 self.commentLabel.numberOfLines = 1
-            },
-            {
                 self.lignInvisible?.isActive = true
                 self.lignVisible?.isActive = false
                 
                 self.askQuestionButton.alpha = 0
                 self.seeMoreLabel.isHidden = false
                 self.seeMoreLabel.alpha = 1
+                self.moreImage.alpha = 0
             }, {
                 self.lineButton.isHidden = true
                 self.askQuestionButton.isHidden = true
+                self.moreImage.isHidden = true
             }
         )
     }
@@ -157,6 +173,7 @@ class ProductCardFooterView: UIView {
         addSubview(seeMoreLabel)
         addSubview(askQuestionButton)
         addSubview(lineButton)
+        addSubview(moreImage)
         
         
         let constraints = [
@@ -190,32 +207,34 @@ class ProductCardFooterView: UIView {
             lineButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 11),
             lineButton.topAnchor.constraint(equalTo: askQuestionButton.bottomAnchor, constant: 0),
             lineButton.heightAnchor.constraint(equalToConstant: 11),
-            lignInvisible!
+            lignInvisible!,
+            
+            moreImage.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+            moreImage.topAnchor.constraint(equalTo: userNameLabel.topAnchor, constant: 0),
+            moreImage.heightAnchor.constraint(equalToConstant: 22),
+            moreImage.widthAnchor.constraint(equalToConstant: 22)
         ]
         
         NSLayoutConstraint.activate(constraints)
-        
-        userNameLabel.isUserInteractionEnabled = true
-        userNameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userNameDidTap)))
     }
     
     @objc func userNameDidTap() {
         self.delegate?.userNameTapAction()
     }
     
-    func update(with productCard: ProductCardModel) {
-        userProfileImageView.setImage(with: URL(string: productCard.userImageUrl)!, placeholder: nil, options: .progressiveLoad)
-        userNameLabel.text = "@\(productCard.userName)"
-        productNameLabel.text = productCard.productName
+    func update(with productCard: PostV2) {
+        if let image = URL(string: productCard.user.image) {
+            userProfileImageView.setImage(with: image, placeholder: nil, options: .progressiveLoad)
+        } else {
+            userProfileImageView.image = #imageLiteral(resourceName: "ic_social_default_profil")
+        }
+        userNameLabel.text = "@\(productCard.user.name)"
+        productNameLabel.text = productCard.name
         commentLabel.text = productCard.comment
     }
     
-    override func layoutSubviews() {
-//        let padding: CGFloat = 20
-//        label.frame = CGRect(x: padding,
-//                             y: bounds.height - label.intrinsicContentSize.height - padding,
-//                             width: bounds.width - 2 * padding,
-//                             height: label.intrinsicContentSize.height)
+    @objc func moreActionTap() {
+        self.delegate?.moreTapAction()
     }
 }
 

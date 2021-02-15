@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "InjectableLoggers",
+        "repositoryURL": "https://github.com/lvnkmn/InjectableLoggers",
+        "state": {
+          "branch": null,
+          "revision": "932bb5c96f79ba76a37fe0cb7df5b9163501daee",
+          "version": "2.1.3"
+        }
+      },
+      {
         "package": "Nimble",
         "repositoryURL": "https://github.com/Quick/Nimble",
         "state": {
@@ -80,6 +89,15 @@
           "branch": "spm",
           "revision": "2cf2d150bb0861f2079bc44b56c17aabf5e5d5aa",
           "version": null
+        }
+      },
+      {
+        "package": "Zoomy",
+        "repositoryURL": "https://github.com/lvnkmn/Zoomy",
+        "state": {
+          "branch": null,
+          "revision": "c64a52e86ece9f952ed3fcda741254d53cb44924",
+          "version": "4.0.1"
         }
       }
     ]
