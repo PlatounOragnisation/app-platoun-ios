@@ -22,7 +22,13 @@ final class VotesService {
     let POST_DB_REF = PostService.shared.POST_DB_REF
     let USER_DB_REF = UserService.shared.USER_DB_REF
     
-    func seePost(user: UserV2, post: PostV2, completion: @escaping ()->Void) {
+    func seePost(user: UserV2?, post: PostV2, completion: @escaping ()->Void) {
+        guard let user = user else {
+            UserDefaults.standard.passPost(post: post)
+            completion()
+            return
+        }
+        
         let currentUserRed = USER_DB_REF.document(user.id).collection("see").document(post.postId)
 
         let batch = DB_REF.batch()
@@ -38,7 +44,13 @@ final class VotesService {
         }
     }
     
-    func likePost(user: UserV2, post: PostV2, surkiff: Bool,completion: @escaping ()->Void) {
+    func likePost(user: UserV2?, post: PostV2, surkiff: Bool,completion: @escaping ()->Void) {
+        guard let user = user else {
+            UserDefaults.standard.likePost(post: post, surkiff: surkiff)
+            completion()
+            return
+        }
+        
         let collectionKey = surkiff ? "likes" : "surkiffs"
         let postRef = POST_DB_REF.document(post.postId)
         let userCreatorRef = USER_DB_REF.document(post.user.id)

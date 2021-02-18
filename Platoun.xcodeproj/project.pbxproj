@@ -13,6 +13,12 @@
 		4B8EC63D9228B4A3865A4E81 /* Pods_PlatounAbs_Platoun_PlatounUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30091A050B14750B0B540305 /* Pods_PlatounAbs_Platoun_PlatounUITests.framework */; };
 		52CC2443FE477D6F32559ADB /* Pods_PlatounAbs_Platoun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 687D4A2DB479BC148461BFA3 /* Pods_PlatounAbs_Platoun.framework */; };
 		6801D9B0518A79EAA37FB8D3 /* Pods_PlatounAbs_PlatounDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CF91F925E4E6B44C969AAC /* Pods_PlatounAbs_PlatounDev.framework */; };
+		F00DBFC925DDD47700641847 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00DBFC825DDD47700641847 /* PostCardView.swift */; };
+		F00DBFCA25DDD47700641847 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00DBFC825DDD47700641847 /* PostCardView.swift */; };
+		F00DBFCE25DDD4D300641847 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00DBFCD25DDD4D300641847 /* NibView.swift */; };
+		F00DBFCF25DDD4D300641847 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00DBFCD25DDD4D300641847 /* NibView.swift */; };
+		F00DBFD325DDD52700641847 /* PostCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00DBFD225DDD52700641847 /* PostCardView.xib */; };
+		F00DBFD425DDD52700641847 /* PostCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00DBFD225DDD52700641847 /* PostCardView.xib */; };
 		F01634E12540A47E009A426D /* FIRDocumentReference+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01634E02540A47E009A426D /* FIRDocumentReference+Extension.swift */; };
 		F01634E62540AB5D009A426D /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01634E52540AB5D009A426D /* Error+Extension.swift */; };
 		F01634EE25420127009A426D /* MarketplaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01634ED25420127009A426D /* MarketplaceViewController.swift */; };
@@ -52,6 +58,7 @@
 		F03E686325D5DA71002DCA77 /* UIAlertViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E686125D5DA71002DCA77 /* UIAlertViewController+Extension.swift */; };
 		F03E689F25D94630002DCA77 /* Zoomy in Frameworks */ = {isa = PBXBuildFile; productRef = F03E689E25D94630002DCA77 /* Zoomy */; };
 		F03E68A325D947F9002DCA77 /* UserDefaultsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E68A225D947F9002DCA77 /* UserDefaultsServices.swift */; };
+		F03E68A625DDA83F002DCA77 /* UserDefaultsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E68A225D947F9002DCA77 /* UserDefaultsServices.swift */; };
 		F0461A55254339A400B75724 /* EmptyProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0461A54254339A400B75724 /* EmptyProductsCollectionViewCell.swift */; };
 		F049B582252A63F400CB7F49 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F049B581252A63F400CB7F49 /* Dictionary+Extension.swift */; };
 		F04A7DB52514EB3400F99143 /* PlatounUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A7DB42514EB3400F99143 /* PlatounUser.swift */; };
@@ -561,6 +568,9 @@
 		C6CB4B128465D74AAC13509D /* Pods-PlatounAbs-Platoun-PlatounUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounAbs-Platoun-PlatounUITests.debug.xcconfig"; path = "Target Support Files/Pods-PlatounAbs-Platoun-PlatounUITests/Pods-PlatounAbs-Platoun-PlatounUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CC7F13EF679DB5D0C2DCC63E /* Pods-Platoun-PlatounUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platoun-PlatounUITests.release.xcconfig"; path = "Target Support Files/Pods-Platoun-PlatounUITests/Pods-Platoun-PlatounUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D1A9D69C963F976F672344A9 /* Pods-PlatounAbs-Platoun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlatounAbs-Platoun.debug.xcconfig"; path = "Target Support Files/Pods-PlatounAbs-Platoun/Pods-PlatounAbs-Platoun.debug.xcconfig"; sourceTree = "<group>"; };
+		F00DBFC825DDD47700641847 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
+		F00DBFCD25DDD4D300641847 /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		F00DBFD225DDD52700641847 /* PostCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCardView.xib; sourceTree = "<group>"; };
 		F01634E02540A47E009A426D /* FIRDocumentReference+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRDocumentReference+Extension.swift"; sourceTree = "<group>"; };
 		F01634E52540AB5D009A426D /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		F01634ED25420127009A426D /* MarketplaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplaceViewController.swift; sourceTree = "<group>"; };
@@ -1646,6 +1656,9 @@
 				F0DAE6BE25C35B7900D076BD /* ProductCardContentView.swift */,
 				F0DAE6C925C35BE200D076BD /* ProductCardFooterView.swift */,
 				F0DAE6CE25C35C1C00D076BD /* ProductCardOverlay.swift */,
+				F00DBFD225DDD52700641847 /* PostCardView.xib */,
+				F00DBFC825DDD47700641847 /* PostCardView.swift */,
+				F00DBFCD25DDD4D300641847 /* NibView.swift */,
 			);
 			path = ProductCard;
 			sourceTree = "<group>";
@@ -1874,6 +1887,7 @@
 				F0BD49F925166C51008092BA /* Roboto-Thin.ttf in Resources */,
 				F039B0EA25C0A279005B7B44 /* Baloo-Regular.ttf in Resources */,
 				F0DB422025179D0400A8B4FA /* DropDownPostView.xib in Resources */,
+				F00DBFD325DDD52700641847 /* PostCardView.xib in Resources */,
 				F0AA8D5A2514162B00EA2FBD /* MomunityUsers.storyboard in Resources */,
 				F0AA8D562514162B00EA2FBD /* PourcentView.xib in Resources */,
 				F0BD49FF25166C51008092BA /* Roboto-Light.ttf in Resources */,
@@ -1937,6 +1951,7 @@
 				F07ECBCF254DF83000868D40 /* Root.storyboard in Resources */,
 				F039B0EB25C0A279005B7B44 /* Baloo-Regular.ttf in Resources */,
 				F07ECBD0254DF83000868D40 /* Roboto-Thin.ttf in Resources */,
+				F00DBFD425DDD52700641847 /* PostCardView.xib in Resources */,
 				F07ECBD1254DF83000868D40 /* DropDownPostView.xib in Resources */,
 				F07ECBD2254DF83000868D40 /* MomunityUsers.storyboard in Resources */,
 				F07ECBD3254DF83000868D40 /* PourcentView.xib in Resources */,
@@ -2271,6 +2286,7 @@
 				F0AA8D222514162B00EA2FBD /* InviteViewController.swift in Sources */,
 				F0AA8D252514162B00EA2FBD /* InviteSuccessViewController.swift in Sources */,
 				F0AA8D1F2514162B00EA2FBD /* ProductViewController.swift in Sources */,
+				F00DBFCE25DDD4D300641847 /* NibView.swift in Sources */,
 				F0AA8D112514162A00EA2FBD /* PromocodesViewController.swift in Sources */,
 				F0AA8D0F2514162A00EA2FBD /* GroupStatusCell.swift in Sources */,
 				F0AA8D102514162A00EA2FBD /* PromocodeCell.swift in Sources */,
@@ -2387,6 +2403,7 @@
 				F0DAE64625C358A800D076BD /* UIView+Ext.swift in Sources */,
 				F0AA8D132514162B00EA2FBD /* JoinGroupViewController.swift in Sources */,
 				F0AA8D0C2514162A00EA2FBD /* CategoryViewCell.swift in Sources */,
+				F00DBFC925DDD47700641847 /* PostCardView.swift in Sources */,
 				F0DAE64125C3583800D076BD /* BottomButton.swift in Sources */,
 				F0AA8D3A2514162B00EA2FBD /* WebSummaryNotification.swift in Sources */,
 			);
@@ -2458,6 +2475,7 @@
 				F07ECB34254DF83000868D40 /* NotificationBackgroundView.swift in Sources */,
 				F0980C7A25D1C936003490E0 /* ThreeProductCell.swift in Sources */,
 				F07ECB35254DF83000868D40 /* NSMutableAttributedString+Extension.swift in Sources */,
+				F03E68A625DDA83F002DCA77 /* UserDefaultsServices.swift in Sources */,
 				F07ECB36254DF83000868D40 /* CGContext+Extension.swift in Sources */,
 				F07ECB37254DF83000868D40 /* ProductsLikedViewController.swift in Sources */,
 				F07ECB38254DF83000868D40 /* PinCodeViewController.swift in Sources */,
@@ -2487,6 +2505,7 @@
 				F07ECB4B254DF83000868D40 /* InviteViewController.swift in Sources */,
 				F07ECB4C254DF83000868D40 /* InviteSuccessViewController.swift in Sources */,
 				F07ECB4D254DF83000868D40 /* ProductViewController.swift in Sources */,
+				F00DBFCF25DDD4D300641847 /* NibView.swift in Sources */,
 				F07ECB4E254DF83000868D40 /* PromocodesViewController.swift in Sources */,
 				F07ECB4F254DF83000868D40 /* GroupStatusCell.swift in Sources */,
 				F07ECB50254DF83000868D40 /* PromocodeCell.swift in Sources */,
@@ -2603,6 +2622,7 @@
 				F0DAE64725C358A800D076BD /* UIView+Ext.swift in Sources */,
 				F07ECBB0254DF83000868D40 /* JoinGroupViewController.swift in Sources */,
 				F07ECBB1254DF83000868D40 /* CategoryViewCell.swift in Sources */,
+				F00DBFCA25DDD47700641847 /* PostCardView.swift in Sources */,
 				F0DAE64225C3583800D076BD /* BottomButton.swift in Sources */,
 				F07ECBB2254DF83000868D40 /* WebSummaryNotification.swift in Sources */,
 			);
@@ -2918,7 +2938,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2947,7 +2967,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				CODE_SIGN_ENTITLEMENTS = Platoun/Platoun.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8PT246Z373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

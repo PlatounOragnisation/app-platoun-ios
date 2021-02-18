@@ -25,6 +25,11 @@ final class PostService {
     let PHOTO_STORAGE_REF: StorageReference = Storage.storage().reference().child("v2").child("photos")
     
     private func getSeePost(user: UserV2?, completion: @escaping ([String])->Void) {
+        guard let user = user else {
+            completion(UserDefaults.standard.getSeePost())
+            return
+        }
+        
         let query = UserService.shared.USER_DB_REF.document(user.id).collection("see")
         
         query.getDocuments { (snapshot, error) in
@@ -33,13 +38,13 @@ final class PostService {
         }
     }
     
-    private func getPostLimit(user: UserV2, limite: Int, postIds: [String], posts:[PostV2] = [], lastSnapshot: DocumentSnapshot?, completion: @escaping ([PostV2], DocumentSnapshot?)->Void) {
+    private func getPostLimit(user: UserV2?, limite: Int, postIds: [String], posts:[PostV2] = [], startSnapshot: DocumentSnapshot?, completion: @escaping ([PostV2], DocumentSnapshot?, DocumentSnapshot?)->Void) {
         var postQuery: Query = POST_DB_REF
             .order(by: PostV2.ProductV2InfoKey.timestamp, descending: true)
         
-        if let lastSnapshot = lastSnapshot {
+        if let startSnapshot = startSnapshot {
             postQuery = postQuery
-                .start(afterDocument: lastSnapshot)
+                .start(afterDocument: startSnapshot)
         }
         
         postQuery = postQuery
@@ -50,24 +55,40 @@ final class PostService {
             let newPosts: [PostV2] = (snapshot?.documents ?? []).compactMap {
                 PostV2(postId: $0.documentID, postInfo: $0.data())
             }
-            let filteredPost = newPosts.filter { !postIds.contains($0.postId) && $0.user.id != user.id }
+            let filteredPost = newPosts.filter { !postIds.contains($0.postId) && (user == nil || $0.user.id != user?.id) }
             
             let total = filteredPost+posts
             if newPosts.count < limite {
                 print("PostService => fetch \(total.count) posts and is End")
-                completion(total, nil)
+                completion(total, startSnapshot, nil)
             } else if total.count >= limite || (newPosts.count - filteredPost.count <= 10){
                 print("PostService => fetch \(total.count) posts and is not End")
-                completion(total, (snapshot?.documents ?? []).last)
+                completion(total, startSnapshot, (snapshot?.documents ?? []).last)
             } else {
-                self.getPostLimit(user: user, limite: limite, postIds: postIds, posts: total, lastSnapshot: (snapshot?.documents ?? []).last, completion: completion)
+                self.getPostLimit(user: user, limite: limite, postIds: postIds, posts: total, startSnapshot: (snapshot?.documents ?? []).last) { total, _, last in
+                    completion(total, startSnapshot, last)
+                }
             }
         }
     }
     
-    func getRecentPost(user: UserV2?, limit: Int, lastSnapshot: DocumentSnapshot?, completion: @escaping ([PostV2], DocumentSnapshot?)->Void) {
+    func getPost(postId: String, completion: @escaping (PostV2)->Void) {
+        POST_DB_REF.document(postId).getDocument { (snapShot, error) in
+            if
+                let data = snapShot?.data(),
+                let post = PostV2(postId: postId, postInfo: data) {
+                completion(post)
+            }
+            
+            if let error = error {
+                Crashlytics.crashlytics().record(error: error)
+            }
+        }
+    }
+    
+    func getRecentPost(user: UserV2?, limit: Int, startSnapshot: DocumentSnapshot?, completion: @escaping ([PostV2], DocumentSnapshot?, DocumentSnapshot?)->Void) {
         self.getSeePost(user: user) { (postIdsAlreadySeen) in
-            self.getPostLimit(user: user, limite: limit, postIds: postIdsAlreadySeen, lastSnapshot: lastSnapshot, completion: completion)
+            self.getPostLimit(user: user, limite: limit, postIds: postIdsAlreadySeen, startSnapshot: startSnapshot, completion: completion)
         }
     }
     

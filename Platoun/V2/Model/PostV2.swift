@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct PostV2 {
+struct PostV2: Codable {
     let user: UserVote
     let name: String
     let comment: String

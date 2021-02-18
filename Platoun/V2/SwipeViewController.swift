@@ -21,10 +21,24 @@ class SwipeViewController: UIViewController {
     
     
     private var posts: [PostV2] = []
+    private var cardSmallVersion = true
     private var user: UserV2?
-    private var lastSnapshot: DocumentSnapshot?
+    private var startSnapshot: DocumentSnapshot?
+    private var endSnapshot: DocumentSnapshot?
     @IBOutlet weak var votesCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var continueCenterConstraint: NSLayoutConstraint!
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        cardStack.delegate = self
+        cardStack.dataSource = self
+        buttonStackView.delegate = self
+        
+        layoutButtonStackView()
+        layoutCardStackView()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.setGradientBackground(self.view)
@@ -35,26 +49,27 @@ class SwipeViewController: UIViewController {
         self.navigationItem.initLeftItem(target: self, actionTap: #selector(actionTapProfil))
         self.navigationItem.initRightItem(target: self, actionTap: #selector(actionTapRing))
         
-        if let userId = Auth.auth().currentUser?.uid {
-            UserService.shared.getUser(userId: userId) { (user: UserV2?) in
-                guard let user = user else { return }
-                self.user = user
-                self.loadData()
-            }
-        } else {
-            self.loadData()
-        }
+        self.loadUser()
         
-        let userIdBis = Auth.auth().currentUser?.uid
-        let key = "love_swipe_feature_voted_\(userIdBis ?? "")"
-        
-        let displayVote = userIdBis != nil && !UserDefaults.standard.bool(forKey: key)
+        let displayVote = !UserDefaults.standard.hasAlreadyVote()
         
         votesCenterConstraint.isActive = displayVote
         continueCenterConstraint.isActive = !displayVote
-        
-//        voteTitle.isHidden = !displayVote
-//        voteButtonContainer.isHidden = !displayVote
+    }
+    
+    func loadUser(_ completion: ((UserV2)->Void)? = nil) {
+        if let userId = Auth.auth().currentUser?.uid {
+            UserService.shared.getUser(userId: userId) { (user: UserV2?) in
+                self.user = user
+                self.loadData(afterLoadUser: true, start: self.startSnapshot)
+                if let user = user {
+                    completion?(user)
+                }
+            }
+        } else {
+            self.user = nil
+            self.loadData(afterLoadUser: true, start: self.startSnapshot)
+        }
     }
     
     func hideStackSwipe() {
@@ -65,8 +80,13 @@ class SwipeViewController: UIViewController {
         self.cardStack.isUserInteractionEnabled = true
     }
     
-    func loadData() {
-        PostService.shared.getRecentPost(user: self.user, limit: 50, lastSnapshot: self.lastSnapshot) { (posts, snapshot) in
+    func loadData(afterLoadUser: Bool, start: DocumentSnapshot?) {
+        PostService.shared.getRecentPost(user: self.user, limit: 50, startSnapshot: start) { (posts, start, last) in
+            self.startSnapshot = start
+            self.endSnapshot = last
+            if afterLoadUser {
+                self.posts = []
+            }
             let postsWithoutTwin = posts//.filter { new in !self.posts.contains(where: { $0.postId == new.postId }) }
             let oldModelsCount = self.posts.count
             let newModelsCount = oldModelsCount + postsWithoutTwin.count
@@ -76,25 +96,32 @@ class SwipeViewController: UIViewController {
             } else if self.posts.count == 0 {
                 self.hideStackSwipe()
             }
-            self.lastSnapshot = snapshot
-            let newIndices = Array(oldModelsCount..<newModelsCount)
-            self.cardStack.appendCards(atIndices: newIndices)
+            if afterLoadUser {
+                self.cardStack.reloadData()
+            } else {
+                let newIndices = Array(oldModelsCount..<newModelsCount)
+                self.cardStack.appendCards(atIndices: newIndices)
+            }
         }
     }
     
-    func showConnection() {
-        let vc = UIAlertController(title: "Oups", message: "Vous devez pour le moment être connecté.", preferredStyle: .alert)
-        vc.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        self.present(vc, animated: true)
+    @objc private func actionTapProfil() {
+        if let userId = Auth.auth().currentUser?.uid {
+            self.performSegue(withIdentifier: "showProfil", sender: userId)
+        } else {
+            let vc = UIAlertController.askAuth(in: self) { (successAuth) in
+                guard successAuth, let userId = Auth.auth().currentUser?.uid else { return }
+                self.loadUser()
+                self.performSegue(withIdentifier: "showProfil", sender: userId)
+            }
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
-    @objc private func actionTapProfil() {
-        guard let user = Auth.auth().currentUser?.uid else { return }
-        self.performSegue(withIdentifier: "showProfil", sender: user)
-    }
     @objc private func actionTapRing() {
-        
+        let vc = UIAlertController(title: "Très bientôt", message: "De nouvelle notifications arriverons bientôt!", preferredStyle: .alert)
+        vc.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(vc, animated: true)
     }
     
     func setGradientBackground(_ view: UIView) {
@@ -108,32 +135,22 @@ class SwipeViewController: UIViewController {
                 
         self.view.layer.insertSublayer(gradientLayer, at:0)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        cardStack.delegate = self
-        cardStack.dataSource = self
-        buttonStackView.delegate = self
         
-        layoutButtonStackView()
-        layoutCardStackView()
-    }
-        
-    func card(fromImage image: UIImage) -> SwipeCard {
-        let card = SwipeCard()
-        card.swipeDirections = [.left, .right]
-        card.content = UIImageView(image: image)
-        
-        let leftOverlay = UIView()
-        leftOverlay.backgroundColor = .green
-        
-        let rightOverlay = UIView()
-        rightOverlay.backgroundColor = .red
-        
-        card.setOverlays([.left: leftOverlay, .right: rightOverlay])
-        
-        return card
-    }
+//    func card(fromImage image: UIImage) -> SwipeCard {
+//        let card = SwipeCard()
+//        card.swipeDirections = [.left, .right]
+//        card.content = UIImageView(image: image)
+//
+//        let leftOverlay = UIView()
+//        leftOverlay.backgroundColor = .green
+//
+//        let rightOverlay = UIView()
+//        rightOverlay.backgroundColor = .red
+//
+//        card.setOverlays([.left: leftOverlay, .right: rightOverlay])
+//
+//        return card
+//    }
     
     private func layoutButtonStackView() {
         view.addSubview(buttonStackView)
@@ -176,42 +193,12 @@ class SwipeViewController: UIViewController {
     
 }
 
-extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardStackDelegate, ActionCardDelegate {
-    func moreTapAction(productCard: PostV2) {
-        let alert = UIAlertController(title: nil, message: "Que souhaitez-vous faire ?", preferredStyle: .alert)
+extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardStackDelegate {
         
-        if productCard.user.id == self.user?.id {
-            alert.addAction(UIAlertAction(title: "Supprime le", style: .cancel, handler: { _ in
-                
-            }))
-        } else {
-            alert.addAction(UIAlertAction(title: "Signale le", style: .cancel, handler: { _ in
-                
-            }))
-        }
-        self.present(alert, animated: true)
-    }
-    
-    func userNameTapAction(productCard: PostV2) {
-        self.performSegue(withIdentifier: "showProfil", sender: productCard.user.id)
-    }
-    
-    func shareImage(image: UIImage, productCard: PostV2) {
-        let imageToShare:[Any] = [ image ]
-        
-        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-        // exclude some activity types from the list (optional)
-//        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop ]
-
-        // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
-
-    }
-    
     func cardStack(_ cardStack: SwipeCardStack, cardForIndexAt index: Int) -> SwipeCard {
         print("PostService => load card n°\(index)")
-        if index >= (self.posts.count - 4) && self.lastSnapshot != nil {
-            self.loadData()
+        if index >= (self.posts.count - 4), let end = self.endSnapshot {
+            self.loadData(afterLoadUser: false, start: end)
         }
         
         let card = SwipeCard()
@@ -222,9 +209,9 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
         }
         
         let model = self.posts[index]
-        card.content = ProductCardContentView()
-        (card.content as! ProductCardContentView).delegate = self
-        (card.content as! ProductCardContentView).update(with: model)
+        card.content = PostCardView(isSmallVersion: self.cardSmallVersion)
+        (card.content as! PostCardView).delegate = self
+        (card.content as! PostCardView).update(with: model)
         //        card.footer = ProductCardFooterView(withTitle: "\(model.productName)", subtitle: model.userName)
         
         return card
@@ -244,16 +231,16 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
-        guard let user = self.user,let post = self.posts.getOrNil(index) else { return }
+        guard let post = self.posts.getOrNil(index) else { return }
         print("Swiped \(direction) on \(post.name)")
         
         switch direction {
         case .left:
-            VotesService.shared.seePost(user: user, post: post){}
+            VotesService.shared.seePost(user: self.user, post: post){}
         case .right:
-            VotesService.shared.likePost(user: user, post: post, surkiff: false) {}
+            VotesService.shared.likePost(user: self.user, post: post, surkiff: false) {}
         case .up:
-            VotesService.shared.likePost(user: user, post: post, surkiff: true) {}
+            VotesService.shared.likePost(user: self.user, post: post, surkiff: true) {}
         case .down:
             break
         }
@@ -261,27 +248,27 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
     
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
         print("Card tapped")
-        guard
-            let card = cardStack.card(forIndexAt: index),
-            let content = card.content as? ProductCardContentView
-            else { return }
-        
-        if content.isIncrease {
-            card.swipeDirections = [.left, .up, .right]
-        } else {
-            card.swipeDirections = []
-        }
-        let (animate, complet) = content.toogleIncrease()
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            if content.isIncrease { self.bottomConstraint?.constant = -80 }
-            else { self.bottomConstraint?.constant = -145 }
-            animate()
-            card.layoutIfNeeded()
-            self.cardStack.superview?.layoutIfNeeded()
-        }) { _ in
-            complet()
-        }
+//        guard
+//            let card = cardStack.card(forIndexAt: index),
+//            let content = card.content as? ProductCardContentView
+//            else { return }
+//
+//        if content.isIncrease {
+//            card.swipeDirections = [.left, .up, .right]
+//        } else {
+//            card.swipeDirections = []
+//        }
+//        let (animate, complet) = content.toogleIncrease()
+//
+//        UIView.animate(withDuration: 0.3, animations: {
+//            if content.isIncrease { self.bottomConstraint?.constant = -80 }
+//            else { self.bottomConstraint?.constant = -145 }
+//            animate()
+//            card.layoutIfNeeded()
+//            self.cardStack.superview?.layoutIfNeeded()
+//        }) { _ in
+//            complet()
+//        }
     }
     
     func didTapButton(buttonType: ButtonStackView.ButtonType) {
@@ -303,23 +290,33 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
     
     
     @IBAction func takePictureActionTap(_ sender: Any) {
-        guard let user = self.user else { return }
-        takePictureForPost2(in: self, for: user)
+        if let user = self.user {
+            takePictureForPost2(in: self, for: user)
+        } else {
+            let vc = UIAlertController.askAuth(in: self) { (successAuth) in
+                guard successAuth else { return }
+                self.loadUser() { user in
+                    takePictureForPost2(in: self, for: user)
+                }
+            }
+            self.present(vc, animated: true)
+        }
     }
     
     @IBAction func yesActionTap() {
-        guard
-            let userId = Auth.auth().currentUser?.uid,
-            !UserDefaults.standard.bool(forKey: "love_swipe_feature_voted_\(userId)") else { return }
+        guard !UserDefaults.standard.hasAlreadyVote() else { return }
+        let userId = Auth.auth().currentUser?.uid ?? "anonyme"
         Analytics.logEvent("love_swipe_feature_yes", parameters: [
             AnalyticsParameterItemID: "love_swipe_feature",
-            AnalyticsParameterItemName: "yes"
+            AnalyticsParameterItemName: "yes",
+            "connected": "\(userId != "anonyme")"
         ])
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
             AnalyticsParameterItemID: "love_swipe_feature",
-            AnalyticsParameterItemName: "yes"
+            AnalyticsParameterItemName: "yes",
+            "connected": "\(userId != "anonyme")"
         ])
-        UserDefaults.standard.set(true, forKey: "love_swipe_feature_voted_\(userId)")
+        UserDefaults.standard.saveVote(saidYes: true)
         
         UIView.animate(withDuration: 0.3) {
             self.votesCenterConstraint.isActive = false
@@ -329,18 +326,19 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
     }
     
     @IBAction func noActionTap() {
-        guard
-            let userId = Auth.auth().currentUser?.uid,
-            !UserDefaults.standard.bool(forKey: "love_swipe_feature_voted_\(userId)") else { return }
+        guard !UserDefaults.standard.hasAlreadyVote() else { return }
+        let userId = Auth.auth().currentUser?.uid ?? "anonyme"
         Analytics.logEvent("love_swipe_feature_no", parameters: [
             AnalyticsParameterItemID: "love_swipe_feature",
-            AnalyticsParameterItemName: "no"
+            AnalyticsParameterItemName: "no",
+            "connected": "\(userId != "anonyme")"
         ])
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
             AnalyticsParameterItemID: "love_swipe_feature",
-            AnalyticsParameterItemName: "no"
+            AnalyticsParameterItemName: "no",
+            "connected": "\(userId != "anonyme")"
         ])
-        UserDefaults.standard.set(true, forKey: "love_swipe_feature_voted_\(userId)")
+        UserDefaults.standard.saveVote(saidYes: false)
                 
         UIView.animate(withDuration: 0.3) {
             self.votesCenterConstraint.isActive = false
@@ -348,4 +346,24 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
             self.view.layoutIfNeeded()
         }
     }
+}
+
+extension SwipeViewController: PostCardViewDelegate {
+    func getParentViewController() -> UIViewController {
+        return self
+    }
+    
+    func getBottomConstraint() -> NSLayoutConstraint? {
+        return self.bottomConstraint
+    }
+    
+    func sizeChange(isSmallVersion: Bool) {
+        self.cardSmallVersion = isSmallVersion
+        guard
+            let index = self.cardStack.topCardIndex,
+            let card = self.cardStack.card(forIndexAt: index) else { return }
+        card.swipeDirections = isSmallVersion ? [.left, .up, .right] : []
+    }
+    
+    func footerOnClick() {}
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Shuffle
 import FirebaseAuth
 
 class ProfilV2ViewController: UIViewController {
@@ -28,6 +29,26 @@ class ProfilV2ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    lazy var contentCard: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var cardSwip: SwipeCard = {
+        let card = SwipeCard()
+        card.footerHeight = 0
+        card.swipeDirections = []
+        card.translatesAutoresizingMaskIntoConstraints = false
+        
+        card.content = PostCardView(isSmallVersion: false, canChangeSize: false)
+        (card.content as! PostCardView).delegate = self
+        return card
+    }()
+    
+    lazy var widthAnchorContent = contentCard.widthAnchor.constraint(equalToConstant: 0)
+    lazy var heightAnchorContent = contentCard.heightAnchor.constraint(equalToConstant: 0)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,14 +60,20 @@ class ProfilV2ViewController: UIViewController {
         
         votesCountLabel.update(colors: [ThemeColor.cFFE600, ThemeColor.cFFC7C7])
         votesTitleLabel.update(colors: [ThemeColor.cFFE600, ThemeColor.cFFC7C7])
-        
-        UserService.shared.getUser(userId: self.userId) { user in
+                
+        self.loadUser(userId: self.userId) { user in
             guard let user = user else { return }
             self.user = user
             self.initializeUser()
         }
         
         self.sugestionActionTap("")
+    }
+    
+    func loadUser(userId: String, completion: @escaping (UserV2?)->Void) {
+        UserService.shared.getUser(userId: self.userId) { user in
+            completion(user)
+        }
     }
     
     private var user: UserV2!
@@ -58,6 +85,8 @@ class ProfilV2ViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        self.initializeCard()
     }
     
     
@@ -73,6 +102,44 @@ class ProfilV2ViewController: UIViewController {
         } else {
             profilImageView.image = #imageLiteral(resourceName: "ic_social_default_profil")
         }
+    }
+    
+    func initializeCard() {
+        view.addSubview(contentCard)
+        contentCard.addSubview(cardSwip)
+                
+        let constraints = [
+            contentCard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            contentCard.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            widthAnchorContent,
+            heightAnchorContent,
+            
+            cardSwip.topAnchor.constraint(equalTo: contentCard.safeAreaLayoutGuide.topAnchor, constant: 20),
+            cardSwip.centerXAnchor.constraint(equalTo: contentCard.safeAreaLayoutGuide.centerXAnchor),
+            cardSwip.widthAnchor.constraint(equalTo: contentCard.safeAreaLayoutGuide.widthAnchor, multiplier: 0.96),
+            cardSwip.heightAnchor.constraint(equalTo: contentCard.safeAreaLayoutGuide.heightAnchor, multiplier: 1, constant: -80)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func showCard(post: PostV2) {
+        (self.cardSwip.content as? PostCardView)?.update(with: post)
+        self.heightAnchorContent.constant = self.view.frame.height
+        self.widthAnchorContent.constant = self.view.frame.width
+
+        UIView.animate(withDuration: 0.3) {
+            self.cardSwip.superview?.layoutIfNeeded()
+        }
+    }
+    
+    func hideCard() {
+        self.heightAnchorContent.constant = 0
+        self.widthAnchorContent.constant = 0
+
+        UIView.animate(withDuration: 0.3) {
+            self.cardSwip.superview?.layoutIfNeeded()
+        }
+
     }
     
     @IBAction func sugestionActionTap(_ sender: Any) {
@@ -135,21 +202,51 @@ extension ProfilV2ViewController: UITableViewDataSource {
             index: indexPath.row)
         
         cell.productClosure = { product in
-            
+            PostService.shared.getPost(postId: product.postId) { (post) in
+                self.showCard(post: post)
+            }
         }
         
         return cell
     }
     
     @IBAction func takePictureActionTap(_ sender: Any) {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        UserService.shared.getUser(userId: userId) { user in
-            guard let user = user else { return }
-            takePictureForPost(in: self, for: user)
+        if let userId = Auth.auth().currentUser?.uid {
+            self.loadUser(userId: userId) { user in
+                guard let user = user else { return }
+                takePictureForPost2(in: self, for: user)
+            }
+        } else {
+            let vc = UIAlertController.askAuth(in: self) { (successAuth) in
+                guard successAuth, let userId = Auth.auth().currentUser?.uid else { return }
+                self.loadUser(userId: userId) { (user) in
+                    guard let user = user else { return }
+                    takePictureForPost2(in: self, for: user)
+                }
+            }
+            self.present(vc, animated: true)
         }
     }
 }
 
 extension ProfilV2ViewController: UITableViewDelegate {
     
+}
+
+extension ProfilV2ViewController: PostCardViewDelegate {
+    func getParentViewController() -> UIViewController {
+        return self
+    }
+    
+    func getBottomConstraint() -> NSLayoutConstraint? {
+        return nil
+    }
+    
+    func sizeChange(isSmallVersion: Bool) {
+        
+    }
+    
+    func footerOnClick() {
+        self.hideCard()
+    }
 }

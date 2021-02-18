@@ -11,12 +11,12 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    static func show(in viewController: UIViewController, isForCredential: Bool = false, completionAuth: @escaping (Bool)->Void) {
+    static func show(in viewController: UIViewController, isForCredential: Bool = false, canCancel: Bool = false, completionAuth: @escaping (Bool)->Void) {
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         vc.completionAuth = completionAuth
         let nav = UINavigationController(rootViewController: vc)
         if #available(iOS 13.0, *) {
-            nav.isModalInPresentation = true
+            nav.isModalInPresentation = !canCancel
         }
         nav.navigationBar.isHidden = true
         viewController.present(nav, animated: true)

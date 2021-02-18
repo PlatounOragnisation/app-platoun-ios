@@ -272,7 +272,7 @@ ou tu peux aussi commencer à poster tes propres suggestions ! </string>
         <!--ProfilV2 View Controller-->
         <scene sceneID="P9L-uP-2R8">
             <objects>
-                <viewController id="Luf-YX-Xth" customClass="ProfilV2ViewController" customModule="Platoun" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfilV2ViewController" id="Luf-YX-Xth" customClass="ProfilV2ViewController" customModule="Platoun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zRF-In-3DF">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

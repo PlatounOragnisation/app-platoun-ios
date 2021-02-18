@@ -14,26 +14,6 @@ protocol ActionCardDelegate {
     func shareImage(image: UIImage, productCard: PostV2)
 }
 
-extension UIView {
-    
-    func createImage() -> UIImage {
-
-        let rect: CGRect = CGRect(
-            x: self.frame.origin.x - 20, y: self.frame.origin.y - 20, width: self.frame.width + 40, height: self.frame.height + 40
-        )
-        
-        UIGraphicsBeginImageContext(rect.size)
-        let context: CGContext = UIGraphicsGetCurrentContext()!
-        self.layer.render(in: context)
-        let img = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return img
-
-    }
-    
-}
-
 class ProductCardContentView: UIView {
     
     var delegate: ActionCardDelegate?
@@ -118,6 +98,7 @@ class ProductCardContentView: UIView {
         return (
             {
                 animate()
+                self.productCardFooter.layoutIfNeeded()
                 self.shareImage.isHidden = false
                 self.shareImage.alpha = 1
             },{
