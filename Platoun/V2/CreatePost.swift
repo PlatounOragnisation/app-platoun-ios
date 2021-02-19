@@ -10,49 +10,7 @@ import UIKit
 import YPImagePicker
 import ImagePicker
 import Photos
-
-class ImagePickerControllerCustom: ImagePickerController {
-    
-    var cancel: (()->Void)?
-    var done: (([UIImage])->Void)?
-    var wrapper: (([UIImage])->Void)?
-    
-    required init(configuration: Configuration = Configuration()) {
-        super.init(configuration: configuration)
-        self.delegate = self
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.delegate = self
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if #available(iOS 14, *) {
-            if PHPhotoLibrary.authorizationStatus(for: .readWrite) == .limited {
-                PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
-                self.galleryView.collectionView.reloadData()
-            }
-        }
-    }
-}
-
-extension ImagePickerControllerCustom: ImagePickerDelegate {
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        self.wrapper?(images)
-    }
-    
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        self.done?(images)
-    }
-    
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        self.cancel?()
-    }
-}
+import PhotosUI
 
 class ImageBisViewController: UIViewController {
     
@@ -78,89 +36,91 @@ class ImageBisViewController: UIViewController {
     }
 }
 
-func takePictureForPost2(in viewController: UIViewController, for user: UserV2) {
-    let config = Configuration()
+func takePictureForPost(in viewController: UIViewController, for user: UserV2) {
+    showImagePicker(in: viewController, for: user)
+}
+
+fileprivate func showImagePicker(in viewController: UIViewController, for user: UserV2) {
+    let config = ImagePickerConfiguration()
     config.allowMultiplePhotoSelection = false
+    config.stackIsVisibleInSingleSelection = true
+    
+    let imagePicker = ImagePickerController(configuration: config)
+    
+    
+    imagePicker.closure = ImagePickerClosure
+    {
+        guard let image = $1.first else { return }
         
-    let imagePicker = ImagePickerControllerCustom(configuration: config)
-    
-    imagePicker.cancel = {
-        imagePicker.dismiss(animated: true, completion: nil)
+        let vc = ImageBisViewController()
+        vc.image = image
+        
+        $0.present(vc, animated: true)
     }
-    
-    imagePicker.done = { images in
-        guard let image = images.first else { return }
+    done: {
+        guard let image = $1.first else { return }
         let storyBoard = UIStoryboard(name: "V2", bundle: Bundle.main)
         let vc = storyBoard.instantiateViewController(withIdentifier: "SuggestVC") as! SugestViewController
         
         vc.image = image
         vc.user = user
-        imagePicker.dismiss(animated: false) {
+        $0.dismiss(animated: false) {
             viewController.present(vc, animated: true)
         }
     }
-    
-    imagePicker.wrapper = { images in
-        guard let image = images.first else { return }
-        
-        let vc = ImageBisViewController()
-        vc.image = image
-        
-        imagePicker.present(vc, animated: true)
-        print("t")
-    }
+    cancel: { $0.dismiss(animated: true, completion: nil) }
     
     imagePicker.modalPresentationStyle = .fullScreen
     viewController.present(imagePicker, animated: true)
 }
 
-func takePictureForPost(in viewController: UIViewController, for user: UserV2) {
-    var config = YPImagePickerConfiguration()
-    config.isScrollToChangeModesEnabled = true
-    config.usesFrontCamera = false
-    config.showsPhotoFilters = false
-    config.shouldSaveNewPicturesToAlbum = false
-    config.albumName = "Platoun"
-    config.startOnScreen = YPPickerScreen.photo
-    config.screens = [.library, .photo]
-    config.showsCrop = .rectangle(ratio: 3/4)
-    config.onlySquareImagesFromCamera = false
-    config.targetImageSize = YPImageSize.original
-    config.overlayView = UIView()
-    config.hidesStatusBar = true
-    config.hidesBottomBar = false
-    config.hidesCancelButton = false
-    config.preferredStatusBarStyle = UIStatusBarStyle.default
-    config.maxCameraZoomFactor = 10.0
-    
-    config.library.options = nil
-    config.library.onlySquare = false
-    config.library.isSquareByDefault = false
-    config.library.minWidthForItem = nil
-    config.library.mediaType = YPlibraryMediaType.photo
-    config.library.defaultMultipleSelection = false
-    config.library.maxNumberOfItems = 1
-    config.library.minNumberOfItems = 1
-    config.library.numberOfItemsInRow = 4
-    config.library.spacingBetweenItems = 1.0
-    config.library.skipSelectionsGallery = false
-    config.library.preselectedItems = nil
-    
-    config.gallery.hidesRemoveButton = false
-    
-    let picker = YPImagePicker(configuration: config)
-    picker.didFinishPicking { (items, cancelled) in
-        guard !cancelled, case .photo(let photo) = items.first else { picker.dismiss(animated: true, completion: nil); return }
-        
-        let storyBoard = UIStoryboard(name: "V2", bundle: Bundle.main)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "SuggestVC") as! SugestViewController
-        
-        vc.image = photo.image
-        vc.user = user
-        picker.dismiss(animated: false) {
-            viewController.present(vc, animated: true)
-        }
-    }
-    
-    viewController.present(picker, animated: true)
-}
+//func takePictureForPost(in viewController: UIViewController, for user: UserV2) {
+//    var config = YPImagePickerConfiguration()
+//    config.isScrollToChangeModesEnabled = true
+//    config.usesFrontCamera = false
+//    config.showsPhotoFilters = false
+//    config.shouldSaveNewPicturesToAlbum = false
+//    config.albumName = "Platoun"
+//    config.startOnScreen = YPPickerScreen.photo
+//    config.screens = [.library, .photo]
+//    config.showsCrop = .rectangle(ratio: 3/4)
+//    config.onlySquareImagesFromCamera = false
+//    config.targetImageSize = YPImageSize.original
+//    config.overlayView = UIView()
+//    config.hidesStatusBar = true
+//    config.hidesBottomBar = false
+//    config.hidesCancelButton = false
+//    config.preferredStatusBarStyle = UIStatusBarStyle.default
+//    config.maxCameraZoomFactor = 10.0
+//
+//    config.library.options = nil
+//    config.library.onlySquare = false
+//    config.library.isSquareByDefault = false
+//    config.library.minWidthForItem = nil
+//    config.library.mediaType = YPlibraryMediaType.photo
+//    config.library.defaultMultipleSelection = false
+//    config.library.maxNumberOfItems = 1
+//    config.library.minNumberOfItems = 1
+//    config.library.numberOfItemsInRow = 4
+//    config.library.spacingBetweenItems = 1.0
+//    config.library.skipSelectionsGallery = false
+//    config.library.preselectedItems = nil
+//
+//    config.gallery.hidesRemoveButton = false
+//
+//    let picker = YPImagePicker(configuration: config)
+//    picker.didFinishPicking { (items, cancelled) in
+//        guard !cancelled, case .photo(let photo) = items.first else { picker.dismiss(animated: true, completion: nil); return }
+//
+//        let storyBoard = UIStoryboard(name: "V2", bundle: Bundle.main)
+//        let vc = storyBoard.instantiateViewController(withIdentifier: "SuggestVC") as! SugestViewController
+//
+//        vc.image = photo.image
+//        vc.user = user
+//        picker.dismiss(animated: false) {
+//            viewController.present(vc, animated: true)
+//        }
+//    }
+//
+//    viewController.present(picker, animated: true)
+//}

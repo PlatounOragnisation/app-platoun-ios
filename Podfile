@@ -32,7 +32,7 @@ abstract_target 'PlatounAbs' do
   # For View
   pod 'DropDown'
   pod 'PopBounceButton'
-  pod 'ImagePicker'
+  pod 'ImagePicker', :git => 'https://github.com/naivalf27/ImagePicker.git'
   
   target 'Platoun' do
     target 'PlatounTests' do

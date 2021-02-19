@@ -291,12 +291,12 @@ extension SwipeViewController: ButtonStackViewDelegate, SwipeCardStackDataSource
     
     @IBAction func takePictureActionTap(_ sender: Any) {
         if let user = self.user {
-            takePictureForPost2(in: self, for: user)
+            takePictureForPost(in: self, for: user)
         } else {
             let vc = UIAlertController.askAuth(in: self) { (successAuth) in
                 guard successAuth else { return }
                 self.loadUser() { user in
-                    takePictureForPost2(in: self, for: user)
+                    takePictureForPost(in: self, for: user)
                 }
             }
             self.present(vc, animated: true)

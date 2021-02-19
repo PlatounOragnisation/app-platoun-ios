@@ -214,14 +214,14 @@ extension ProfilV2ViewController: UITableViewDataSource {
         if let userId = Auth.auth().currentUser?.uid {
             self.loadUser(userId: userId) { user in
                 guard let user = user else { return }
-                takePictureForPost2(in: self, for: user)
+                takePictureForPost(in: self, for: user)
             }
         } else {
             let vc = UIAlertController.askAuth(in: self) { (successAuth) in
                 guard successAuth, let userId = Auth.auth().currentUser?.uid else { return }
                 self.loadUser(userId: userId) { (user) in
                     guard let user = user else { return }
-                    takePictureForPost2(in: self, for: user)
+                    takePictureForPost(in: self, for: user)
                 }
             }
             self.present(vc, animated: true)

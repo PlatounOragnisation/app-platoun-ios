@@ -454,7 +454,7 @@ DEPENDENCIES:
   - FirebaseUI/Storage
   - GoogleSignIn
   - ImageIOUIKit
-  - ImagePicker
+  - ImagePicker (from `https://github.com/naivalf27/ImagePicker.git`)
   - MultiSlider (~> 1.10.8)
   - netfox
   - PopBounceButton
@@ -495,7 +495,6 @@ SPEC REPOS:
     - GTMSessionFetcher
     - ImageIOSwift
     - ImageIOUIKit
-    - ImagePicker
     - leveldb-library
     - MultiSlider
     - nanopb
@@ -506,6 +505,15 @@ SPEC REPOS:
     - Protobuf
     - SDWebImage
     - SweeterSwift
+
+EXTERNAL SOURCES:
+  ImagePicker:
+    :git: https://github.com/naivalf27/ImagePicker.git
+
+CHECKOUT OPTIONS:
+  ImagePicker:
+    :commit: 4becad8ac542c49d14248921adb5111b940b84d8
+    :git: https://github.com/naivalf27/ImagePicker.git
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -554,6 +562,6 @@ SPEC CHECKSUMS:
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SweeterSwift: d909211f6833405628c8c7c6bf9f8f2e8a0e9df9
 
-PODFILE CHECKSUM: cb9dcb8d7979cade332d1c93759bef42810b5d6e
+PODFILE CHECKSUM: bae00722b24108818dd6bd345af18c8a76dd12a1
 
 COCOAPODS: 1.9.3
